@@ -379,11 +379,11 @@
   const caseLoaderTitle = $('[data-case-loader-title]');
   let caseOpenTimer = 0;
   const localGalleries = {
-    'Creative Portfolio 2026': ['img/cover-portfolio.png', 'img/cover-aura.png', 'img/cover-biveris.png'],
-    'BIVERIS Skin Lab': ['img/cover-biveris.png', 'img/cover-synq.jpg'],
-    'AURA PUFFER': ['img/cover-aura.png', 'img/cover-magazine.png'],
+    'Creative Portfolio 2026': ['img/cover-portfolio.png', 'img/cover-aura.jpg', 'img/cover-biveris.jpg'],
+    'BIVERIS Skin Lab': ['img/cover-biveris.jpg', 'img/cover-synq.jpg'],
+    'AURA PUFFER': ['img/cover-aura.jpg', 'img/cover-magazine.jpg'],
     'SYNQ Loft Bar': ['img/cover-synq.jpg', 'img/cover-portfolio.png'],
-    'Sweet Fashion Magazine': ['img/cover-magazine.png', 'img/cover-aura.png'],
+    'Sweet Fashion Magazine': ['img/cover-magazine.jpg', 'img/cover-aura.jpg'],
     'Taxi Website': ['img/cover-portfolio.png', 'img/cover-synq.jpg'],
     'Video & Motion': ['img/hero-loop.mp4', 'img/motion-loop.mp4']
   };
