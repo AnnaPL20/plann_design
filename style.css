@@ -1,6 +1,7 @@
 /* =============================================================================
    PLANN Design — Anna Pytsko · portfolio
    Struktura pliku:
+   0. Fonty lokalne (@font-face)
    1. Tokeny (kolory, fonty, odstępy)   7. Sekcja Projekty      13. Stopka
    2. Reset i baza                      8. Sekcja O mnie        14. Warstwy globalne (siatka, kursor, rozmycie)
    3. Typografia                        9. Sekcja Usługi        15. Animacje wejścia / reveal
@@ -8,6 +9,140 @@
    5. Nawigacja + menu mobilne         11. Sekcja Kontakt       17. Ograniczony ruch
    6. Przyciski + hero                 12. Pasek przewijany
    ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   0. FONTY LOKALNE (folder fonts/)
+   Zadnych zapytan do obcych serwerow — wszystkie pliki .woff2 leza w projekcie.
+   Nazwy rodzin zostaly stare ("Neue Haas Grotesk Display Pro", "PP Neue
+   Montreal"), zeby nie przepisywac reszty arkusza; pod spodem sa darmowe
+   zamienniki na wolnych licencjach:
+     Neue Haas Grotesk Display Pro -> Switzer (ITF Free Font License)
+     PP Neue Montreal              -> Inter   (SIL Open Font License)
+     Inter, Fragment Mono          -> oryginaly na OFL
+   Switzer nie ma cyrylicy, wiec dla zakresu cyrylickiego ta sama rodzina
+   wskazuje na Inter (unicode-range decyduje o wyborze pliku znak po znaku).
+   --------------------------------------------------------------------------- */
+
+/* Zakresy znakow: latin — U+0000-00FF..., latin-ext — polskie diakrytyki, cyrillic — UA */
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("fonts/Switzer-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2020, U+20A0-20CF, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("fonts/Switzer-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2020, U+20A0-20CF, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("fonts/Switzer-700.woff2") format("woff2");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2020, U+20A0-20CF, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Cyrylica dla naglowkow — plik Inter, bo Switzer jej nie zawiera */
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Tekst ciagly — Inter (zmienny, jeden plik na zakres znakow) */
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("fonts/Inter-var-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2020, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("fonts/Inter-var-latin-ext.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Inter pod wlasna nazwa — gdyby gdzies byl wolany bezposrednio */
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-var-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2020, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-var-latin-ext.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Mono — adnotacje, etykiety, zegar */
+@font-face {
+  font-family: "Fragment Mono";
+  src: url("fonts/FragmentMono-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Fragment Mono";
+  src: url("fonts/FragmentMono-400-latin-ext.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Fragment Mono";
+  src: url("fonts/FragmentMono-400i-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Fragment Mono";
+  src: url("fonts/FragmentMono-400i-latin-ext.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 /* ---------------------------------------------------------------------------
    1. TOKENY
@@ -37,8 +172,8 @@
   --logo-onink: var(--t-onink);
   --logo-onpaper: var(--t-onpaper);
 
-  --font-display: "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "PP Neue Montreal", "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Neue Haas Grotesk Display Pro", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "PP Neue Montreal", "Inter", "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Fragment Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --container: 1440px;
@@ -130,7 +265,8 @@ strong { font-weight: 700; }
 
 /* ---------------------------------------------------------------------------
    3. TYPOGRAFIA
-   Display: Clash Display (nagłówki) · Body: Satoshi · Mono: Fragment Mono (adnotacje)
+   Display: Switzer (nagłówki) · Body: Inter · Mono: Fragment Mono (adnotacje)
+   Wszystkie pliki fontow leza lokalnie w folderze fonts/ — patrz sekcja 0.
    --------------------------------------------------------------------------- */
 .label {
   font-family: var(--font-mono);
