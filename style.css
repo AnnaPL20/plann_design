@@ -3324,3 +3324,76 @@ h1, h2, h3, strong, .card__title, .prod__name, .svc__itemTitle { color: var(--fg
 
 /* Kolor tekstu ciaglego — pelna paleta jest w sekcji 45 */
 :root { --text: #454545; }
+
+/* ---------------------------------------------------------------------------
+   45. PALETA I PLASKOSC
+   Bialy i jasnoszary jako tla, czarny tekst, szara skala dla drugiego planu,
+   jeden akcent: czerwien marki. Zadnych gradientow, poswiat ani duzych cieni —
+   jedynym elementem z objetoscia zostaja szklane krople przyciskow.
+   --------------------------------------------------------------------------- */
+:root {
+  --ink: #111111;
+  --paper: #ffffff;
+  --paper-2: #f7f7f7;
+  --grey-1: #999999;
+  --grey-2: #7a7a7a;
+  --grey-3: #454545;
+  --text: var(--grey-3);
+
+  --muted: var(--grey-2);
+  --faint: var(--grey-1);
+  --line: #e6e6e6;
+  --line-strong: #d6d6d6;
+  --surface: var(--paper-2);
+  --surface-2: #f0f0f0;
+  --glass-shadow: none;
+}
+
+/* Powierzchnie ciemne — linie i szarosci liczone na bialym */
+:root[data-theme="dark"],
+.invert,
+.accent-block,
+.services.invert,
+body.page--ink {
+  --muted: rgba(255, 255, 255, .62);
+  --faint: rgba(255, 255, 255, .4);
+  --line: rgba(255, 255, 255, .14);
+  --line-strong: rgba(255, 255, 255, .3);
+  --surface: rgba(255, 255, 255, .05);
+  --surface-2: rgba(255, 255, 255, .09);
+  --text: rgba(255, 255, 255, .82);
+}
+:root[data-theme="dark"] { --paper-2: #17181a; }
+
+/* Tla sekcji: plaskie, bez gradientow */
+.accent-block { background: var(--accent-onink); }
+.services.invert { background: #000; }
+.about-quick { background: var(--paper-2); }
+
+/* Zdjete pozostalosci po wczesniejszych iteracjach */
+.hero__glow,
+.hero__grain,
+.gridlayer { display: none !important; }
+
+.card__media,
+.prod__media,
+.arc__item,
+.shop__card,
+.about__mono,
+.pmodal,
+.case-viewer,
+.footer__work,
+.socials__row,
+.tblock { box-shadow: none; }
+
+.card__ph {
+  background: var(--paper-2);
+}
+
+/* Nawigacja: cienka planka zamiast pigulki z cieniem */
+.nav { box-shadow: none; }
+.btn--solid,
+.nav .btn--solid { box-shadow: none; }
+
+/* Fokus i zaznaczenie na akcencie marki */
+::selection { background: var(--accent-onink); color: #fff; }
