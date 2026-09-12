@@ -136,31 +136,30 @@
 
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="home">
-      <!-- Glowny wizual: konturowy monogram PA. Efekt negatywu pod kursorem
-           odwraca go w miejscu dotyku — to jest interakcja tej sekcji. -->
-      <div class="hero__mark" aria-hidden="true">
-        <svg viewBox="330 385 730 228" preserveAspectRatio="xMidYMid meet" fill="none" stroke="currentColor" stroke-width="3" vector-effect="non-scaling-stroke">
-          <path d="M687.04,456.1v36.37c0,18.04-4.4,31.63-13.09,40.39-8.63,8.79-22.29,13.26-40.55,13.26h-220.62v50.32h-63.61v-140.34c0-18,4.4-31.59,13.07-40.39,8.68-8.79,22.33-13.25,40.57-13.25h230.59c18.24,0,31.89,4.46,40.57,13.25,8.67,8.8,13.07,22.39,13.07,40.39Z"/>
-          <path d="M1040.35,456.1v140.34h-63.63v-50.66h-210.62v50.66h-63.62v-140.34c0-18,4.4-31.59,13.07-40.39,8.7-8.8,22.34-13.25,40.55-13.25h230.28c18.46,0,32.21,4.46,40.89,13.25,8.68,8.81,13.08,22.4,13.08,40.39Z"/>
-        </svg>
-      </div>
-
       <div class="container hero__inner">
-        <p class="status hero__badge intro" style="--i:0"><span class="status__dot" aria-hidden="true"></span><span data-i18n="hero.status">Available for new projects</span></p>
-        <p class="label label--br hero__eyebrow intro" style="--i:1" data-i18n="hero.label">Graphic &amp; web designer</p>
+        <p class="status hero__badge" data-hero="1"><span class="status__dot" aria-hidden="true"></span><span data-i18n="hero.status">Available for new projects</span></p>
+        <p class="label label--br hero__eyebrow" data-hero="2" data-i18n="hero.label">Graphic &amp; web designer</p>
 
-        <!-- Naglowek animowany slowo po slowie (JS dzieli tekst na spany .w) -->
-        <h1 class="display h1 hero__title split" data-split data-i18n="hero.title">Make your brand impossible to ignore.</h1>
+        <!-- Nazwa marki: dwa wiersze zlozone w jeden blok -->
+        <h1 class="hero__name">
+          <span class="hero__line" data-hero-line="1"><span>PLANN</span></span>
+          <span class="hero__line" data-hero-line="2"><span>DESIGN<sup class="hero__tm" aria-hidden="true">TM</sup></span></span>
+        </h1>
 
-        <div class="hero__actions intro" style="--i:2">
-          <a class="btn btn--solid btn--lg" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
-          <a class="btn btn--lg" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
+        <!-- Okno z moim elementem: konturowy monogram PA, kursor odwraca kolory -->
+        <div class="hero__media" data-hero-media>
+          <svg class="hero__mark" viewBox="330 385 730 228" preserveAspectRatio="xMidYMid meet" fill="none" stroke="currentColor" stroke-width="2.5" vector-effect="non-scaling-stroke" aria-hidden="true">
+            <path d="M687.04,456.1v36.37c0,18.04-4.4,31.63-13.09,40.39-8.63,8.79-22.29,13.26-40.55,13.26h-220.62v50.32h-63.61v-140.34c0-18,4.4-31.59,13.07-40.39,8.68-8.79,22.33-13.25,40.57-13.25h230.59c18.24,0,31.89,4.46,40.57,13.25,8.67,8.8,13.07,22.39,13.07,40.39Z"/>
+            <path d="M1040.35,456.1v140.34h-63.63v-50.66h-210.62v50.66h-63.62v-140.34c0-18,4.4-31.59,13.07-40.39,8.7-8.8,22.34-13.25,40.55-13.25h230.28c18.46,0,32.21,4.46,40.89,13.25,8.68,8.81,13.08,22.4,13.08,40.39Z"/>
+          </svg>
+          <!-- Plama negatywu jedzie za kursorem i odwraca kolory pod soba -->
+          <span class="hero__negative" data-hero-negative aria-hidden="true"></span>
         </div>
       </div>
 
-      <div class="container hero__foot intro" style="--i:3">
+      <div class="container hero__foot" data-hero="3">
         <p class="hero__where" data-i18n="hero.based">Poland — working worldwide</p>
-        <p class="hero__time"><span class="clock" data-clock>00:00:00</span> <span data-tz></span></p>
+        <p class="hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
         <p class="hero__scroll"><span data-i18n="hero.scroll">Scroll to explore</span> <span class="hero__scrollIcon" aria-hidden="true">↓</span></p>
       </div>
     </section>
@@ -633,6 +632,7 @@
   <script src="js/cards-3d.js" defer></script>
   <script src="js/scroll.js" defer></script>
   <script src="js/manifesto.js" defer></script>
+  <script src="js/hero-negative.js" defer></script>
   <script src="js/footer-works.js" defer></script>
   <script src="js/services.js" defer></script>
   <!-- Bryla 3D wylaczona: glownym elementem hero jest teraz rozkolorowanka.
