@@ -18,6 +18,9 @@ Dotyczy to w szczegolnosci:
 | **Pojawianie sie blokow przy przewijaniu** (fade-up z kaskada) | `script.js` + `js/scroll.js` |
 | **Naglowki slowo po slowie** (`data-split`) | `script.js` |
 | **Samoczynna fala kafelkow w stopce** | `js/footer-works.js` |
+| **Nasuwanie kart prac** — kolejny projekt wysuwa sie spod poprzedniego, ten pod spodem zmniejsza sie i rozmywa | `style.css` sekcja 63; `js/works-stack.js` (zmienna `--cover`) |
+| **Bryla 3D pod menu** — pryzma z czterech wlasnych okladek, obrot przy przewijaniu, pochylenie i swiatlo za kursorem | `style.css` sekcja 66; `js/obj3d.js` (`--ry`, `--rx`, `--lx`, `--ly`) |
+| **Rozwijane kierunki uslug** — jeden otwarty naraz, plynna zmiana wysokosci | `style.css` sekcja 65; `js/svc3.js` |
 
 Jesli nowy element koliduje z istniejacym efektem — pytamy, ktory zostaje.
 Nigdy nie decydujemy sami o usunieciu.
@@ -35,6 +38,9 @@ nie kasowaniem kodu.
   (EN / UA / PL) w `js/i18n.js`. Zero surowych kluczy na stronie.
 - Nowe komentarze w kodzie po polsku.
 - Kolory i typografia zmieniaja sie tylko na wyrazna prosbe.
+  Kroje: Satoshi (tekst i interfejs), Clash Display (duze naglowki),
+  Fragment Mono (podpisy), Inter (cyrylica). Wszystkie lokalnie w `fonts/`.
+  Neue Haas Grotesk i PP Neue Montreal sa platne — nie wolno ich podpinac.
 - `prefers-reduced-motion` wylacza ruch, zostawiajac krotkie przejscia
   przezroczystosci.
 
@@ -49,3 +55,6 @@ nie kasowaniem kodu.
 | `js/i18n.js` | wspolny slownik EN / UA / PL |
 | `script.js` | rdzen: motyw, jezyk, menu, kursor, zegar, podglad projektow |
 | `js/products.js` | dane towarow sklepu |
+| `js/works-stack.js` | nasuwanie kart prac |
+| `js/obj3d.js` | bryla 3D pod menu |
+| `js/svc3.js` | trzy rozwijane kierunki uslug |
