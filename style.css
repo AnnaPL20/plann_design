@@ -4451,3 +4451,48 @@ body.is-hero-negative .cursor { opacity: 0; }
 }
 .footer__nav a:hover::after,
 .footer__email:hover::after { transform: scaleX(1); }
+
+/* ---------------------------------------------------------------------------
+   57. PODGLAD PROJEKTU — czytelnosc i przewijanie do konca
+   1) Okno podgladu stoi na czerni, wiec tokeny powierzchni musza byc ciemne:
+      wczesniej przycisk [ about ] mial czarny tekst na czarnym panelu.
+   2) scroll-snap-type: x mandatory mial tylko jeden punkt zaczepienia — na
+      samym poczatku — wiec po dojechaniu do konca przegladarka szarpala widok
+      z powrotem na start. Przewijanie ma po prostu zatrzymac sie na koncu.
+   --------------------------------------------------------------------------- */
+.case-viewer {
+  --bg: #080808;
+  --fg: #ffffff;
+  --accent: var(--accent-onink);
+  --text: rgba(255, 255, 255, .82);
+  --muted: rgba(255, 255, 255, .62);
+  --faint: rgba(255, 255, 255, .4);
+  --line: rgba(255, 255, 255, .14);
+  --line-strong: rgba(255, 255, 255, .3);
+  --surface: rgba(255, 255, 255, .05);
+  --surface-2: rgba(255, 255, 255, .09);
+  color: #fff;
+}
+.case-viewer .btn {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .3);
+}
+.case-viewer .btn .btn__br { color: rgba(255, 255, 255, .6); }
+.case-viewer .btn:hover { border-color: #fff; }
+.case-viewer .btn--solid {
+  background: #fff;
+  color: #101112;
+  border-color: #fff;
+}
+.case-viewer .btn--solid .btn__br { color: rgba(16, 17, 18, .55); }
+.case-viewer .btn--solid:hover { background: var(--accent-onink); color: #fff; border-color: var(--accent-onink); }
+.case-viewer__close { color: #fff; border-color: rgba(255, 255, 255, .3); }
+.case-viewer__progress { color: #fff; }
+
+/* Bez przyciagania do punktow — widok zatrzymuje sie tam, gdzie dojedziesz */
+.case-viewer__track {
+  scroll-snap-type: none;
+  overscroll-behavior: contain;
+}
+.case-viewer__media,
+.case-viewer__info { scroll-snap-align: none; }
