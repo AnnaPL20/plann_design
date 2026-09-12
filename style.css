@@ -3397,3 +3397,67 @@ body.page--ink {
 
 /* Fokus i zaznaczenie na akcencie marki */
 ::selection { background: var(--accent-onink); color: #fff; }
+
+/* ---------------------------------------------------------------------------
+   46. SIATKA I POWIETRZE
+   Kontener 1440 px z polami 40 px (16 px na mobilnym), 12 kolumn.
+   Kazda sekcja otwiera sie tym samym rzedem: mono-podpis po lewej,
+   krotki podpis lub licznik po prawej, pod spodem cienka linia.
+   --------------------------------------------------------------------------- */
+:root { --cols: 12; }
+.container {
+  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+}
+.grid12 { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: var(--gutter); }
+
+.section { padding-block: var(--section); }
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.sectionHead__aside { color: var(--faint); text-align: right; }
+
+/* Wprowadzenie pod rzedem otwierajacym: tytul po lewej, opis po prawej */
+.sectionIntro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: clamp(24px, 4vw, 72px);
+  margin: clamp(34px, 5vw, 62px) 0 clamp(44px, 6vw, 80px);
+}
+.sectionIntro__title { margin: 0; }
+.sectionIntro__aside { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+
+/* --- O mnie: manifest --- */
+.about__manifesto {
+  margin: clamp(40px, 6vw, 76px) 0 clamp(40px, 6vw, 72px);
+  max-width: 24ch;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.6vw, 3.1rem);
+  letter-spacing: -.025em;
+  line-height: 1.12;
+  text-wrap: pretty;
+  max-width: 20ch;
+}
+@media (min-width: 900px) { .about__manifesto { max-width: 26ch; } }
+.about__manifesto .mw {
+  color: color-mix(in srgb, var(--fg) 18%, transparent);
+  transition: color .45s var(--ease-out);
+}
+.about__manifesto .mw.is-lit,
+.about__manifesto.is-done .mw { color: var(--fg); }
+
+.facts { margin-top: 0; border-top: 1px solid var(--line); }
+.facts__row { border-bottom: 1px solid var(--line); }
+.about__cta { margin-top: clamp(32px, 4vw, 52px); }
+
+@media (max-width: 900px) {
+  .sectionIntro { grid-template-columns: 1fr; align-items: start; }
+}
