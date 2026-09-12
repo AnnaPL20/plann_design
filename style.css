@@ -1788,6 +1788,19 @@ strong { font-weight: 700; }
 .nav .btn--solid:hover,
 .nav__cta:hover { --drop-lift: -1px; --drop-scale: var(--drop-hover); transform: translateY(var(--drop-lift)) scale(var(--drop-scale)); }
 
+/* Reguly kropli ustawiaja tlo wszystkim pigulkom, wiec warianty pelne
+   trzeba odtworzyc tutaj — te same kolory co wczesniej, bez zmian palety */
+.btn--solid,
+.nav .btn--solid {
+  background: #17181a;
+  border-color: rgba(255, 255, 255, .16);
+  color: #fff;
+}
+.btn--solid:hover,
+.nav .btn--solid:hover { background: #ff3d2e; border-color: rgba(255, 255, 255, .3); }
+.services .btn { background: #fff; color: #101112; border-color: #fff; }
+.services .btn:hover { background: #ff3d2e; border-color: #ff3d2e; color: #fff; }
+
 /* Falka rozchodzaca sie od punktu klikniecia */
 .drop-ripple {
   position: absolute;
@@ -1907,18 +1920,20 @@ strong { font-weight: 700; }
 .hero__canvas {
   position: absolute;
   z-index: -2;                 /* nad wideo (-3), pod poswiata (-1) i trescia */
-  top: 0;
-  right: -2%;
-  width: 52%;
-  height: 76%;
+  top: 2%;
+  right: 1%;
+  width: 40%;
+  height: 58%;
   pointer-events: none;
   opacity: 0;
   transition: opacity 1.2s var(--ease-out) .2s;
 }
 .hero.has-3d .hero__canvas { opacity: .95; }
 
+/* Na waskich ekranach bryla siedzi w gornym rogu, nad tekstem hero */
 @media (max-width: 900px) {
-  .hero__canvas { top: 4%; right: -10%; width: 74%; height: 42%; opacity: .8; }
+  .hero__canvas { top: 6%; right: -2%; width: 52%; height: 26%; }
+  .hero.has-3d .hero__canvas { opacity: .85; }
 }
 
 /* --- Karty projektow --- */
@@ -2427,4 +2442,16 @@ html.lenis, html.lenis body { height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .svc__item { opacity: 1; transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   30. USLUGI W MOTYWIE CIEMNYM
+   Sekcja uslug ma na sztywno czarne tlo i bialy tekst, ale tokeny .invert
+   odwracaja sie razem z motywem — w ciemnym motywie pigulki i wstep robily sie
+   czarne na czerni. Tu tokeny sa dociagniete do rzeczywistej powierzchni.
+   --------------------------------------------------------------------------- */
+.services.invert {
+  --bg: #000;
+  --fg: #fff;
+  --accent: var(--accent-onink);
 }

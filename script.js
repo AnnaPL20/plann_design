@@ -425,7 +425,7 @@
     document.body.classList.toggle('is-locked', open);
   };
   burger && burger.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
-  menu && $('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  menu && $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   matchMedia('(min-width: 1025px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 

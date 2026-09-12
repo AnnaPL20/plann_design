@@ -42,7 +42,7 @@ async function start() {
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5)); // twardy limit dpr
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 0.82;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
@@ -62,10 +62,10 @@ async function start() {
     m.lookAt(0, 0, 0);
     envScene.add(m);
   };
-  panel(0xffffff, 3.4, 0, 6, 2, 10, 10);     // gorne swiatlo kluczowe
-  panel(0xffe9e4, 1.9, -6, 1, 3, 8, 10);     // cieply odblask z lewej
-  panel(0xdfe4ff, 1.5, 6, -1, -3, 8, 10);    // chlodny odblask z prawej
-  panel(0xff3d2e, 0.9, 2, -5, 4, 8, 6);      // akcent marki od dolu
+  panel(0xffffff, 1.15, 0, 6, 2, 10, 10);    // gorne swiatlo kluczowe
+  panel(0xffe9e4, 0.7, -6, 1, 3, 8, 10);     // cieply odblask z lewej
+  panel(0xdfe4ff, 0.55, 6, -1, -3, 8, 10);   // chlodny odblask z prawej
+  panel(0xff3d2e, 0.4, 2, -5, 4, 8, 6);      // akcent marki od dolu
 
   const pmrem = new THREE.PMREMGenerator(renderer);
   const envMap = pmrem.fromScene(envScene, 0.03).texture;
@@ -77,8 +77,8 @@ async function start() {
   const rings = small || weak ? 32 : 72;
   const geometry = new THREE.SphereGeometry(1, segments, rings);
   const pos = geometry.attributes.position;
-  const R = 1.22;
-  const N = 4.2; // im wieksze, tym ostrzejsze naroza
+  const R = 0.98;
+  const N = 6.5; // im wieksze, tym ostrzejsze naroza
   const v = new THREE.Vector3();
   for (let i = 0; i < pos.count; i++) {
     v.fromBufferAttribute(pos, i).normalize();
@@ -93,26 +93,30 @@ async function start() {
   const material = new THREE.MeshPhysicalMaterial({
     color: 0xffffff,
     metalness: 0,
-    roughness: 0.05,
+    roughness: 0.04,
     transmission: 1,
-    thickness: 1.5,
-    ior: 1.47,
-    dispersion: small || weak ? 0 : 1.2,   // delikatna aberracja chromatyczna
-    iridescence: 0.28,
-    iridescenceIOR: 1.28,
+    thickness: 0.85,
+    ior: 1.42,
+    dispersion: small || weak ? 0 : 1.4,   // delikatna aberracja chromatyczna
+    iridescence: 0.45,
+    iridescenceIOR: 1.3,
     clearcoat: 1,
-    clearcoatRoughness: 0.06,
+    clearcoatRoughness: 0.05,
     attenuationColor: new THREE.Color(0xfff3f1),
-    attenuationDistance: 6,
-    envMapIntensity: 1.15
+    attenuationDistance: 3,
+    envMapIntensity: 0.85,
+    specularIntensity: 0.7,
+    /* Scena WebGL nie widzi strony pod spodem, wiec czesciowa przezroczystosc
+       robi reszte roboty: przez bryle widac wideo i tlo hero */
+    transparent: true,
+    opacity: 0.55
   });
 
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.set(0.42, 0.6, 0.12);
   scene.add(mesh);
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-  const key = new THREE.DirectionalLight(0xffffff, 1.6);
+  const key = new THREE.DirectionalLight(0xffffff, 0.7);
   key.position.set(3, 4, 5);
   scene.add(key);
 
