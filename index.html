@@ -567,7 +567,7 @@
       <span class="label">Selected work</span>
       <button class="case-viewer__close" type="button" data-case-close aria-label="Close project viewer">Close <span aria-hidden="true">×</span></button>
     </div>
-    <div class="case-viewer__track" data-case-track>
+    <div class="case-viewer__track" data-case-track data-lenis-prevent>
       <div class="case-viewer__media" data-case-media></div>
       <div class="case-viewer__info">
         <p class="label">Case study</p>
@@ -586,7 +586,7 @@
   <!-- ===================== STOPKA (czerwony blok akcentowy) ===================== -->
   <footer class="footer accent-block sheet" id="footer">
     <div class="container">
-      <div class="footer__body" data-reveal>
+      <div class="footer__body" data-reveal data-reveal-stagger>
         <div class="footer__column"><p class="label">Navigation</p><nav class="footer__nav" aria-label="Footer"><a href="#home">[ Home ]</a><a href="#projects">[ Works ]</a><a href="#contact">[ Contact ]</a></nav></div>
         <div class="footer__column"><p class="label">Email</p><a class="footer__email" href="mailto:annapytsko@gmail.com">[ annapytsko@gmail.com ]</a></div>
         <div class="footer__column"><p class="label">Social</p><nav class="footer__nav"><a href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener">[ Instagram ]</a><a href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener">[ Linked-In ]</a></nav></div>
@@ -598,7 +598,7 @@
         <img src="img/logo-pa-white.svg" alt="Anna Pytsko">
       </div>
 
-      <div class="footer__works" aria-label="Selected work previews">
+      <div class="footer__works" data-reveal-stagger aria-label="Selected work previews">
         <a class="footer__work" href="#projects" aria-label="View Creative Portfolio 2026">
           <img src="img/cover-portfolio.png" alt="Creative Portfolio 2026" loading="lazy">
         </a>
@@ -616,7 +616,7 @@
         </a>
       </div>
 
-      <div class="footer__grid">
+      <div class="footer__grid" data-reveal>
         <p class="label footer__meta">© <span data-year>2026</span> PA / PLANN Design™</p>
         <a class="label footer__top" href="#home">[ Back to top ↑ ]</a>
       </div>
@@ -635,10 +635,12 @@
     </filter>
   </svg>
 
+  <script src="js/vendor/lenis.min.js" defer></script>
   <script src="script.js" defer></script>
   <script src="js/ui-liquid.js" defer></script>
   <script src="js/sections.js" defer></script>
   <script src="js/cards-3d.js" defer></script>
+  <script src="js/scroll.js" defer></script>
   <!-- Modul: three.js doladowuje sie sam, dopiero po zaladowaniu strony -->
   <script type="module" src="js/hero3d.js"></script>
 </body>

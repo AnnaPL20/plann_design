@@ -1954,3 +1954,13 @@ strong { font-weight: 700; }
   .card__media { transform: none !important; }
   .card__gloss { display: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   23. PLYNNE PRZEWIJANIE (Lenis) — style wymagane przez biblioteke,
+   wklejone tu zamiast osobnego pliku lenis.css
+   --------------------------------------------------------------------------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
