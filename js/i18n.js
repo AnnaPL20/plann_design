@@ -132,6 +132,7 @@ window.PLANN_DICT = {
     /* --- Uslugi: trzy kierunki --- */
     'services.leadShort': 'I design brand identities, websites and social content — and I do it myself, from the first sketch to the final file.',
     'svc.open': 'Show what is inside',
+    'services.leadRow': 'From the first brief to the final file, I keep strategy, identity and content in one system.', 'services.headA': 'This is how I', 'services.headB': 'work.',
     'svc.d1': 'Brand Identity & Visual Systems', 'svc.d2': 'Digital & Web Design', 'svc.d3': 'Social Media & Content Design',
     'svc.i1t': 'Strategic Branding', 'svc.i1d': 'A clear direction for brands that need focus and recognition.',
     'svc.i2t': 'Visual Identity Design', 'svc.i2d': 'Logo, typography and colour built into one system.',
@@ -269,6 +270,7 @@ window.PLANN_DICT = {
     /* --- Uslugi: trzy kierunki --- */
     'services.leadShort': 'Я створюю айдентики, сайти та контент для соцмереж — і роблю це сама, від першого ескізу до фінального файлу.',
     'svc.open': 'Показати, що всередині',
+    'services.leadRow': 'Від першого брифу до фінального файлу я тримаю стратегію, айдентику й контент в одній системі.', 'services.headA': 'Ось як я', 'services.headB': 'працюю.',
     'svc.d1': 'Айдентика та візуальні системи', 'svc.d2': 'Цифровий і веб-дизайн', 'svc.d3': 'Соцмережі та контент-дизайн',
     'svc.i1t': 'Стратегічний брендинг', 'svc.i1d': 'Чіткий напрям для брендів, яким потрібен фокус і впізнаваність.',
     'svc.i2t': 'Дизайн айдентики', 'svc.i2d': 'Логотип, типографіка й колір, зібрані в одну систему.',
@@ -406,6 +408,7 @@ window.PLANN_DICT = {
     /* --- Uslugi: trzy kierunki --- */
     'services.leadShort': 'Projektuję identyfikacje, strony i treści do social mediów — sama, od pierwszego szkicu po finalny plik.',
     'svc.open': 'Pokaż, co jest w środku',
+    'services.leadRow': 'Od pierwszego briefu po finalny plik trzymam strategię, identyfikację i treści w jednym systemie.', 'services.headA': 'Tak właśnie', 'services.headB': 'pracuję.',
     'svc.d1': 'Identyfikacja i systemy wizualne', 'svc.d2': 'Projektowanie cyfrowe i web', 'svc.d3': 'Social media i projektowanie treści',
     'svc.i1t': 'Branding strategiczny', 'svc.i1d': 'Jasny kierunek dla marek, którym potrzeba skupienia i rozpoznawalności.',
     'svc.i2t': 'Projekt identyfikacji', 'svc.i2d': 'Logo, typografia i kolor złożone w jeden system.',
