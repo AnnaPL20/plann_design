@@ -134,6 +134,26 @@
 
   <main id="main">
 
+    <!-- ===================== OBIEKT 3D POD MENU =====================
+         Pryzma z czterech wlasnych okladek. Obraca sie przy przewijaniu,
+         pochyla za kursorem. Caly efekt na transformacjach CSS — bez bibliotek.
+         Zeby podmienic sciany, wystarczy zmienic pliki w .obj3d__face. -->
+    <section class="obj3d" id="object">
+      <div class="container obj3d__grid">
+        <p class="label label--br obj3d__label" data-i18n="d3.label">Object</p>
+        <div class="obj3d__stage" data-obj3d>
+          <div class="obj3d__box" data-obj3d-box>
+            <span class="obj3d__face" style="--i:0"><img src="img/cover-portfolio.png" alt="Creative Portfolio 2026"></span>
+            <span class="obj3d__face" style="--i:1"><img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab"></span>
+            <span class="obj3d__face" style="--i:2"><img src="img/cover-aura.jpg" alt="AURA PUFFER"></span>
+            <span class="obj3d__face" style="--i:3"><img src="img/cover-synq.jpg" alt="SYNQ Loft Bar"></span>
+          </div>
+          <span class="obj3d__shadow" aria-hidden="true"></span>
+        </div>
+        <p class="label obj3d__hint" data-i18n="d3.hint">Scroll to turn</p>
+      </div>
+    </section>
+
     <!-- ===================== HERO: jedno zdjecie po srodku ===================== -->
     <section class="hero" id="home">
       <div class="hero__stage" data-hero-media>
@@ -544,6 +564,7 @@
   <script src="js/hero-negative.js" defer></script>
   <script src="js/footer-works.js" defer></script>
   <script src="js/works-stack.js" defer></script>
+  <script src="js/obj3d.js" defer></script>
   <script src="js/services.js" defer></script>
   <script src="js/svc3.js" defer></script>
   <!-- Bryla 3D wylaczona: glownym elementem hero jest teraz rozkolorowanka.
