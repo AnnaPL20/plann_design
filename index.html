@@ -166,7 +166,7 @@
     </section>
 
     <!-- Pasek przewijany: zakres prac -->
-    <div class="marquee marquee--main" aria-hidden="true">
+    <div class="marquee marquee--main marquee--mono" aria-hidden="true">
       <div class="marquee__track">
         <div class="marquee__group">
           <span class="marquee__item" data-i18n="mq.1">Brand identity</span>
@@ -188,6 +188,211 @@
         </div>
       </div>
     </div>
+
+    <!-- ===================== PROJEKTY ===================== -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="sectionHead" data-reveal>
+          <p class="label label--br" data-i18n="projects.label">Selected work</p>
+          <p class="label sectionHead__aside">08</p>
+        </div>
+
+        <div class="sectionIntro">
+          <h2 class="display h2 sectionIntro__title" data-split data-reveal data-i18n="projects.title">Projects</h2>
+          <div class="sectionIntro__aside" data-reveal style="--d:.08s">
+            <p class="lead" data-i18n="projects.lead">A selection of identities, digital experiences and social content. Full case studies live on Behance, daily work on Instagram.</p>
+            <div class="section__links">
+              <a class="btn" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.behance">All projects on Behance</span><span class="btn__br" aria-hidden="true">]</span></a>
+              <a class="btn" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.instagram">Daily work on Instagram</span><span class="btn__br" aria-hidden="true">]</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!--
+          Siatka projektów. Każda karta to link do Behance / Instagram.
+          Aby dodać własną grafikę: odkomentuj <img class="card__img"> w karcie
+          i podaj ścieżkę do pliku (zalecane proporcje 4:5, np. 1200×1500 px, WebP).
+          Tytuły i opisy zmieniasz w słowniku I18N (klucze p1…p6) na dole pliku.
+        -->
+        <div class="projects__grid" data-reveal-stagger>
+          <a class="card" href="https://www.behance.net/gallery/247999533/Creative-Portfolio-2026-Branding-Web-Social-Media" target="_blank" rel="noopener" style="--tint:12%" data-reveal data-case="Creative Portfolio 2026">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-01.webp -->
+              <img class="card__img" src="img/cover-portfolio.png" alt="Creative Portfolio 2026 — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">01</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">Creative Portfolio 2026</h3>
+                <p class="card__desc" data-i18n="p1.desc">Branding, web and social media — selected work in one portfolio.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 01</span>
+              <span data-i18n="cat.brand">Brand identity</span>
+              <span>2026</span>
+            </div>
+          </a>
+
+          <a class="card" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" style="--tint:0%" data-reveal data-case="BIVERIS Skin Lab">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-02.webp -->
+              <img class="card__img" src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">02</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">BIVERIS Skin Lab</h3>
+                <p class="card__desc" data-i18n="p2.desc">Clinical brand identity and UX system for a skincare lab.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 02</span>
+              <span data-i18n="cat.brand">Brand identity</span>
+              <span>2025</span>
+            </div>
+          </a>
+
+          <a class="card" href="https://www.behance.net/gallery/237225941/AURA-PUFFER-Fashion-Banner-Series" target="_blank" rel="noopener" style="--tint:0%" data-reveal data-case="AURA PUFFER">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-03.webp -->
+              <img class="card__img" src="img/cover-aura.jpg" alt="AURA PUFFER — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">03</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">AURA PUFFER</h3>
+                <p class="card__desc" data-i18n="p3.desc">Fashion banner series for a puffer jacket collection.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 03</span>
+              <span data-i18n="cat.social">Social media</span>
+              <span>2025</span>
+            </div>
+          </a>
+
+          <a class="card" href="https://www.behance.net/gallery/230004703/Logo-and-brand-identity-for-a-Loft-bar-SYNQ" target="_blank" rel="noopener" style="--tint:12%" data-reveal data-case="SYNQ Loft Bar">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-04.webp -->
+              <img class="card__img" src="img/cover-synq.jpg" alt="SYNQ Loft Bar — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">04</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">SYNQ Loft Bar</h3>
+                <p class="card__desc" data-i18n="p4.desc">Logo and brand identity for a loft bar.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 04</span>
+              <span data-i18n="cat.brand">Brand identity</span>
+              <span>2024</span>
+            </div>
+          </a>
+
+          <a class="card" href="https://www.behance.net/gallery/195214865/Magazine-Sweet-Fashion" target="_blank" rel="noopener" style="--tint:0%" data-reveal data-case="Sweet Fashion Magazine">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-05.webp -->
+              <img class="card__img" src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">05</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">Sweet Fashion Magazine</h3>
+                <p class="card__desc" data-i18n="p5.desc">Editorial design for a fashion magazine.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 05</span>
+              <span data-i18n="cat.print">Print</span>
+              <span>2024</span>
+            </div>
+          </a>
+
+          <a class="card" href="https://www.behance.net/gallery/169190567/Taxi-website-design" target="_blank" rel="noopener" style="--tint:0%" data-reveal data-case="Taxi Website">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-06.webp -->
+              <img class="card__img" src="img/cover-portfolio.png" alt="Taxi Website — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">06</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">Taxi Website</h3>
+                <p class="card__desc" data-i18n="p6.desc">Website design concept for a taxi service.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 06</span>
+              <span data-i18n="cat.web">Web & UI</span>
+              <span>2023</span>
+            </div>
+          </a>
+
+          <a class="card" href="https://www.behance.net/gallery/195176283/Graphic-Designer-Portfolio" target="_blank" rel="noopener" style="--tint:0%" data-reveal data-case="Graphic Designer Portfolio">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-07.webp -->
+              <img class="card__img" src="img/cover-magazine.jpg" alt="Graphic Designer Portfolio — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">07</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">Graphic Designer Portfolio</h3>
+                <p class="card__desc" data-i18n="p7.desc">Self-promotional portfolio publication.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 07</span>
+              <span data-i18n="cat.print">Print</span>
+              <span>2023</span>
+            </div>
+          </a>
+
+          <a class="card" href="https://www.behance.net/gallery/164450091/Video" target="_blank" rel="noopener" style="--tint:0%" data-reveal data-case="Video & Motion">
+            <div class="card__media">
+              <div class="card__ph" aria-hidden="true"></div>
+              <!-- Tymczasowa okładka z Behance; docelowo podmień na lokalny plik, np. img/project-08.webp -->
+              <img class="card__img" src="img/cover-portfolio.png" alt="Video & Motion — project cover" loading="lazy">
+              <span class="card__num" aria-hidden="true">08</span>
+              <span class="card__marks" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <div>
+                <h3 class="card__title">Video & Motion</h3>
+                <p class="card__desc" data-i18n="p8.desc">Video and motion graphics work.</p>
+              </div>
+              <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            </div>
+            <div class="tblock">
+              <span><span data-i18n="card.sheet">Project</span> 08</span>
+              <span data-i18n="cat.motion">Motion & video</span>
+              <span>2023</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- ===================== O MNIE (jedna sekcja) ===================== -->
     <section class="section about" id="about">
@@ -379,7 +584,8 @@
 
       <!-- Wielki logotyp wjeżdżający przy przewijaniu -->
       <div class="footer__logo" data-reveal>
-        <img src="img/logo-pa-white.svg" alt="Anna Pytsko">
+        <!-- Wielki logotyp na cala szerokosc kontenera -->
+        <img src="img/logo-plann-white.svg" alt="PLANN Design">
       </div>
 
       <div class="footer__works" data-reveal-stagger aria-label="Selected work previews">
@@ -402,7 +608,8 @@
 
       <div class="footer__grid" data-reveal>
         <p class="label footer__meta">© <span data-year>2026</span> PA / PLANN Design™</p>
-        <a class="label footer__top" href="#home">[ Back to top ↑ ]</a>
+        <p class="label footer__clock"><span class="clock" data-clock>00:00:00</span> <span data-tz></span></p>
+        <a class="label footer__top" href="index.html#home"><span data-i18n="footer.top">Back to top</span> <span aria-hidden="true">↑</span></a>
       </div>
     </div>
   </footer>
