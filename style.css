@@ -1863,56 +1863,10 @@ strong { font-weight: 700; }
 }
 
 /* ---------------------------------------------------------------------------
-   21. NAPLYWY SEKCJI — kazda kolejna sekcja wjezdza na poprzednia jak arkusz
-   Hero jest przyklejone (position: sticky), arkusze nasuwaja sie na nie,
-   a sekcja pod spodem delikatnie sie zmniejsza i przygasa (transform + filter).
+   21. NAGLOWKI DZIELONE NA SLOWA
+   (sekcje ida rowno jedna po drugiej — naplywy zostaly usuniete)
    --------------------------------------------------------------------------- */
-:root { --sheet-r: clamp(32px, 3.4vw, 48px); }
-
-.hero {
-  position: sticky;
-  top: 0;
-  z-index: 0;
-  transform-origin: 50% 0;
-}
-/* Zapas kadru dla paralaksy wideo (przesuniecie ok. 20% przewiniecia) */
-.hero__video {
-  top: -22%;
-  height: 144%;
-  transform: translate3d(0, var(--hero-par, 0px), 0);
-  will-change: transform;
-}
-
-.sheet {
-  position: relative;
-  border-radius: var(--sheet-r) var(--sheet-r) 0 0;
-  margin-top: calc(var(--sheet-r) * -1);
-  background: var(--t-bg);
-  box-shadow: 0 -24px 64px -28px color-mix(in srgb, #000 60%, transparent);
-  transform-origin: 50% 0;
-}
-/* Powierzchnie, ktore maja wlasne tlo — wartosci jak w dotychczasowej palecie */
-.services.sheet { background: #000; }
-.footer.sheet { background: linear-gradient(180deg, #ff3d2e 12%, #120b0b 100%); }
-
-/* Transform i filter wlaczane dopiero na czas napywu, zeby nie psuc
-   position: sticky w kolumnach bocznych "O mnie" i "Uslugi" */
-.hero.is-dimming,
-.sheet.is-dimming {
-  transform: scale(var(--sheet-scale, 1));
-  filter: brightness(var(--sheet-bright, 1));
-  will-change: transform, filter;
-}
-
-/* Naglowki dzielone na slowa: sam wyraz animuje sie, blok juz nie */
 [data-split][data-reveal] { opacity: 1; transform: none; }
-
-@media (prefers-reduced-motion: reduce) {
-  .hero { position: relative; }
-  .hero__video { top: 0; height: 100%; transform: none; }
-  .hero.is-dimming,
-  .sheet.is-dimming { transform: none; filter: none; }
-}
 
 /* ---------------------------------------------------------------------------
    22. 3D — szklana bryla w hero i przechylane karty projektow
@@ -1994,7 +1948,6 @@ html.lenis, html.lenis body { height: auto; }
     transition: opacity .25s linear, color .25s linear, background-color .25s linear !important;
   }
   .hero__canvas, .card__gloss, .drop-ripple, .lang__goo { display: none !important; }
-  .hero, .sheet { transform: none !important; filter: none !important; }
 }
 
 /* ---------------------------------------------------------------------------
