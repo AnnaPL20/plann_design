@@ -31,10 +31,19 @@
     return -(h + 32);
   };
 
+  /* Odnosniki w nawigacji maja postac "index.html#projects" — gdy wskazuja
+     biezaca strone, przewijamy plynnie zamiast przeladowywac. */
+  const PAGE = location.pathname.split('/').pop() || 'index.html';
+
   document.addEventListener('click', event => {
-    const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null;
+    const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
     if (!link || link.classList.contains('skip')) return;
-    const id = link.getAttribute('href');
+    const href = link.getAttribute('href') || '';
+    const cut = href.indexOf('#');
+    if (cut < 0) return;                                     // zwykla nawigacja
+    const path = href.slice(0, cut);
+    if (path && path !== PAGE) return;                       // inna strona
+    const id = href.slice(cut);
     if (!id || id === '#') return;
     const target = document.querySelector(id);
     if (!target) return;

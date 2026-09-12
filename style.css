@@ -3032,3 +3032,13 @@ html.lenis, html.lenis body { height: auto; }
   line-height: 1;
 }
 .shopTeaser__lead { margin: 0; }
+
+/* ---------------------------------------------------------------------------
+   39. NAWIGACJA WSPOLNA DLA WSZYSTKICH STRON
+   Aktywna sekcja na stronie glownej dostaje aria-current="true",
+   aktywna podstrona aria-current="page" — obie maja to samo podswietlenie.
+   --------------------------------------------------------------------------- */
+.nav__link[aria-current="page"] {
+  color: var(--t-fg);
+  background: color-mix(in srgb, var(--t-fg) 7%, transparent);
+}
