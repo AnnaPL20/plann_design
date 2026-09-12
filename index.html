@@ -167,7 +167,7 @@
     </section>
 
     <!-- Pasek przewijany: zakres prac -->
-    <div class="marquee marquee--main" aria-hidden="true">
+    <div class="marquee marquee--main sheet" aria-hidden="true">
       <div class="marquee__track">
         <div class="marquee__group">
           <span class="marquee__item" data-i18n="mq.1">Brand identity</span>
@@ -190,7 +190,7 @@
       </div>
     </div>
 
-    <section class="about-quick" id="about-quick">
+    <section class="about-quick sheet" id="about-quick">
       <div class="container about-quick__grid">
         <div>
           <p class="label label--br" data-i18n="about.label">About me</p>
@@ -205,12 +205,12 @@
     </section>
 
     <!-- ===================== PROJEKTY ===================== -->
-    <section class="section projects" id="projects">
+    <section class="section projects sheet" id="projects">
       <div class="container">
         <div class="section__head" data-reveal>
           <div>
             <p class="label label--br" data-i18n="projects.label">Selected work</p>
-            <h2 class="display h2 section__title" data-i18n="projects.title">Projects</h2>
+            <h2 class="display h2 section__title" data-split data-reveal data-i18n="projects.title">Projects</h2>
           </div>
           <div class="section__aside">
             <p class="lead" data-i18n="projects.lead">A selection of identities, digital experiences and social content. Full case studies live on Behance, daily work on Instagram.</p>
@@ -408,12 +408,12 @@
     </section>
 
     <!-- ===================== O MNIE ===================== -->
-    <section class="section about" id="about">
+    <section class="section about sheet" id="about">
       <div class="container about__grid">
         <div class="about__aside">
           <div data-reveal>
             <p class="label label--br" data-i18n="about.label">About me</p>
-            <h2 class="display h2 section__title" data-i18n="about.title">Hi, I’m Anna</h2>
+            <h2 class="display h2 section__title" data-split data-reveal data-i18n="about.title">Hi, I’m Anna</h2>
           </div>
           <div class="logo logo--mono about__mono" data-reveal style="--d:.1s">
             <img class="logo__img logo__img--onink" src="img/logo-pa-white.svg" alt="Anna Pytsko monogram" onerror="this.closest('.logo').classList.add('is-missing')">
@@ -441,7 +441,7 @@
     </section>
 
     <!-- ===================== USŁUGI (sekcja odwrócona: papier) ===================== -->
-    <section class="section services invert" id="services">
+    <section class="section services invert sheet" id="services">
       <div class="container services__grid">
         <div class="services__aside">
           <div data-reveal>
@@ -491,7 +491,7 @@
     </section>
 
     <!-- ===================== SKLEP (wkrótce) ===================== -->
-    <section class="section shop" id="shop">
+    <section class="section shop sheet" id="shop">
       <div class="container">
         <div class="section__head" data-reveal>
           <div>
@@ -540,7 +540,7 @@
     </section>
 
     <!-- ===================== KONTAKT ===================== -->
-    <section class="section contact" id="contact">
+    <section class="section contact sheet" id="contact">
       <div class="container">
         <p class="label label--br" data-reveal data-i18n="contact.label">Contact</p>
         <h2 class="display h2 contact__title split" data-reveal data-split data-i18n="contact.title">Let’s create something impossible to ignore.</h2>
@@ -584,7 +584,7 @@
   </dialog>
 
   <!-- ===================== STOPKA (czerwony blok akcentowy) ===================== -->
-  <footer class="footer accent-block" id="footer">
+  <footer class="footer accent-block sheet" id="footer">
     <div class="container">
       <div class="footer__body" data-reveal>
         <div class="footer__column"><p class="label">Navigation</p><nav class="footer__nav" aria-label="Footer"><a href="#home">[ Home ]</a><a href="#projects">[ Works ]</a><a href="#contact">[ Contact ]</a></nav></div>
@@ -637,5 +637,6 @@
 
   <script src="script.js" defer></script>
   <script src="js/ui-liquid.js" defer></script>
+  <script src="js/sections.js" defer></script>
 </body>
 </html>
