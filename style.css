@@ -2279,3 +2279,62 @@ html.lenis, html.lenis body { height: auto; }
   .reel__item { transform: none !important; }
   .wiz__check path { stroke-dashoffset: 0; }
 }
+
+/* ---------------------------------------------------------------------------
+   28. STRONA BRIEFU (brief.html) — ten sam jezyk wizualny co reszta serwisu
+   --------------------------------------------------------------------------- */
+.brief { padding-top: calc(var(--nav-h) + clamp(64px, 9vw, 130px)); }
+.brief__inner { max-width: 960px; }
+.brief__title { margin-top: 18px; }
+.brief__intro { margin-top: 24px; }
+
+.brief__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 2.4vw, 28px);
+  margin-top: clamp(40px, 6vw, 72px);
+}
+.field { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.field--wide { grid-column: 1 / -1; }
+.field__label { color: var(--muted); }
+.field__input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color .35s var(--ease), background-color .35s var(--ease);
+}
+.field__input--area { resize: vertical; min-height: 96px; }
+.field__input:focus { outline: none; border-color: var(--fg); background: var(--surface-2); }
+.field__input:invalid:not(:placeholder-shown) { border-color: var(--accent); }
+
+.brief__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 22px;
+  margin-top: 8px;
+}
+.brief__note { color: var(--faint); max-width: 44ch; }
+
+.brief__done {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  margin-top: clamp(40px, 6vw, 72px);
+}
+.brief__done[hidden] { display: none; }
+.brief__done .wiz__q { max-width: none; font-size: clamp(1.9rem, 4.4vw, 3.4rem); }
+.brief__done.is-active .wiz__check path { animation: wiz-check .7s var(--ease-out) .2s forwards; }
+
+.nav__back { margin-left: 4px; }
+
+@media (max-width: 768px) {
+  .brief__form { grid-template-columns: 1fr; }
+}
