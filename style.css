@@ -13,44 +13,36 @@
 /* ---------------------------------------------------------------------------
    0. FONTY LOKALNE (folder fonts/)
    Zadnych zapytan do obcych serwerow — wszystkie pliki .woff2 leza w projekcie.
-   Nazwy rodzin zostaly stare ("Neue Haas Grotesk Display Pro", "PP Neue
-   Montreal"), zeby nie przepisywac reszty arkusza; pod spodem sa darmowe
-   zamienniki na wolnych licencjach:
-     Neue Haas Grotesk Display Pro -> Switzer (ITF Free Font License)
-     PP Neue Montreal              -> Inter   (SIL Open Font License)
-     Inter, Fragment Mono          -> oryginaly na OFL
-   Switzer nie ma cyrylicy, wiec dla zakresu cyrylickiego ta sama rodzina
-   wskazuje na Inter (unicode-range decyduje o wyborze pliku znak po znaku).
+     Switzer        — Fontshare, bezplatna licencja komercyjna: naglowki I tekst
+     Fragment Mono  — OFL: podpisy techniczne, etykiety, adnotacje
+     DSEG7 Classic  — OFL: wylacznie cyfry zegara (wyglad elektronicznego tabla)
+   Switzer nie zawiera cyrylicy, wiec dla zakresu cyrylickiego ta sama rodzina
+   wskazuje na plik Inter (unicode-range decyduje znak po znaku).
    --------------------------------------------------------------------------- */
-
-/* Zakresy znakow: latin — U+0000-00FF..., latin-ext — polskie diakrytyki, cyrillic — UA */
 @font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
+  font-family: "Switzer";
   src: url("fonts/Switzer-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+0000-00FF, U+0100-024F, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2020, U+20A0-20CF, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
+  font-family: "Switzer";
   src: url("fonts/Switzer-500.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+0000-00FF, U+0100-024F, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2020, U+20A0-20CF, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
+  font-family: "Switzer";
   src: url("fonts/Switzer-700.woff2") format("woff2");
   font-weight: 600 900;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+0000-00FF, U+0100-024F, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2020, U+20A0-20CF, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* Cyrylica dla naglowkow — plik Inter, bo Switzer jej nie zawiera */
+/* Cyrylica — Switzer jej nie ma, wiec podstawiamy Inter w tym samym zakresie */
 @font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
+  font-family: "Switzer";
   src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
@@ -58,59 +50,7 @@
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
-/* Tekst ciagly — Inter (zmienny, jeden plik na zakres znakow) */
-@font-face {
-  font-family: "PP Neue Montreal";
-  src: url("fonts/Inter-var-latin.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2020, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "PP Neue Montreal";
-  src: url("fonts/Inter-var-latin-ext.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "PP Neue Montreal";
-  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-
-/* Inter pod wlasna nazwa — gdyby gdzies byl wolany bezposrednio */
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter-var-latin.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2020, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter-var-latin-ext.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-
-/* Mono — adnotacje, etykiety, zegar */
+/* Mono — adnotacje, etykiety */
 @font-face {
   font-family: "Fragment Mono";
   src: url("fonts/FragmentMono-400-latin.woff2") format("woff2");
@@ -144,6 +84,16 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Zegar — tylko cyfry, dwukropek i spacja */
+@font-face {
+  font-family: "DSEG7 Classic";
+  src: url("fonts/DSEG7Classic-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020, U+0030-0039, U+003A, U+002E;
+}
+
 /* ---------------------------------------------------------------------------
    1. TOKENY
    "Tusz" (ink) i "papier" (paper) to dwie powierzchnie strony. Motyw decyduje,
@@ -172,13 +122,14 @@
   --logo-onink: var(--t-onink);
   --logo-onpaper: var(--t-onpaper);
 
-  --font-display: "Neue Haas Grotesk Display Pro", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "PP Neue Montreal", "Inter", "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Fragment Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-clock: "DSEG7 Classic", "Fragment Mono", ui-monospace, monospace;
 
   --container: 1440px;
-  --gutter: clamp(20px, 4vw, 56px);
-  --section: clamp(96px, 12vw, 176px);
+  --gutter: clamp(16px, 2.8vw, 40px);
+  --section: clamp(96px, 12vw, 160px);
   --nav-h: 60px;
   --radius: 6px;
   --radius-lg: 14px;
@@ -3315,3 +3266,61 @@ body.page--ink {
   padding: clamp(15px, 1.7vw, 22px);
   flex: none;
 }
+
+/* ---------------------------------------------------------------------------
+   44. TYPOGRAFIA — skala wedlug referencji
+   Switzer w naglowkach i tekscie, Fragment Mono w podpisach technicznych,
+   DSEG7 tylko w cyfrach zegara.
+   --------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;          /* 17px */
+  line-height: 1.55;
+  color: var(--text);
+}
+
+/* Podpisy techniczne: 11px, wersaliki, szeroki odstep, w nawiasach */
+.label {
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: .96;
+  color: var(--fg);
+  text-wrap: balance;
+}
+h1, h2, h3, strong, .card__title, .prod__name, .svc__itemTitle { color: var(--fg); }
+
+.h1 { font-size: clamp(2.75rem, 8vw, 7.5rem); letter-spacing: -.03em; line-height: .92; }
+.h2 { font-size: clamp(2.1rem, 5vw, 4.25rem); letter-spacing: -.028em; line-height: .96; }
+.h3 { font-size: clamp(1.45rem, 2.6vw, 2.4rem); letter-spacing: -.022em; line-height: 1.05; }
+
+.hero__title { font-size: clamp(2.75rem, 7.4vw, 7rem); letter-spacing: -.03em; line-height: .92; max-width: 19ch; }
+
+.lead {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.2vw, 1.125rem);   /* 16-18px */
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+/* Zegar jak elektroniczne tablo */
+.clock {
+  font-family: var(--font-clock);
+  font-size: .95em;
+  letter-spacing: .02em;
+  font-variant-numeric: normal;
+}
+
+/* Kolor tekstu ciaglego — pelna paleta jest w sekcji 45 */
+:root { --text: #454545; }
