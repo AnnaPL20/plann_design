@@ -134,35 +134,25 @@
 
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="home">
-      <video class="hero__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-        <source src="img/hero-weave.mp4" type="video/mp4">
-      </video>
+      <!-- Rozkolorowanka: konturowy monogram PA, ktory barwi sie pod kursorem -->
+      <div class="hero__art" aria-hidden="true"><canvas class="hero__artCanvas" data-hero-art></canvas></div>
+      <div class="hero__scrim" aria-hidden="true"></div>
       <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__grain" aria-hidden="true"></div>
 
       <div class="container hero__inner">
-        <div class="hero__top intro" style="--i:0">
-          <p class="label label--br" data-i18n="hero.label">Graphic &amp; web designer</p>
-          <p class="status"><span class="status__dot" aria-hidden="true"></span><span data-i18n="hero.status">Available for new projects</span></p>
-        </div>
+        <p class="label label--br hero__eyebrow intro" style="--i:0" data-i18n="hero.label">Graphic &amp; web designer</p>
 
-        <!-- Nagłówek animowany słowo po słowie (JS dzieli tekst na spany .w) -->
+        <!-- Naglowek animowany slowo po slowie (JS dzieli tekst na spany .w) -->
         <h1 class="display h1 hero__title split" data-split data-i18n="hero.title">Make your brand impossible to ignore.</h1>
 
-        <div class="hero__row">
-          <p class="lead intro" style="--i:1" data-i18n="hero.lead">Elevate your brand with strategic identity and impactful visual design. Showcase your story through bold aesthetics and purposeful creativity.</p>
-          <div class="hero__actions intro" style="--i:2">
-            <a class="btn btn--solid" href="#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
-            <a class="btn" href="#contact"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnContact">Let’s talk</span><span class="btn__br" aria-hidden="true">]</span></a>
-          </div>
+        <div class="hero__actions intro" style="--i:2">
+          <a class="btn btn--solid btn--lg" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
         </div>
+      </div>
 
-        <div class="hero__meta intro" style="--i:3">
-          <!-- DO EDYCJI: lokalizacja (klucze hero.based / about.f5v w słowniku na dole pliku) -->
-          <p data-i18n="hero.based">Poland — working worldwide</p>
-          <p class="hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span> <span data-tz></span></p>
-          <p class="hero__scroll"><span data-i18n="hero.scroll">Scroll to explore</span> <span class="hero__scrollIcon" aria-hidden="true">↓</span></p>
-        </div>
+      <div class="container hero__foot intro" style="--i:3">
+        <p class="hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span> <span data-tz></span></p>
+        <p class="hero__scroll"><span data-i18n="hero.scroll">Scroll to explore</span> <span class="hero__scrollIcon" aria-hidden="true">↓</span></p>
       </div>
     </section>
 
@@ -783,12 +773,14 @@
   <script src="js/vendor/lenis.min.js" defer></script>
   <script src="script.js" defer></script>
   <script src="js/ui-liquid.js" defer></script>
+  <script src="js/hero-art.js" defer></script>
   <script src="js/cards-3d.js" defer></script>
   <script src="js/scroll.js" defer></script>
   <script src="js/footer-works.js" defer></script>
   <script src="js/contact-wizard.js" defer></script>
   <script src="js/services.js" defer></script>
-  <!-- Modul: three.js doladowuje sie sam, dopiero po zaladowaniu strony -->
-  <script type="module" src="js/hero3d.js"></script>
+  <!-- Bryla 3D wylaczona: glownym elementem hero jest teraz rozkolorowanka.
+       Zeby ja przywrocic, wystarczy odkomentowac ponizsza linie.
+  <script type="module" src="js/hero3d.js"></script> -->
 </body>
 </html>
