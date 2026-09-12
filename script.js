@@ -58,6 +58,47 @@
       'shop.cta': 'Notify me at launch', 'shop.note': 'Be the first to know when the store opens.',
       'contact.label': 'Contact', 'contact.title': 'Let’s create something impossible to ignore.',
       'contact.lead': 'Have a project in mind? Send a message and I’ll get back to you soon.', 'contact.socials': 'Find me on',
+      /* --- Kreator kontaktu --- */
+      'wiz.q1': 'What do you need?',
+      'wiz.s1': 'Brand identity', 'wiz.s2': 'Web design', 'wiz.s3': 'Social media content', 'wiz.s4': 'Something else',
+      'wiz.q2': 'What budget do you have in mind?',
+      'wiz.b1': '< €500', 'wiz.b2': '€500–1500', 'wiz.b3': '€1500–3000', 'wiz.b4': '€3000+', 'wiz.b5': 'Not sure yet',
+      'wiz.q3': 'What is your email?',
+      'wiz.mailPh': 'you@studio.com', 'wiz.mailErr': 'That does not look like a valid email address.',
+      'wiz.q4': 'A few words about the project',
+      'wiz.msgPh': 'Two or three lines — optional',
+      'wiz.back': 'Back', 'wiz.next': 'Next', 'wiz.send': 'Send request', 'wiz.sending': 'Sending',
+      'wiz.hint': 'Press Enter to continue',
+      'wiz.doneTitle': 'Request received', 'wiz.doneLead': 'I will get back to you within 24-48 hours.',
+      'wiz.sumService': 'Service', 'wiz.sumBudget': 'Budget', 'wiz.sumEmail': 'Email',
+      'wiz.fail': 'The message did not go through. Please write to me directly:',
+      'wiz.direct': 'or write me directly:',
+      'wiz.consent': 'By sending this form you agree to be contacted about your request.',
+      'wiz.reel': 'Selected work',
+      /* --- Strona brief.html --- */
+      'brief.metaTitle': 'Project brief · PLANN Design',
+      'brief.metaDesc': 'A short brief that helps me prepare for your project.',
+      'brief.back': 'Back to site', 'brief.title': 'Project brief',
+      'brief.intro': 'A few more details about your project. Nothing here is mandatory — answer what you can and we will fill in the rest when we talk.',
+      'brief.name': 'Your name', 'brief.email': 'Your email', 'brief.company': 'Company or brand',
+      'brief.links': 'Links to current materials or socials', 'brief.goal': 'Project goal',
+      'brief.deadline': 'Deadline', 'brief.budget': 'Budget', 'brief.extra': 'Anything else',
+      'brief.send': 'Send brief', 'brief.sending': 'Sending',
+      'brief.doneTitle': 'Brief received', 'brief.doneLead': 'Thank you. I will read it and get back to you within 24-48 hours.',
+      'brief.fail': 'The brief did not go through. Please write to me directly:',
+      'brief.required': 'Please add your name and email.',
+      /* --- Uslugi: trzy kierunki --- */
+      'services.leadShort': 'I design brand identities, websites and social content — and I do it myself, from the first sketch to the final file.',
+      'svc.open': 'Show what is inside',
+      'svc.d1': 'Brand Identity & Visual Systems', 'svc.d2': 'Digital & Web Design', 'svc.d3': 'Social Media & Content Design',
+      'svc.i1t': 'Strategic Branding', 'svc.i1d': 'A clear direction for brands that need focus and recognition.',
+      'svc.i2t': 'Visual Identity Design', 'svc.i2d': 'Logo, typography and colour built into one system.',
+      'svc.i3t': 'Brand Refresh', 'svc.i3d': 'An update that keeps the character and makes it current.',
+      'svc.i4t': 'Packaging & Product Visuals', 'svc.i4d': 'Packaging and product presentation with careful detail.',
+      'svc.i5t': 'Digital Experiences', 'svc.i5d': 'Websites and landing pages designed in Figma.',
+      'svc.i6t': 'Web Systems', 'svc.i6d': 'Responsive builds in WordPress Elementor with custom CSS.',
+      'svc.i7t': 'Content Direction', 'svc.i7d': 'Social visuals, campaign assets and reels inside one system.',
+      'svc.i8t': 'AI Content & Prompting', 'svc.i8d': 'Prompt work and AI visuals shaped into brand content.',
       'footer.tagline': 'Brand, social & web design', 'footer.rights': 'All rights reserved.', 'footer.top': 'Back to top'
     },
     uk: {
@@ -105,6 +146,47 @@
       'shop.cta': 'Повідомити про запуск', 'shop.note': 'Дізнайтеся першими про відкриття магазину.',
       'contact.label': 'Контакти', 'contact.title': 'Створімо щось, що неможливо не помітити.',
       'contact.lead': 'Маєте ідею проєкту? Напишіть мені — і я незабаром відповім.', 'contact.socials': 'Я в соцмережах',
+      /* --- Kreator kontaktu --- */
+      'wiz.q1': 'Що вам потрібно?',
+      'wiz.s1': 'Айдентика бренду', 'wiz.s2': 'Веб-дизайн', 'wiz.s3': 'Контент для соцмереж', 'wiz.s4': 'Щось інше',
+      'wiz.q2': 'Який орієнтовний бюджет?',
+      'wiz.b1': '< €500', 'wiz.b2': '€500–1500', 'wiz.b3': '€1500–3000', 'wiz.b4': '€3000+', 'wiz.b5': 'Ще не визначились',
+      'wiz.q3': 'Яка ваша електронна пошта?',
+      'wiz.mailPh': 'you@studio.com', 'wiz.mailErr': 'Схоже, адресу введено з помилкою.',
+      'wiz.q4': 'Кілька слів про проєкт',
+      'wiz.msgPh': 'Два-три рядки — необов’язково',
+      'wiz.back': 'Назад', 'wiz.next': 'Далі', 'wiz.send': 'Надіслати запит', 'wiz.sending': 'Надсилаю',
+      'wiz.hint': 'Натисніть Enter, щоб продовжити',
+      'wiz.doneTitle': 'Запит отримано', 'wiz.doneLead': 'Відповім упродовж 24-48 годин.',
+      'wiz.sumService': 'Послуга', 'wiz.sumBudget': 'Бюджет', 'wiz.sumEmail': 'Пошта',
+      'wiz.fail': 'Повідомлення не пішло. Напишіть мені, будь ласка, напряму:',
+      'wiz.direct': 'або напишіть мені напряму:',
+      'wiz.consent': 'Надсилаючи форму, ви погоджуєтесь, що я зв’яжуся з вами щодо запиту.',
+      'wiz.reel': 'Вибрані роботи',
+      /* --- Strona brief.html --- */
+      'brief.metaTitle': 'Бриф проєкту · PLANN Design',
+      'brief.metaDesc': 'Короткий бриф, який допоможе мені підготуватися до вашого проєкту.',
+      'brief.back': 'На головну', 'brief.title': 'Бриф проєкту',
+      'brief.intro': 'Кілька деталей про ваш проєкт. Нічого тут не обов’язкове — відповідайте, що можете, решту з’ясуємо в розмові.',
+      'brief.name': 'Ваше ім’я', 'brief.email': 'Ваша пошта', 'brief.company': 'Компанія або бренд',
+      'brief.links': 'Посилання на наявні матеріали чи соцмережі', 'brief.goal': 'Мета проєкту',
+      'brief.deadline': 'Дедлайн', 'brief.budget': 'Бюджет', 'brief.extra': 'Що ще варто знати',
+      'brief.send': 'Надіслати бриф', 'brief.sending': 'Надсилаю',
+      'brief.doneTitle': 'Бриф отримано', 'brief.doneLead': 'Дякую. Прочитаю і відповім упродовж 24-48 годин.',
+      'brief.fail': 'Бриф не надіслався. Напишіть мені, будь ласка, напряму:',
+      'brief.required': 'Додайте, будь ласка, ім’я та пошту.',
+      /* --- Uslugi: trzy kierunki --- */
+      'services.leadShort': 'Я створюю айдентики, сайти та контент для соцмереж — і роблю це сама, від першого ескізу до фінального файлу.',
+      'svc.open': 'Показати, що всередині',
+      'svc.d1': 'Айдентика та візуальні системи', 'svc.d2': 'Цифровий і веб-дизайн', 'svc.d3': 'Соцмережі та контент-дизайн',
+      'svc.i1t': 'Стратегічний брендинг', 'svc.i1d': 'Чіткий напрям для брендів, яким потрібен фокус і впізнаваність.',
+      'svc.i2t': 'Дизайн айдентики', 'svc.i2d': 'Логотип, типографіка й колір, зібрані в одну систему.',
+      'svc.i3t': 'Оновлення бренду', 'svc.i3d': 'Оновлення, що зберігає характер і робить бренд сучасним.',
+      'svc.i4t': 'Пакування та продуктові візуали', 'svc.i4d': 'Пакування й подача продукту з увагою до деталей.',
+      'svc.i5t': 'Цифрові продукти', 'svc.i5d': 'Сайти та лендінги, спроєктовані у Figma.',
+      'svc.i6t': 'Веб-системи', 'svc.i6d': 'Адаптивна збірка у WordPress Elementor із власним CSS.',
+      'svc.i7t': 'Контент-дирекція', 'svc.i7d': 'Візуали для соцмереж, кампанії та reels в одній системі.',
+      'svc.i8t': 'AI-контент і промптинг', 'svc.i8d': 'Промпти й AI-візуали, доведені до брендового контенту.',
       'footer.tagline': 'Брендинг, соцмережі та веб-дизайн', 'footer.rights': 'Усі права захищені.', 'footer.top': 'Нагору'
     },
     pl: {
@@ -152,6 +234,47 @@
       'shop.cta': 'Powiadom mnie o starcie', 'shop.note': 'Bądź na bieżąco z otwarciem sklepu.',
       'contact.label': 'Kontakt', 'contact.title': 'Stwórzmy coś, czego nie da się zignorować.',
       'contact.lead': 'Masz pomysł na projekt? Napisz do mnie — odpowiem wkrótce.', 'contact.socials': 'Znajdziesz mnie na',
+      /* --- Kreator kontaktu --- */
+      'wiz.q1': 'Czego potrzebujesz?',
+      'wiz.s1': 'Identyfikacja wizualna', 'wiz.s2': 'Projekt strony', 'wiz.s3': 'Treści do social mediów', 'wiz.s4': 'Coś innego',
+      'wiz.q2': 'Jaki budżet bierzesz pod uwagę?',
+      'wiz.b1': '< €500', 'wiz.b2': '€500–1500', 'wiz.b3': '€1500–3000', 'wiz.b4': '€3000+', 'wiz.b5': 'Jeszcze nie wiem',
+      'wiz.q3': 'Jaki jest Twój adres e-mail?',
+      'wiz.mailPh': 'you@studio.com', 'wiz.mailErr': 'To nie wygląda na poprawny adres e-mail.',
+      'wiz.q4': 'Kilka słów o projekcie',
+      'wiz.msgPh': 'Dwa, trzy zdania — opcjonalnie',
+      'wiz.back': 'Wstecz', 'wiz.next': 'Dalej', 'wiz.send': 'Wyślij zapytanie', 'wiz.sending': 'Wysyłam',
+      'wiz.hint': 'Naciśnij Enter, aby przejść dalej',
+      'wiz.doneTitle': 'Zapytanie przyjęte', 'wiz.doneLead': 'Odpowiem w ciągu 24-48 godzin.',
+      'wiz.sumService': 'Usługa', 'wiz.sumBudget': 'Budżet', 'wiz.sumEmail': 'E-mail',
+      'wiz.fail': 'Wiadomość nie została wysłana. Napisz do mnie bezpośrednio:',
+      'wiz.direct': 'albo napisz do mnie bezpośrednio:',
+      'wiz.consent': 'Wysyłając formularz, zgadzasz się na kontakt w sprawie zapytania.',
+      'wiz.reel': 'Wybrane prace',
+      /* --- Strona brief.html --- */
+      'brief.metaTitle': 'Brief projektu · PLANN Design',
+      'brief.metaDesc': 'Krótki brief, który pomoże mi przygotować się do Twojego projektu.',
+      'brief.back': 'Wróć na stronę', 'brief.title': 'Brief projektu',
+      'brief.intro': 'Kilka szczegółów o projekcie. Nic nie jest obowiązkowe — odpowiedz na to, co wiesz, resztę ustalimy w rozmowie.',
+      'brief.name': 'Twoje imię', 'brief.email': 'Twój e-mail', 'brief.company': 'Firma lub marka',
+      'brief.links': 'Linki do obecnych materiałów lub social mediów', 'brief.goal': 'Cel projektu',
+      'brief.deadline': 'Termin', 'brief.budget': 'Budżet', 'brief.extra': 'Co jeszcze warto wiedzieć',
+      'brief.send': 'Wyślij brief', 'brief.sending': 'Wysyłam',
+      'brief.doneTitle': 'Brief przyjęty', 'brief.doneLead': 'Dziękuję. Przeczytam i odpowiem w ciągu 24-48 godzin.',
+      'brief.fail': 'Brief nie został wysłany. Napisz do mnie bezpośrednio:',
+      'brief.required': 'Podaj proszę imię i adres e-mail.',
+      /* --- Uslugi: trzy kierunki --- */
+      'services.leadShort': 'Projektuję identyfikacje, strony i treści do social mediów — sama, od pierwszego szkicu po finalny plik.',
+      'svc.open': 'Pokaż, co jest w środku',
+      'svc.d1': 'Identyfikacja i systemy wizualne', 'svc.d2': 'Projektowanie cyfrowe i web', 'svc.d3': 'Social media i projektowanie treści',
+      'svc.i1t': 'Branding strategiczny', 'svc.i1d': 'Jasny kierunek dla marek, którym potrzeba skupienia i rozpoznawalności.',
+      'svc.i2t': 'Projekt identyfikacji', 'svc.i2d': 'Logo, typografia i kolor złożone w jeden system.',
+      'svc.i3t': 'Odświeżenie marki', 'svc.i3d': 'Aktualizacja, która zachowuje charakter i uwspółcześnia markę.',
+      'svc.i4t': 'Opakowania i wizualizacje produktu', 'svc.i4d': 'Opakowania i prezentacja produktu z dbałością o detal.',
+      'svc.i5t': 'Projekty cyfrowe', 'svc.i5d': 'Strony i landing pages projektowane w Figmie.',
+      'svc.i6t': 'Systemy webowe', 'svc.i6d': 'Responsywne wdrożenia w WordPress Elementor z własnym CSS.',
+      'svc.i7t': 'Kierunek treści', 'svc.i7d': 'Grafiki social media, kampanie i reels w jednym systemie.',
+      'svc.i8t': 'Treści AI i prompting', 'svc.i8d': 'Prompty i wizualizacje AI dopracowane do treści marki.',
       'footer.tagline': 'Branding, social media i web design', 'footer.rights': 'Wszelkie prawa zastrzeżone.', 'footer.top': 'Do góry'
     }
   };
@@ -168,6 +291,14 @@
   };
   const t = (lang, key) => (I18N[lang] && I18N[lang][key]) ?? I18N.en[key] ?? '';
   let currentLang = 'en';
+
+  /* Male publiczne API: inne moduly potrzebuja tlumaczen i sygnalu o zmianie jezyka */
+  const langHandlers = [];
+  window.PLANN = {
+    t: key => t(currentLang, key),
+    lang: () => currentLang,
+    onLang: fn => { if (typeof fn === 'function') langHandlers.push(fn); }
+  };
 
   /* ---------- Motyw (ciemny / jasny) ---------- */
   const themeBtn = $('#themeToggle');
@@ -227,6 +358,7 @@
       b.setAttribute('aria-pressed', String(on));
     });
     store.set('plann-lang', lang);
+    langHandlers.forEach(fn => { try { fn(lang); } catch (e) { /* modul nie moze zablokowac reszty */ } });
   };
   // Strona zawsze otwiera się po angielsku; wybór języka zapamiętywany w localStorage
   setLang(store.get('plann-lang') || 'en', true);
@@ -261,7 +393,7 @@
 
   /* ---------- Nawigacja: stan po przewinięciu + aktywna sekcja ---------- */
   const nav = $('#nav');
-  const onScroll = () => nav.classList.toggle('nav--scrolled', scrollY > 24);
+  const onScroll = () => nav && nav.classList.toggle('nav--scrolled', scrollY > 24);
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
@@ -284,6 +416,7 @@
   const burger = $('#burger');
   const menu = $('#menu');
   const setMenu = open => {
+    if (!burger || !menu) return;
     menu.classList.toggle('is-open', open);
     menu.setAttribute('aria-hidden', String(!open));
     burger.classList.toggle('is-open', open);
@@ -291,8 +424,8 @@
     burger.setAttribute('aria-label', t(currentLang, open ? 'a11y.menuClose' : 'a11y.menuOpen'));
     document.body.classList.toggle('is-locked', open);
   };
-  burger.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
-  $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  burger && burger.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
+  menu && $('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   matchMedia('(min-width: 1025px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 
