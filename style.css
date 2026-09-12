@@ -5308,3 +5308,75 @@ body { font-family: var(--font-body); letter-spacing: -.005em; }
 @media (max-width: 768px) {
   .wrow__meta > div { grid-template-columns: 88px minmax(0, 1fr); }
 }
+
+/* ---------------------------------------------------------------------------
+   63. PRACE — mniejsze karty, ktore nasuwaja sie jedna na druga
+   Kazdy projekt jest przyklejony pod menu. Nastepny wysuwa sie spod niego
+   i przykrywa go, a ten pod spodem lekko sie zmniejsza, rozmywa i przygasa —
+   stad wrazenie glebi i warstw. Zmienna --cover (0…1) ustawia js/works-stack.js.
+   --------------------------------------------------------------------------- */
+.works {
+  position: relative;
+  padding: clamp(18px, 3vw, 40px) 0 clamp(40px, 6vw, 90px);
+  background: var(--paper);
+}
+.wrow {
+  position: sticky;
+  top: calc(var(--nav-h) + 26px);
+  display: block;
+  grid-template-columns: none;
+  margin-bottom: clamp(46px, 7vh, 104px);
+}
+.wrow:last-child { margin-bottom: 0; }
+
+.wrow__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(150px, 16vw, 230px);
+  align-items: end;
+  gap: clamp(14px, 2vw, 34px);
+  width: min(1060px, 100% - var(--gutter) * 2);
+  margin-inline: auto;
+  padding: clamp(12px, 1.4vw, 20px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  transform-origin: 50% 0;
+  transform: scale(calc(1 - .055 * var(--cover, 0)));
+  filter: blur(calc(6px * var(--cover, 0)));
+  opacity: calc(1 - .38 * var(--cover, 0));
+  will-change: transform, filter, opacity;
+}
+
+.wrow__media {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  max-height: 56svh;
+  cursor: none;
+}
+.wrow__media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  transition: transform .7s var(--ease-out);
+}
+
+.wrow__meta {
+  align-content: end;
+  gap: 7px;
+  padding: 0 0 4px;
+}
+
+@media (max-width: 768px) {
+  .wrow { top: calc(var(--nav-h) + 18px); margin-bottom: clamp(30px, 5vh, 60px); }
+  .wrow__inner { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 12px; }
+  .wrow__media { aspect-ratio: 4 / 3; max-height: 46svh; }
+  .wrow__meta { padding: 0; }
+}
+
+/* Ograniczony ruch: bez przyklejania, bez rozmycia — zwykla lista */
+@media (prefers-reduced-motion: reduce) {
+  .wrow { position: static; }
+  .wrow__inner { transform: none; filter: none; opacity: 1; }
+}
