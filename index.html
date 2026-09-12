@@ -453,13 +453,10 @@
     </section>
 
     <!-- ===================== WASKI PASEK CTA PRZED STOPKA ===================== -->
-    <section class="section cta" id="contact">
+    <section class="cta" id="contact">
       <div class="container cta__inner">
-        <p class="display cta__line" data-reveal data-i18n="ct.cta">Have a project in mind?</p>
-        <div data-reveal style="--d:.08s">
-          <a class="btn btn--solid btn--lg" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
-        </div>
-        <p class="label cta__mail" data-reveal style="--d:.14s"><a href="mailto:annapytsko@gmail.com">annapytsko@gmail.com</a></p>
+        <p class="cta__line" data-reveal data-i18n="ct.cta">Have a project in mind?</p>
+        <a class="btn btn--solid btn--lg" href="contact.html" data-reveal style="--d:.08s"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
       </div>
     </section>
   </main>
@@ -488,10 +485,25 @@
   <!-- ===================== STOPKA (czerwony blok akcentowy) ===================== -->
   <footer class="footer accent-block" id="footer">
     <div class="container">
-      <div class="footer__body" data-reveal data-reveal-stagger>
-        <div class="footer__column"><p class="label" data-i18n="nav.menu">Navigation</p><nav class="footer__nav" aria-label="Footer"><a href="index.html" data-i18n="nav.home">Home</a><a href="index.html#projects" data-i18n="nav.projects">Projects</a><a href="shop.html" data-i18n="nav.shop">Shop</a><a href="contact.html" data-i18n="nav.contact">Contact</a></nav></div>
-        <div class="footer__column"><p class="label">Email</p><a class="footer__email" href="mailto:annapytsko@gmail.com">[ annapytsko@gmail.com ]</a></div>
-        <div class="footer__column"><p class="label" data-i18n="contact.socials">Find me on</p>
+      <div class="footer__cols" data-reveal data-reveal-stagger>
+        <div class="footer__col">
+          <p class="label footer__colLabel" data-i18n="nav.menu">Navigation</p>
+          <nav class="footer__nav" aria-label="Footer">
+            <a href="index.html" data-i18n="nav.home">Home</a>
+            <a href="index.html#projects" data-i18n="nav.projects">Projects</a>
+            <a href="index.html#services" data-i18n="nav.services">Services</a>
+            <a href="shop.html" data-i18n="nav.shop">Shop</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
+          </nav>
+        </div>
+
+        <div class="footer__col">
+          <p class="label footer__colLabel">Email</p>
+          <nav class="footer__nav"><a class="footer__email" href="mailto:annapytsko@gmail.com">annapytsko@gmail.com</a></nav>
+        </div>
+
+        <div class="footer__col">
+          <p class="label footer__colLabel" data-i18n="contact.socials">Find me on</p>
           <ul class="socialrow socialrow--footer">
             <li class="socialrow__item" data-tip="Instagram"><a class="socialbtn" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener" aria-label="Instagram"><span class="socialbtn__ico socialbtn__ico--instagram" aria-hidden="true"></span></a></li>
             <li class="socialrow__item" data-tip="Behance"><a class="socialbtn" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener" aria-label="Behance"><span class="socialbtn__ico socialbtn__ico--behance" aria-hidden="true"></span></a></li>
@@ -500,37 +512,22 @@
             <li class="socialrow__item" data-tip="LinkedIn"><a class="socialbtn" href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="socialbtn__ico socialbtn__ico--linkedin" aria-hidden="true"></span></a></li>
           </ul>
         </div>
-        <div class="footer__column"><p class="label">Studio</p><p class="footer__note">Anna Pytsko<br>Graphic &amp; Web Designer<br>Poland — worldwide</p></div>
+
+        <div class="footer__col">
+          <p class="label footer__colLabel" data-i18n="about.f2k">Studio</p>
+          <p class="footer__note">Anna Pytsko<br>Graphic &amp; Web Designer<br>Poland · worldwide</p>
+        </div>
       </div>
 
-      <!-- Wielki logotyp wjeżdżający przy przewijaniu -->
+      <!-- Wielki logotyp wyjezdza z dolu przy pojawieniu sie -->
       <div class="footer__logo" data-reveal>
-        <!-- Wielki logotyp na cala szerokosc kontenera -->
         <img src="img/logo-plann-white.svg" alt="PLANN Design">
       </div>
 
-      <div class="footer__works" data-reveal-stagger aria-label="Selected work previews">
-        <a class="footer__work" href="#projects" aria-label="View Creative Portfolio 2026">
-          <img src="img/cover-portfolio.png" alt="Creative Portfolio 2026" loading="lazy">
-        </a>
-        <a class="footer__work" href="#projects" aria-label="View BIVERIS Skin Lab">
-          <img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab" loading="lazy">
-        </a>
-        <a class="footer__work" href="#projects" aria-label="View AURA PUFFER">
-          <img src="img/cover-aura.jpg" alt="AURA PUFFER" loading="lazy">
-        </a>
-        <a class="footer__work" href="#projects" aria-label="View SYNQ Loft Bar">
-          <img src="img/cover-synq.jpg" alt="SYNQ Loft Bar" loading="lazy">
-        </a>
-        <a class="footer__work" href="#projects" aria-label="View Video and Motion">
-          <img src="img/cover-magazine.jpg" alt="Video and Motion" loading="lazy">
-        </a>
-      </div>
-
       <div class="footer__grid" data-reveal>
-        <p class="label footer__meta">© <span data-year>2026</span> PA / PLANN Design™</p>
-        <p class="label footer__clock"><span class="clock" data-clock>00:00:00</span> <span data-tz></span></p>
-        <a class="label footer__top" href="index.html#home"><span data-i18n="footer.top">Back to top</span> <span aria-hidden="true">↑</span></a>
+        <p class="label footer__meta">© <span data-year>2026</span> Anna Pytsko · PLANN Design™ · <span data-i18n="footer.rights">All rights reserved.</span></p>
+        <p class="label footer__clock"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
+        <a class="label footer__top" href="index.html#home">[ <span data-i18n="footer.top">Back to top</span> ↑ ]</a>
       </div>
     </div>
   </footer>
