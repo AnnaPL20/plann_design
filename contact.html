@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body data-meta-key="ct">
+<body class="page--ink" data-meta-key="ct">
   <a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
   <div class="cursor" aria-hidden="true"><span>View</span></div>
 
@@ -94,40 +94,43 @@
     <!-- ===================== LEJEK KONTAKTOWY ===================== -->
     <section class="fn" data-fn>
       <div class="container fn__inner">
-        <!-- Naglowek zostaje na gorze i przygasa, gdy zaczyna sie wypelnianie -->
-        <h1 class="display fn__headline split" data-split data-i18n="contact.title">Let’s create something impossible to ignore.</h1>
-
-        <p class="fn__meta"><span data-fn-count>01</span> <span class="fn__slash" aria-hidden="true">/</span> <span>03</span></p>
+        <p class="fn__meta"><span data-fn-count>01</span> <span class="fn__slash" aria-hidden="true">/</span> <span>04</span></p>
 
         <form class="fn__form" data-fn-form novalidate>
           <div class="fn__stage">
 
-            <!-- Krok 1: adres e-mail -->
+            <!-- Krok 1: rodzaj wspolpracy -->
             <div class="fn__step is-active" data-fn-step="1">
-              <div class="fn__mailRow">
-                <span class="fn__mailIco" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
-                </span>
-                <input class="fn__input" type="email" name="email" inputmode="email" autocomplete="email" spellcheck="false"
-                       data-fn-email placeholder="your email" data-i18n-attr="placeholder:ct.mailPh,aria-label:ct.mailPh" aria-label="your email">
+              <h1 class="display fn__q" data-i18n="wiz.q1">What do you need?</h1>
+              <div class="fn__chips" role="radiogroup" data-fn-services data-i18n-attr="aria-label:wiz.q1" aria-label="What do you need?">
+                <button class="chip" type="button" role="radio" aria-checked="false" data-value="Brand identity" data-key="wiz.s1"><span data-i18n="wiz.s1">Brand identity</span></button>
+                <button class="chip" type="button" role="radio" aria-checked="false" data-value="Web design" data-key="wiz.s2"><span data-i18n="wiz.s2">Web design</span></button>
+                <button class="chip" type="button" role="radio" aria-checked="false" data-value="Social media" data-key="ct.s3"><span data-i18n="ct.s3">Social media</span></button>
+                <button class="chip" type="button" role="radio" aria-checked="false" data-value="Something else" data-key="wiz.s4"><span data-i18n="wiz.s4">Something else</span></button>
               </div>
+            </div>
+
+            <!-- Krok 2: budzet wpisywany wielka cyfra -->
+            <div class="fn__step" data-fn-step="2">
+              <h2 class="display fn__q" data-i18n="ct.q2">Your budget</h2>
+              <label class="fn__amountRow">
+                <span class="fn__cur" aria-hidden="true">€</span>
+                <input class="fn__amountInput" type="text" inputmode="numeric" autocomplete="off" spellcheck="false"
+                       data-fn-budget placeholder="5.000" data-i18n-attr="placeholder:ct.budgetPh,aria-label:ct.q2" aria-label="Your budget">
+              </label>
+              <button class="chip fn__notSure" type="button" aria-pressed="false" data-fn-notsure><span data-i18n="wiz.b5">Not sure yet</span></button>
+            </div>
+
+            <!-- Krok 3: adres e-mail -->
+            <div class="fn__step" data-fn-step="3">
+              <h2 class="display fn__q" data-i18n="ct.q3">Your email</h2>
+              <input class="fn__input" type="email" name="email" inputmode="email" autocomplete="email" spellcheck="false"
+                     data-fn-email placeholder="your@email" data-i18n-attr="placeholder:ct.emailPh,aria-label:ct.q3" aria-label="Your email">
               <p class="fn__error" data-fn-error hidden data-i18n="wiz.mailErr">That does not look like a valid email address.</p>
             </div>
 
-            <!-- Krok 2: budzet -->
-            <div class="fn__step" data-fn-step="2">
-              <p class="fn__amount" data-fn-amount><span class="fn__cur" aria-hidden="true">€</span><span data-fn-amount-value>—</span></p>
-              <div class="fn__chips" role="radiogroup" data-i18n-attr="aria-label:ct.budgetLabel" aria-label="Estimated budget">
-                <button class="chip" type="button" role="radio" aria-checked="false" data-value="&lt; 500 EUR" data-display="&lt; 500" data-cur="1"><span data-i18n="wiz.b1">&lt; €500</span></button>
-                <button class="chip" type="button" role="radio" aria-checked="false" data-value="500-1500 EUR" data-display="500–1500" data-cur="1"><span data-i18n="wiz.b2">€500–1500</span></button>
-                <button class="chip" type="button" role="radio" aria-checked="false" data-value="1500-3000 EUR" data-display="1500–3000" data-cur="1"><span data-i18n="wiz.b3">€1500–3000</span></button>
-                <button class="chip" type="button" role="radio" aria-checked="false" data-value="3000+ EUR" data-display="3000+" data-cur="1"><span data-i18n="wiz.b4">€3000+</span></button>
-                <button class="chip" type="button" role="radio" aria-checked="false" data-value="Not sure yet" data-display-key="wiz.b5" data-cur="0"><span data-i18n="wiz.b5">Not sure yet</span></button>
-              </div>
-            </div>
-
-            <!-- Krok 3: krotki opis (nieobowiazkowy) -->
-            <div class="fn__step" data-fn-step="3">
+            <!-- Krok 4: krotki opis (nieobowiazkowy) -->
+            <div class="fn__step" data-fn-step="4">
               <h2 class="display fn__q" data-i18n="wiz.q4">A few words about the project</h2>
               <textarea class="fn__area" name="message" rows="2" data-fn-message placeholder="Two or three lines — optional"
                         data-i18n-attr="placeholder:wiz.msgPh,aria-label:wiz.q4" aria-label="A few words about the project"></textarea>
@@ -138,9 +141,10 @@
               <span class="fn__check" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 25.5 20 35 38 14"/></svg>
               </span>
-              <h2 class="display fn__q" data-i18n="ct.doneTitle">Submission accepted</h2>
-              <p class="fn__doneLead" data-i18n="ct.doneLead">We’ll be in touch shortly.</p>
+              <h2 class="display fn__q fn__done"><em data-i18n="ct.doneA">Request</em> <span data-i18n="ct.doneB">accepted.</span></h2>
+              <p class="fn__doneLead" data-i18n="ct.doneLead">I will get back to you within 24-48 hours.</p>
               <dl class="fn__summary">
+                <div class="fn__sumRow"><dt class="label" data-i18n="wiz.sumService">Service</dt><dd data-fn-sum="service"></dd></div>
                 <div class="fn__sumRow"><dt class="label" data-i18n="wiz.sumBudget">Budget</dt><dd data-fn-sum="budget"></dd></div>
                 <div class="fn__sumRow"><dt class="label" data-i18n="wiz.sumEmail">Email</dt><dd data-fn-sum="email"></dd></div>
               </dl>
@@ -187,18 +191,22 @@
         </ul>
       </div>
 
-      <!-- Wstega okladek plynaca po luku; klik prowadzi do projektow -->
+      <!-- Wstega okladek w lekkiej perspektywie; miedzy nimi krople szkla z CSS -->
       <div class="arc" data-arc data-i18n-attr="aria-label:wiz.reel" aria-label="Selected work">
         <div class="arc__track" data-arc-track>
           <a class="arc__item" href="index.html#projects"><img src="img/cover-portfolio.png" alt="Creative Portfolio 2026" loading="lazy"></a>
           <a class="arc__item" href="index.html#projects"><img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab" loading="lazy"></a>
+          <span class="arc__item arc__drop" aria-hidden="true"></span>
           <a class="arc__item" href="index.html#projects"><img src="img/cover-aura.jpg" alt="AURA PUFFER" loading="lazy"></a>
           <a class="arc__item" href="index.html#projects"><img src="img/cover-synq.jpg" alt="SYNQ Loft Bar" loading="lazy"></a>
+          <span class="arc__item arc__drop" aria-hidden="true"></span>
           <a class="arc__item" href="index.html#projects"><img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine" loading="lazy"></a>
           <a class="arc__item" href="index.html#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-portfolio.png" alt="" loading="lazy"></a>
           <a class="arc__item" href="index.html#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-biveris.jpg" alt="" loading="lazy"></a>
+          <span class="arc__item arc__drop" aria-hidden="true"></span>
           <a class="arc__item" href="index.html#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-aura.jpg" alt="" loading="lazy"></a>
           <a class="arc__item" href="index.html#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-synq.jpg" alt="" loading="lazy"></a>
+          <span class="arc__item arc__drop" aria-hidden="true"></span>
           <a class="arc__item" href="index.html#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-magazine.jpg" alt="" loading="lazy"></a>
         </div>
       </div>

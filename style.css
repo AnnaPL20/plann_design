@@ -3138,3 +3138,180 @@ html.lenis, html.lenis body { height: auto; }
   border-bottom: 1px solid var(--line);
 }
 .sectionHead__aside { color: var(--faint); }
+
+/* ---------------------------------------------------------------------------
+   41. STRONA NA TUSZU (contact.html)
+   Tokeny powierzchni przestawione na body, zeby cala strona — razem
+   z nawigacja — byla ciemna niezaleznie od wybranego motywu.
+   --------------------------------------------------------------------------- */
+body.page--ink {
+  --t-bg: #0b0b0c;
+  --t-fg: #ffffff;
+  --t-accent: var(--accent-onink);
+  --t-onink: block;
+  --t-onpaper: none;
+  --bg: var(--t-bg);
+  --fg: var(--t-fg);
+  --accent: var(--t-accent);
+  --logo-onink: block;
+  --logo-onpaper: none;
+  /* Tokeny pochodne trzeba przeliczyc tutaj — dziedzicza sie jako wartosci */
+  --muted: color-mix(in srgb, var(--fg) 58%, transparent);
+  --faint: color-mix(in srgb, var(--fg) 34%, transparent);
+  --line: rgba(255, 255, 255, .14);
+  --line-strong: rgba(255, 255, 255, .3);
+  --surface: color-mix(in srgb, var(--fg) 6%, var(--bg));
+  --surface-2: color-mix(in srgb, var(--fg) 10%, var(--bg));
+  background: var(--t-bg);
+  color: var(--t-fg);
+}
+/* Na tuszu pelny przycisk jest bialy — jak w czarnej sekcji uslug */
+.page--ink .btn--solid,
+.page--ink .nav .btn--solid {
+  background: #ffffff;
+  color: #101112;
+  border-color: #ffffff;
+}
+.page--ink .btn--solid:hover,
+.page--ink .nav .btn--solid:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.page--ink .nav__link[aria-current="page"] { background: rgba(255, 255, 255, .1); color: #fff; }
+.page--ink .socialrow__item::after { background: #fff; color: #101112; }
+
+/* --- Lejek na ciemnym tle --- */
+.page--ink .fn { padding-top: calc(var(--nav-h) + clamp(64px, 10vh, 130px)); }
+.fn__q {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5.2vw, 4.4rem);
+  letter-spacing: -.03em;
+  line-height: .98;
+  max-width: 18ch;
+}
+.fn__done em { font-style: italic; }
+
+/* Budzet: przezroczyste pole z wielkim znakiem euro */
+.fn__amountRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: .04em;
+  width: min(760px, 100%);
+}
+.fn__amountRow .fn__cur,
+.fn__amountInput {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3rem, 10vw, 7.5rem);
+  letter-spacing: -.045em;
+  line-height: .95;
+}
+.fn__amountRow .fn__cur { color: var(--accent); }
+.fn__amountInput {
+  width: 7ch;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  text-align: left;
+}
+.fn__amountInput::placeholder { color: color-mix(in srgb, var(--fg) 26%, transparent); }
+.fn__amountInput:focus { outline: none; }
+.fn__notSure { margin-top: 4px; }
+
+/* Wielkie przezroczyste pole adresu */
+.fn__input {
+  width: min(860px, 100%);
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 5.6vw, 4rem);
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  text-align: center;
+}
+.fn__input::placeholder { color: color-mix(in srgb, var(--fg) 26%, transparent); }
+.fn__input:focus { outline: none; }
+.fn__mailRow, .fn__mailIco, .fn__headline { display: none; }
+
+.page--ink .fn__area { background: rgba(255, 255, 255, .04); }
+
+/* --- Krople szkla wplecione miedzy okladki we wstedze --- */
+.arc__drop {
+  width: clamp(96px, 9vw, 150px);
+  aspect-ratio: 1 / 1;
+  border-radius: 46% 54% 52% 48%;
+  border: 1px solid rgba(255, 255, 255, .38);
+  background: linear-gradient(168deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03));
+  -webkit-backdrop-filter: blur(var(--drop-blur)) saturate(var(--drop-sat));
+  backdrop-filter: blur(var(--drop-blur)) saturate(var(--drop-sat));
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, .5),
+    inset 0 -10px 22px -10px rgba(255, 255, 255, .3),
+    0 18px 44px -20px rgba(0, 0, 0, .6);
+  animation: arc-drop 7s ease-in-out infinite;
+}
+@keyframes arc-drop {
+  0%, 100% { border-radius: 46% 54% 52% 48%; }
+  50%      { border-radius: 55% 45% 44% 56%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc__drop { animation: none !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   42. WASKI PASEK CTA PRZED STOPKA (strona glowna)
+   --------------------------------------------------------------------------- */
+.cta { border-top: 1px solid var(--line); }
+.cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(18px, 2.4vw, 28px);
+}
+.cta__line {
+  margin: 0;
+  font-size: clamp(1.7rem, 4.4vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.cta__mail a { color: var(--muted); border-bottom: 1px solid var(--line-strong); transition: color .3s var(--ease); }
+.cta__mail a:hover { color: var(--accent); }
+
+/* ---------------------------------------------------------------------------
+   43. SCENA LEJKA — kroki ulozone w jednej komorce siatki
+   Dzieki temu wysokosc sceny rowna sie najwyzszemu krokowi: ekran koncowy
+   z podsumowaniem nie nachodzi juz na tresci pod nim.
+   --------------------------------------------------------------------------- */
+.fn__stage {
+  position: relative;
+  display: grid;
+  min-height: clamp(250px, 34vh, 380px);
+}
+.fn__step {
+  grid-area: 1 / 1;
+  position: relative;
+  inset: auto;
+}
+
+/* Krople szkla we wstedze — jasniejsze, zeby bylo je widac na tuszu */
+.arc__drop {
+  border-color: rgba(255, 255, 255, .5);
+  background: linear-gradient(168deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .06));
+  box-shadow:
+    inset 0 3px 5px rgba(255, 255, 255, .75),
+    inset 0 -12px 26px -10px rgba(255, 255, 255, .45),
+    0 20px 50px -18px rgba(0, 0, 0, .7);
+}
+
+/* Kolko z galka: padding procentowy liczy sie od szerokosci rodzica,
+   wiec na pelnej szerokosci rozdymal kolko. Stala wartosc to naprawia. */
+.fn__check,
+.wiz__check {
+  padding: clamp(15px, 1.7vw, 22px);
+  flex: none;
+}

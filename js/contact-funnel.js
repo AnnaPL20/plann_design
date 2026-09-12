@@ -1,7 +1,7 @@
 /* =============================================================================
    PLANN Design — lejek kontaktowy (contact.html)
-   Trzy kroki: e-mail, budzet, krotki opis. Naglowek zostaje na gorze i przygasa,
-   gdy uzytkownik zacznie wypelniac. Wysylka AJAX-em do FormSubmit.
+   Cztery kroki: rodzaj wspolpracy, budzet, e-mail, krotki opis.
+   Jeden krok na ekran, przejscia z rozmyciem, wysylka AJAX-em do FormSubmit.
    Bez bibliotek.
    ============================================================================= */
 (() => {
@@ -15,7 +15,7 @@
   const t = key => (window.PLANN ? window.PLANN.t(key) : '');
 
   const ENDPOINT = 'https://formsubmit.co/ajax/annapytsko@gmail.com';
-  const LAST_STEP = 3;
+  const LAST_STEP = 4;
   const ANIM = 600; /* zgodne z czasem przejscia w CSS */
 
   const form = $('[data-fn-form]');
@@ -25,26 +25,25 @@
   const backBtn = $('[data-fn-back]');
   const nextBtn = $('[data-fn-next]');
   const nextLabel = $('[data-fn-next-label]');
+  const budgetInput = $('[data-fn-budget]');
+  const notSureBtn = $('[data-fn-notsure]');
   const emailInput = $('[data-fn-email]');
   const emailError = $('[data-fn-error]');
   const messageInput = $('[data-fn-message]');
-  const amountValue = $('[data-fn-amount-value]');
-  const amountBox = $('[data-fn-amount]');
   const failBox = $('[data-fn-fail]');
 
   const stepEl = id => steps.find(el => el.dataset.fnStep === String(id));
 
   let current = 1;
   let sending = false;
-  let budget = null;   /* { value, display, displayKey, cur } */
-
-  /* ---------- Naglowek przygasa po pierwszym dotknieciu formularza ---------- */
-  const engage = () => root.classList.add('is-engaged');
+  let service = null;   /* { value, key } */
+  let notSure = false;
 
   /* ---------- Walidacja ---------- */
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
   const emailOk = () => EMAIL_RE.test((emailInput.value || '').trim());
-  const stepValid = n => (n === 1 ? emailOk() : n === 2 ? Boolean(budget) : true);
+  const budgetOk = () => notSure || Boolean((budgetInput.value || '').trim());
+  const stepValid = n => (n === 1 ? Boolean(service) : n === 2 ? budgetOk() : n === 3 ? emailOk() : true);
 
   const syncNav = () => {
     if (current === 'done') return;
@@ -75,70 +74,62 @@
     to.classList.add('is-active');
     current = next;
 
-    if (counter) counter.textContent = next === 'done' ? '03' : String(next).padStart(2, '0');
+    if (counter) counter.textContent = next === 'done' ? '04' : String(next).padStart(2, '0');
     if (nav) nav.hidden = next === 'done';
     if (failBox && next !== 'done') failBox.hidden = true;
     syncNav();
 
-    if (next === 1) setTimeout(() => emailInput.focus({ preventScroll: true }), ANIM * 0.6);
-    if (next === 3) setTimeout(() => messageInput.focus({ preventScroll: true }), ANIM * 0.6);
+    const focusTarget = next === 2 ? budgetInput : next === 3 ? emailInput : next === 4 ? messageInput : null;
+    if (focusTarget) setTimeout(() => focusTarget.focus({ preventScroll: true }), ANIM * 0.6);
   };
 
-  /* ---------- Krok 1: e-mail ---------- */
-  emailInput.addEventListener('input', () => {
-    engage();
-    emailError.hidden = true;
-    syncNav();
-  });
-  emailInput.addEventListener('blur', () => {
-    emailError.hidden = !emailInput.value.trim() || emailOk();
-  });
-
-  /* ---------- Krok 2: budzet wskakuje w wielka cyfre ---------- */
-  const paintAmount = () => {
-    if (!budget) {
-      amountValue.textContent = '—';
-      amountBox.classList.remove('is-text');
-      amountBox.dataset.cur = '1';
-      return;
-    }
-    amountValue.textContent = budget.displayKey ? t(budget.displayKey) : budget.display;
-    amountBox.dataset.cur = budget.cur;
-    amountBox.classList.toggle('is-text', budget.cur === '0');
-  };
-
-  const chips = $$('.chip');
+  /* ---------- Krok 1: chipsy uslug ---------- */
+  const chips = $$('[data-fn-services] .chip');
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
-      engage();
       chips.forEach(c => {
         const on = c === chip;
         c.classList.toggle('is-picked', on);
         c.setAttribute('aria-checked', String(on));
       });
-      budget = {
-        value: chip.dataset.value,
-        display: chip.dataset.display || '',
-        displayKey: chip.dataset.displayKey || '',
-        cur: chip.dataset.cur || '1'
-      };
-      paintAmount();
-      amountBox.classList.remove('is-pop');
-      void amountBox.offsetWidth;      /* reflow: animacja ma zagrac ponownie */
-      amountBox.classList.add('is-pop');
+      service = { value: chip.dataset.value, key: chip.dataset.key };
       syncNav();
     });
   });
-  paintAmount();
 
-  /* ---------- Krok 3 ---------- */
-  messageInput.addEventListener('input', engage);
+  /* ---------- Krok 2: budzet ---------- */
+  const clearNotSure = () => {
+    notSure = false;
+    notSureBtn.classList.remove('is-picked');
+    notSureBtn.setAttribute('aria-pressed', 'false');
+  };
+
+  budgetInput.addEventListener('input', () => {
+    /* Zostawiamy tylko cyfry i separatory — pole ma wygladac jak kwota */
+    budgetInput.value = budgetInput.value.replace(/[^\d .,]/g, '');
+    if (budgetInput.value.trim()) clearNotSure();
+    syncNav();
+  });
+
+  notSureBtn.addEventListener('click', () => {
+    notSure = !notSure;
+    notSureBtn.classList.toggle('is-picked', notSure);
+    notSureBtn.setAttribute('aria-pressed', String(notSure));
+    if (notSure) budgetInput.value = '';
+    syncNav();
+  });
+
+  /* ---------- Krok 3: e-mail ---------- */
+  emailInput.addEventListener('input', () => { emailError.hidden = true; syncNav(); });
+  emailInput.addEventListener('blur', () => {
+    emailError.hidden = !emailInput.value.trim() || emailOk();
+  });
 
   /* ---------- Sterowanie ---------- */
   const forward = () => {
     if (sending) return;
     if (!stepValid(current)) {
-      if (current === 1 && emailInput.value.trim()) emailError.hidden = false;
+      if (current === 3 && emailInput.value.trim()) emailError.hidden = false;
       return;
     }
     if (current === LAST_STEP) send();
@@ -148,7 +139,7 @@
   backBtn.addEventListener('click', () => { if (current > 1 && current !== 'done') goTo(current - 1); });
   form.addEventListener('submit', event => { event.preventDefault(); forward(); });
 
-  /* Klawiatura dziala na calej stronie — nie tylko gdy fokus siedzi w lejku */
+  /* Klawiatura dziala na calej stronie, nie tylko gdy fokus siedzi w lejku */
   document.addEventListener('keydown', event => {
     if (current === 'done') return;
     if (event.target.closest && event.target.closest('.nav, .menu')) return;
@@ -159,21 +150,24 @@
       forward();
       return;
     }
-    if (event.key === 'ArrowLeft' && !inTextarea && event.target !== emailInput && current > 1) {
+    const inField = event.target === emailInput || event.target === budgetInput;
+    if (event.key === 'ArrowLeft' && !inTextarea && !inField && current > 1) {
       event.preventDefault();
       goTo(current - 1);
     }
   });
 
   /* ---------- Podsumowanie ---------- */
+  const budgetText = () => (notSure ? t('wiz.b5') : '€' + (budgetInput.value || '').trim());
   const renderSummary = () => {
     const map = {
-      budget: budget ? (budget.displayKey ? t(budget.displayKey) : '€' + budget.display) : '',
+      service: service ? t(service.key) : '',
+      budget: budgetText(),
       email: (emailInput.value || '').trim()
     };
     $$('[data-fn-sum]').forEach(el => { el.textContent = map[el.dataset.fnSum] || '—'; });
   };
-  if (window.PLANN) window.PLANN.onLang(() => { paintAmount(); renderSummary(); syncNav(); });
+  if (window.PLANN) window.PLANN.onLang(() => { renderSummary(); syncNav(); });
 
   /* ---------- Wysylka ---------- */
   async function send() {
@@ -183,8 +177,9 @@
 
     const data = {};
     new FormData(form).forEach((value, key) => { data[key] = value; });
+    data.service = service ? service.value : '';
+    data.budget = notSure ? 'Not sure yet' : 'EUR ' + (budgetInput.value || '').trim();
     data.email = (emailInput.value || '').trim();
-    data.budget = budget ? budget.value : '';
     data.message = (messageInput.value || '').trim();
 
     try {
@@ -205,5 +200,4 @@
   }
 
   syncNav();
-  setTimeout(() => emailInput.focus({ preventScroll: true }), 600);
 })();
