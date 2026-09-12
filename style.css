@@ -5791,3 +5791,58 @@ body { font-family: var(--font-body); letter-spacing: -.005em; }
   .obj3d__stage { width: clamp(140px, 42vw, 200px); height: clamp(140px, 42vw, 200px); }
   .obj3d__face { transform: rotateY(calc(var(--i) * 90deg)) translateZ(calc(clamp(140px, 42vw, 200px) / 2)); }
 }
+
+/* ---------------------------------------------------------------------------
+   67. CIEMNY MOTYW — naprawa
+   Od czasu splaszczenia palety (sekcja 45) --ink i --paper byly stalymi
+   kolorami, wiec przelacznik motywu zmienial tylko menu: sekcje zostawaly
+   biale, a podpisy liczone na bialym tle znikaly. Tutaj ciemny motyw dostaje
+   wlasna palete: "papier" staje sie tlem nocnym, "tusz" jasnym tekstem,
+   a --t-bg / --t-fg sa wpisane wprost, zeby nie odwrocily sie po raz drugi.
+   --------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --ink: #f2f2f3;
+  --paper: #0d0d0e;
+  --paper-2: #16161a;
+  --grey-1: #6d6d72;
+  --grey-2: #9a9aa0;
+  --grey-3: #c4c4c9;
+  --text: var(--grey-3);
+  --muted: var(--grey-2);
+  --faint: var(--grey-1);
+  --line: #27272c;
+  --line-strong: #3b3b42;
+  --surface: var(--paper-2);
+  --surface-2: #1e1e23;
+
+  --t-bg: #0d0d0e;
+  --t-fg: #f2f2f3;
+}
+/* Tlo dokumentu i bloki, ktore maja swoje wlasne tlo "papierowe" */
+:root[data-theme="dark"] body { background: var(--paper); }
+:root[data-theme="dark"] .wrow__inner { background: var(--paper); }
+/* W ciemnym motywie pigulka "pelna" musi byc jasna — inaczej ciemny przycisk
+   znika na ciemnym tle, a nawiasy [ ] liczone na kolorze tla sa niewidoczne. */
+:root[data-theme="dark"] .btn--solid,
+:root[data-theme="dark"] .nav .btn--solid {
+  background: #f2f2f3;
+  color: #0d0d0e;
+  border-color: #f2f2f3;
+}
+:root[data-theme="dark"] .btn--solid .btn__br { color: rgba(13, 13, 14, .5); }
+:root[data-theme="dark"] .btn--solid:hover,
+:root[data-theme="dark"] .nav .btn--solid:hover {
+  background: var(--accent-onink);
+  color: #fff;
+  border-color: var(--accent-onink);
+}
+:root[data-theme="dark"] .btn--solid:hover .btn__br { color: rgba(255, 255, 255, .6); }
+/* Pigulka w nawigacji ma na sztywno ciemne tlo (linia 1463, !important), wiec
+   w ciemnym motywie zostaje ciemna — na szklanym pasku czyta sie dobrze,
+   a nawiasy zostaja biale tak jak byly. */
+/* Na waskim ekranie bryla w perspektywie wychodzi poza swoj kwadrat,
+   wiec podpisy dostaja wlasne powietrze nad i pod nia. */
+@media (max-width: 900px) {
+  .obj3d__grid { row-gap: 0; }
+  .obj3d__stage { margin-block: clamp(24px, 7vw, 40px); }
+}
