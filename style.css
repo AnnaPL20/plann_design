@@ -1694,6 +1694,7 @@ strong { font-weight: 700; }
 .btn,
 .pill,
 .chip,
+.socialbtn,
 .lang__btn {
   position: relative;
   isolation: isolate;         /* wlasny kontekst ukladania: pseudo pod tekstem */
@@ -1725,6 +1726,7 @@ strong { font-weight: 700; }
 .btn::before,
 .pill::before,
 .chip::before,
+.socialbtn::before,
 .lang__btn::before {
   content: "";
   position: absolute;
@@ -1752,6 +1754,7 @@ strong { font-weight: 700; }
 .btn::after,
 .pill::after,
 .chip::after,
+.socialbtn::after,
 .lang__btn::after {
   content: "";
   position: absolute;
@@ -1771,6 +1774,7 @@ strong { font-weight: 700; }
 .btn:hover,
 .pill:hover,
 .chip:hover,
+.socialbtn:hover,
 .lang__btn:hover {
   --drop-scale: var(--drop-hover);
   box-shadow:
@@ -1781,6 +1785,7 @@ strong { font-weight: 700; }
 .btn:hover::after,
 .pill:hover::after,
 .chip:hover::after,
+.socialbtn:hover::after,
 .lang__btn:hover::after { opacity: 1; }
 
 /* Warianty pelne i przycisk w nawigacji — ta sama skala, kolory bez zmian */
@@ -1819,6 +1824,7 @@ strong { font-weight: 700; }
   .btn,
   .pill,
   .chip,
+  .socialbtn,
   .lang__btn { background: color-mix(in srgb, var(--fg) 8%, var(--bg)); }
 }
 
@@ -1855,7 +1861,7 @@ strong { font-weight: 700; }
 
 /* Ograniczony ruch: zostaje sama zmiana koloru */
 @media (prefers-reduced-motion: reduce) {
-  .btn, .pill, .chip, .lang__btn { transform: none !important; }
+  .btn, .pill, .chip, .socialbtn, .lang__btn { transform: none !important; }
   .drop-ripple { display: none !important; }
   .lang__goo { display: none; }
   .lang__btn.is-active { background: var(--fg); color: var(--bg); }
@@ -1942,7 +1948,7 @@ html.lenis, html.lenis body { height: auto; }
    --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   a, button,
-  .btn, .pill, .chip, .lang__btn,
+  .btn, .pill, .chip, .socialbtn, .lang__btn,
   .card__arrow, .socials__arrow,
   .footer__work img, .shop__card {
     transition: opacity .25s linear, color .25s linear, background-color .25s linear !important;
@@ -2581,3 +2587,65 @@ html.lenis, html.lenis body { height: auto; }
   .hero__foot { font-size: .625rem; gap: 12px; }
   .btn--lg { padding: 16px 24px; font-size: .74rem; }
 }
+
+/* ---------------------------------------------------------------------------
+   33. SOCJALE JAKO OKRAGLE KROPLE Z IKONAMI
+   Ikony: Simple Icons (licencja CC0), pliki lokalnie w img/icons/.
+   Kolorowane przez currentColor — plik SVG sluzy jako maska.
+   --------------------------------------------------------------------------- */
+.socialrow { display: flex; flex-wrap: wrap; gap: 10px; }
+.socialrow__item { position: relative; }
+
+.socialbtn {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--fg);
+}
+.socialbtn > * { position: relative; z-index: 1; }
+
+.socialbtn__ico {
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+          mask: var(--icon) center / contain no-repeat;
+}
+.socialbtn__ico--instagram { --icon: url("img/icons/instagram.svg"); }
+.socialbtn__ico--behance   { --icon: url("img/icons/behance.svg"); }
+.socialbtn__ico--telegram  { --icon: url("img/icons/telegram.svg"); }
+.socialbtn__ico--tiktok    { --icon: url("img/icons/tiktok.svg"); }
+.socialbtn__ico--linkedin  { --icon: url("img/icons/linkedin.svg"); }
+
+/* Podpowiedz nad ikona — na elemencie listy, bo sama kropla ma overflow: hidden */
+.socialrow__item::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  z-index: 5;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: .625rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  pointer-events: none;
+  transition: opacity .28s var(--ease), transform .28s var(--ease-out);
+}
+.socialrow__item:hover::after,
+.socialrow__item:focus-within::after { opacity: 1; transform: translate(-50%, 0); }
+
+/* W stopce kropla stoi na kolorowym tle — obwod nieco mocniejszy */
+.socialrow--footer .socialbtn { border-color: rgba(255, 255, 255, .34); color: #fff; }
+.socialrow--footer .socialrow__item::after { background: #fff; color: #101112; }
+
+.menu__social { gap: 10px; }

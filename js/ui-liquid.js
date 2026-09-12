@@ -11,7 +11,7 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Wszystkie elementy, ktore maja zachowywac sie jak kropla */
-  const DROP = '.btn, .pill, .chip, .lang__btn';
+  const DROP = '.btn, .pill, .chip, .socialbtn, .lang__btn';
 
   /* ---------- Odblask wedrujacy za kursorem (--x / --y) ---------- */
   if (!reduceMotion && matchMedia('(pointer: fine)').matches) {
