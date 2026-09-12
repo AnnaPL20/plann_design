@@ -31,10 +31,14 @@
 
   media.addEventListener('pointerenter', event => {
     media.classList.add('is-negative');
+    document.body.classList.add('is-hero-negative');
     move(event);
   });
   media.addEventListener('pointermove', move, { passive: true });
-  media.addEventListener('pointerleave', () => media.classList.remove('is-negative'));
+  media.addEventListener('pointerleave', () => {
+    media.classList.remove('is-negative');
+    document.body.classList.remove('is-hero-negative');
+  });
 
   /* Bez myszy: plama raz przesuwa sie w poprzek okna, zeby efekt byl widoczny */
   if (!matchMedia('(pointer: fine)').matches && !reduceMotion) {

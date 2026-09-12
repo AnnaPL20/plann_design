@@ -4374,3 +4374,80 @@ body.page--ink {
 /* Pasek CTA: zdanie po lewej, kropla po prawej (zerujemy ukladanie w kolumnie) */
 .cta__inner { flex-direction: row; align-items: center; justify-content: space-between; text-align: left; }
 @media (max-width: 640px) { .cta__inner { flex-direction: column; align-items: flex-start; } }
+
+/* ---------------------------------------------------------------------------
+   56. DROBNA MOWA ANIMACJI I KURSOR
+   Kursor: kropka 6 px plus pierscien 32 px, oba w trybie difference
+   (to autorski efekt negatywu — nie usuwac bez zgody, patrz CLAUDE.md).
+   Tylko na desktopie; chowa sie nad oknem hero, zeby nie zaslaniac plamy.
+   --------------------------------------------------------------------------- */
+.cursor {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  mix-blend-mode: difference;
+  filter: none;
+  animation: none;
+  transition: opacity .25s linear, transform .15s linear;
+}
+/* Kropka w srodku pierscienia */
+.cursor::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: #fff;
+  display: block !important;
+}
+.cursor::after { display: none !important; }
+.cursor span { display: none !important; }
+.cursor.is-visible { opacity: 1; }
+/* Zadnej plakietki nad pracami — sam pierscien z kropka */
+.cursor.is-hover,
+.cursor.is-work {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #fff;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  mix-blend-mode: difference;
+  animation: none;
+}
+/* Nad oknem hero kursor znika, zeby nie przeszkadzal plamie negatywu */
+body.is-hero-negative .cursor { opacity: 0; }
+
+@media (pointer: coarse) { .cursor { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .cursor { display: none !important; } }
+
+/* --- Podkreslenie domalowywane przy odnosnikach --- */
+.footer__nav a,
+.footer__email,
+.cta__mail a,
+.contact__direct a { position: relative; }
+.footer__nav a::after,
+.footer__email::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s var(--ease-out);
+}
+.footer__nav a:hover::after,
+.footer__email:hover::after { transform: scaleX(1); }
