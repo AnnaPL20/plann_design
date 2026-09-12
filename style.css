@@ -4025,3 +4025,56 @@ body.page--ink {
   top: auto;
   left: auto;
 }
+
+/* ---------------------------------------------------------------------------
+   52. MANIFEST + FAKTY — jasnoszara sekcja zaraz po hero
+   Po lewej mono-podpis, po prawej duzy akapit, ktorego slowa ciemnieja
+   przy przewijaniu. Pod nim kropla prowadzaca do tabeli faktow.
+   --------------------------------------------------------------------------- */
+.manifest { background: var(--paper-2); }
+.manifest__grid {
+  display: grid;
+  grid-template-columns: minmax(140px, 2fr) 9fr;
+  gap: clamp(20px, 4vw, 72px);
+  align-items: start;
+}
+.manifest__label { margin: .5em 0 0; }
+.manifest__text {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.2vw, 2.75rem);   /* 24-44px */
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  text-wrap: pretty;
+}
+@media (min-width: 900px) { .manifest__text { max-width: 26ch; } }
+.manifest__text .mw {
+  color: #c2c2c2;
+  transition: color .45s var(--ease-out);
+}
+.manifest__text .mw.is-lit,
+.manifest__text.is-done .mw { color: var(--ink); }
+.manifest__cta { margin-top: clamp(28px, 4vw, 48px); }
+
+/* Tabela faktow */
+.facts {
+  margin-top: clamp(56px, 8vw, 104px);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: calc(var(--nav-h) + 40px);
+}
+.facts__row {
+  display: grid;
+  grid-template-columns: minmax(140px, 2fr) 9fr;
+  gap: clamp(20px, 4vw, 72px);
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.facts__row dt { padding-top: 2px; }
+.facts__row dd { font-size: 1.0625rem; color: var(--ink); }
+
+@media (max-width: 768px) {
+  .manifest__grid, .facts__row { grid-template-columns: 1fr; gap: 14px; }
+  .manifest__label { margin-bottom: 10px; }
+}
