@@ -13,36 +13,61 @@
 /* ---------------------------------------------------------------------------
    0. FONTY LOKALNE (folder fonts/)
    Zadnych zapytan do obcych serwerow — wszystkie pliki .woff2 leza w projekcie.
-     Switzer        — Fontshare, bezplatna licencja komercyjna: naglowki I tekst
+     Satoshi        — Fontshare, bezplatna licencja komercyjna: tekst i interfejs
+     Clash Display  — Fontshare, bezplatna licencja komercyjna: duze naglowki
      Fragment Mono  — OFL: podpisy techniczne, etykiety, adnotacje
      DSEG7 Classic  — OFL: wylacznie cyfry zegara (wyglad elektronicznego tabla)
-   Switzer nie zawiera cyrylicy, wiec dla zakresu cyrylickiego ta sama rodzina
+   Satoshi nie zawiera cyrylicy, wiec dla zakresu cyrylickiego ta sama rodzina
    wskazuje na plik Inter (unicode-range decyduje znak po znaku).
    --------------------------------------------------------------------------- */
 @font-face {
-  font-family: "Switzer";
-  src: url("fonts/Switzer-400.woff2") format("woff2");
+  font-family: "Satoshi";
+  src: url("fonts/Satoshi-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Switzer";
-  src: url("fonts/Switzer-500.woff2") format("woff2");
+  font-family: "Satoshi";
+  src: url("fonts/Satoshi-500.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Switzer";
-  src: url("fonts/Switzer-700.woff2") format("woff2");
+  font-family: "Satoshi";
+  src: url("fonts/Satoshi-700.woff2") format("woff2");
   font-weight: 600 900;
   font-style: normal;
   font-display: swap;
 }
-/* Cyrylica — Switzer jej nie ma, wiec podstawiamy Inter w tym samym zakresie */
+/* Cyrylica — Satoshi jej nie ma, wiec podstawiamy Inter w tym samym zakresie */
 @font-face {
-  font-family: "Switzer";
+  font-family: "Satoshi";
+  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Krój tytulowy — szeroki, charakterystyczny, tylko do duzych naglowkow */
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-500.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("fonts/ClashDisplay-600.woff2") format("woff2");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
   src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
@@ -122,8 +147,9 @@
   --logo-onink: var(--t-onink);
   --logo-onpaper: var(--t-onpaper);
 
-  --font-display: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-title: "Clash Display", "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Fragment Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-clock: "DSEG7 Classic", "Fragment Mono", ui-monospace, monospace;
 
@@ -216,7 +242,7 @@ strong { font-weight: 700; }
 
 /* ---------------------------------------------------------------------------
    3. TYPOGRAFIA
-   Display: Switzer (nagłówki) · Body: Inter · Mono: Fragment Mono (adnotacje)
+   Title: Clash Display · Display/Body: Satoshi · Mono: Fragment Mono (adnotacje)
    Wszystkie pliki fontow leza lokalnie w folderze fonts/ — patrz sekcja 0.
    --------------------------------------------------------------------------- */
 .label {
@@ -3269,7 +3295,7 @@ body.page--ink {
 
 /* ---------------------------------------------------------------------------
    44. TYPOGRAFIA — skala wedlug referencji
-   Switzer w naglowkach i tekscie, Fragment Mono w podpisach technicznych,
+   Satoshi w naglowkach i tekscie, Fragment Mono w podpisach technicznych,
    DSEG7 tylko w cyfrach zegara.
    --------------------------------------------------------------------------- */
 body {
@@ -5143,3 +5169,28 @@ body.is-hero-negative .cursor { opacity: 0; }
 
 /* Kwadracik kursora ma dzialac takze nad nowymi rzedami prac */
 .wrow__media, .hero__stage { cursor: none; }
+
+/* ---------------------------------------------------------------------------
+   61. NOWY KROJ PISMA — Satoshi + Clash Display
+   Satoshi zastepuje Switzer w calym interfejsie: szerszy, bardziej otwarty,
+   lepiej czytelny w malych rozmiarach. Clash Display wchodzi tylko tam,
+   gdzie naglowek ma robic wrazenie — duze tytuly sekcji i nazwa projektu.
+   Oba kroje: Fontshare, bezplatna licencja komercyjna, pliki lokalnie.
+   --------------------------------------------------------------------------- */
+.display,
+.h1,
+.h2,
+.hero__title,
+.intro__title,
+.lab__title,
+.shopHead__title,
+.case-viewer__info h2 {
+  font-family: var(--font-title);
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+
+/* Satoshi ma wieksza wysokosc x niz Switzer, wiec drobne podpisy moga byc
+   minimalnie mniejsze przy tej samej czytelnosci. */
+body { font-family: var(--font-body); letter-spacing: -.005em; }
+.lab__list li { font-family: var(--font-title); font-weight: 500; letter-spacing: -.018em; }
