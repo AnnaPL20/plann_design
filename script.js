@@ -58,6 +58,18 @@
       'shop.cta': 'Notify me at launch', 'shop.note': 'Be the first to know when the store opens.',
       'contact.label': 'Contact', 'contact.title': 'Let’s create something impossible to ignore.',
       'contact.lead': 'Have a project in mind? Send a message and I’ll get back to you soon.', 'contact.socials': 'Find me on',
+      /* --- Strona shop.html --- */
+      'sp.metaTitle': 'Shop · PLANN Design · Templates for designers & brands',
+      'sp.metaDesc': 'Ready-to-use templates for social media, presentations and brand kits by Anna Pytsko.',
+      'sp.title': 'Templates for designers & brands',
+      'sp.lead': 'Ready-to-use files I build for my own work — made to save you hours and keep everything on brand.',
+      'sp.filters': 'Filter by category',
+      'sp.all': 'All', 'sp.cSocial': 'Social media templates', 'sp.cDecks': 'Presentation decks', 'sp.cKits': 'Brand kits',
+      'sp.buy': 'Buy', 'sp.notify': 'Notify me', 'sp.free': 'Free', 'sp.soon': 'Coming soon',
+      'sp.empty': 'Nothing in this category yet.',
+      'sp.note': 'New files land here first — write to me if you want to hear about them.',
+      'sp.teaser': 'Templates for social media, presentations and brand kits — in the works.',
+      'sp.visit': 'Visit the shop',
       /* --- Strona contact.html --- */
       'ct.metaTitle': 'Contact · PLANN Design · Anna Pytsko',
       'ct.metaDesc': 'Tell me about your project in three short steps and I will get back to you within 24-48 hours.',
@@ -154,6 +166,18 @@
       'shop.cta': 'Повідомити про запуск', 'shop.note': 'Дізнайтеся першими про відкриття магазину.',
       'contact.label': 'Контакти', 'contact.title': 'Створімо щось, що неможливо не помітити.',
       'contact.lead': 'Маєте ідею проєкту? Напишіть мені — і я незабаром відповім.', 'contact.socials': 'Я в соцмережах',
+      /* --- Strona shop.html --- */
+      'sp.metaTitle': 'Магазин · PLANN Design · Шаблони для дизайнерів і брендів',
+      'sp.metaDesc': 'Готові шаблони для соцмереж, презентацій та бренд-кітів від Анни Питсько.',
+      'sp.title': 'Шаблони для дизайнерів і брендів',
+      'sp.lead': 'Готові файли, які я роблю для власної роботи — щоб економити вам години й тримати все в стилі бренду.',
+      'sp.filters': 'Фільтр за категорією',
+      'sp.all': 'Усі', 'sp.cSocial': 'Шаблони для соцмереж', 'sp.cDecks': 'Презентації', 'sp.cKits': 'Бренд-кіти',
+      'sp.buy': 'Купити', 'sp.notify': 'Повідомити мене', 'sp.free': 'Безкоштовно', 'sp.soon': 'Незабаром',
+      'sp.empty': 'У цій категорії поки нічого немає.',
+      'sp.note': 'Нові файли зʼявляються тут першими — напишіть, якщо хочете дізнаватися про них.',
+      'sp.teaser': 'Шаблони для соцмереж, презентацій та бренд-кітів — у роботі.',
+      'sp.visit': 'Перейти до магазину',
       /* --- Strona contact.html --- */
       'ct.metaTitle': 'Контакти · PLANN Design · Анна Питсько',
       'ct.metaDesc': 'Розкажіть про проєкт за три короткі кроки — відповім упродовж 24-48 годин.',
@@ -250,6 +274,18 @@
       'shop.cta': 'Powiadom mnie o starcie', 'shop.note': 'Bądź na bieżąco z otwarciem sklepu.',
       'contact.label': 'Kontakt', 'contact.title': 'Stwórzmy coś, czego nie da się zignorować.',
       'contact.lead': 'Masz pomysł na projekt? Napisz do mnie — odpowiem wkrótce.', 'contact.socials': 'Znajdziesz mnie na',
+      /* --- Strona shop.html --- */
+      'sp.metaTitle': 'Sklep · PLANN Design · Szablony dla projektantów i marek',
+      'sp.metaDesc': 'Gotowe szablony do social mediów, prezentacji i brand kitów od Anny Pytsko.',
+      'sp.title': 'Szablony dla projektantów i marek',
+      'sp.lead': 'Gotowe pliki, które robię do własnej pracy — żeby oszczędzić Ci godziny i utrzymać spójność marki.',
+      'sp.filters': 'Filtruj po kategorii',
+      'sp.all': 'Wszystkie', 'sp.cSocial': 'Szablony social media', 'sp.cDecks': 'Prezentacje', 'sp.cKits': 'Brand kity',
+      'sp.buy': 'Kup', 'sp.notify': 'Powiadom mnie', 'sp.free': 'Za darmo', 'sp.soon': 'Wkrótce',
+      'sp.empty': 'W tej kategorii jeszcze nic nie ma.',
+      'sp.note': 'Nowe pliki pojawiają się tu najpierw — napisz, jeśli chcesz o nich wiedzieć.',
+      'sp.teaser': 'Szablony do social mediów, prezentacji i brand kitów — w przygotowaniu.',
+      'sp.visit': 'Zajrzyj do sklepu',
       /* --- Strona contact.html --- */
       'ct.metaTitle': 'Kontakt · PLANN Design · Anna Pytsko',
       'ct.metaDesc': 'Opowiedz o projekcie w trzech krótkich krokach — odpowiem w ciągu 24-48 godzin.',
@@ -321,7 +357,8 @@
   window.PLANN = {
     t: key => t(currentLang, key),
     lang: () => currentLang,
-    onLang: fn => { if (typeof fn === 'function') langHandlers.push(fn); }
+    onLang: fn => { if (typeof fn === 'function') langHandlers.push(fn); },
+    translate: scope => applyI18n(scope || document, currentLang)
   };
 
   /* ---------- Motyw (ciemny / jasny) ---------- */
@@ -355,17 +392,23 @@
     requestAnimationFrame(() => el.classList.add('is-in'));
   };
 
+  /* Podmiana tekstow i atrybutow w dowolnym fragmencie drzewa —
+     sklep buduje karty w JS, wiec musi umiec przetlumaczyc swieze wezly */
+  const applyI18n = (scope, lang) => {
+    $$('[data-i18n]', scope).forEach(el => { el.textContent = t(lang, el.dataset.i18n); });
+    $$('[data-i18n-attr]', scope).forEach(el => {
+      el.dataset.i18nAttr.split(',').forEach(pair => {
+        const [attr, key] = pair.split(':').map(x => x.trim());
+        if (attr && key) el.setAttribute(attr, t(lang, key));
+      });
+    });
+  };
+
   /* ---------- Język ---------- */
   const setLang = (lang, initial = false) => {
     if (!I18N[lang]) lang = 'en';
     currentLang = lang;
-    $$('[data-i18n]').forEach(el => { el.textContent = t(lang, el.dataset.i18n); });
-    $$('[data-i18n-attr]').forEach(el => {
-      el.dataset.i18nAttr.split(',').forEach(pair => {
-        const [attr, key] = pair.split(':').map(s => s.trim());
-        if (attr && key) el.setAttribute(attr, t(lang, key));
-      });
-    });
+    applyI18n(document, lang);
     root.lang = lang;
     const cursorLabel = $('.cursor span');
     if (cursorLabel) cursorLabel.textContent = t(lang, 'cursor.view');
