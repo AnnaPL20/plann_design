@@ -22,7 +22,7 @@ const memory = navigator.deviceMemory || 4;
 const weak = cores <= 3 || memory <= 3;
 const small = matchMedia('(max-width: 768px)').matches;
 
-if (hero && hasWebGL() && !(weak && small)) {
+if (hero && !reduceMotion && hasWebGL() && !(weak && small)) {
   /* Start po zaladowaniu strony i w wolnej chwili przegladarki */
   const boot = () => { start().catch(() => { /* cicho: strona dziala bez 3D */ }); };
   const idle = () => (window.requestIdleCallback || (cb => setTimeout(cb, 400)))(boot, { timeout: 2500 });
@@ -145,23 +145,17 @@ async function start() {
     if (!running) return;
     frame = requestAnimationFrame(loop);
     if (!visible()) return;
-    if (!reduceMotion) {
-      mesh.rotation.y += 0.0022;
-      mesh.rotation.z = Math.sin(performance.now() * 0.00016) * 0.07;
-      curX += (tiltX - curX) * 0.045;
-      curY += (tiltY - curY) * 0.045;
-      mesh.rotation.x = 0.42 + curX;
-      mesh.position.x = curY * 0.35;
-    }
+    mesh.rotation.y += 0.0022;
+    mesh.rotation.z = Math.sin(performance.now() * 0.00016) * 0.07;
+    curX += (tiltX - curX) * 0.045;
+    curY += (tiltY - curY) * 0.045;
+    mesh.rotation.x = 0.42 + curX;
+    mesh.position.x = curY * 0.35;
     renderer.render(scene, camera);
   };
 
-  if (reduceMotion) {
-    renderer.render(scene, camera); // jedna statyczna klatka
-  } else {
-    hero.classList.add('has-3d');
-    loop();
-  }
+  hero.classList.add('has-3d');
+  loop();
 
   addEventListener('pagehide', () => { running = false; cancelAnimationFrame(frame); });
 }

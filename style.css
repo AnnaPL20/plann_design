@@ -1964,3 +1964,20 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: clip; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ---------------------------------------------------------------------------
+   24. OGRANICZONY RUCH — domkniecie
+   Sekcja 17 zdejmuje wszystkie animacje i przejscia. Tu wracaja wylacznie
+   krotkie (do 0,3 s) przejscia przezroczystosci i koloru, zeby interfejs
+   nadal dawal informacje zwrotna.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  a, button,
+  .btn, .pill, .chip, .lang__btn,
+  .card__arrow, .socials__arrow,
+  .footer__work img, .shop__card {
+    transition: opacity .25s linear, color .25s linear, background-color .25s linear !important;
+  }
+  .hero__canvas, .card__gloss, .drop-ripple, .lang__goo { display: none !important; }
+  .hero, .sheet { transform: none !important; filter: none !important; }
+}

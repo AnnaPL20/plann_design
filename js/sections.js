@@ -31,6 +31,11 @@
     if (video) {
       const y = Math.min(scrollY, vh * 1.2) * 0.2;
       hero.style.setProperty('--hero-par', y.toFixed(1) + 'px');
+
+      /* Oszczednosc: przykryte wideo nie musi sie dekodowac */
+      const covered = scrollY > vh * 1.3;
+      if (covered && !video.paused) video.pause();
+      else if (!covered && video.paused) { const p = video.play(); if (p) p.catch(() => {}); }
     }
 
     for (let i = 0; i < layers.length - 1; i++) {
