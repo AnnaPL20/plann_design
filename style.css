@@ -5194,3 +5194,117 @@ body.is-hero-negative .cursor { opacity: 0; }
    minimalnie mniejsze przy tej samej czytelnosci. */
 body { font-family: var(--font-body); letter-spacing: -.005em; }
 .lab__list li { font-family: var(--font-title); font-weight: 500; letter-spacing: -.018em; }
+
+/* ---------------------------------------------------------------------------
+   62. KAPSULA NAWIGACJI + SZKLANE PRZYCISKI W STYLU APPLE
+   Menu nie idzie juz przez cala szerokosc — siedzi w jednym szklanym bloku
+   po srodku. Przyciski dostaja mocniejszy efekt kropli: grubsze rozmycie tla,
+   swiatlo na gornej krawedzi, cien pod spodem i sprezysty ruch przy nacisnieciu.
+   --------------------------------------------------------------------------- */
+
+/* --- Blok menu --- */
+:root { --nav-h: 58px; }
+.nav {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(10px, 1.6vw, 22px);
+  width: min(1120px, 100% - var(--gutter) * 2);
+  height: var(--nav-h);
+  padding: 0 8px 0 18px;
+  border: 1px solid color-mix(in srgb, var(--t-fg) 12%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--t-bg) 64%, transparent);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  backdrop-filter: blur(26px) saturate(170%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 42%, transparent),
+    0 14px 38px -20px color-mix(in srgb, var(--fg) 60%, transparent);
+  transform: translateX(-50%);
+  transition:
+    width .5s var(--ease-out),
+    background-color .4s var(--ease),
+    border-color .4s var(--ease),
+    box-shadow .4s var(--ease),
+    opacity .8s var(--ease-out) .2s,
+    transform .8s var(--ease-out) .2s;
+}
+.is-loaded .nav { opacity: 1; transform: translateX(-50%); }
+.nav--scrolled {
+  width: min(960px, 100% - var(--gutter) * 2);
+  border-bottom: 1px solid color-mix(in srgb, var(--t-fg) 18%, transparent);
+  border-color: color-mix(in srgb, var(--t-fg) 18%, transparent);
+  background: color-mix(in srgb, var(--t-bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  backdrop-filter: blur(26px) saturate(170%);
+}
+.nav .logo { height: 18px; }
+.nav__links { gap: clamp(10px, 1.4vw, 20px); }
+.nav__link { font-size: .75rem; letter-spacing: -.005em; }
+.nav__right { gap: 6px; }
+.nav .lang { padding: 2px; }
+.nav .lang__btn { padding: 6px 8px; font-size: .625rem; }
+.nav .theme-toggle { width: 32px; height: 32px; flex: none; }
+.nav__cta { height: 38px; padding: 0 16px; font-size: .6875rem; letter-spacing: .06em; }
+
+/* Ponizej 1024 px odnosniki chowaja sie do menu pod hamburgerem,
+   wiec kapsula zostaje waska i wysrodkowana. */
+@media (max-width: 1024px) {
+  .nav { width: min(560px, 100% - var(--gutter) * 2); padding-right: 6px; }
+  .nav--scrolled { width: min(520px, 100% - var(--gutter) * 2); }
+}
+@media (max-width: 520px) {
+  .nav { width: calc(100% - 20px); padding-left: 14px; }
+  .nav--scrolled { width: calc(100% - 20px); }
+  .nav .lang__btn { padding: 6px 6px; }
+}
+
+/* --- Krople szkla: mocniejsze swiatlo, gleszy cien, sprezysty nacisk --- */
+:root {
+  --drop-blur: 26px;
+  --drop-sat: 180%;
+  --drop-fill: 8%;
+}
+.btn,
+.pill,
+.chip,
+.socialbtn,
+.lang__btn {
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 46%, transparent),
+    inset 0 -12px 22px -14px color-mix(in srgb, var(--fg) 30%, transparent),
+    0 10px 26px -16px color-mix(in srgb, var(--fg) 55%, transparent);
+  transition:
+    transform .5s cubic-bezier(.2, .9, .3, 1.2),
+    box-shadow .45s var(--ease),
+    background-color .35s var(--ease),
+    color .35s var(--ease),
+    border-color .35s var(--ease);
+}
+.btn:active,
+.pill:active,
+.chip:active,
+.socialbtn:active,
+.lang__btn:active { --drop-scale: .97; }
+
+/* Wypelnione pigulki tez sa szklane: ciemna tafla ze swiatlem u gory */
+.btn--solid,
+.nav .btn--solid {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .28),
+    inset 0 -14px 24px -16px rgba(0, 0, 0, .6),
+    0 12px 30px -16px rgba(0, 0, 0, .55);
+}
+
+/* --- Dane projektu: dwukropek nigdy nie spada do nowego wiersza --- */
+.wrow__meta > div { grid-template-columns: 88px minmax(0, 1fr); column-gap: 10px; }
+.wrow__meta dt { white-space: nowrap; }
+.wrow__meta dt::after { content: ":"; }
+@media (max-width: 768px) {
+  .wrow__meta > div { grid-template-columns: 88px minmax(0, 1fr); }
+}
