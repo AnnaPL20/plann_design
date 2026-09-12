@@ -71,39 +71,33 @@
 
   <!-- ===================== NAWIGACJA ===================== -->
   <header class="nav" id="nav">
-    <a class="logo" href="index.html" data-i18n-attr="aria-label:a11y.home" aria-label="PLANN Design — home">
-      <img class="logo__img logo__img--onink" src="img/logo-plann-white.svg" alt="PLANN Design" onerror="this.closest('.logo').classList.add('is-missing')">
-      <img class="logo__img logo__img--onpaper" src="img/logo-plann-dark.svg" alt="" aria-hidden="true" onerror="this.closest('.logo').classList.add('is-missing')">
-      <span class="logo__text" aria-hidden="true">PLANN</span>
-    </a>
-
-    <nav class="nav__links" aria-label="Main">
-      <a class="nav__link" href="index.html" aria-current="page" data-i18n="nav.home">Home</a>
-      <a class="nav__link" href="index.html#projects" data-i18n="nav.projects">Projects</a>
-      <a class="nav__link" href="index.html#services" data-i18n="nav.services">Services</a>
-      <a class="nav__link" href="shop.html" data-i18n="nav.shop">Shop</a>
-      <a class="nav__link" href="contact.html" data-i18n="nav.contact">Contact</a>
-    </nav>
-
-    <div class="nav__right">
-      <div class="lang nav__lang" role="group" aria-label="Language">
-        <button class="lang__btn" type="button" data-lang="uk" aria-pressed="false">UA</button>
-        <button class="lang__btn is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
-        <button class="lang__btn" type="button" data-lang="pl" aria-pressed="false">PL</button>
-      </div>
-
-      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" data-i18n-attr="aria-label:a11y.theme" aria-label="Switch color theme">
-        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
-      </button>
-
-      <a class="btn btn--solid btn--small nav__cta" href="contact.html">
-        <span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span>
+    <div class="navbar">
+      <a class="logo" href="index.html" data-i18n-attr="aria-label:a11y.home" aria-label="PLANN Design — home">
+        <img class="logo__img logo__img--onink" src="img/logo-plann-white.svg" alt="PLANN Design" onerror="this.closest('.logo').classList.add('is-missing')">
+        <img class="logo__img logo__img--onpaper" src="img/logo-plann-dark.svg" alt="" aria-hidden="true" onerror="this.closest('.logo').classList.add('is-missing')">
+        <span class="logo__text" aria-hidden="true">PLANN</span>
       </a>
 
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" data-i18n-attr="aria-label:a11y.menuOpen" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
+      <div class="navbar__right">
+        <div class="lang nav__lang" role="group" aria-label="Language">
+          <button class="lang__btn" type="button" data-lang="uk" aria-pressed="false">UA</button>
+          <button class="lang__btn is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang__btn" type="button" data-lang="pl" aria-pressed="false">PL</button>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" data-i18n-attr="aria-label:a11y.theme" aria-label="Switch color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+
+        <a class="btn btn--solid navbar__cta" href="contact.html">
+          <span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.contact">Contact</span><span class="btn__br" aria-hidden="true">]</span>
+        </a>
+
+        <button class="burger navbar__plus" id="burger" type="button" aria-expanded="false" aria-controls="menu" data-i18n-attr="aria-label:a11y.menuOpen" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -225,113 +219,145 @@
           <a class="work" href="https://www.behance.net/gallery/247999533/Creative-Portfolio-2026-Branding-Web-Social-Media" target="_blank" rel="noopener" data-reveal data-case="Creative Portfolio 2026">
             <span class="work__media">
               <img class="work__img" src="img/cover-portfolio.png" alt="Creative Portfolio 2026 — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Creative Portfolio 2026</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Creative Portfolio 2026</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.brand">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2026</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">Creative Portfolio 2026</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.brand">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>2026</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
           <a class="work" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" data-reveal data-case="BIVERIS Skin Lab">
             <span class="work__media">
               <img class="work__img" src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">BIVERIS Skin Lab</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">BIVERIS Skin Lab</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.brand">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2025</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">BIVERIS Skin Lab</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.brand">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>2025</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
           <a class="work" href="https://www.behance.net/gallery/237225941/AURA-PUFFER-Fashion-Banner-Series" target="_blank" rel="noopener" data-reveal data-case="AURA PUFFER">
             <span class="work__media">
               <img class="work__img" src="img/cover-aura.jpg" alt="AURA PUFFER — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">AURA PUFFER</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">AURA PUFFER</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.social">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2025</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">AURA PUFFER</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.social">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>2025</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
           <a class="work" href="https://www.behance.net/gallery/230004703/Logo-and-brand-identity-for-a-Loft-bar-SYNQ" target="_blank" rel="noopener" data-reveal data-case="SYNQ Loft Bar">
             <span class="work__media">
               <img class="work__img" src="img/cover-synq.jpg" alt="SYNQ Loft Bar — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">SYNQ Loft Bar</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">SYNQ Loft Bar</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.brand">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2024</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">SYNQ Loft Bar</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.brand">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>2024</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
           <a class="work" href="https://www.behance.net/gallery/195214865/Magazine-Sweet-Fashion" target="_blank" rel="noopener" data-reveal data-case="Sweet Fashion Magazine">
             <span class="work__media">
               <img class="work__img" src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Sweet Fashion Magazine</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Sweet Fashion Magazine</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.print">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2024</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">Sweet Fashion Magazine</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.print">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>2024</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
           <a class="work" href="https://www.behance.net/gallery/169190567/Taxi-website-design" target="_blank" rel="noopener" data-reveal data-case="Taxi Website">
             <span class="work__media">
               <img class="work__img" src="img/cover-portfolio.png" alt="Taxi Website — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Taxi Website</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Taxi Website</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.web">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">Behance</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">Taxi Website</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.web">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>Behance</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
           <a class="work" href="https://www.behance.net/gallery/195176283/Graphic-Designer-Portfolio" target="_blank" rel="noopener" data-reveal data-case="Graphic Designer Portfolio">
             <span class="work__media">
               <img class="work__img" src="img/cover-magazine.jpg" alt="Graphic Designer Portfolio — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Graphic Designer Portfolio</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Graphic Designer Portfolio</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.print">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2023</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">Graphic Designer Portfolio</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.print">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>2023</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
           <a class="work" href="https://www.behance.net/gallery/164450091/Video" target="_blank" rel="noopener" data-reveal data-case="Video & Motion">
             <span class="work__media">
               <img class="work__img" src="img/cover-portfolio.png" alt="Video &amp; Motion — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Video &amp; Motion</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Video &amp; Motion</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.motion">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">Behance</span></span>
+
+              <span class="gpanel work__panel">
+                <span class="gpanel__top">
+                  <span class="gpanel__label" data-i18n="work.case">Case</span>
+                  <span class="gpanel__grip" aria-hidden="true"></span>
+                </span>
+                <span class="gpanel__name">Video &amp; Motion</span>
+                <span class="gpanel__grid">
+                  <span class="gpanel__cell"><i data-i18n="work.category">Category</i><b data-i18n="cat.motion">—</b></span>
+                  <span class="gpanel__cell"><i data-i18n="work.year">Year</i><b>Behance</b></span>
+                  <span class="gpanel__cell gpanel__cell--cta"><span class="gpanel__pill"><span data-i18n="work.open">Open</span> <span aria-hidden="true">↗</span></span></span>
+                </span>
+              </span>
             </span>
           </a>
         </div>

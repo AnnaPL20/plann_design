@@ -4496,3 +4496,215 @@ body.is-hero-negative .cursor { opacity: 0; }
 }
 .case-viewer__media,
 .case-viewer__info { scroll-snap-align: none; }
+
+/* ---------------------------------------------------------------------------
+   58. SZKLANE PANELE I KAPSULA NAWIGACJI
+   Proporcje odwzorowane z ukladu wskazanego przez wlascicielke:
+     kapsula 600 px w siatce 921 px, padding 8/8/8/20, wysokosc 54 px,
+     logo 65x13, prawa grupa 260x38 z pigulka 160 px,
+     panel informacyjny: padding 12 px, blok tekstu 535x67.
+   Kod i tresci wlasne — z referencji wziete wylacznie wymiary i rytm.
+   --------------------------------------------------------------------------- */
+
+/* --- Kapsula nawigacji --- */
+.nav {
+  top: 18px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  padding: 0 var(--gutter);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  display: block;
+  pointer-events: none;
+}
+.navbar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: min(600px, 100%);
+  height: 54px;
+  margin-inline: auto;
+  padding: 8px 8px 8px 20px;
+  border: 1px solid color-mix(in srgb, var(--t-fg) 12%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--t-bg) 62%, transparent);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(22px) saturate(150%);
+  transition: background-color .4s var(--ease), border-color .4s var(--ease);
+}
+.nav--scrolled { border-bottom: 0; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.nav--scrolled .navbar {
+  background: color-mix(in srgb, var(--t-bg) 84%, transparent);
+  border-color: color-mix(in srgb, var(--t-fg) 18%, transparent);
+}
+
+.navbar .logo { height: 13px; flex: none; }
+.navbar .logo__img { height: 100%; width: auto; }
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 38px;
+  min-width: 0;
+}
+.navbar__cta {
+  width: 160px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
+  font-size: .6875rem;
+  letter-spacing: .1em;
+}
+.navbar .lang { padding: 2px; }
+.navbar .lang__btn { padding: 6px 7px; font-size: .625rem; }
+.navbar .theme-toggle { width: 30px; height: 30px; flex: none; }
+
+/* Przycisk "+" otwiera pelnoekranowe menu z odnosnikami */
+.navbar__plus {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--t-fg) 18%, transparent);
+  background: color-mix(in srgb, var(--t-fg) 6%, transparent);
+}
+.navbar__plus span {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform .45s var(--ease-out);
+}
+.navbar__plus span:first-child { transform: translateY(-50%) rotate(0deg); }
+.navbar__plus span:last-child { transform: translateY(-50%) rotate(90deg); }
+.navbar__plus.is-open span:first-child { transform: translateY(-50%) rotate(45deg); }
+.navbar__plus.is-open span:last-child { transform: translateY(-50%) rotate(-45deg); }
+
+/* Pelna wysokosc planki liczy sie do odstepow sekcji */
+:root { --nav-h: 72px; }
+
+@media (max-width: 560px) {
+  .navbar { padding: 8px 8px 8px 16px; gap: 10px; }
+  .navbar__cta { width: 118px; }
+  .navbar .theme-toggle { display: none; }
+}
+
+/* --- Szklany panel (wspolny jezyk) --- */
+.gpanel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 16px;
+  background: rgba(18, 18, 19, .46);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(22px) saturate(150%);
+  color: #fff;
+}
+.gpanel__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.gpanel__label {
+  font-family: var(--font-mono);
+  font-size: .625rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .66);
+}
+.gpanel__label::before { content: "[ "; }
+.gpanel__label::after { content: " ]"; }
+/* Uchwyt z szesciu kropek, jak w panelach HUD */
+.gpanel__grip {
+  width: 10px;
+  height: 14px;
+  background-image: radial-gradient(circle, rgba(255,255,255,.66) 1px, transparent 1.2px);
+  background-size: 5px 5px;
+  opacity: .8;
+}
+.gpanel__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  color: #fff;
+}
+.gpanel__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  align-items: end;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+}
+.gpanel__cell { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.gpanel__cell i {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: .5625rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .5);
+}
+.gpanel__cell b {
+  font-weight: 400;
+  font-size: .8125rem;
+  color: rgba(255, 255, 255, .92);
+  overflow-wrap: anywhere;
+}
+.gpanel__cell--cta { justify-content: flex-end; }
+.gpanel__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  font-family: var(--font-mono);
+  font-size: .625rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color .35s var(--ease), border-color .35s var(--ease);
+}
+.work:hover .gpanel__pill { background: #fff; color: #101112; border-color: #fff; }
+
+/* --- Panel na okladce pracy --- */
+.work__media { position: relative; }
+.work__panel {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .5s var(--ease-out), transform .55s var(--ease-out);
+}
+.work:hover .work__panel,
+.work:focus-visible .work__panel { opacity: 1; transform: none; }
+/* Na dotyku panel jest widoczny od razu — nie ma najechania */
+@media (pointer: coarse) {
+  .work__panel { opacity: 1; transform: none; }
+}
+
+/* Stary rzad i tabelka pod zdjeciem juz niepotrzebne — dane sa w panelu */
+.work__row, .work__table { display: none; }
+.works { gap: clamp(40px, 5vw, 72px) clamp(20px, 3vw, 48px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .work__panel { opacity: 1; transform: none; }
+}
