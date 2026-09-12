@@ -627,6 +627,15 @@
   <div class="pblur" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
   <div class="case-loader" aria-hidden="true"><span data-case-loader-title></span></div>
 
+  <!-- Filtr gooey: dziala wylacznie na malej kropli przelacznika jezyka -->
+  <svg class="goo-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+    <filter id="goo-lang" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -12"/>
+    </filter>
+  </svg>
+
   <script src="script.js" defer></script>
+  <script src="js/ui-liquid.js" defer></script>
 </body>
 </html>
