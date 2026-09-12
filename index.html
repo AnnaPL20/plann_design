@@ -576,125 +576,19 @@
       </div>
     </section>
 
-    <!-- ===================== KONTAKT: kreator krok po kroku ===================== -->
-    <section class="section contact" id="contact">
-      <div class="container">
+    <!-- ===================== KONTAKT: krotkie zaproszenie ===================== -->
+    <section class="section invite" id="contact">
+      <div class="container invite__inner">
         <p class="label label--br" data-reveal data-i18n="contact.label">Contact</p>
-        <h2 class="display h2 contact__title split" data-reveal data-split data-i18n="contact.title">Let’s create something impossible to ignore.</h2>
-
-        <!-- Kreator: jeden duzy krok na ekran, przejscia z rozmyciem -->
-        <div class="wiz" data-wizard data-reveal style="--d:.1s">
-          <p class="wiz__meta"><span data-wiz-count>01</span> <span class="wiz__slash" aria-hidden="true">/</span> <span data-wiz-total>04</span></p>
-
-          <form class="wiz__form" data-wiz-form novalidate>
-            <div class="wiz__stage" data-wiz-stage>
-
-              <div class="wiz__step is-active" data-wiz-step="1">
-                <h3 class="display wiz__q" data-i18n="wiz.q1">What do you need?</h3>
-                <div class="wiz__chips" role="radiogroup" data-wiz-group="service" data-i18n-attr="aria-label:wiz.q1" aria-label="What do you need?">
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="Brand identity"><span data-i18n="wiz.s1">Brand identity</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="Web design"><span data-i18n="wiz.s2">Web design</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="Social media content"><span data-i18n="wiz.s3">Social media content</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="Something else"><span data-i18n="wiz.s4">Something else</span></button>
-                </div>
-              </div>
-
-              <div class="wiz__step" data-wiz-step="2">
-                <h3 class="display wiz__q" data-i18n="wiz.q2">What budget do you have in mind?</h3>
-                <div class="wiz__chips" role="radiogroup" data-wiz-group="budget" data-i18n-attr="aria-label:wiz.q2" aria-label="What budget do you have in mind?">
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="&lt; 500 EUR"><span data-i18n="wiz.b1">&lt; €500</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="500-1500 EUR"><span data-i18n="wiz.b2">€500–1500</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="1500-3000 EUR"><span data-i18n="wiz.b3">€1500–3000</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="3000+ EUR"><span data-i18n="wiz.b4">€3000+</span></button>
-            <button class="chip" type="button" role="radio" aria-checked="false" data-value="Not sure yet"><span data-i18n="wiz.b5">Not sure yet</span></button>
-                </div>
-              </div>
-
-              <div class="wiz__step" data-wiz-step="3">
-                <h3 class="display wiz__q" data-i18n="wiz.q3">What is your email?</h3>
-                <input class="wiz__input" type="email" name="email" inputmode="email" autocomplete="email"
-                       spellcheck="false" data-wiz-email placeholder="you@studio.com"
-                       data-i18n-attr="placeholder:wiz.mailPh,aria-label:wiz.q3" aria-label="What is your email?">
-                <p class="wiz__error" data-wiz-error hidden data-i18n="wiz.mailErr">That does not look like a valid email address.</p>
-              </div>
-
-              <div class="wiz__step" data-wiz-step="4">
-                <h3 class="display wiz__q" data-i18n="wiz.q4">A few words about the project</h3>
-                <textarea class="wiz__area" name="message" rows="2" data-wiz-message placeholder="Two or three lines — optional"
-                          data-i18n-attr="placeholder:wiz.msgPh,aria-label:wiz.q4" aria-label="A few words about the project"></textarea>
-              </div>
-
-              <div class="wiz__step wiz__step--done" data-wiz-step="done">
-                <span class="wiz__check" aria-hidden="true">
-                  <svg viewBox="0 0 48 48" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 25.5 20 35 38 14"/></svg>
-                </span>
-                <h3 class="display wiz__q" data-i18n="wiz.doneTitle">Request received</h3>
-                <p class="wiz__doneLead" data-i18n="wiz.doneLead">I will get back to you within 24-48 hours.</p>
-                <dl class="wiz__summary">
-                  <div class="wiz__sumRow"><dt class="label" data-i18n="wiz.sumService">Service</dt><dd data-wiz-sum="service"></dd></div>
-                  <div class="wiz__sumRow"><dt class="label" data-i18n="wiz.sumBudget">Budget</dt><dd data-wiz-sum="budget"></dd></div>
-                  <div class="wiz__sumRow"><dt class="label" data-i18n="wiz.sumEmail">Email</dt><dd data-wiz-sum="email"></dd></div>
-                </dl>
-              </div>
-            </div>
-
-            <p class="wiz__fail" data-wiz-fail hidden role="alert">
-              <span data-i18n="wiz.fail">The message did not go through. Please write to me directly:</span>
-              <a href="mailto:annapytsko@gmail.com?subject=Project%20request">annapytsko@gmail.com</a>
-            </p>
-
-            <div class="wiz__nav" data-wiz-nav>
-              <button class="btn wiz__back" type="button" data-wiz-back>
-                <span class="btn__br" aria-hidden="true">[</span><span data-i18n="wiz.back">Back</span><span class="btn__br" aria-hidden="true">]</span>
-              </button>
-              <p class="label wiz__hint" data-i18n="wiz.hint">Press Enter to continue</p>
-              <button class="btn btn--solid wiz__next" type="submit" data-wiz-next disabled>
-                <span class="btn__br" aria-hidden="true">[</span><span data-wiz-next-label data-i18n="wiz.next">Next</span><span class="btn__br" aria-hidden="true">]</span>
-              </button>
-            </div>
-
-            <!-- Pola techniczne FormSubmit (formsubmit.co) -->
-            <input type="hidden" name="_subject" value="New request from PLANN Design website">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_autoresponse" value="Hi! Thank you for reaching out to PLANN Design. Your request has been received and I will get back to you within 24-48 hours. To help me prepare, you can share a few more details about your project here: https://annapl20.github.io/plann_design/brief.html . Talk soon, Anna Pytsko, PLANN Design.">
-            <!-- Pulapka na boty: pole niewidoczne dla czlowieka -->
-            <input class="wiz__honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-          </form>
+        <h2 class="display invite__title split" data-reveal data-split data-i18n="contact.title">Let’s create something impossible to ignore.</h2>
+        <p class="lead invite__lead" data-reveal style="--d:.1s" data-i18n="ct.invite">Tell me what you need — it takes three short steps.</p>
+        <div class="invite__cta" data-reveal style="--d:.15s">
+          <a class="btn btn--solid btn--lg" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
         </div>
-
-        <!-- Wstega okladek: powolny przeplyw w lekkiej perspektywie 3D -->
-        <div class="reel" data-reel data-i18n-attr="aria-label:wiz.reel" aria-label="Selected work">
-          <div class="reel__track">
-          <a class="reel__item" href="#projects" tabindex="0"><img src="img/cover-portfolio.png" alt="Creative Portfolio 2026" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="0"><img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="0"><img src="img/cover-aura.jpg" alt="AURA PUFFER" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="0"><img src="img/cover-synq.jpg" alt="SYNQ Loft Bar" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="0"><img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-portfolio.png" alt="" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-biveris.jpg" alt="" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-aura.jpg" alt="" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-synq.jpg" alt="" loading="lazy"></a>
-          <a class="reel__item" href="#projects" tabindex="-1" aria-hidden="true"><img src="img/cover-magazine.jpg" alt="" loading="lazy"></a>
-          </div>
-        </div>
-
-        <p class="contact__direct">
+        <p class="contact__direct" data-reveal style="--d:.2s">
           <span data-i18n="wiz.direct">or write me directly:</span>
           <a href="mailto:annapytsko@gmail.com">annapytsko@gmail.com</a>
         </p>
-        <p class="label contact__consent" data-i18n="wiz.consent">By sending this form you agree to be contacted about your request.</p>
-
-        <div class="contact__grid">
-          <p class="label label--br contact__socialsLabel" data-reveal data-i18n="contact.socials">Find me on</p>
-          <ul class="socials" data-reveal-stagger>
-            <li><a class="socials__row" href="https://t.me/pl_annetka" target="_blank" rel="noopener" data-reveal><span class="socials__name">Telegram</span><span class="socials__handle label">@pl_annetka</span><span class="socials__arrow" aria-hidden="true">↗</span></a></li>
-            <li><a class="socials__row" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener" data-reveal><span class="socials__name">Instagram</span><span class="socials__handle label">@plann_design_</span><span class="socials__arrow" aria-hidden="true">↗</span></a></li>
-            <li><a class="socials__row" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener" data-reveal><span class="socials__name">Behance</span><span class="socials__handle label">behance.net/pl_annetka</span><span class="socials__arrow" aria-hidden="true">↗</span></a></li>
-            <li><a class="socials__row" href="https://www.tiktok.com/@pl_annetka" target="_blank" rel="noopener" data-reveal><span class="socials__name">TikTok</span><span class="socials__handle label">@pl_annetka</span><span class="socials__arrow" aria-hidden="true">↗</span></a></li>
-            <li><a class="socials__row" href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener" data-reveal><span class="socials__name">LinkedIn</span><span class="socials__handle label">in/anna-pytsko</span><span class="socials__arrow" aria-hidden="true">↗</span></a></li>
-          </ul>
-        </div>
       </div>
     </section>
   </main>
@@ -787,7 +681,6 @@
   <script src="js/cards-3d.js" defer></script>
   <script src="js/scroll.js" defer></script>
   <script src="js/footer-works.js" defer></script>
-  <script src="js/contact-wizard.js" defer></script>
   <script src="js/services.js" defer></script>
   <!-- Bryla 3D wylaczona: glownym elementem hero jest teraz rozkolorowanka.
        Zeby ja przywrocic, wystarczy odkomentowac ponizsza linie.

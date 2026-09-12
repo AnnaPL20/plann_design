@@ -58,6 +58,14 @@
       'shop.cta': 'Notify me at launch', 'shop.note': 'Be the first to know when the store opens.',
       'contact.label': 'Contact', 'contact.title': 'Let’s create something impossible to ignore.',
       'contact.lead': 'Have a project in mind? Send a message and I’ll get back to you soon.', 'contact.socials': 'Find me on',
+      /* --- Strona contact.html --- */
+      'ct.metaTitle': 'Contact · PLANN Design · Anna Pytsko',
+      'ct.metaDesc': 'Tell me about your project in three short steps and I will get back to you within 24-48 hours.',
+      'ct.mailPh': 'your email',
+      'ct.budgetLabel': 'Estimated budget',
+      'ct.next': 'Okay, next', 'ct.send': 'Send request', 'ct.back': 'Back',
+      'ct.doneTitle': 'Submission accepted', 'ct.doneLead': 'We’ll be in touch shortly.',
+      'ct.invite': 'Tell me what you need — it takes three short steps.',
       /* --- Kreator kontaktu --- */
       'wiz.q1': 'What do you need?',
       'wiz.s1': 'Brand identity', 'wiz.s2': 'Web design', 'wiz.s3': 'Social media content', 'wiz.s4': 'Something else',
@@ -146,6 +154,14 @@
       'shop.cta': 'Повідомити про запуск', 'shop.note': 'Дізнайтеся першими про відкриття магазину.',
       'contact.label': 'Контакти', 'contact.title': 'Створімо щось, що неможливо не помітити.',
       'contact.lead': 'Маєте ідею проєкту? Напишіть мені — і я незабаром відповім.', 'contact.socials': 'Я в соцмережах',
+      /* --- Strona contact.html --- */
+      'ct.metaTitle': 'Контакти · PLANN Design · Анна Питсько',
+      'ct.metaDesc': 'Розкажіть про проєкт за три короткі кроки — відповім упродовж 24-48 годин.',
+      'ct.mailPh': 'ваша пошта',
+      'ct.budgetLabel': 'Орієнтовний бюджет',
+      'ct.next': 'Далі', 'ct.send': 'Надіслати запит', 'ct.back': 'Назад',
+      'ct.doneTitle': 'Запит прийнято', 'ct.doneLead': 'Скоро зв’яжуся з вами.',
+      'ct.invite': 'Розкажіть, що вам потрібно — це три короткі кроки.',
       /* --- Kreator kontaktu --- */
       'wiz.q1': 'Що вам потрібно?',
       'wiz.s1': 'Айдентика бренду', 'wiz.s2': 'Веб-дизайн', 'wiz.s3': 'Контент для соцмереж', 'wiz.s4': 'Щось інше',
@@ -234,6 +250,14 @@
       'shop.cta': 'Powiadom mnie o starcie', 'shop.note': 'Bądź na bieżąco z otwarciem sklepu.',
       'contact.label': 'Kontakt', 'contact.title': 'Stwórzmy coś, czego nie da się zignorować.',
       'contact.lead': 'Masz pomysł na projekt? Napisz do mnie — odpowiem wkrótce.', 'contact.socials': 'Znajdziesz mnie na',
+      /* --- Strona contact.html --- */
+      'ct.metaTitle': 'Kontakt · PLANN Design · Anna Pytsko',
+      'ct.metaDesc': 'Opowiedz o projekcie w trzech krótkich krokach — odpowiem w ciągu 24-48 godzin.',
+      'ct.mailPh': 'twój e-mail',
+      'ct.budgetLabel': 'Orientacyjny budżet',
+      'ct.next': 'Dalej', 'ct.send': 'Wyślij zapytanie', 'ct.back': 'Wstecz',
+      'ct.doneTitle': 'Zapytanie przyjęte', 'ct.doneLead': 'Odezwę się wkrótce.',
+      'ct.invite': 'Powiedz, czego potrzebujesz — to trzy krótkie kroki.',
       /* --- Kreator kontaktu --- */
       'wiz.q1': 'Czego potrzebujesz?',
       'wiz.s1': 'Identyfikacja wizualna', 'wiz.s2': 'Projekt strony', 'wiz.s3': 'Treści do social mediów', 'wiz.s4': 'Coś innego',
@@ -345,9 +369,11 @@
     root.lang = lang;
     const cursorLabel = $('.cursor span');
     if (cursorLabel) cursorLabel.textContent = t(lang, 'cursor.view');
-    document.title = t(lang, 'meta.title');
+    /* Podstrony maja wlasne klucze tytulu i opisu — wskazuje je data-meta-key na <body> */
+    const metaKey = document.body.dataset.metaKey;
+    document.title = metaKey ? t(lang, metaKey + '.metaTitle') : t(lang, 'meta.title');
     const desc = $('meta[name="description"]');
-    desc && desc.setAttribute('content', t(lang, 'meta.desc'));
+    desc && desc.setAttribute('content', metaKey ? t(lang, metaKey + '.metaDesc') : t(lang, 'meta.desc'));
     $$('[data-split]').forEach(el => {
       splitWords(el);
       if (!initial && (el.classList.contains('is-in') || !el.hasAttribute('data-reveal'))) replay(el);

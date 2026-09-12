@@ -2649,3 +2649,274 @@ html.lenis, html.lenis body { height: auto; }
 .socialrow--footer .socialrow__item::after { background: #fff; color: #101112; }
 
 .menu__social { gap: 10px; }
+
+/* ---------------------------------------------------------------------------
+   34. LEJEK KONTAKTOWY (contact.html)
+   --------------------------------------------------------------------------- */
+.fn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-top: calc(var(--nav-h) + clamp(52px, 8vh, 96px));
+}
+.fn__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Naglowek zostaje na gorze i przygasa po pierwszym dotknieciu formularza */
+.fn__headline {
+  max-width: 20ch;
+  margin: 0;
+  font-size: clamp(1.7rem, 4.2vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1;
+  transition: opacity .7s var(--ease), filter .7s var(--ease), transform .7s var(--ease-out);
+}
+.fn.is-engaged .fn__headline { opacity: .2; filter: blur(3px); transform: scale(.97); }
+
+.fn__meta {
+  margin-top: clamp(26px, 4vh, 48px);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  color: var(--muted);
+}
+.fn__slash { opacity: .4; margin: 0 .25em; }
+
+.fn__form { width: 100%; }
+.fn__stage {
+  position: relative;
+  min-height: clamp(250px, 34vh, 380px);
+  margin-top: clamp(16px, 2.6vh, 30px);
+}
+.fn__step {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.8vw, 32px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(44px);
+  filter: blur(14px);
+  transition: opacity .6s var(--ease-out), transform .6s var(--ease-out),
+              filter .6s var(--ease-out), visibility 0s .6s;
+}
+.fn__step:not(.is-active) { pointer-events: none; }
+.fn__step.is-active { opacity: 1; visibility: visible; transform: none; filter: blur(0); transition-delay: 0s; }
+.fn__step.is-out { opacity: 0; visibility: visible; transform: translateY(-44px); filter: blur(14px); }
+
+/* --- Krok 1: gigantyczny wiersz z adresem --- */
+.fn__mailRow {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 22px);
+  width: min(880px, 100%);
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--line-strong);
+  transition: border-color .35s var(--ease);
+}
+.fn__mailRow:focus-within { border-bottom-color: var(--fg); }
+.fn__mailIco {
+  flex: none;
+  width: clamp(26px, 3.4vw, 46px);
+  height: clamp(26px, 3.4vw, 46px);
+  color: var(--faint);
+  transition: color .35s var(--ease);
+}
+.fn__mailRow:focus-within .fn__mailIco { color: var(--accent); }
+.fn__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 5.4vw, 3.8rem);
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  text-align: left;
+}
+.fn__input::placeholder { color: var(--faint); }
+.fn__input:focus { outline: none; }
+.fn__error { color: var(--accent); font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em; }
+.fn__error[hidden] { display: none; }
+
+/* --- Krok 2: wielka kwota + chipsy --- */
+.fn__amount {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: .06em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  letter-spacing: -.045em;
+  line-height: .95;
+}
+.fn__amount .fn__cur { color: var(--accent); }
+.fn__amount.is-text { font-size: clamp(1.9rem, 6vw, 4.4rem); }
+.fn__amount.is-text .fn__cur { display: none; }
+.fn__amount.is-pop { animation: fn-pop .5s var(--ease-out); }
+@keyframes fn-pop {
+  0%   { transform: scale(.94); opacity: .5; filter: blur(6px); }
+  100% { transform: scale(1); opacity: 1; filter: blur(0); }
+}
+.fn__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 900px; }
+
+/* --- Krok 3 --- */
+.fn__q {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.6vw, 3rem);
+  letter-spacing: -.025em;
+  line-height: 1.02;
+  max-width: 18ch;
+}
+.fn__area {
+  width: min(760px, 100%);
+  min-height: 92px;
+  padding: 18px 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.5;
+  text-align: center;
+  resize: vertical;
+  transition: border-color .35s var(--ease);
+}
+.fn__area::placeholder { color: var(--faint); }
+.fn__area:focus { outline: none; border-color: var(--fg); }
+
+/* --- Ekran koncowy --- */
+.fn__check {
+  display: grid;
+  place-items: center;
+  width: clamp(66px, 8vw, 98px);
+  height: clamp(66px, 8vw, 98px);
+  padding: 18%;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  color: var(--accent);
+}
+.fn__check path { stroke-dasharray: 62; stroke-dashoffset: 62; }
+.fn__step--done.is-active .fn__check path { animation: wiz-check .7s var(--ease-out) .2s forwards; }
+.fn__doneLead { color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.2rem); }
+.fn__summary { width: min(460px, 100%); margin-top: 4px; }
+.fn__sumRow {
+  display: grid;
+  grid-template-columns: minmax(86px, .4fr) 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  text-align: left;
+}
+.fn__sumRow dd { font-size: .95rem; overflow-wrap: anywhere; }
+
+/* --- Sterowanie --- */
+.fn__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: clamp(22px, 3.4vh, 40px);
+}
+.fn__nav[hidden] { display: none; }
+.fn__back[hidden] { display: none; }
+.fn__backIco { font-size: 1.05rem; line-height: 1; }
+.fn__next:disabled { opacity: .35; }
+[data-fn-next]:disabled { opacity: .35; cursor: not-allowed; }
+
+.fn__fail {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  letter-spacing: .05em;
+}
+.fn__fail[hidden] { display: none; }
+.fn__fail a { border-bottom: 1px solid currentColor; }
+
+/* ---------------------------------------------------------------------------
+   35. WSTEGA OKLADEK PO LUKU (contact.html)
+   Transformacje kafelkow liczy js/reel-arc.js; tu sama scena i wymiary.
+   --------------------------------------------------------------------------- */
+.arc {
+  position: relative;
+  margin-top: clamp(40px, 6vh, 80px);
+  padding: clamp(26px, 4vh, 52px) 0 clamp(34px, 5vh, 70px);
+  overflow: hidden;
+  perspective: 1400px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+.arc__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 30px);
+  width: max-content;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.arc__item {
+  flex: 0 0 auto;
+  width: clamp(158px, 17vw, 262px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 30px 70px -34px color-mix(in srgb, var(--fg) 66%, transparent);
+  transform-origin: 50% 50%;
+}
+.arc__item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Wariant plaski: zwykla tasma przewijana animacja CSS */
+.arc.is-flat { perspective: none; }
+.arc.is-flat .arc__track {
+  transform-style: flat;
+  animation: reel 48s linear infinite;
+}
+.arc.is-flat:hover .arc__track { animation-play-state: paused; }
+.arc.is-flat .arc__item { width: clamp(140px, 44vw, 200px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .arc.is-flat .arc__track { animation: none !important; }
+  .fn.is-engaged .fn__headline { filter: none; transform: none; }
+  .fn__check path { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 768px) {
+  .fn__stage { min-height: 320px; }
+  .fn__mailRow { gap: 10px; }
+}
+
+/* ---------------------------------------------------------------------------
+   36. KROTKIE ZAPROSZENIE NA STRONIE GLOWNEJ (zamiast pelnej sekcji kontaktu)
+   --------------------------------------------------------------------------- */
+.invite__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(18px, 2.6vw, 30px); }
+.invite__title {
+  max-width: 20ch;
+  margin: 0;
+  font-size: clamp(2rem, 5.4vw, 4.6rem);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: .98;
+}
+.invite__lead { margin: 0; }
+.invite__cta { margin-top: 4px; }
+.invite .contact__direct { margin-top: 6px; }

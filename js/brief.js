@@ -21,16 +21,6 @@
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
   const t = key => (window.PLANN ? window.PLANN.t(key) : '');
 
-  /* Tytul i opis strony w wybranym jezyku */
-  const applyMeta = () => {
-    if (!window.PLANN) return;
-    document.title = t('brief.metaTitle');
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', t('brief.metaDesc'));
-  };
-  applyMeta();
-  if (window.PLANN) window.PLANN.onLang(applyMeta);
-
   const showFail = key => {
     if (failText) failText.textContent = t(key);
     if (fail) fail.hidden = false;
