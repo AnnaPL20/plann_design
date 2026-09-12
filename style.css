@@ -2961,3 +2961,180 @@ html.lenis, html.lenis body { height: auto; }
 /* Socjale na stronie kontaktu */
 .fn__socialsLabel { margin-top: clamp(28px, 4vh, 46px); }
 .fn__socials { justify-content: center; margin-top: 14px; }
+
+/* ---------------------------------------------------------------------------
+   40. SKLEP — plaska witryna, zaslepki gradientowe, okno szczegolow
+   Zastepuje wczesniejsza sekcje 37; tamte reguly zostaja niżej w pliku,
+   te sa pozniej, wiec wygrywaja.
+   --------------------------------------------------------------------------- */
+.shopHead { padding-top: calc(var(--nav-h) + clamp(56px, 8vh, 110px)); padding-bottom: 0; }
+.shopHead__banner { display: none; }
+.shopHead__title { max-width: 16ch; margin: clamp(20px, 3vw, 34px) 0 0; }
+.shopHead__lead { margin-top: clamp(16px, 2vw, 24px); }
+.shop__filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 4vw, 48px); }
+
+.shopGrid { padding-block: clamp(40px, 5vw, 70px) 0; }
+.prodGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(26px, 3vw, 48px) clamp(16px, 2vw, 30px);
+}
+
+/* Karta jest przyciskiem — otwiera okno szczegolow */
+.prod {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.prod__media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform .7s var(--ease-out);
+}
+.prod:hover .prod__media { transform: scale(1.01); }
+/* Plaskie zaslepki — jedyny gradient w projekcie, delikatny, bez polysku */
+.prod__media--social { background: linear-gradient(150deg, #f2f2f2, #e4e4e4); }
+.prod__media--decks  { background: linear-gradient(150deg, #ededed, #dcdcdc); }
+.prod__media--kits   { background: linear-gradient(150deg, #f5f1f0, #e8dedb); }
+.prod__cat {
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #101112 46%, transparent);
+}
+
+.prod__row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+.prod__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.02rem, 1.3vw, 1.25rem);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  color: var(--fg);
+}
+.prod__price {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  color: var(--fg);
+}
+.prod__badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: .625rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.shop__empty { margin: 0 auto; text-align: center; }
+
+/* --- Lista startowa --- */
+.launch__inner { max-width: 640px; }
+.launch__lead { margin-top: clamp(18px, 2.4vw, 28px); }
+.launch__form { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(22px, 3vw, 34px); }
+.launch__form[hidden] { display: none; }
+.launch__input {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .04em;
+  transition: border-color .35s var(--ease);
+}
+.launch__input::placeholder { color: var(--faint); }
+.launch__input:focus { outline: none; border-color: var(--fg); }
+.launch__note { margin-top: 14px; color: var(--muted); }
+.launch__note.is-error { color: var(--accent); }
+.launch__note[hidden] { display: none; }
+
+/* --- Okno szczegolow --- */
+.pmodal {
+  width: min(1080px, calc(100% - 32px));
+  max-width: none;
+  max-height: min(88svh, 820px);
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  background: var(--t-bg);
+  color: var(--t-fg);
+  overflow: auto;
+}
+.pmodal::backdrop { background: rgba(12, 12, 13, .5); }
+.pmodal__close {
+  position: sticky;
+  top: 14px;
+  left: calc(100% - 60px);
+  z-index: 3;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.pmodal__body {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(20px, 3vw, 48px);
+  padding: 0 clamp(20px, 3vw, 44px) clamp(28px, 4vw, 48px);
+  margin-top: -46px;
+}
+.pmodal__media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  align-self: start;
+  margin-top: 60px;
+}
+.pmodal__media--social { background: linear-gradient(150deg, #f2f2f2, #e4e4e4); }
+.pmodal__media--decks  { background: linear-gradient(150deg, #ededed, #dcdcdc); }
+.pmodal__media--kits   { background: linear-gradient(150deg, #f5f1f0, #e8dedb); }
+.pmodal__info { padding-top: 60px; }
+.pmodal__name { margin: 14px 0 16px; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 500; letter-spacing: -.025em; line-height: 1.02; }
+.pmodal__desc { color: var(--muted); max-width: 46ch; }
+.pmodal__sub { display: block; margin: clamp(22px, 3vw, 32px) 0 12px; color: var(--muted); }
+.pmodal__list { display: grid; gap: 9px; }
+.pmodal__list li { position: relative; padding-left: 18px; font-size: .95rem; }
+.pmodal__list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 1px; background: var(--accent); }
+.pmodal__facts { margin-top: clamp(22px, 3vw, 32px); border-top: 1px solid var(--line); }
+.pmodal__facts > div { display: grid; grid-template-columns: minmax(88px, .35fr) 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.pmodal__facts dd { font-size: .95rem; }
+.pmodal__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(24px, 3vw, 34px); }
+
+@media (max-width: 1024px) {
+  .prodGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pmodal__body { grid-template-columns: 1fr; }
+  .pmodal__media { margin-top: 60px; max-width: 360px; }
+  .pmodal__info { padding-top: 0; }
+}
+@media (max-width: 640px) {
+  .prodGrid { grid-template-columns: 1fr; }
+}
+
+/* Wspolny naglowek sekcji: mono-podpis po lewej, licznik po prawej, cienka linia */
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.sectionHead__aside { color: var(--faint); }

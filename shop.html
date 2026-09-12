@@ -95,38 +95,70 @@
   </nav>
 
   <main id="main">
-    <!-- ===================== BANER SKLEPU ===================== -->
-    <section class="shopHead">
+    <!-- ===================== NAGLOWEK SKLEPU ===================== -->
+    <section class="section shopHead">
       <div class="container">
-        <div class="shopHead__banner" data-reveal>
-          <img src="img/shop-banner.svg" alt="PLANN Design shop">
+        <div class="sectionHead" data-reveal>
+          <p class="label label--br" data-i18n="shop.label">Shop</p>
+          <p class="label sectionHead__aside" data-shop-count>06</p>
         </div>
 
-        <div class="shopHead__intro">
-          <h1 class="display h2 shopHead__title" data-reveal data-i18n="sp.title">Templates for designers &amp; brands</h1>
-          <p class="lead shopHead__lead" data-reveal style="--d:.1s" data-i18n="sp.lead">Ready-to-use files I build for my own work — made to save you hours and keep everything on brand.</p>
-        </div>
+        <h1 class="display h2 shopHead__title" data-reveal data-split data-i18n="sp.title">Templates for designers &amp; brands</h1>
+        <p class="lead shopHead__lead" data-reveal style="--d:.1s" data-i18n="sp.lead">Ready-to-use files I build for my own work — made to save you hours and keep everything on brand.</p>
 
-        <!-- Filtry kategorii -->
         <div class="shop__filters" data-shop-filters role="group" data-i18n-attr="aria-label:sp.filters" aria-label="Filter by category" data-reveal style="--d:.15s">
           <button class="chip is-picked" type="button" data-filter="all" aria-pressed="true"><span data-i18n="sp.all">All</span></button>
-          <button class="chip" type="button" data-filter="social" aria-pressed="false"><span data-i18n="sp.cSocial">Social media templates</span></button>
-          <button class="chip" type="button" data-filter="decks" aria-pressed="false"><span data-i18n="sp.cDecks">Presentation decks</span></button>
+          <button class="chip" type="button" data-filter="social" aria-pressed="false"><span data-i18n="sp.cSocial">Social media</span></button>
+          <button class="chip" type="button" data-filter="decks" aria-pressed="false"><span data-i18n="sp.cDecks">Presentations</span></button>
           <button class="chip" type="button" data-filter="kits" aria-pressed="false"><span data-i18n="sp.cKits">Brand kits</span></button>
         </div>
       </div>
     </section>
 
     <!-- ===================== SIATKA TOWAROW ===================== -->
-    <section class="section shopGrid">
+    <section class="shopGrid">
       <div class="container">
         <div class="prodGrid" data-shop-grid></div>
         <p class="lead shop__empty" data-shop-empty hidden data-i18n="sp.empty">Nothing in this category yet.</p>
+      </div>
+    </section>
 
-        <p class="label shopGrid__note" data-i18n="sp.note">New files land here first — write to me if you want to hear about them.</p>
+    <!-- ===================== LISTA STARTOWA ===================== -->
+    <section class="section launch">
+      <div class="container">
+        <div class="sectionHead" data-reveal>
+          <p class="label label--br" data-i18n="sp.launchTitle">Be first to know</p>
+        </div>
+        <div class="launch__inner">
+          <p class="lead launch__lead" data-reveal data-i18n="sp.launchLead">One email when the first files go live. Nothing else.</p>
+
+          <form class="launch__form" data-launch-form novalidate data-reveal style="--d:.1s">
+            <input class="launch__input" type="email" name="email" inputmode="email" autocomplete="email" spellcheck="false"
+                   data-launch-email placeholder="your@email" data-i18n-attr="placeholder:sp.launchPh,aria-label:sp.launchPh" aria-label="your@email" required>
+            <button class="btn btn--solid btn--lg" type="submit">
+              <span class="btn__br" aria-hidden="true">[</span><span data-launch-label data-i18n="sp.launchCta">Notify me at launch</span><span class="btn__br" aria-hidden="true">]</span>
+            </button>
+
+            <!-- Pola techniczne FormSubmit -->
+            <input type="hidden" name="_subject" value="Shop launch list">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input class="wiz__honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          </form>
+
+          <p class="label launch__note" data-launch-note hidden role="status"></p>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- Okno szczegolow towaru -->
+  <dialog class="pmodal" data-shop-modal aria-label="Product details">
+    <button class="pmodal__close socialbtn" type="button" data-modal-close data-i18n-attr="aria-label:sp.close" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    <div class="pmodal__body" data-modal-body></div>
+  </dialog>
 
   <footer class="footer accent-block" id="footer">
     <div class="container">
