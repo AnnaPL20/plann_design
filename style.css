@@ -3714,3 +3714,29 @@ body.page--ink {
   .sectionHead::after { transform: scaleX(1); }
   [data-reveal], .intro, .split .w { opacity: 1 !important; transform: none !important; filter: none !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   49. BAZA: PLASKIE POWIERZCHNIE — domkniecie
+   Zostaja tylko szklane krople. Wszystkie dekoracyjne gradienty, poswiaty
+   i duze cienie sa wygaszone.
+   --------------------------------------------------------------------------- */
+.hero__glow,
+.hero__grain,
+.gridlayer,
+.card__marks,
+.card__num { display: none !important; }
+
+/* Zaslepki towarow w sklepie: plaska szarosc zamiast gradientu */
+.prod__media--social,
+.prod__media--decks,
+.prod__media--kits,
+.pmodal__media--social,
+.pmodal__media--decks,
+.pmodal__media--kits { background: #f2f2f2; }
+
+.card__ph { background: var(--paper-2); }
+
+/* Sekcje ida plaskim potokiem: brak zaokraglen i cieni miedzy nimi */
+.section,
+.hero,
+.footer { border-radius: 0; }
