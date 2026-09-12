@@ -1981,3 +1981,34 @@ html.lenis, html.lenis body { height: auto; }
   .hero__canvas, .card__gloss, .drop-ripple, .lang__goo { display: none !important; }
   .hero, .sheet { transform: none !important; filter: none !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   25. PASEK PRAC W STOPCE — samoczynna fala rozswietlen
+   Kafelki rozjasniaja sie po kolei same; po najechaniu mysza automat ustepuje,
+   po zjechaniu kursora wraca po chwili (klasy z js/footer-works.js).
+   --------------------------------------------------------------------------- */
+.footer__works { position: relative; }
+.footer__work img {
+  transition: opacity .95s var(--ease), filter .95s var(--ease), transform 1.3s var(--ease-out);
+}
+.footer__works:not(.is-manual) .footer__work.is-auto img {
+  opacity: .62;
+  filter: grayscale(.4) contrast(.95) brightness(.92);
+  transform: scale(1.03);
+}
+/* Delikatna glebia: subtelna winieta na styku kafelkow */
+.footer__work { position: relative; }
+.footer__work::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 38%, rgba(0,0,0,.28));
+  opacity: .8;
+  transition: opacity .6s var(--ease);
+}
+.footer__work:hover::after { opacity: .35; }
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__work.is-auto img { opacity: .62; filter: none; transform: none; }
+}
