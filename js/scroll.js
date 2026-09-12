@@ -58,7 +58,7 @@
   $$('[data-reveal-stagger]').forEach(group => {
     $$(':scope > *', group).forEach((child, i) => {
       if (!child.hasAttribute('data-reveal')) child.setAttribute('data-reveal', '');
-      child.style.setProperty('--d', (i * 0.07).toFixed(2) + 's');
+      child.style.setProperty('--d', (i * 0.08).toFixed(2) + 's');
     });
   });
 

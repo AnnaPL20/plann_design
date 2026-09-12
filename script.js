@@ -120,7 +120,7 @@
 
   /* ---------- Pojawianie się sekcji przy przewijaniu ---------- */
   $$('[data-reveal-stagger]').forEach(group => {
-    $$(':scope > *', group).forEach((child, i) => child.style.setProperty('--d', (i * 0.07).toFixed(2) + 's'));
+    $$(':scope > *', group).forEach((child, i) => child.style.setProperty('--d', (i * 0.08).toFixed(2) + 's'));
   });
   if ('IntersectionObserver' in window && !reduceMotion) {
     const io = new IntersectionObserver(entries => {

@@ -3625,3 +3625,92 @@ body.page--ink {
   .footer__grid { grid-template-columns: 1fr; gap: 8px; text-align: left; }
   .footer__clock, .footer__top { text-align: left; }
 }
+
+/* ---------------------------------------------------------------------------
+   48. JEDEN JEZYK ANIMACJI
+   Wszedzie ta sama krzywa cubic-bezier(0.22, 1, 0.36, 1) i te same czasy.
+   --------------------------------------------------------------------------- */
+:root {
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --t-enter: .7s;      /* wejscie blokow przy przewijaniu */
+  --t-hover: .7s;      /* powiekszenie zdjec */
+  --t-line: .8s;       /* domalowywanie cienkich linii */
+}
+
+/* --- Wejscie strony --- */
+.nav { transition: opacity .6s var(--ease-out), transform .6s var(--ease-out), background-color .4s var(--ease), border-color .4s var(--ease); }
+.intro { transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); transition-delay: calc(.35s + var(--i, 0) * .07s); }
+
+/* Slowa naglowka wychodza spod maski z lekkim rozmyciem, kaskada 70 ms */
+.split .w {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(.36em);
+  transition: opacity .7s var(--ease-out), filter .7s var(--ease-out), transform .7s var(--ease-out);
+  transition-delay: calc(.08s + var(--i, 0) * .07s);
+}
+.split.is-in .w { opacity: 1; filter: blur(0); transform: none; }
+
+/* Cienkie linie domalowuja sie od lewej */
+.sectionHead,
+.marquee--main,
+.cta { position: relative; }
+.sectionHead { border-bottom-color: transparent; }
+.sectionHead::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--line);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-line) var(--ease-out);
+}
+.sectionHead.is-visible::after { transform: scaleX(1); }
+
+/* --- Przewijanie: bloki wjezdzaja o 24 px --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--t-enter) var(--ease-out), transform var(--t-enter) var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+[data-reveal].is-visible { opacity: 1; transform: none; }
+
+/* --- Ховеры --- */
+.card__img, .card__ph, .prod__media { transition: transform var(--t-hover) var(--ease-out); }
+.card__arrow, .svc__arrow { transition: transform .55s var(--ease-out), background-color .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease); }
+
+/* Podkreslenie domalowywane przy odnosnikach tekstowych */
+.footer__nav a,
+.footer__email,
+.contact__direct a,
+.cta__mail a { position: relative; }
+.footer__nav a::after,
+.footer__email::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s var(--ease-out);
+}
+.footer__nav a:hover::after,
+.footer__email:hover::after { transform: scaleX(1); }
+
+/* --- Progresywne rozmycie u dolu ekranu: delikatne, 90 px --- */
+.pblur { height: 90px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionHead { border-bottom-color: var(--line); }
+  .sectionHead::after { transform: scaleX(1); }
+  [data-reveal], .intro, .split .w { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
