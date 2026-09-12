@@ -3740,3 +3740,66 @@ body.page--ink {
 .section,
 .hero,
 .footer { border-radius: 0; }
+
+/* ---------------------------------------------------------------------------
+   50. NAWIGACJA — cienka planka
+   Logo PLANN po lewej (18 px wysokosci), po prawej drobne mono-odnosniki,
+   przelacznik jezyka i jedna kropla. Przy przewijaniu: lekkie rozmycie tla
+   i cienka dolna linia.
+   --------------------------------------------------------------------------- */
+.nav {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-h);
+  padding: 0 var(--gutter);
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transform: none;
+}
+.is-loaded .nav { opacity: 1; transform: none; }
+.nav--scrolled {
+  width: 100%;
+  border-bottom-color: var(--line);
+  background: color-mix(in srgb, var(--t-bg) 78%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  backdrop-filter: blur(12px) saturate(130%);
+}
+
+/* Wordmark PLANN, wysokosc 18 px */
+.logo { height: 18px; }
+.logo__img { height: 100%; width: auto; }
+.logo__text { font-family: var(--font-display); font-weight: 700; font-size: .95rem; letter-spacing: .02em; }
+
+.nav__links {
+  position: static;
+  left: auto;
+  transform: none;
+  gap: 2px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.nav__link {
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  color: var(--muted);
+}
+.nav__link:hover { color: var(--t-fg); }
+.nav__right { gap: 8px; }
+.theme-toggle { width: 34px; height: 34px; }
+.lang { padding: 2px; }
+.lang__btn { padding: 6px 8px; }
+
+@media (max-width: 1024px) {
+  .nav__links { display: none; }
+  .nav__cta { display: none; }
+}
