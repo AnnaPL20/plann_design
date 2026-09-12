@@ -233,7 +233,7 @@
     document.addEventListener('pointerover', e => {
       const target = e.target instanceof Element ? e.target : null;
       /* Karty prac maja teraz klase .work; stara .card zostaje dla zgodnosci */
-      const work = target?.closest('.work[data-case], .card[data-case]');
+      const work = target?.closest('.wrow__media[data-case], .work[data-case], .card[data-case]');
       cursor.classList.toggle('is-work', Boolean(work));
       cursor.classList.toggle('is-hover', Boolean(work || target?.closest('a, button, [data-cursor]')));
     });

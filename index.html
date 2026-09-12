@@ -134,324 +134,148 @@
 
   <main id="main">
 
-    <!-- ===================== HERO ===================== -->
+    <!-- ===================== HERO: jedno zdjecie po srodku ===================== -->
     <section class="hero" id="home">
-      <div class="container hero__inner">
-        <p class="status hero__badge" data-hero="1"><span class="status__dot" aria-hidden="true"></span><span data-i18n="hero.status">Available for new projects</span></p>
-        <p class="label label--br hero__eyebrow" data-hero="2" data-i18n="hero.label">Graphic &amp; web designer</p>
-
-        <!-- Haslo hero: krotkie, wysrodkowane, bez gigantycznej nazwy -->
-        <h1 class="hero__title">
-          <span class="hero__line" data-hero-line="1"><span data-i18n="hero.title">Make your brand impossible to ignore.</span></span>
-        </h1>
-
-        <!-- Okno z moim elementem: monogram PA, kursor odwraca kolory -->
-        <div class="hero__media" data-hero-media>
-          <svg class="hero__mark" viewBox="330 385 730 228" preserveAspectRatio="xMidYMid meet" fill="currentColor" aria-hidden="true">
-            <path d="M687.04,456.1v36.37c0,18.04-4.4,31.63-13.09,40.39-8.63,8.79-22.29,13.26-40.55,13.26h-220.62v50.32h-63.61v-140.34c0-18,4.4-31.59,13.07-40.39,8.68-8.79,22.33-13.25,40.57-13.25h230.59c18.24,0,31.89,4.46,40.57,13.25,8.67,8.8,13.07,22.39,13.07,40.39Z"/>
-            <path d="M1040.35,456.1v140.34h-63.63v-50.66h-210.62v50.66h-63.62v-140.34c0-18,4.4-31.59,13.07-40.39,8.7-8.8,22.34-13.25,40.55-13.25h230.28c18.46,0,32.21,4.46,40.89,13.25,8.68,8.81,13.08,22.4,13.08,40.39Z"/>
-          </svg>
-          <!-- Plama negatywu jedzie za kursorem i odwraca kolory pod soba -->
-          <span class="hero__negative" data-hero-negative aria-hidden="true"></span>
+      <div class="hero__stage" data-hero-media>
+        <img class="hero__photo" src="img/cover-biveris.jpg" alt="" aria-hidden="true">
+        <!-- Plama negatywu jedzie za kursorem i odwraca kolory pod soba -->
+        <span class="hero__negative" data-hero-negative aria-hidden="true"></span>
+        <div class="hero__bar">
+          <a class="btn btn--solid hero__cta" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
         </div>
       </div>
 
-      <div class="container hero__foot" data-hero="3">
-        <p class="hero__where" data-i18n="hero.based">Poland — working worldwide</p>
-        <p class="hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
-        <p class="hero__scroll"><span data-i18n="hero.scroll">Scroll to explore</span> <span class="hero__scrollIcon" aria-hidden="true">↓</span></p>
+      <div class="hero__rail">
+        <p class="label hero__where" data-i18n="hero.based">Poland — working worldwide</p>
+        <p class="label hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
       </div>
     </section>
 
-    <!-- ===================== MANIFEST + FAKTY ===================== -->
-    <section class="section manifest" id="about">
-      <div class="container manifest__grid">
-        <p class="label label--br manifest__label" data-reveal data-i18n="about.label">About</p>
-
-        <div class="manifest__body">
-          <!-- Kazde slowo startuje szarosca i ciemnieje przy przewijaniu -->
-          <p class="manifest__text" data-manifesto data-i18n="about.text">Hi, I’m Anna, a multidisciplinary graphic and web designer. I craft bold visual identities, high-converting digital experiences, and engaging social media content that helps brands stand out and connect with their audience.</p>
-          <div class="manifest__cta" data-reveal>
-            <a class="btn btn--lg" href="index.html#facts"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.more">More about me</span><span class="btn__br" aria-hidden="true">]</span></a>
-          </div>
+    <!-- ===================== WSTEP ===================== -->
+    <section class="intro" id="about">
+      <div class="container intro__grid">
+        <h1 class="intro__title" data-reveal data-i18n="hero.title">Make your brand impossible to ignore.</h1>
+        <div class="intro__body">
+          <p class="label label--br intro__label" data-reveal data-i18n="about.label">About me</p>
+          <p class="intro__text" data-reveal style="--d:.08s"><strong data-i18n="about.lead">I am Anna Pytsko, a graphic and web designer.</strong> <span data-i18n="about.text">Hi, I’m Anna, a multidisciplinary graphic and web designer.</span></p>
         </div>
-      </div>
-
-      <div class="container">
-        <dl class="facts" id="facts" data-reveal>
-          <div class="facts__row"><dt class="label" data-i18n="about.f1k">Name</dt><dd data-i18n="about.f1v">Anna Pytsko</dd></div>
-          <div class="facts__row"><dt class="label" data-i18n="about.f2k">Studio</dt><dd>PLANN Design</dd></div>
-          <div class="facts__row"><dt class="label" data-i18n="about.f3k">Focus</dt><dd data-i18n="about.f3v">Branding, social media, web</dd></div>
-          <div class="facts__row"><dt class="label" data-i18n="about.f4k">Languages</dt><dd data-i18n="about.f4v">Ukrainian, English, Polish</dd></div>
-          <div class="facts__row"><dt class="label" data-i18n="about.f5k">Location</dt><dd data-i18n="about.f5v">Poland — remote, worldwide</dd></div>
-        </dl>
       </div>
     </section>
 
-    <!-- Pasek przewijany: zakres prac -->
-    <div class="marquee marquee--main marquee--mono" aria-hidden="true">
-      <div class="marquee__track">
-        <div class="marquee__group">
-          <span class="marquee__item" data-i18n="mq.1">Brand identity</span>
-          <span class="marquee__item" data-i18n="mq.2">Social media design</span>
-          <span class="marquee__item" data-i18n="mq.3">Web &amp; UI design</span>
-          <span class="marquee__item" data-i18n="mq.4">Packaging</span>
-          <span class="marquee__item" data-i18n="mq.5">Print &amp; posters</span>
-          <span class="marquee__item" data-i18n="mq.6">Motion &amp; video</span>
-          <span class="marquee__item" data-i18n="mq.7">Presentations</span>
-        </div>
-        <div class="marquee__group">
-          <span class="marquee__item" data-i18n="mq.1">Brand identity</span>
-          <span class="marquee__item" data-i18n="mq.2">Social media design</span>
-          <span class="marquee__item" data-i18n="mq.3">Web &amp; UI design</span>
-          <span class="marquee__item" data-i18n="mq.4">Packaging</span>
-          <span class="marquee__item" data-i18n="mq.5">Print &amp; posters</span>
-          <span class="marquee__item" data-i18n="mq.6">Motion &amp; video</span>
-          <span class="marquee__item" data-i18n="mq.7">Presentations</span>
-        </div>
-      </div>
+    <!-- ===================== PRACE: zdjecia jedno pod drugim ===================== -->
+    <section class="works" id="projects">
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/247999533/Creative-Portfolio-2026-Branding-Web-Social-Media" target="_blank" rel="noopener" data-case="Creative Portfolio 2026">
+            <img src="img/cover-portfolio.png" alt="Creative Portfolio 2026 — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>Creative Portfolio 2026</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.brand">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>2026</dd></div>
+          </dl>
+        </article>
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" data-case="BIVERIS Skin Lab">
+            <img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>BIVERIS Skin Lab</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.brand">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>2025</dd></div>
+          </dl>
+        </article>
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/237225941/AURA-PUFFER-Fashion-Banner-Series" target="_blank" rel="noopener" data-case="AURA PUFFER">
+            <img src="img/cover-aura.jpg" alt="AURA PUFFER — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>AURA PUFFER</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.social">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>2025</dd></div>
+          </dl>
+        </article>
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/230004703/Logo-and-brand-identity-for-a-Loft-bar-SYNQ" target="_blank" rel="noopener" data-case="SYNQ Loft Bar">
+            <img src="img/cover-synq.jpg" alt="SYNQ Loft Bar — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>SYNQ Loft Bar</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.brand">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>2024</dd></div>
+          </dl>
+        </article>
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/195214865/Magazine-Sweet-Fashion" target="_blank" rel="noopener" data-case="Sweet Fashion Magazine">
+            <img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>Sweet Fashion Magazine</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.print">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>2024</dd></div>
+          </dl>
+        </article>
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/169190567/Taxi-website-design" target="_blank" rel="noopener" data-case="Taxi Website">
+            <img src="img/cover-portfolio.png" alt="Taxi Website — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>Taxi Website</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.web">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>Behance</dd></div>
+          </dl>
+        </article>
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/195176283/Graphic-Designer-Portfolio" target="_blank" rel="noopener" data-case="Graphic Designer Portfolio">
+            <img src="img/cover-magazine.jpg" alt="Graphic Designer Portfolio — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>Graphic Designer Portfolio</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.print">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>2023</dd></div>
+          </dl>
+        </article>
+        <article class="wrow" data-reveal>
+          <a class="wrow__media" href="https://www.behance.net/gallery/164450091/Video" target="_blank" rel="noopener" data-case="Video & Motion">
+            <img src="img/cover-portfolio.png" alt="Video &amp; Motion — project cover" loading="lazy">
+          </a>
+          <dl class="wrow__meta">
+            <div><dt data-i18n="work.client">Client</dt><dd>Video &amp; Motion</dd></div>
+            <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.motion">—</dd></div>
+            <div><dt data-i18n="work.year">Year</dt><dd>Behance</dd></div>
+          </dl>
+        </article>
+    </section>
+
+    <div class="container works__cta" data-reveal>
+      <a class="btn btn--lg" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.behance">All projects on Behance</span><span class="btn__br" aria-hidden="true">]</span></a>
+      <a class="btn btn--lg" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.instagram">Daily work on Instagram</span><span class="btn__br" aria-hidden="true">]</span></a>
     </div>
 
-    <!-- ===================== PROJEKTY ===================== -->
-    <section class="section projects" id="projects">
-      <div class="container">
-        <div class="sectionHead" data-reveal>
-          <p class="label label--br" data-i18n="projects.label">Selected work</p>
-          <p class="label sectionHead__aside">01 / 08</p>
-        </div>
-
-        <div class="works">
-          <a class="work" href="https://www.behance.net/gallery/247999533/Creative-Portfolio-2026-Branding-Web-Social-Media" target="_blank" rel="noopener" data-reveal data-case="Creative Portfolio 2026">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-portfolio.png" alt="Creative Portfolio 2026 — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Creative Portfolio 2026</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Creative Portfolio 2026</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.brand">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2026</span></span>
-            </span>
-          </a>
-          <a class="work" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" data-reveal data-case="BIVERIS Skin Lab">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">BIVERIS Skin Lab</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">BIVERIS Skin Lab</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.brand">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2025</span></span>
-            </span>
-          </a>
-          <a class="work" href="https://www.behance.net/gallery/237225941/AURA-PUFFER-Fashion-Banner-Series" target="_blank" rel="noopener" data-reveal data-case="AURA PUFFER">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-aura.jpg" alt="AURA PUFFER — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">AURA PUFFER</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">AURA PUFFER</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.social">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2025</span></span>
-            </span>
-          </a>
-          <a class="work" href="https://www.behance.net/gallery/230004703/Logo-and-brand-identity-for-a-Loft-bar-SYNQ" target="_blank" rel="noopener" data-reveal data-case="SYNQ Loft Bar">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-synq.jpg" alt="SYNQ Loft Bar — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">SYNQ Loft Bar</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">SYNQ Loft Bar</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.brand">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2024</span></span>
-            </span>
-          </a>
-          <a class="work" href="https://www.behance.net/gallery/195214865/Magazine-Sweet-Fashion" target="_blank" rel="noopener" data-reveal data-case="Sweet Fashion Magazine">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Sweet Fashion Magazine</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Sweet Fashion Magazine</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.print">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2024</span></span>
-            </span>
-          </a>
-          <a class="work" href="https://www.behance.net/gallery/169190567/Taxi-website-design" target="_blank" rel="noopener" data-reveal data-case="Taxi Website">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-portfolio.png" alt="Taxi Website — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Taxi Website</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Taxi Website</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.web">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">Behance</span></span>
-            </span>
-          </a>
-          <a class="work" href="https://www.behance.net/gallery/195176283/Graphic-Designer-Portfolio" target="_blank" rel="noopener" data-reveal data-case="Graphic Designer Portfolio">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-magazine.jpg" alt="Graphic Designer Portfolio — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Graphic Designer Portfolio</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Graphic Designer Portfolio</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.print">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">2023</span></span>
-            </span>
-          </a>
-          <a class="work" href="https://www.behance.net/gallery/164450091/Video" target="_blank" rel="noopener" data-reveal data-case="Video & Motion">
-            <span class="work__media">
-              <img class="work__img" src="img/cover-portfolio.png" alt="Video &amp; Motion — project cover" loading="lazy">
-            </span>
-            <span class="work__row">
-              <span class="work__title">Video &amp; Motion</span>
-              <span class="work__arrow" aria-hidden="true">↗</span>
-            </span>
-            <span class="work__table">
-              <span class="work__cell"><span class="work__key" data-i18n="work.client">Client</span><span class="work__val">Video &amp; Motion</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.category">Category</span><span class="work__val" data-i18n="cat.motion">—</span></span>
-              <span class="work__cell"><span class="work__key" data-i18n="work.year">Year</span><span class="work__val">Behance</span></span>
-            </span>
-          </a>
-        </div>
-
-        <div class="works__cta" data-reveal>
-          <a class="btn btn--lg" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.behance">All projects on Behance</span><span class="btn__br" aria-hidden="true">]</span></a>
-          <a class="btn btn--lg" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.instagram">Daily work on Instagram</span><span class="btn__br" aria-hidden="true">]</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== USŁUGI (sekcja odwrócona: papier) ===================== -->
-    <section class="section services invert" id="services">
-      <div class="container">
-        <div class="sectionHead" data-reveal>
-          <p class="label label--br" data-i18n="services.label">Services</p>
-          <p class="label sectionHead__aside" data-i18n="services.leadRow">From the first brief to the final file, I keep strategy, identity and content in one system.</p>
-        </div>
-
-        <h2 class="services__head" data-reveal><span data-i18n="services.headA">This is how I</span> <em data-i18n="services.headB">work.</em></h2>
-
-        <ul class="svc svc--dirs" data-reveal-stagger>
-        <li class="svc__dir" data-reveal>
-          <button class="svc__head" type="button" aria-expanded="false" aria-controls="svc-panel-1" data-svc-toggle>
-            <span class="svc__index">01</span>
-            <span class="display h3 svc__title" data-i18n="svc.d1">Brand Identity &amp; Visual Systems</span>
-            <span class="svc__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-            </span>
-          </button>
-          <div class="svc__panel" id="svc-panel-1" data-svc-panel>
-            <div class="svc__panelInner">
-              <ul class="svc__list">
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i1t">Strategic Branding</span><span class="svc__itemDesc" data-i18n="svc.i1d">A clear direction for brands that need focus and recognition.</span></li>
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i2t">Visual Identity Design</span><span class="svc__itemDesc" data-i18n="svc.i2d">Logo, typography and colour built into one system.</span></li>
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i3t">Brand Refresh</span><span class="svc__itemDesc" data-i18n="svc.i3d">An update that keeps the character and makes it current.</span></li>
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i4t">Packaging &amp; Product Visuals</span><span class="svc__itemDesc" data-i18n="svc.i4d">Packaging and product presentation with careful detail.</span></li>
-              </ul>
-            </div>
+    <!-- ===================== USLUGI: czarna sekcja ===================== -->
+    <section class="lab" id="services">
+      <div class="container lab__grid">
+        <div class="lab__left">
+          <h2 class="lab__title" data-reveal><span data-i18n="services.headA">This is how I</span> <em data-i18n="services.headB">work.</em></h2>
+          <p class="lab__text" data-reveal style="--d:.08s" data-i18n="services.leadRow">From the first brief to the final file, I keep strategy, identity and content in one system.</p>
+          <div class="lab__cta" data-reveal style="--d:.14s">
+            <a class="btn btn--lg" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="services.exp">Let’s experiment</span><span class="btn__br" aria-hidden="true">]</span></a>
           </div>
-        </li>
-        <li class="svc__dir" data-reveal>
-          <button class="svc__head" type="button" aria-expanded="false" aria-controls="svc-panel-2" data-svc-toggle>
-            <span class="svc__index">02</span>
-            <span class="display h3 svc__title" data-i18n="svc.d2">Digital &amp; Web Design</span>
-            <span class="svc__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-            </span>
-          </button>
-          <div class="svc__panel" id="svc-panel-2" data-svc-panel>
-            <div class="svc__panelInner">
-              <ul class="svc__list">
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i5t">Digital Experiences</span><span class="svc__itemDesc" data-i18n="svc.i5d">Websites and landing pages designed in Figma.</span></li>
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i6t">Web Systems</span><span class="svc__itemDesc" data-i18n="svc.i6d">Responsive builds in WordPress Elementor with custom CSS.</span></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="svc__dir" data-reveal>
-          <button class="svc__head" type="button" aria-expanded="false" aria-controls="svc-panel-3" data-svc-toggle>
-            <span class="svc__index">03</span>
-            <span class="display h3 svc__title" data-i18n="svc.d3">Social Media &amp; Content Design</span>
-            <span class="svc__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-            </span>
-          </button>
-          <div class="svc__panel" id="svc-panel-3" data-svc-panel>
-            <div class="svc__panelInner">
-              <ul class="svc__list">
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i7t">Content Direction</span><span class="svc__itemDesc" data-i18n="svc.i7d">Social visuals, campaign assets and reels inside one system.</span></li>
-            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i8t">AI Content &amp; Prompting</span><span class="svc__itemDesc" data-i18n="svc.i8d">Prompt work and AI visuals shaped into brand content.</span></li>
-              </ul>
-            </div>
-          </div>
-        </li>
+        </div>
+
+        <ul class="lab__list" data-reveal data-reveal-stagger>
+            <li><span data-i18n="svc.i1t">—</span></li>
+            <li><span data-i18n="svc.i2t">—</span></li>
+            <li><span data-i18n="svc.i3t">—</span></li>
+            <li><span data-i18n="svc.i4t">—</span></li>
+            <li><span data-i18n="svc.i5t">—</span></li>
+            <li><span data-i18n="svc.i6t">—</span></li>
+            <li><span data-i18n="svc.i7t">—</span></li>
+            <li><span data-i18n="svc.i8t">—</span></li>
         </ul>
       </div>
-
-      <!-- Dwa rzędy "pigułek" przewijanych w przeciwnych kierunkach -->
-      <div class="pills" aria-hidden="true">
-        <div class="marquee marquee--pills">
-          <div class="marquee__track">
-            <div class="marquee__group">
-              <span class="pill" data-i18n="pill.1">Logo design</span><span class="pill" data-i18n="pill.2">Brand guidelines</span><span class="pill" data-i18n="pill.3">Instagram content</span><span class="pill" data-i18n="pill.4">Reels</span><span class="pill" data-i18n="pill.5">Landing pages</span><span class="pill" data-i18n="pill.6">Art direction</span>
-            </div>
-            <div class="marquee__group">
-              <span class="pill" data-i18n="pill.1">Logo design</span><span class="pill" data-i18n="pill.2">Brand guidelines</span><span class="pill" data-i18n="pill.3">Instagram content</span><span class="pill" data-i18n="pill.4">Reels</span><span class="pill" data-i18n="pill.5">Landing pages</span><span class="pill" data-i18n="pill.6">Art direction</span>
-            </div>
-          </div>
-        </div>
-        <div class="marquee marquee--pills marquee--reverse">
-          <div class="marquee__track">
-            <div class="marquee__group">
-              <span class="pill" data-i18n="pill.7">Typography</span><span class="pill" data-i18n="pill.8">Packaging</span><span class="pill" data-i18n="pill.9">Posters</span><span class="pill" data-i18n="pill.10">Pitch decks</span><span class="pill" data-i18n="pill.11">Templates</span><span class="pill" data-i18n="pill.12">Visual systems</span>
-            </div>
-            <div class="marquee__group">
-              <span class="pill" data-i18n="pill.7">Typography</span><span class="pill" data-i18n="pill.8">Packaging</span><span class="pill" data-i18n="pill.9">Posters</span><span class="pill" data-i18n="pill.10">Pitch decks</span><span class="pill" data-i18n="pill.11">Templates</span><span class="pill" data-i18n="pill.12">Visual systems</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ===================== SKLEP: tizer ===================== -->
-    <section class="section shopTeaser" id="shop">
-      <div class="container">
-        <div class="sectionHead" data-reveal>
-          <p class="label label--br" data-i18n="shop.label">Shop</p>
-          <p class="label sectionHead__aside">03</p>
-        </div>
-      </div>
-      <div class="container shopTeaser__inner">
-        <h2 class="display shopTeaser__title" data-reveal data-i18n="sp.title">Templates for designers &amp; brands</h2>
-        <p class="lead shopTeaser__lead" data-reveal style="--d:.1s" data-i18n="sp.teaser">Templates for social media, presentations and brand kits — in the works.</p>
-        <div data-reveal style="--d:.15s">
-          <a class="btn btn--solid btn--lg" href="shop.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="sp.visit">Visit the shop</span><span class="btn__br" aria-hidden="true">]</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== WASKI PASEK CTA PRZED STOPKA ===================== -->
+    <!-- ===================== PASEK CTA ===================== -->
     <section class="cta" id="contact">
       <div class="container cta__inner">
         <p class="cta__line" data-reveal data-i18n="ct.cta">Have a project in mind?</p>
@@ -484,6 +308,11 @@
   <!-- ===================== STOPKA (czerwony blok akcentowy) ===================== -->
   <footer class="footer accent-block" id="footer">
     <div class="container">
+      <div class="footer__head" data-reveal>
+        <img class="footer__wordmark" src="img/logo-plann-white.svg" alt="PLANN Design">
+        <img class="footer__mark" src="img/logo-pa-white.svg" alt="" aria-hidden="true">
+      </div>
+
       <div class="footer__cols" data-reveal data-reveal-stagger>
         <div class="footer__col">
           <p class="label footer__colLabel" data-i18n="nav.menu">Navigation</p>
@@ -518,25 +347,20 @@
         </div>
       </div>
 
-      <!-- Pasek prac: kafelki z okladkami, automat podswietla je po kolei (js/footer-works.js) -->
-      <div class="footer__works" data-reveal aria-label="Selected work">
-        <a class="footer__work" href="index.html#projects"><img src="img/cover-portfolio.png" alt="Creative Portfolio 2026" loading="lazy"></a>
-        <a class="footer__work" href="index.html#projects"><img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab" loading="lazy"></a>
-        <a class="footer__work" href="index.html#projects"><img src="img/cover-aura.jpg" alt="AURA PUFFER" loading="lazy"></a>
-        <a class="footer__work" href="index.html#projects"><img src="img/cover-synq.jpg" alt="SYNQ Loft Bar" loading="lazy"></a>
-        <a class="footer__work" href="index.html#projects"><img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine" loading="lazy"></a>
+      <div class="footer__grid">
+        <p class="label footer__meta">© <span data-year>2026</span> Anna Pytsko · PLANN Design™</p>
+        <p class="label footer__clock"><span class="clock" data-clock>00:00:00</span></p>
+        <p class="label footer__rights" data-i18n="footer.rights">All rights reserved.</p>
       </div>
+    </div>
 
-      <!-- Skromny monogram PA zamiast wielkiego wordmarku -->
-      <div class="footer__brandmark" data-reveal>
-        <img src="img/logo-pa-white.svg" alt="PA — monogram PLANN Design">
-      </div>
-
-      <div class="footer__grid" data-reveal>
-        <p class="label footer__meta">© <span data-year>2026</span> Anna Pytsko · PLANN Design™ · <span data-i18n="footer.rights">All rights reserved.</span></p>
-        <p class="label footer__clock"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
-        <a class="label footer__top" href="index.html#home">[ <span data-i18n="footer.top">Back to top</span> ↑ ]</a>
-      </div>
+    <!-- Pasek kafelkow prac: automat podswietla je po kolei (js/footer-works.js) -->
+    <div class="footer__works" data-reveal aria-label="Selected work">
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-portfolio.png" alt="Creative Portfolio 2026" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-aura.jpg" alt="AURA PUFFER" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-synq.jpg" alt="SYNQ Loft Bar" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine" loading="lazy"></a>
     </div>
   </footer>
 
