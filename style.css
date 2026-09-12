@@ -1556,8 +1556,6 @@ strong { font-weight: 700; }
 .footer__note { color: rgba(255,255,255,.72); }
 .footer__topRow { display: none; }
 .footer__grid { margin-top: 0; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.25); }
-.footer__cookie { color: #fff; }
-.footer__cookie:hover { color: #bfc3ff; }
 
 .cursor.is-work::before {
   content: "";
