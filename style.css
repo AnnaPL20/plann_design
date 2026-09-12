@@ -4708,3 +4708,159 @@ body.is-hero-negative .cursor { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .work__panel { opacity: 1; transform: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   59. POWROT DO UKLADU WEDLUG PLIKU WLASCICIELKI
+   Nawigacja to znowu cienka planka z monogramem PA i widocznymi odnosnikami,
+   hero ma krotki naglowek zamiast gigantycznej nazwy, dane prac wracaja pod
+   zdjecie, a kursor to znowu KWADRACIK w trybie difference (autorski efekt).
+   --------------------------------------------------------------------------- */
+
+/* --- Nawigacja: cofamy kapsule, wraca planka --- */
+:root { --nav-h: 64px; }
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-h);
+  padding: 0 var(--gutter);
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transform: none;
+}
+.nav--scrolled {
+  border-bottom-color: var(--line);
+  background: color-mix(in srgb, var(--t-bg) 80%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  backdrop-filter: blur(12px) saturate(130%);
+}
+/* Monogram PA — plik ma juz przyciety viewBox, wiec widac go w pelni */
+.nav .logo { height: 22px; flex: none; }
+.nav .logo__img { height: 100%; width: auto; }
+.nav .logo__text { font-family: var(--font-display); font-weight: 700; font-size: 1rem; letter-spacing: .04em; }
+
+/* --- Hero: krotki naglowek --- */
+.hero__title {
+  margin: clamp(10px, 1.6vh, 18px) 0 0;
+  max-width: 17ch;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.4vw, 4rem);
+  letter-spacing: -.03em;
+  line-height: 1.02;
+  color: var(--fg);
+  text-wrap: balance;
+}
+.hero__line { display: block; overflow: hidden; }
+.hero__line > span { display: block; transform: translateY(105%); transition: transform .9s var(--ease-out); }
+.is-loaded .hero__line > span { transform: none; transition-delay: .14s; }
+
+/* Wypelniony monogram w oknie — plama negatywu odwraca go pod kursorem */
+.hero__mark {
+  position: absolute;
+  inset: 18% 12%;
+  left: 12%;
+  top: 18%;
+  right: 12%;
+  bottom: 18%;
+  width: auto;
+  height: auto;
+  transform: none;
+  z-index: 0;
+  color: color-mix(in srgb, var(--ink) 20%, transparent);
+}
+.hero__media { width: min(38vw, 520px); }
+
+/* --- Prace: dane znowu pod zdjeciem, drobniejszym pismem --- */
+.work__row, .work__table { display: flex; }
+.work__table { display: grid; }
+.work__row { padding: 16px 0 14px; }
+.work__title { font-size: clamp(1rem, 1.25vw, 1.2rem); letter-spacing: -.018em; }
+.work__arrow { font-size: 1.1rem; }
+.work__cell { padding: 12px 16px 0 0; gap: 6px; }
+.work__cell + .work__cell { padding-left: 16px; }
+.work__key { font-size: .5625rem; letter-spacing: .12em; }
+.work__val { font-size: .75rem; }
+
+/* --- Stopka: skromny monogram zamiast wielkiego wordmarku --- */
+.footer__brandmark { margin-top: clamp(34px, 5vw, 64px); }
+.footer__brandmark img {
+  width: auto;
+  height: clamp(38px, 4vw, 56px);
+  opacity: 0;
+  transform: translateY(16%);
+  transition: opacity .8s var(--ease-out) .1s, transform 1s var(--ease-out) .1s;
+}
+.footer__brandmark.is-visible img { opacity: 1; transform: none; }
+
+/* --- Kursor: wraca KWADRACIK z efektem negatywu --- */
+.cursor {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #fff;
+  border-radius: 7px;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  mix-blend-mode: difference;
+  filter: none;
+  animation: none;
+  transition: width .35s var(--ease-out), height .35s var(--ease-out), opacity .35s, background-color .35s;
+}
+.cursor::before, .cursor::after { display: none !important; content: none !important; }
+.cursor.is-visible { opacity: .75; }
+.cursor.is-hover {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .9);
+  border: 1px solid #fff;
+  opacity: .9;
+  mix-blend-mode: difference;
+}
+.cursor.is-work {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .92);
+  border: 0;
+  box-shadow: none;
+  mix-blend-mode: difference;
+  opacity: 1;
+}
+.cursor span {
+  display: none;
+}
+.cursor.is-work span {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: #111;
+  font-size: .4rem;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-align: center;
+  opacity: 1;
+}
+@media (pointer: coarse) { .cursor { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .cursor { display: none !important; } }
+
+@media (max-width: 1024px) {
+  .nav__links { display: none; }
+  .nav__cta { display: none; }
+}

@@ -232,7 +232,8 @@
     loop();
     document.addEventListener('pointerover', e => {
       const target = e.target instanceof Element ? e.target : null;
-      const work = target?.closest('.card[data-case]');
+      /* Karty prac maja teraz klase .work; stara .card zostaje dla zgodnosci */
+      const work = target?.closest('.work[data-case], .card[data-case]');
       cursor.classList.toggle('is-work', Boolean(work));
       cursor.classList.toggle('is-hover', Boolean(work || target?.closest('a, button, [data-cursor]')));
     });
