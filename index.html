@@ -448,20 +448,65 @@
             <p class="label label--br" data-i18n="services.label">Services</p>
             <!-- Naglowek dwuwierszowy: pierwsza linia lekka, druga pogrubiona (klucze w script.js) -->
             <h2 class="display h2 section__title services__title"><span data-i18n="services.titleA">What I</span><br><strong data-i18n="services.titleB">do.</strong></h2>
-            <p class="lead services__lead">I combine design, engineering and AI tools to build clear visual systems and digital experiences with a distinct point of view.</p>
+            <p class="lead services__lead" data-i18n="services.leadShort">I design brand identities, websites and social content — and I do it myself, from the first sketch to the final file.</p>
             <a class="btn" href="#contact"><span class="btn__br" aria-hidden="true">[</span><span>Let&apos;s experiment</span><span class="btn__br" aria-hidden="true">]</span></a>
           </div>
         </div>
 
-        <ul class="svc" data-reveal-stagger>
-          <li class="svc__row" data-reveal><div class="svc__index">01</div><h3 class="display h3 svc__title">Strategic Branding</h3><p class="svc__desc">A clear visual direction for brands that need focus, recognition and a confident point of view.</p></li>
-          <li class="svc__row" data-reveal><div class="svc__index">02</div><h3 class="display h3 svc__title">Visual Identity Design</h3><p class="svc__desc">Logos, typography, colour systems and brand guidelines built in Figma with care for every touchpoint.</p></li>
-          <li class="svc__row" data-reveal><div class="svc__index">03</div><h3 class="display h3 svc__title">Brand Refresh</h3><p class="svc__desc">A thoughtful update to an existing identity that keeps its character while making it feel current.</p></li>
-          <li class="svc__row" data-reveal><div class="svc__index">04</div><h3 class="display h3 svc__title">Digital Experiences</h3><p class="svc__desc">Websites and landing pages designed in Figma with structure, motion and usability in balance.</p></li>
-          <li class="svc__row" data-reveal><div class="svc__index">05</div><h3 class="display h3 svc__title">Web Systems</h3><p class="svc__desc">Responsive builds in WordPress Elementor with custom CSS for a more precise, personal result.</p></li>
-          <li class="svc__row" data-reveal><div class="svc__index">06</div><h3 class="display h3 svc__title">Content Direction</h3><p class="svc__desc">Social visuals, campaign assets, reels and motion pieces that stay inside one recognisable system.</p></li>
-          <li class="svc__row" data-reveal><div class="svc__index">07</div><h3 class="display h3 svc__title">AI Content &amp; Prompting</h3><p class="svc__desc">Prompt engineering and AI-generated image and video concepts shaped into useful brand content.</p></li>
-          <li class="svc__row" data-reveal><div class="svc__index">08</div><h3 class="display h3 svc__title">Packaging &amp; Product Visuals</h3><p class="svc__desc">Packaging and product presentation with a clean visual language and attention to material detail.</p></li>
+        <ul class="svc svc--dirs" data-reveal-stagger>
+        <li class="svc__dir" data-reveal>
+          <button class="svc__head" type="button" aria-expanded="false" aria-controls="svc-panel-1" data-svc-toggle>
+            <span class="svc__index">01</span>
+            <span class="display h3 svc__title" data-i18n="svc.d1">Brand Identity &amp; Visual Systems</span>
+            <span class="svc__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="svc__panel" id="svc-panel-1" data-svc-panel>
+            <div class="svc__panelInner">
+              <ul class="svc__list">
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i1t">Strategic Branding</span><span class="svc__itemDesc" data-i18n="svc.i1d">A clear direction for brands that need focus and recognition.</span></li>
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i2t">Visual Identity Design</span><span class="svc__itemDesc" data-i18n="svc.i2d">Logo, typography and colour built into one system.</span></li>
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i3t">Brand Refresh</span><span class="svc__itemDesc" data-i18n="svc.i3d">An update that keeps the character and makes it current.</span></li>
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i4t">Packaging &amp; Product Visuals</span><span class="svc__itemDesc" data-i18n="svc.i4d">Packaging and product presentation with careful detail.</span></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="svc__dir" data-reveal>
+          <button class="svc__head" type="button" aria-expanded="false" aria-controls="svc-panel-2" data-svc-toggle>
+            <span class="svc__index">02</span>
+            <span class="display h3 svc__title" data-i18n="svc.d2">Digital &amp; Web Design</span>
+            <span class="svc__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="svc__panel" id="svc-panel-2" data-svc-panel>
+            <div class="svc__panelInner">
+              <ul class="svc__list">
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i5t">Digital Experiences</span><span class="svc__itemDesc" data-i18n="svc.i5d">Websites and landing pages designed in Figma.</span></li>
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i6t">Web Systems</span><span class="svc__itemDesc" data-i18n="svc.i6d">Responsive builds in WordPress Elementor with custom CSS.</span></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="svc__dir" data-reveal>
+          <button class="svc__head" type="button" aria-expanded="false" aria-controls="svc-panel-3" data-svc-toggle>
+            <span class="svc__index">03</span>
+            <span class="display h3 svc__title" data-i18n="svc.d3">Social Media &amp; Content Design</span>
+            <span class="svc__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="svc__panel" id="svc-panel-3" data-svc-panel>
+            <div class="svc__panelInner">
+              <ul class="svc__list">
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i7t">Content Direction</span><span class="svc__itemDesc" data-i18n="svc.i7d">Social visuals, campaign assets and reels inside one system.</span></li>
+            <li class="svc__item"><span class="svc__itemTitle" data-i18n="svc.i8t">AI Content &amp; Prompting</span><span class="svc__itemDesc" data-i18n="svc.i8d">Prompt work and AI visuals shaped into brand content.</span></li>
+              </ul>
+            </div>
+          </div>
+        </li>
         </ul>
       </div>
 
@@ -743,6 +788,7 @@
   <script src="js/scroll.js" defer></script>
   <script src="js/footer-works.js" defer></script>
   <script src="js/contact-wizard.js" defer></script>
+  <script src="js/services.js" defer></script>
   <!-- Modul: three.js doladowuje sie sam, dopiero po zaladowaniu strony -->
   <script type="module" src="js/hero3d.js"></script>
 </body>
