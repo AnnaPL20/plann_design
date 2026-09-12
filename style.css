@@ -2512,12 +2512,14 @@ html.lenis, html.lenis body { height: auto; }
 .socialbtn {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   color: var(--fg);
 }
+/* Po najechaniu kropla rozdmuchuje sie mocniej niz zwykla pigulka */
+.socialbtn:hover { --drop-scale: 1.12; }
 .socialbtn > * { position: relative; z-index: 1; }
 
 .socialbtn__ico {
@@ -2955,3 +2957,7 @@ html.lenis, html.lenis body { height: auto; }
   color: var(--t-fg);
   background: color-mix(in srgb, var(--t-fg) 7%, transparent);
 }
+
+/* Socjale na stronie kontaktu */
+.fn__socialsLabel { margin-top: clamp(28px, 4vh, 46px); }
+.fn__socials { justify-content: center; margin-top: 14px; }
