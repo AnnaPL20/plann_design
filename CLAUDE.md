@@ -19,9 +19,9 @@ Dotyczy to w szczegolnosci:
 | **Naglowki slowo po slowie** (`data-split`) | `script.js` |
 | **Samoczynna fala kafelkow w stopce** | `js/footer-works.js` |
 | **Nasuwanie kart prac** — kolejny projekt wysuwa sie spod poprzedniego, ten pod spodem zmniejsza sie i rozmywa | `style.css` sekcja 63; `js/works-stack.js` (zmienna `--cover`) |
-| **Kurtyna wejsciowa** — strona zaczyna sie czernia, z ktorej wykreca sie znak PA, potem wchodzi tresc |  sekcja 74;  |
-| **Wyplywanie z rozmycia przy przewijaniu** — bloki ostrza sie z blura razem z wjazdem |  sekcja 74 () |
-| **Miekki styk kart prac** — krawedz karty, ktora wjezdza, rozplywa sie maska () zamiast rozmywania calego zdjecia |  sekcja 73;  |
+| **Kurtyna wejsciowa** — strona zaczyna sie czernia, z ktorej wykreca sie znak PA, potem wchodzi tresc | `style.css` sekcja 74; `js/intro-gate.js` |
+| **Wyplywanie z rozmycia przy przewijaniu** — bloki ostrza sie z blura razem z wjazdem | `style.css` sekcja 74 (`[data-reveal]`) |
+| **Miekki styk kart prac** — krawedz karty, ktora wjezdza, rozplywa sie maska (`--feather`) zamiast rozmywania calego zdjecia | `style.css` sekcja 73; `js/works-stack.js` |
 | **Znak PA w scenie hero** — wlasny wektor wyciagniety w bryle, czarny metal z faktura, odwracanie za kursorem (bez obrotu wokol wlasnej osi), swiatlo wedruje razem ze znakiem, miekki cien na podlodze | `style.css` sekcja 68; `js/hero-logo3d.js` |
 | **Rozwijane kierunki uslug** — jeden otwarty naraz, plynna zmiana wysokosci | `style.css` sekcja 65; `js/svc3.js` |
 
