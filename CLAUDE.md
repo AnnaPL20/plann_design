@@ -19,7 +19,7 @@ Dotyczy to w szczegolnosci:
 | **Naglowki slowo po slowie** (`data-split`) | `script.js` |
 | **Samoczynna fala kafelkow w stopce** | `js/footer-works.js` |
 | **Nasuwanie kart prac** — kolejny projekt wysuwa sie spod poprzedniego, ten pod spodem zmniejsza sie i rozmywa | `style.css` sekcja 63; `js/works-stack.js` (zmienna `--cover`) |
-| **Bryla 3D pod menu** — pryzma z czterech wlasnych okladek, obrot przy przewijaniu, pochylenie i swiatlo za kursorem | `style.css` sekcja 66; `js/obj3d.js` (`--ry`, `--rx`, `--lx`, `--ly`) |
+| **Znak PA w scenie hero** — wlasny wektor wyciagniety w bryle, czarny metal z faktura, odwracanie za kursorem (bez obrotu wokol wlasnej osi), swiatlo wedruje razem ze znakiem, miekki cien na podlodze | `style.css` sekcja 68; `js/hero-logo3d.js` |
 | **Rozwijane kierunki uslug** — jeden otwarty naraz, plynna zmiana wysokosci | `style.css` sekcja 65; `js/svc3.js` |
 
 Jesli nowy element koliduje z istniejacym efektem — pytamy, ktory zostaje.
@@ -28,10 +28,22 @@ Nigdy nie decydujemy sami o usunieciu.
 Jesli efekt trzeba chwilowo wylaczyc, robimy to komentarzem z data i powodem,
 nie kasowaniem kodu.
 
+Zdjete ze strony na wyrazna prosbe wlascicielki (kod zostaje, wraca
+odkomentowaniem jednej linii w `index.html`):
+
+| Co | Kiedy i dlaczego | Gdzie lezy |
+| --- | --- | --- |
+| **Pryzma 3D pod menu** | 14.09.2026 — jedynym obiektem 3D ma byc znak PA w hero | `style.css` sekcja 66; `js/obj3d.js` |
+| **Biala plama negatywu w hero** | 14.09.2026 — nad scena ma jezdzic tylko kwadracik-kursor, nie drugie kolo | `style.css` sekcja okolo `.hero__negative`; `js/hero-negative.js` |
+| **Model rzezbionej glowy** | 13.09.2026 | `js/obj3d-model.js`; `models/rodin-head.glb` |
+
 ## 2. Zasady ogolne
 
 - Zadnych zewnetrznych CDN-ow. Biblioteki, fonty i ikony leza lokalnie
   (`js/vendor/`, `fonts/`, `img/icons/`).
+  Three.js i jego wtyczki (`SVGLoader`, `GLTFLoader`, `RoomEnvironment`, `BufferGeometryUtils`)
+  maja w `js/vendor/` podmienione importy na `./three.module.min.js` — po
+  aktualizacji biblioteki trzeba to powtorzyc.
 - Zadnych tekstow, obrazow ani kodu z cudzych stron. Wszystkie okladki
   pochodza z `img/`, wszystkie sformulowania sa wlasne.
 - Kazdy nowy tekst trafia do slownika we wszystkich trzech jezykach
@@ -56,5 +68,8 @@ nie kasowaniem kodu.
 | `script.js` | rdzen: motyw, jezyk, menu, kursor, zegar, podglad projektow |
 | `js/products.js` | dane towarow sklepu |
 | `js/works-stack.js` | nasuwanie kart prac |
-| `js/obj3d.js` | bryla 3D pod menu |
+| `js/hero-logo3d.js` | chromowany znak PA w oknie hero |
+| `js/obj3d.js` | pryzma z okladek pod menu |
+| `js/obj3d-model.js` | model glowy — odlozony 13.09.2026, skrypt wylaczony w `index.html` |
+| `models/` | modele 3D (`.glb`); na razie nieuzywane przez strone |
 | `js/svc3.js` | trzy rozwijane kierunki uslug |

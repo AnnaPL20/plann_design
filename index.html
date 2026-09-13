@@ -134,39 +134,30 @@
 
   <main id="main">
 
-    <!-- ===================== OBIEKT 3D POD MENU =====================
-         Pryzma z czterech wlasnych okladek. Obraca sie przy przewijaniu,
-         pochyla za kursorem. Caly efekt na transformacjach CSS — bez bibliotek.
-         Zeby podmienic sciany, wystarczy zmienic pliki w .obj3d__face. -->
-    <section class="obj3d" id="object">
-      <div class="container obj3d__grid">
-        <p class="label label--br obj3d__label" data-i18n="d3.label">Object</p>
-        <div class="obj3d__stage" data-obj3d>
-          <div class="obj3d__box" data-obj3d-box>
-            <span class="obj3d__face" style="--i:0"><img src="img/cover-portfolio.png" alt="Creative Portfolio 2026"></span>
-            <span class="obj3d__face" style="--i:1"><img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab"></span>
-            <span class="obj3d__face" style="--i:2"><img src="img/cover-aura.jpg" alt="AURA PUFFER"></span>
-            <span class="obj3d__face" style="--i:3"><img src="img/cover-synq.jpg" alt="SYNQ Loft Bar"></span>
-          </div>
-          <span class="obj3d__shadow" aria-hidden="true"></span>
-        </div>
-        <p class="label obj3d__hint" data-i18n="d3.hint">Scroll to turn</p>
-      </div>
-    </section>
+    <!-- Sekcja z pryzma 3D usunieta ze strony 14.09.2026 na wyrazna prosbe
+         wlascicielki. Kod pryzmy zostaje: style.css sekcja 66 i js/obj3d.js,
+         gdyby kiedys mial wrocic. Jedynym obiektem 3D jest teraz znak PA
+         w scenie hero. -->
 
-    <!-- ===================== HERO: jedno zdjecie po srodku ===================== -->
+    <!-- ===================== HERO: scena ze znakiem PA =====================
+         14.09.2026: zadna ramka, zadne szare okno. Scena idzie na pelna
+         szerokosc strony i ma to samo tlo co reszta serwisu, wiec znak stoi
+         po prostu w powietrzu, a nie w kwadracie.
+         Znak PA (img/logo-pa-dark.svg) wyciagniety w bryle, czarny metal —
+         js/hero-logo3d.js. Nie kreci sie wokol wlasnej osi: lezy w scenie
+         i odwraca sie za kursorem, a swiatlo przelewa sie razem z nim.
+         Plaska monograma pod spodem to zapas, gdy brak WebGL.
+         Nad scena nie ma juz bialego kola — po stronie jezdzi tylko nasz
+         kwadracik-kursor (patrz .cursor w style.css sekcja 14). -->
     <section class="hero" id="home">
-      <div class="hero__stage" data-hero-media>
-        <img class="hero__photo" src="img/cover-biveris.jpg" alt="" aria-hidden="true">
-        <!-- Plama negatywu jedzie za kursorem i odwraca kolory pod soba -->
-        <span class="hero__negative" data-hero-negative aria-hidden="true"></span>
-        <div class="hero__bar">
-          <a class="btn btn--solid hero__cta" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
-        </div>
+      <div class="hero__scene" data-hero-scene>
+        <img class="hero__mono" src="img/logo-pa-dark.svg" alt="PLANN Design" data-hero-mono>
+        <canvas class="hero__logo3d" data-hero-logo3d aria-hidden="true"></canvas>
       </div>
 
-      <div class="hero__rail">
+      <div class="container hero__rail">
         <p class="label hero__where" data-i18n="hero.based">Poland — working worldwide</p>
+        <a class="btn btn--solid hero__cta" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
         <p class="label hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
       </div>
     </section>
@@ -472,10 +463,10 @@
       <div class="case-viewer__info">
         <p class="label">Case study</p>
         <h2 class="display h2" id="caseViewerTitle" data-case-title></h2>
-        <p class="case-viewer__description" data-case-description></p>
+        <p class="case-viewer__description" id="caseDescription" data-case-description></p>
         <div class="case-viewer__controls">
           <span class="case-viewer__progress" data-case-progress>0%</span>
-          <button class="btn" type="button" data-case-about>[ about ]</button>
+          <button class="btn" type="button" data-case-about aria-expanded="false" aria-controls="caseDescription">[ about ]</button>
           <!-- Adres domyslny; JS podmienia go na link konkretnego projektu przy otwarciu podgladu -->
           <a class="btn btn--solid" data-case-link href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener">Explore more <span aria-hidden="true">↗</span></a>
         </div>
@@ -561,10 +552,18 @@
   <script src="js/cards-3d.js" defer></script>
   <script src="js/scroll.js" defer></script>
   <script src="js/manifesto.js" defer></script>
-  <script src="js/hero-negative.js" defer></script>
+  <!-- Plama negatywu wylaczona 14.09.2026 na prosbe wlascicielki: w oknie hero
+       ma jezdzic tylko nasz kwadracik-kursor, a nie drugie biale kolo.
+       Skrypt i style zostaja nietkniete — wraca odkomentowaniem tej linii.
+       <script src="js/hero-negative.js" defer></script> -->
+  <script type="module" src="js/hero-logo3d.js"></script>
   <script src="js/footer-works.js" defer></script>
   <script src="js/works-stack.js" defer></script>
-  <script src="js/obj3d.js" defer></script>
+  <!-- Pryzma 3D zdjeta ze strony 14.09.2026 razem ze swoja sekcja.
+       <script src="js/obj3d.js" defer></script> -->
+  <!-- Model glowy zdjety 13.09.2026 na prosbe wlascicielki. Zeby wrocil,
+       wystarczy odkomentowac linie ponizej i canvas w sekcji .obj3d__stage.
+  <script type="module" src="js/obj3d-model.js"></script> -->
   <script src="js/services.js" defer></script>
   <script src="js/svc3.js" defer></script>
   <!-- Bryla 3D wylaczona: glownym elementem hero jest teraz rozkolorowanka.

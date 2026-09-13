@@ -312,6 +312,9 @@
     }));
     caseTitle.textContent = title;
     caseDescription.textContent = caseDescriptions[title] || '';
+    caseDescription.classList.remove('is-expanded');
+    caseAbout?.setAttribute('aria-expanded', 'false');
+    caseAbout?.classList.remove('is-open');
     caseLink.href = card.href;
     if (caseLoader && caseLoaderTitle) {
       caseLoaderTitle.textContent = card.dataset.case;
@@ -335,7 +338,15 @@
     const progress = max > 0 ? Math.round((caseTrack.scrollLeft / max) * 100) : 100;
     if (caseProgress) caseProgress.textContent = `${progress}%`;
   }, { passive: true });
-  caseAbout?.addEventListener('click', () => caseDescription?.classList.toggle('is-expanded'));
+  /* Przycisk ABOUT rozwija opis pracy. Opis startuje zwiniety do dwoch linii
+     (style.css sekcja 70), wiec klikniecie naprawde cos pokazuje — wczesniej
+     klasa sie przelaczala, ale nic jej nie obslugiwalo. */
+  caseAbout?.addEventListener('click', () => {
+    if (!caseDescription) return;
+    const open = caseDescription.classList.toggle('is-expanded');
+    caseAbout.setAttribute('aria-expanded', String(open));
+    caseAbout.classList.toggle('is-open', open);
+  });
 
   /* ---------- Фокус послуг під час скролу ---------- */
   const serviceRows = $$('.svc__row');
