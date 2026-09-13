@@ -14,7 +14,7 @@
   let lenis = null;
   if (!reduceMotion && typeof window.Lenis === 'function') {
     lenis = new window.Lenis({
-      lerp: 0.08,
+      lerp: 0.055,   /* nizej = lagodniej: przewijanie dochodzi miekko, bez szarpania */
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.6,

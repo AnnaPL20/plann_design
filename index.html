@@ -58,6 +58,8 @@
 </head>
 
 <body>
+  <!-- Kurtyna wejsciowa: znak wykreca sie z czerni, potem wchodzi strona -->
+  <div class="intro-gate" aria-hidden="true"><img class="intro-gate__mark" src="img/logo-pa-white.svg" alt=""></div>
   <a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
 
   <!-- Sygnatura strony: siatka "planu", która odsłania się wokół kursora -->
@@ -77,59 +79,43 @@
       <span class="logo__text" aria-hidden="true">PA</span>
     </a>
 
-    <nav class="nav__links" aria-label="Main">
-      <a class="nav__link" href="index.html" aria-current="page" data-i18n="nav.home">Home</a>
-      <a class="nav__link" href="index.html#projects" data-i18n="nav.projects">Projects</a>
-      <a class="nav__link" href="index.html#services" data-i18n="nav.services">Services</a>
-      <a class="nav__link" href="shop.html" data-i18n="nav.shop">Shop</a>
-      <a class="nav__link" href="contact.html" data-i18n="nav.contact">Contact</a>
-    </nav>
-
     <div class="nav__right">
-      <div class="lang nav__lang" role="group" aria-label="Language">
-        <button class="lang__btn" type="button" data-lang="uk" aria-pressed="false">UA</button>
-        <button class="lang__btn is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
-        <button class="lang__btn" type="button" data-lang="pl" aria-pressed="false">PL</button>
-      </div>
-
-      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" data-i18n-attr="aria-label:a11y.theme" aria-label="Switch color theme">
-        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
-      </button>
-
       <a class="btn btn--solid btn--small nav__cta" href="contact.html">
-        <span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span>
+        <span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.contact">Contact</span><span class="btn__br" aria-hidden="true">]</span>
       </a>
-
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" data-i18n-attr="aria-label:a11y.menuOpen" aria-label="Open menu">
         <span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- Menu mobilne -->
-  <nav class="menu" id="menu" aria-hidden="true" aria-label="Mobile">
-    <div class="menu__links">
-      <a class="menu__link" href="index.html"><span data-i18n="nav.home">Home</span><span class="menu__arrow" aria-hidden="true">↗</span></a>
-      <a class="menu__link" href="index.html#projects"><span data-i18n="nav.projects">Projects</span><span class="menu__arrow" aria-hidden="true">↗</span></a>
-      <a class="menu__link" href="index.html#services"><span data-i18n="nav.services">Services</span><span class="menu__arrow" aria-hidden="true">↗</span></a>
-      <a class="menu__link" href="shop.html"><span data-i18n="nav.shop">Shop</span><span class="menu__arrow" aria-hidden="true">↗</span></a>
-      <a class="menu__link" href="contact.html"><span data-i18n="nav.contact">Contact</span><span class="menu__arrow" aria-hidden="true">↗</span></a>
+  <!-- Panel menu: ten sam na kazdej stronie i na kazdej szerokosci -->
+  <nav class="menu" id="menu" aria-hidden="true" data-i18n-attr="aria-label:nav.menu" aria-label="Menu">
+    <div class="menu__pills">
+      <a class="menu__pill" href="index.html#projects" aria-current="page"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.projects">Projects</span><span class="btn__br" aria-hidden="true">]</span></a>
+      <a class="menu__pill" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.contact">Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
+      <a class="menu__pill" href="shop.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.shop">Shop</span><span class="btn__br" aria-hidden="true">]</span></a>
     </div>
-    <div class="menu__foot">
+
+    <div class="menu__tools">
       <div class="lang" role="group" aria-label="Language">
         <button class="lang__btn" type="button" data-lang="uk" aria-pressed="false">UA</button>
         <button class="lang__btn is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
         <button class="lang__btn" type="button" data-lang="pl" aria-pressed="false">PL</button>
       </div>
-      <ul class="socialrow menu__social">
-        <li class="socialrow__item" data-tip="Instagram"><a class="socialbtn" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener" aria-label="Instagram"><span class="socialbtn__ico socialbtn__ico--instagram" aria-hidden="true"></span></a></li>
-        <li class="socialrow__item" data-tip="Behance"><a class="socialbtn" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener" aria-label="Behance"><span class="socialbtn__ico socialbtn__ico--behance" aria-hidden="true"></span></a></li>
-        <li class="socialrow__item" data-tip="Telegram"><a class="socialbtn" href="https://t.me/pl_annetka" target="_blank" rel="noopener" aria-label="Telegram"><span class="socialbtn__ico socialbtn__ico--telegram" aria-hidden="true"></span></a></li>
-        <li class="socialrow__item" data-tip="TikTok"><a class="socialbtn" href="https://www.tiktok.com/@pl_annetka" target="_blank" rel="noopener" aria-label="TikTok"><span class="socialbtn__ico socialbtn__ico--tiktok" aria-hidden="true"></span></a></li>
-        <li class="socialrow__item" data-tip="LinkedIn"><a class="socialbtn" href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="socialbtn__ico socialbtn__ico--linkedin" aria-hidden="true"></span></a></li>
-      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" data-i18n-attr="aria-label:a11y.theme" aria-label="Switch color theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+      </button>
     </div>
+
+    <ul class="menu__social">
+      <li><a href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Instagram<span class="btn__br" aria-hidden="true">]</span></a></li>
+      <li><a href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Behance<span class="btn__br" aria-hidden="true">]</span></a></li>
+      <li><a href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>LinkedIn<span class="btn__br" aria-hidden="true">]</span></a></li>
+    </ul>
+
+    <p class="menu__rights">Anna Pytsko · PLANN Design™ — <span data-year>2026</span><br><span data-i18n="footer.rights">All rights reserved.</span></p>
   </nav>
 
   <main id="main">
@@ -486,28 +472,30 @@
         <div class="footer__col">
           <p class="label footer__colLabel" data-i18n="nav.menu">Navigation</p>
           <nav class="footer__nav" aria-label="Footer">
-            <a href="index.html" data-i18n="nav.home">Home</a>
-            <a href="index.html#projects" data-i18n="nav.projects">Projects</a>
-            <a href="index.html#services" data-i18n="nav.services">Services</a>
-            <a href="shop.html" data-i18n="nav.shop">Shop</a>
-            <a href="contact.html" data-i18n="nav.contact">Contact</a>
+            <a href="index.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.home">Home</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.projects">Projects</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="index.html#services"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.services">Services</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="shop.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.shop">Shop</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.contact">Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
           </nav>
         </div>
 
         <div class="footer__col">
           <p class="label footer__colLabel">Email</p>
-          <nav class="footer__nav"><a class="footer__email" href="mailto:annapytsko@gmail.com">annapytsko@gmail.com</a></nav>
+          <nav class="footer__nav">
+            <a class="footer__email" href="mailto:annapytsko@gmail.com"><span class="btn__br" aria-hidden="true">[</span>annapytsko@gmail.com<span class="btn__br" aria-hidden="true">]</span></a>
+          </nav>
         </div>
 
         <div class="footer__col">
-          <p class="label footer__colLabel" data-i18n="contact.socials">Find me on</p>
-          <ul class="socialrow socialrow--footer">
-            <li class="socialrow__item" data-tip="Instagram"><a class="socialbtn" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener" aria-label="Instagram"><span class="socialbtn__ico socialbtn__ico--instagram" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="Behance"><a class="socialbtn" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener" aria-label="Behance"><span class="socialbtn__ico socialbtn__ico--behance" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="Telegram"><a class="socialbtn" href="https://t.me/pl_annetka" target="_blank" rel="noopener" aria-label="Telegram"><span class="socialbtn__ico socialbtn__ico--telegram" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="TikTok"><a class="socialbtn" href="https://www.tiktok.com/@pl_annetka" target="_blank" rel="noopener" aria-label="TikTok"><span class="socialbtn__ico socialbtn__ico--tiktok" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="LinkedIn"><a class="socialbtn" href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="socialbtn__ico socialbtn__ico--linkedin" aria-hidden="true"></span></a></li>
-          </ul>
+          <p class="label footer__colLabel" data-i18n="contact.socials">Social</p>
+          <nav class="footer__nav">
+            <a href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Instagram<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Behance<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://t.me/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Telegram<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://www.tiktok.com/@pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>TikTok<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>LinkedIn<span class="btn__br" aria-hidden="true">]</span></a>
+          </nav>
         </div>
 
         <div class="footer__col">
@@ -546,6 +534,7 @@
   </svg>
 
   <script src="js/vendor/lenis.min.js" defer></script>
+  <script src="js/intro-gate.js" defer></script>
   <script src="js/i18n.js" defer></script>
   <script src="script.js" defer></script>
   <script src="js/ui-liquid.js" defer></script>

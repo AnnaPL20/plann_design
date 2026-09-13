@@ -6048,17 +6048,22 @@ body { font-family: var(--font-body); letter-spacing: -.005em; }
   background: none;
   margin-top: clamp(22px, 3vw, 34px);
 }
+/* Kadr stojacy: kafelki sa wyzsze niz szersze i ida obok siebie */
 .footer__work {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 3 / 4;
   background: none;
 }
-.footer__work img { opacity: .78; }
+/* Fala zostaje nietknieta (js/footer-works.js dodaje .is-auto), ale kafelki
+   nieaktywne dostaja delikatna widocznosc: czarny pas pod nimi zniknal, wiec
+   przy zerowej przezroczystosci caly rzad rozplywal sie w tle stopki. */
+.footer__work img { opacity: .26; }
+.footer__works:not(.is-manual) .footer__work.is-auto img { opacity: .72; }
 
-/* Telefon: kafelki zostaja w rzedzie, tylko jest ich trzy — inaczej sa
-   za male, a kolumna niepotrzebnie wydluzala przewijanie */
+/* Telefon: kafelki zostaja w rzedzie po poziomie, tylko jest ich trzy —
+   przy pieciu bylyby za waskie, a kolumna wydluzala przewijanie bez powodu */
 @media (max-width: 640px) {
   .footer__works { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; }
-  .footer__work { aspect-ratio: 4 / 3; }
+  .footer__work { aspect-ratio: 3 / 4; }
   .footer__work:nth-child(n + 4) { display: none; }
 }
 
@@ -6084,4 +6089,241 @@ body { font-family: var(--font-body); letter-spacing: -.005em; }
 .case-viewer__description.is-expanded {
   -webkit-line-clamp: unset;
   overflow: visible;
+}
+
+/* ---------------------------------------------------------------------------
+   71. MENU: PASEK I PANEL (15.09.2026)
+   Pasek ma tylko trzy rzeczy: znak, pigulke CONTACT i krzyzyk. Cala reszta
+   — skroty, jezyk, motyw, socjale, prawa — siedzi w panelu, ktory wysuwa sie
+   spod paska. Ten sam uklad na kazdej stronie i na kazdej szerokosci.
+   --------------------------------------------------------------------------- */
+.nav { width: min(980px, 100% - var(--gutter) * 2); padding: 0 8px 0 20px; }
+.nav__links { display: none !important; }
+.nav__right { display: flex; align-items: center; gap: 10px; }
+.nav .lang,
+.nav .theme-toggle { display: none !important; }
+
+/* Krzyzyk zamiast kresek: w spoczynku plus, po otwarciu iks */
+.burger {
+  position: relative;
+  display: grid !important;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--t-fg) 16%, transparent);
+  background: color-mix(in srgb, var(--t-fg) 7%, transparent);
+  color: var(--t-fg);
+}
+.burger span {
+  position: absolute;
+  inset: 0;
+  margin: auto;          /* obie kreski dokladnie na srodku, inaczej wychodzi "T" */
+  width: 13px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform .38s var(--ease-out);
+}
+/* Zerujemy stare przesuniecia kresek z sekcji 'hamburger' (linie 417-418),
+   inaczej gorna kreska zostaje podniesiona i zamiast plusa wychodzi "T" */
+.burger span:first-child,
+.burger span:nth-child(1) { transform: rotate(0deg); }
+.burger span:last-child,
+.burger span:nth-child(2) { transform: rotate(90deg); }
+.burger.is-open span:nth-child(1) { transform: rotate(45deg); }
+.burger.is-open span:nth-child(2) { transform: rotate(-45deg); }
+
+/* Panel: wysuwa sie spod paska, ta sama szerokosc i to samo szklo */
+.menu {
+  position: fixed;
+  top: calc(14px + var(--nav-h) + 8px);
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  z-index: 99;
+  display: grid;
+  gap: 18px;
+  width: min(980px, 100% - var(--gutter) * 2);
+  height: auto;
+  max-height: none;
+  padding: 22px;
+  border: 1px solid color-mix(in srgb, var(--t-fg) 12%, transparent);
+  border-radius: 26px;
+  background: color-mix(in srgb, var(--t-bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  backdrop-filter: blur(26px) saturate(170%);
+  box-shadow: 0 24px 60px -30px color-mix(in srgb, var(--fg) 60%, transparent);
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .42s var(--ease-out), transform .42s var(--ease-out), visibility .42s;
+}
+.menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.menu__pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.menu__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--t-fg) 8%, transparent);
+  color: var(--t-fg);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: background .3s var(--ease), color .3s var(--ease);
+}
+.menu__pill:hover { background: color-mix(in srgb, var(--t-fg) 14%, transparent); }
+.menu__pill[aria-current="page"] { background: var(--accent); color: #fff; }
+.menu__pill .btn__br { opacity: .45; }
+
+.menu__tools { display: flex; align-items: center; gap: 12px; }
+
+.menu__social { display: flex; flex-wrap: wrap; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.menu__social a {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  transition: color .3s var(--ease);
+}
+.menu__social a:hover { color: var(--t-fg); }
+.menu__social .btn__br { opacity: .4; }
+
+.menu__rights {
+  margin: 0;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: .64rem;
+  letter-spacing: .06em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+/* Stare reguly menu mobilnego nie moga wracac na waskim ekranie */
+@media (max-width: 900px) {
+  .menu { top: calc(14px + var(--nav-h) + 8px); padding: 18px; gap: 14px; }
+  .menu__pill { height: 40px; padding: 0 18px; }
+}
+
+/* ---------------------------------------------------------------------------
+   72. STOPKA: KOMPOZYCJA I PROPORCJE (15.09.2026)
+   Uklad wzoruje sie na tym, co wlascicielka pokazala: cztery kolumny
+   z odnosnikami w nawiasach, socjale tekstem (ikony wygladaly obco),
+   a znak po lewej i po prawej w jednej wadze — wczesniej pelna nazwa byla
+   za duza, a znaczek po prawej ledwo widoczny.
+   --------------------------------------------------------------------------- */
+.footer__head { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.footer__wordmark { width: auto; height: clamp(26px, 2.4vw, 38px); }
+.footer__mark { width: auto; height: clamp(22px, 2vw, 32px); }
+
+/* Adres pocztowy musi byc prawdziwy, a nie wersalikami */
+.footer__email { text-transform: none !important; letter-spacing: .02em; }
+
+/* Odnosniki w nawiasach, jeden pod drugim */
+.footer__nav { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.footer__nav a { display: inline-flex; gap: 6px; }
+.footer__nav .btn__br { opacity: .5; }
+
+/* Ikony socjalne w stopce juz nie sa potrzebne — zastapil je tekst */
+.socialrow--footer { display: none; }
+
+/* ---------------------------------------------------------------------------
+   73. PRACE: MIEKKIE KRAWEDZIE ZAMIAST ROZMYTEGO ZDJECIA (15.09.2026)
+   Wczesniej karta pod spodem dostawala blur na calej powierzchni i wygladalo
+   to jak prostokat nasuwany na prostokat. Teraz rozmywa sie sam STYK: gorna
+   krawedz karty, ktora wjezdza, jest wyciemniana maska, wiec jedna praca
+   rozplywa sie w druga. Skale i przygaszenie zostawiamy — daja glebie.
+   Zmienna --feather ustawia js/works-stack.js razem z --cover.
+   --------------------------------------------------------------------------- */
+.wrow__inner {
+  filter: none;
+  /* Praca pod spodem mocno sie wycofuje, zeby dwa podpisy nie nachodzily
+     na siebie. Zdjecia nie rozmywamy — pracuje sam styk i przygaszenie. */
+  opacity: calc(1 - .66 * var(--cover, 0));
+  transform: scale(calc(1 - .022 * var(--cover, 0)));
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0, #000 var(--feather, 0px), #000 100%);
+  mask-image: linear-gradient(to bottom,
+    transparent 0, #000 var(--feather, 0px), #000 100%);
+  will-change: transform, opacity, mask-image;
+}
+
+/* Kadr stojacy: praca ma byc wyzsza, a nie rozciagnieta na szerokosc */
+/* Podpis trzyma sie kadru, a nie ucieka na drugi koniec ekranu */
+.wrow__inner { grid-template-columns: minmax(0, 58%) minmax(0, 300px); justify-content: start; }
+.wrow__media { aspect-ratio: 4 / 5; max-height: 82svh; }
+.wrow__media img { aspect-ratio: auto; }
+
+@media (max-width: 768px) {
+  .wrow__inner { grid-template-columns: minmax(0, 1fr); }
+  .wrow__media { aspect-ratio: 4 / 5; max-height: 70svh; }
+  .wrow__media img { aspect-ratio: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrow__inner { -webkit-mask-image: none; mask-image: none; opacity: 1; transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   74. WEJSCIE I PRZEWIJANIE Z ROZMYCIEM (15.09.2026)
+   Strona zaczyna sie od czarnego ekranu, z ktorego wychodzi znak PA i dopiero
+   potem wchodzi tresc. Bloki przy przewijaniu nie tylko wjezdzaja, ale i
+   ostrza sie z rozmycia — to daje ten spokojny, "oddychajacy" ruch.
+   --------------------------------------------------------------------------- */
+
+/* Bloki wyplywaja z rozmycia */
+[data-reveal] {
+  filter: blur(14px);
+  transition:
+    opacity 1.15s var(--ease-out),
+    transform 1.15s var(--ease-out),
+    filter 1.15s var(--ease-out);
+}
+[data-reveal].is-visible { filter: blur(0); }
+
+/* Kurtyna wejsciowa: czarny ekran, z ktorego wykreca sie znak */
+.intro-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: #0b0b0c;
+  pointer-events: none;
+  transition: opacity .9s var(--ease-out) .15s, visibility .9s .15s;
+}
+.intro-gate__mark {
+  width: clamp(120px, 16vw, 210px);
+  height: auto;
+  opacity: 0;
+  filter: blur(26px);
+  transform: rotate(-14deg) scale(.82);
+  animation: gate-mark 1.5s var(--ease-out) .1s forwards;
+}
+@keyframes gate-mark {
+  0%   { opacity: 0; filter: blur(26px); transform: rotate(-14deg) scale(.82); }
+  55%  { opacity: 1; filter: blur(0);    transform: rotate(0deg)   scale(1); }
+  100% { opacity: 1; filter: blur(0);    transform: rotate(0deg)   scale(1); }
+}
+body.is-gate-open .intro-gate { opacity: 0; visibility: hidden; }
+
+/* Dopoki kurtyna stoi, strona pod nia czeka bez przewijania */
+body.is-gating { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { filter: none; }
+  .intro-gate { display: none; }
+  .intro-gate__mark { animation: none; }
 }

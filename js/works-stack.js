@@ -14,6 +14,8 @@
   const inners = rows.map(row => row.querySelector('.wrow__inner') || row);
   let ticking = false;
 
+  inners[0].style.setProperty('--feather', '0px');
+
   const update = () => {
     ticking = false;
     for (let i = 0; i < rows.length; i++) {
@@ -26,7 +28,13 @@
          zero = nastepna karta stoi dokladnie na niej. */
       const span = here.height || 1;
       const cover = 1 - (next.top - here.top) / span;
-      inner.style.setProperty('--cover', Math.min(1, Math.max(0, cover)).toFixed(3));
+      const c = Math.min(1, Math.max(0, cover));
+      inner.style.setProperty('--cover', c.toFixed(3));
+      /* Karta, ktora wjezdza, dostaje miekka gorna krawedz. Rozmycie styku
+         jest najwieksze na poczatku nasuwania i gasnie, gdy praca juz stoi
+         na swoim miejscu — dzieki temu nie widac ciecia prostokata. */
+      const above = inners[i + 1];
+      if (above) above.style.setProperty('--feather', (130 * (1 - c)).toFixed(1) + 'px');
     }
   };
 
