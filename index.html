@@ -159,104 +159,73 @@
       </div>
     </section>
 
-    <!-- ===================== PRACE: zdjecia jedno pod drugim ===================== -->
+    <!-- ===================== PRACE: galeria w siatce =====================
+         15.09.2026: prace nie ida juz jedna pod druga z nasuwaniem — na prosbe
+         wlascicielki stoja w siatce, a gestosc przelacza sie na pasku
+         (2 / 3 / 4 w rzedzie). Wybor zapamietuje sie w przegladarce.
+         Klikniecie kafelka otwiera podglad projektu jak dotad (data-case).
+         Stary uklad z nasuwaniem: style.css sekcja 63 i 73, js/works-stack.js
+         — kod zostaje, skrypt wylaczony w spisie na dole strony. -->
     <section class="works" id="projects">
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/247999533/Creative-Portfolio-2026-Branding-Web-Social-Media" target="_blank" rel="noopener" data-case="Creative Portfolio 2026">
-              <img src="img/cover-portfolio.png" alt="Creative Portfolio 2026 — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>Creative Portfolio 2026</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.brand">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>2026</dd></div>
-            </dl>
-                  </div>
+      <div class="container works__bar">
+        <p class="works__title"><strong data-i18n="work.selected">Selected work</strong><span data-i18n="work.range">2023 — 2026</span></p>
+        <div class="works__views" role="group" data-i18n-attr="aria-label:work.density" aria-label="Grid density">
+          <button class="works__view" type="button" data-view="2" aria-pressed="false" title="2"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2" width="6" height="12" rx="1"/><rect x="9" y="2" width="6" height="12" rx="1"/></svg></button>
+          <button class="works__view" type="button" data-view="3" aria-pressed="false" title="3"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2" width="4" height="5.5" rx=".8"/><rect x="6" y="2" width="4" height="5.5" rx=".8"/><rect x="11" y="2" width="4" height="5.5" rx=".8"/><rect x="1" y="8.5" width="4" height="5.5" rx=".8"/><rect x="6" y="8.5" width="4" height="5.5" rx=".8"/><rect x="11" y="8.5" width="4" height="5.5" rx=".8"/></svg></button>
+          <button class="works__view is-active" type="button" data-view="4" aria-pressed="true" title="4"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx=".6"/><rect x="5" y="1" width="3" height="3" rx=".6"/><rect x="9" y="1" width="3" height="3" rx=".6"/><rect x="13" y="1" width="2" height="3" rx=".6"/><rect x="1" y="5" width="3" height="3" rx=".6"/><rect x="5" y="5" width="3" height="3" rx=".6"/><rect x="9" y="5" width="3" height="3" rx=".6"/><rect x="13" y="5" width="2" height="3" rx=".6"/><rect x="1" y="9" width="3" height="3" rx=".6"/><rect x="5" y="9" width="3" height="3" rx=".6"/><rect x="9" y="9" width="3" height="3" rx=".6"/><rect x="13" y="9" width="2" height="3" rx=".6"/></svg></button>
+        </div>
+      </div>
+
+      <div class="container works__grid" data-works-grid style="--cols:4">
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/247999533/Creative-Portfolio-2026-Branding-Web-Social-Media" target="_blank" rel="noopener" data-case="Creative Portfolio 2026">
+            <img src="img/cover-portfolio.png" alt="Creative Portfolio 2026 — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">Creative Portfolio 2026</span><span class="wtile__meta" data-i18n="cat.brand">—</span><span class="wtile__meta">2026</span></p>
         </article>
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" data-case="BIVERIS Skin Lab">
-              <img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>BIVERIS Skin Lab</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.brand">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>2025</dd></div>
-            </dl>
-                  </div>
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" data-case="BIVERIS Skin Lab">
+            <img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">BIVERIS Skin Lab</span><span class="wtile__meta" data-i18n="cat.brand">—</span><span class="wtile__meta">2025</span></p>
         </article>
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/237225941/AURA-PUFFER-Fashion-Banner-Series" target="_blank" rel="noopener" data-case="AURA PUFFER">
-              <img src="img/cover-aura.jpg" alt="AURA PUFFER — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>AURA PUFFER</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.social">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>2025</dd></div>
-            </dl>
-                  </div>
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/237225941/AURA-PUFFER-Fashion-Banner-Series" target="_blank" rel="noopener" data-case="AURA PUFFER">
+            <img src="img/cover-aura.jpg" alt="AURA PUFFER — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">AURA PUFFER</span><span class="wtile__meta" data-i18n="cat.social">—</span><span class="wtile__meta">2025</span></p>
         </article>
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/230004703/Logo-and-brand-identity-for-a-Loft-bar-SYNQ" target="_blank" rel="noopener" data-case="SYNQ Loft Bar">
-              <img src="img/cover-synq.jpg" alt="SYNQ Loft Bar — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>SYNQ Loft Bar</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.brand">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>2024</dd></div>
-            </dl>
-                  </div>
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/230004703/Logo-and-brand-identity-for-a-Loft-bar-SYNQ" target="_blank" rel="noopener" data-case="SYNQ Loft Bar">
+            <img src="img/cover-synq.jpg" alt="SYNQ Loft Bar — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">SYNQ Loft Bar</span><span class="wtile__meta" data-i18n="cat.brand">—</span><span class="wtile__meta">2024</span></p>
         </article>
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/195214865/Magazine-Sweet-Fashion" target="_blank" rel="noopener" data-case="Sweet Fashion Magazine">
-              <img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>Sweet Fashion Magazine</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.print">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>2024</dd></div>
-            </dl>
-                  </div>
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/195214865/Magazine-Sweet-Fashion" target="_blank" rel="noopener" data-case="Sweet Fashion Magazine">
+            <img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">Sweet Fashion Magazine</span><span class="wtile__meta" data-i18n="cat.print">—</span><span class="wtile__meta">2024</span></p>
         </article>
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/169190567/Taxi-website-design" target="_blank" rel="noopener" data-case="Taxi Website">
-              <img src="img/cover-portfolio.png" alt="Taxi Website — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>Taxi Website</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.web">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>Behance</dd></div>
-            </dl>
-                  </div>
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/169190567/Taxi-website-design" target="_blank" rel="noopener" data-case="Taxi Website">
+            <img src="img/cover-portfolio.png" alt="Taxi Website — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">Taxi Website</span><span class="wtile__meta" data-i18n="cat.web">—</span><span class="wtile__meta">2023</span></p>
         </article>
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/195176283/Graphic-Designer-Portfolio" target="_blank" rel="noopener" data-case="Graphic Designer Portfolio">
-              <img src="img/cover-magazine.jpg" alt="Graphic Designer Portfolio — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>Graphic Designer Portfolio</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.print">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>2023</dd></div>
-            </dl>
-                  </div>
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/195176283/Graphic-Designer-Portfolio" target="_blank" rel="noopener" data-case="Graphic Designer Portfolio">
+            <img src="img/cover-magazine.jpg" alt="Graphic Designer Portfolio — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">Graphic Designer Portfolio</span><span class="wtile__meta" data-i18n="cat.print">—</span><span class="wtile__meta">2023</span></p>
         </article>
-        <article class="wrow" data-reveal>
-          <div class="wrow__inner">
-            <a class="wrow__media" href="https://www.behance.net/gallery/164450091/Video" target="_blank" rel="noopener" data-case="Video & Motion">
-              <img src="img/cover-portfolio.png" alt="Video &amp; Motion — project cover" loading="lazy">
-            </a>
-            <dl class="wrow__meta">
-              <div><dt data-i18n="work.client">Client</dt><dd>Video &amp; Motion</dd></div>
-              <div><dt data-i18n="work.category">Category</dt><dd data-i18n="cat.motion">—</dd></div>
-              <div><dt data-i18n="work.year">Year</dt><dd>Behance</dd></div>
-            </dl>
-                  </div>
+        <article class="wtile" data-reveal>
+          <a class="wtile__media" href="https://www.behance.net/gallery/164450091/Video" target="_blank" rel="noopener" data-case="Video & Motion">
+            <img src="img/cover-portfolio.png" alt="Video &amp; Motion — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">Video &amp; Motion</span><span class="wtile__meta" data-i18n="cat.motion">—</span><span class="wtile__meta">2023</span></p>
         </article>
+      </div>
     </section>
 
     <div class="container works__cta" data-reveal>
@@ -547,7 +516,10 @@
        <script src="js/hero-negative.js" defer></script> -->
   <script type="module" src="js/hero-logo3d.js"></script>
   <script src="js/footer-works.js" defer></script>
-  <script src="js/works-stack.js" defer></script>
+  <!-- Nasuwanie kart prac wylaczone 15.09.2026: prace stoja teraz w siatce.
+       Kod zostaje — wraca odkomentowaniem tej linii i przywroceniem .wrow.
+       <script src="js/works-stack.js" defer></script> -->
+  <script src="js/works-grid.js" defer></script>
   <!-- Pryzma 3D zdjeta ze strony 14.09.2026 razem ze swoja sekcja.
        <script src="js/obj3d.js" defer></script> -->
   <!-- Model glowy zdjety 13.09.2026 na prosbe wlascicielki. Zeby wrocil,

@@ -6327,3 +6327,98 @@ body.is-gating { overflow: hidden; }
   .intro-gate { display: none; }
   .intro-gate__mark { animation: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   75. PRACE W SIATCE (15.09.2026)
+   Zamiast listy jedna-pod-druga: siatka kafelkow i pasek, na ktorym przelacza
+   sie gestosc — 2, 3 albo 4 w rzedzie. Kafelki trzymaja wlasne proporcje
+   zdjecia i rownaja sie gora, wiec rzad oddycha jak w katalogu, a nie jak
+   tabela. Podpis siedzi pod kadrem: nazwa, kierunek, rok.
+   Sekcje 63 i 73 (nasuwanie kart) zostaja w kodzie, ale nie maja juz czego
+   dotyczyc — klasy .wrow zniknely z HTML-a.
+   --------------------------------------------------------------------------- */
+.works { padding: clamp(18px, 3vw, 40px) 0 clamp(56px, 8vw, 110px); background: var(--paper); }
+
+.works__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 14px;
+}
+.works__title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.works__title strong { color: var(--fg); font-weight: 500; }
+
+.works__views { display: flex; gap: 4px; }
+.works__view {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 26px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--faint);
+  cursor: pointer;
+  transition: color .25s var(--ease), background-color .25s var(--ease);
+}
+.works__view svg { fill: currentColor; }
+.works__view:hover { color: var(--muted); background: color-mix(in srgb, var(--fg) 6%, transparent); }
+.works__view.is-active { color: var(--fg); background: color-mix(in srgb, var(--fg) 9%, transparent); }
+
+.works__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(14px, 1.8vw, 26px) clamp(10px, 1.2vw, 18px);
+  transition: gap .45s var(--ease-out);
+}
+
+.wtile { min-width: 0; }
+.wtile__media {
+  display: block;
+  overflow: hidden;
+  background: var(--paper-2);
+  cursor: none;
+}
+.wtile__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform .8s var(--ease-out), opacity .5s var(--ease);
+}
+.wtile__media:hover img { transform: scale(1.03); }
+
+.wtile__cap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 9px 0 0;
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.wtile__name { color: var(--fg); }
+
+/* Przy dwoch w rzedzie kadr moze byc wiekszy, przy czterech — drobniejszy */
+.works__grid[style*="--cols:2"] .wtile__cap { font-size: .72rem; }
+
+@media (max-width: 900px) {
+  .works__grid { --cols: 2 !important; }
+  .works__views { display: none; }   /* na telefonie gestosc ustala sie sama */
+}
+@media (max-width: 520px) {
+  .works__grid { --cols: 1 !important; }
+}

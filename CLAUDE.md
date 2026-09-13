@@ -18,10 +18,9 @@ Dotyczy to w szczegolnosci:
 | **Pojawianie sie blokow przy przewijaniu** (fade-up z kaskada) | `script.js` + `js/scroll.js` |
 | **Naglowki slowo po slowie** (`data-split`) | `script.js` |
 | **Samoczynna fala kafelkow w stopce** | `js/footer-works.js` |
-| **Nasuwanie kart prac** — kolejny projekt wysuwa sie spod poprzedniego, ten pod spodem zmniejsza sie i rozmywa | `style.css` sekcja 63; `js/works-stack.js` (zmienna `--cover`) |
 | **Kurtyna wejsciowa** — strona zaczyna sie czernia, z ktorej wykreca sie znak PA, potem wchodzi tresc | `style.css` sekcja 74; `js/intro-gate.js` |
 | **Wyplywanie z rozmycia przy przewijaniu** — bloki ostrza sie z blura razem z wjazdem | `style.css` sekcja 74 (`[data-reveal]`) |
-| **Miekki styk kart prac** — krawedz karty, ktora wjezdza, rozplywa sie maska (`--feather`) zamiast rozmywania calego zdjecia | `style.css` sekcja 73; `js/works-stack.js` |
+| **Galeria prac w siatce** — pasek przelacza gestosc 2 / 3 / 4 w rzedzie, wybor pamieta sie w przegladarce | `style.css` sekcja 75; `js/works-grid.js` |
 | **Znak PA w scenie hero** — wlasny wektor wyciagniety w bryle, czarny metal z faktura, odwracanie za kursorem (bez obrotu wokol wlasnej osi), swiatlo wedruje razem ze znakiem, miekki cien na podlodze | `style.css` sekcja 68; `js/hero-logo3d.js` |
 | **Rozwijane kierunki uslug** — jeden otwarty naraz, plynna zmiana wysokosci | `style.css` sekcja 65; `js/svc3.js` |
 
@@ -39,6 +38,7 @@ odkomentowaniem jednej linii w `index.html`):
 | **Pryzma 3D pod menu** | 14.09.2026 — jedynym obiektem 3D ma byc znak PA w hero | `style.css` sekcja 66; `js/obj3d.js` |
 | **Biala plama negatywu w hero** | 14.09.2026 — nad scena ma jezdzic tylko kwadracik-kursor, nie drugie kolo | `style.css` sekcja okolo `.hero__negative`; `js/hero-negative.js` |
 | **Szklana kropla na ikonach socjalnych** | 14.09.2026 — robila z nich kafelki; na przyciskach i pigulkach dziala dalej | `style.css` sekcja 70 |
+| **Nasuwanie kart prac** | 15.09.2026 — prace stoja teraz w siatce, gortanie po jednej meczylo | `style.css` sekcje 63 i 73; `js/works-stack.js` |
 | **Model rzezbionej glowy** | 13.09.2026 | `js/obj3d-model.js`; `models/rodin-head.glb` |
 
 ## 2. Zasady ogolne
@@ -71,7 +71,8 @@ odkomentowaniem jednej linii w `index.html`):
 | `js/i18n.js` | wspolny slownik EN / UA / PL |
 | `script.js` | rdzen: motyw, jezyk, menu, kursor, zegar, podglad projektow |
 | `js/products.js` | dane towarow sklepu |
-| `js/works-stack.js` | nasuwanie kart prac |
+| `js/works-grid.js` | gestosc siatki prac (2 / 3 / 4 w rzedzie) |
+| `js/works-stack.js` | nasuwanie kart prac — odlozone 15.09.2026 |
 | `js/hero-logo3d.js` | znak PA w scenie hero (czarny metal) |
 | `js/intro-gate.js` | kurtyna wejsciowa ze znakiem |
 | `js/obj3d.js` | pryzma z okladek pod menu |
