@@ -6661,3 +6661,82 @@ body.page--ink .menu {
 body.page--ink .menu a,
 body.page--ink .menu .menu__rights,
 body.page--ink .menu .label { color: #101112; }
+
+/* ---------------------------------------------------------------------------
+   83. KROJ PISMA: SWITZER (17.09.2026)
+   Wlascicielka pokazala serwis, ktorego typografia ma byc wzorem — stoi on
+   na Switzerze. Wracamy wiec do tego kroju w calym interfejsie i w duzych
+   naglowkach (wczesniej byl tam Clash Display, sekcja 61).
+   Pliki lezą lokalnie w fonts/, zadnych CDN-ow. Switzer to Fontshare,
+   bezplatna licencja komercyjna — ta sama odlewnia co Satoshi.
+   Satoshi i Clash Display zostaja w repozytorium: wracaja zmiana jednej
+   linii w tokenach ponizej.
+   Podpisy techniczne zostaja na Fragment Mono. Wzorcowy serwis uzywa tam
+   Proto Mono, ale to krój platny — CLAUDE.md zabrania podpinac takie pliki.
+   --------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/Switzer-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/Switzer-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/Switzer-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/Switzer-700.woff2") format("woff2");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Cyrylica — Switzer jej nie ma, wiec w tym samym zakresie podstawiamy Inter,
+   dokladnie tak samo jak przy Satoshi (unicode-range decyduje znak po znaku) */
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+:root {
+  --font-display: "Switzer", "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Switzer", "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-title: "Switzer", "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Duze naglowki: Switzer jest weższy od Clash Display, wiec przy tej samej
+   wadze wygladalby blado. Bierzemy sredni grubosc i ciasniejszy odstep —
+   tak jak w serwisie, ktory wlascicielka pokazala. Zeby naglowki byly lekkie
+   jak tam, wystarczy zmienic ponizsza wage na 300. */
+.display,
+.h1,
+.h2,
+.hero__title,
+.intro__title,
+.lab__title,
+.shopHead__title,
+.case-viewer__info h2 {
+  font-family: var(--font-title);
+  font-weight: 500;
+  letter-spacing: -.03em;
+}
+
+/* Switzer jest wezszy od Clash Display, wiec ten sam naglowek lamal sie
+   teraz na cztery wiersze. Dajemy mu troche wiecej szerokosci. */
+.intro__title { max-width: 16ch; }
+@media (max-width: 900px) { .intro__title { max-width: 20ch; } }
