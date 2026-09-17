@@ -144,7 +144,7 @@
       <!-- Gorna linijka: kim jestem i skad pracuje -->
       <div class="container hero__top">
         <p class="label hero__kicker" data-i18n="hero.label">Graphic &amp; web designer</p>
-        <p class="label hero__where" data-i18n="hero.based">Poland — working worldwide</p>
+        <p class="label hero__where"><span data-i18n="hero.based">Poland — working worldwide</span><span class="hero__dot" aria-hidden="true">·</span><span class="clock" data-clock>00:00:00</span></p>
       </div>
 
       <!-- Naglowek na dwoch wagach: cienkie slowa sa tlem dla grubych.
@@ -163,18 +163,32 @@
       <!-- Pod znakiem: po co tu jestem i co dalej zrobic.
            Akapit rozjasnia sie slowo po slowie przy przewijaniu (js/manifesto.js). -->
       <div class="container hero__grid">
-        <p class="hero__lead" data-manifesto data-i18n="hero.lead2">You do not need one more logo. You need the idea to work: a clear system, a face for the business and content that sells it. That is what I build.</p>
+        <div class="hero__leadCol">
+          <p class="label hero__dirs" data-i18n="hero.factWork">Brand identity · Web &amp; UI · Social</p>
+          <p class="hero__lead" data-manifesto data-i18n="hero.lead2">You do not need one more logo. You need the idea to work: a clear system, a face for the business and content that sells it. That is what I build.</p>
+        </div>
         <div class="hero__actions">
           <a class="btn btn--solid" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
           <a class="btn" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
         </div>
       </div>
 
-      <!-- Pasek faktow: kierunki pracy, jezyki, zegar. Same rzeczy prawdziwe. -->
+      <!-- Pasek faktow. Zadnych wymyslonych liczb: rok, w ktorym wlascicielka
+           weszla w projektowanie, praca bez posrednikow i trzy jezyki.
+           Gdy beda policzone projekty i klienci, dopisze sie je tutaj. -->
       <div class="container hero__facts">
-        <p class="label"><span data-i18n="hero.factWork">Brand identity · Web &amp; UI · Social</span></p>
-        <p class="label"><span data-i18n="about.f4v">Ukrainian, English, Polish</span></p>
-        <p class="label hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
+        <div class="hero__fact">
+          <p class="hero__figure">2020</p>
+          <p class="label hero__figureCap" data-i18n="hero.factSince">In design since</p>
+        </div>
+        <div class="hero__fact">
+          <p class="hero__figure">1:1</p>
+          <p class="label hero__figureCap" data-i18n="hero.factDirect">Straight with me, no agency in between</p>
+        </div>
+        <div class="hero__fact">
+          <p class="hero__figure">3</p>
+          <p class="label hero__figureCap" data-i18n="hero.factLang">Languages: UA · EN · PL</p>
+        </div>
       </div>
     </section>
 

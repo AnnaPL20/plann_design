@@ -7,6 +7,7 @@
    ============================================================================= */
 window.PLANN_DICT = {
   en: {
+    'hero.factSince': 'In design since', 'hero.factDirect': 'Straight with me, no agency in between', 'hero.factLang': 'Languages: UA · EN · PL',
     'hero.headA': 'Design with', 'hero.headB': 'a plan', 'hero.headC': 'behind it',
     'hero.lead2': 'You do not need one more logo. You need the idea to work: a clear system, a face for the business and content that sells it. That is what I build.',
     'hero.factWork': 'Brand identity · Web & UI · Social',
@@ -200,6 +201,7 @@ window.PLANN_DICT = {
     'footer.tagline': 'Brand, social & web design', 'footer.rights': 'All rights reserved.', 'footer.top': 'Back to top'
   },
   uk: {
+    'hero.factSince': 'У дизайні з', 'hero.factDirect': 'Напряму зі мною, без агенції посередині', 'hero.factLang': 'Мови: UA · EN · PL',
     'hero.headA': 'Дизайн, за яким', 'hero.headB': 'стоїть план', 'hero.headC': 'і рішення',
     'hero.lead2': 'Вам не потрібен ще один логотип. Потрібно, щоб ідея працювала: зрозуміла система, обличчя бізнесу та контент, який його продає. Саме це я будую.',
     'hero.factWork': 'Айдентика · Веб і UI · Соцмережі',
@@ -393,6 +395,7 @@ window.PLANN_DICT = {
     'footer.tagline': 'Брендинг, соцмережі та веб-дизайн', 'footer.rights': 'Усі права захищені.', 'footer.top': 'Нагору'
   },
   pl: {
+    'hero.factSince': 'W projektowaniu od', 'hero.factDirect': 'Bezpośrednio ze mną, bez agencji pośrodku', 'hero.factLang': 'Języki: UA · EN · PL',
     'hero.headA': 'Projekt, za którym', 'hero.headB': 'stoi plan', 'hero.headC': 'i rozwiązanie',
     'hero.lead2': 'Nie potrzebujesz kolejnego logo. Potrzebujesz, żeby pomysł działał: czytelny system, twarz firmy i treści, które ją sprzedają. To właśnie buduję.',
     'hero.factWork': 'Identyfikacja · Web i UI · Social',

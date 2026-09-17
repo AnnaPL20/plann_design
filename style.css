@@ -6996,3 +6996,61 @@ body.page--ink .menu .label { color: #101112; }
 @media (prefers-reduced-motion: reduce) {
   [data-manifesto] .mw { transition: none; color: var(--fg); }
 }
+
+/* ---------------------------------------------------------------------------
+   91. PASEK FAKTOW W HERO (18.09.2026)
+   Wlascicielka nie ma policzonych projektow ani klientow (prace szly przez
+   firmy i naleza do nich), a nie chce sie przechwalac. Zamiast wymyslonych
+   liczb stoja trzy rzeczy prawdziwe: rok wejscia w projektowanie, praca bez
+   posrednikow i trzy jezyki. Liczba jest duza — tak jak na przykladzie,
+   ktory pokazala — ale nic nie obiecuje ponad to, co jest.
+   --------------------------------------------------------------------------- */
+.hero__where {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.hero__where .clock { color: var(--fg); }
+.hero__dot { opacity: .45; }
+
+.hero__dirs { margin: 0 0 10px; color: var(--muted); }
+.hero__leadCol { min-width: 0; }
+
+.hero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: clamp(16px, 3vw, 44px);
+}
+.hero__fact { min-width: 0; }
+.hero__figure {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+  line-height: .92;
+  letter-spacing: -.045em;
+  color: var(--ink);
+}
+.hero__figureCap {
+  margin: 8px 0 0;
+  max-width: 24ch;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .hero__facts { grid-template-columns: 1fr; gap: 14px; }
+  .hero__fact { display: flex; align-items: baseline; gap: 12px; }
+  .hero__figure { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+  .hero__figureCap { margin: 0; }
+}
+
+/* Caly pierwszy ekran ma sie miescic w oknie: scena nizsza, odstepy ciasniejsze.
+   Inaczej pasek faktow schodzi pod krawedz i nikt go nie widzi. */
+.has-mono3d .hero__scene { height: clamp(180px, 29svh, 360px); }
+.hero__head { margin-top: clamp(10px, 1.8vh, 22px); }
+.hero__grid { margin-top: clamp(10px, 1.8vh, 22px); }
+.hero__facts { margin-top: clamp(14px, 2.2vh, 28px); padding-top: clamp(10px, 1.4vh, 16px); }
+@media (max-width: 900px) {
+  .has-mono3d .hero__scene { height: clamp(170px, 28svh, 300px); }
+}
