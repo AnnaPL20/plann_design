@@ -6542,3 +6542,23 @@ body.is-gating { overflow: hidden; }
 @media (max-width: 900px) {
   .has-mono3d .intro { padding-block: clamp(80px, 14vh, 150px); }
 }
+
+/* ---------------------------------------------------------------------------
+   79. STOPKA: PAS ZDJEC NA CZERNI, BEZ ODSTEPOW (17.09.2026)
+   Wlascicielka: pod zdjeciami ma byc czern, nie czerwien, a kafelki maja stac
+   jeden przy drugim. Czerwony blok stopki zostaje — zmienia sie tylko pas
+   ze zdjeciami na samym dole. Fala (js/footer-works.js) dziala jak dzialala,
+   tylko jasnosc kafelkow podniesiona, bo na czerni .26 bylo prawie niewidoczne.
+   --------------------------------------------------------------------------- */
+.footer__works {
+  gap: 0;
+  background: #000;
+  margin-top: 0;
+}
+.footer__work { background: #000; }
+.footer__work img { opacity: .5; }
+.footer__works:not(.is-manual) .footer__work.is-auto img { opacity: 1; }
+
+@media (max-width: 640px) {
+  .footer__works { gap: 0; }
+}
