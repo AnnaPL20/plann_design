@@ -7,6 +7,7 @@
    ============================================================================= */
 window.PLANN_DICT = {
   en: {
+    'case.about': 'About the project', 'case.label': 'Project',
     'meta.title': 'Anna Pytsko · PLANN Design · Graphic & Web Designer',
     'meta.desc': 'PLANN Design by Anna Pytsko: bold brand identities, high-converting digital experiences and social media content that make brands impossible to ignore.',
     'a11y.skip': 'Skip to content', 'a11y.menuOpen': 'Open menu', 'a11y.menuClose': 'Close menu', 'a11y.theme': 'Switch color theme', 'a11y.home': 'PLANN Design — home', 'cursor.view': 'View',
@@ -196,6 +197,7 @@ window.PLANN_DICT = {
     'footer.tagline': 'Brand, social & web design', 'footer.rights': 'All rights reserved.', 'footer.top': 'Back to top'
   },
   uk: {
+    'case.about': 'Про проєкт', 'case.label': 'Проєкт',
     'meta.title': 'Анна Питсько · PLANN Design · Графічна та веб-дизайнерка',
     'meta.desc': 'PLANN Design від Анни Питсько — сміливі айдентики, ефективні цифрові продукти та контент для соцмереж, що роблять бренди помітними.',
     'a11y.skip': 'Перейти до контенту', 'a11y.menuOpen': 'Відкрити меню', 'a11y.menuClose': 'Закрити меню', 'a11y.theme': 'Змінити тему', 'a11y.home': 'PLANN Design — головна', 'cursor.view': 'Подивитись',
@@ -385,6 +387,7 @@ window.PLANN_DICT = {
     'footer.tagline': 'Брендинг, соцмережі та веб-дизайн', 'footer.rights': 'Усі права захищені.', 'footer.top': 'Нагору'
   },
   pl: {
+    'case.about': 'O projekcie', 'case.label': 'Projekt',
     'meta.title': 'Anna Pytsko · PLANN Design · Projektantka graficzna i webowa',
     'meta.desc': 'PLANN Design — Anna Pytsko. Odważne identyfikacje wizualne, skuteczne projekty cyfrowe i treści do social mediów, dzięki którym marek nie da się zignorować.',
     'a11y.skip': 'Przejdź do treści', 'a11y.menuOpen': 'Otwórz menu', 'a11y.menuClose': 'Zamknij menu', 'a11y.theme': 'Zmień motyw', 'a11y.home': 'PLANN Design — strona główna', 'cursor.view': 'Zobacz',
