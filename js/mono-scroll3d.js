@@ -29,6 +29,8 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
 
 const canvas = document.querySelector('[data-mono3d]');
 const stage = document.querySelector('[data-hero-scene]');
+/* Sekcja, na ktorej konczy sie pierwszy akt — dalej strona zyje jak dotad */
+const act = document.querySelector('[data-mono3d-end]');
 if (canvas && stage) init();
 
 function init() {
@@ -111,6 +113,7 @@ function init() {
   const LIFT = .55;       /* ile znak stoi nad podloga */
   let heroShift = 0;      /* przesuniecie w gore/dol, zeby znak stanal w hero */
   let viewH = 4;
+  let dist0 = 8;          /* odleglosc kamery w spoczynku (przed najazdem) */
 
   /* Znak ma stac po srodku sceny hero, a nie po srodku okna — pasek z zegarem
      i pigulka siedzi nizej, wiec srodek kadru wypada wyzej niz srodek ekranu. */
@@ -128,11 +131,10 @@ function init() {
     camera.aspect = w / h;
     const viewW = logoW / fillFor(w);
     viewH = viewW / camera.aspect;
-    const dist = viewH / 2 / Math.tan(camera.fov * DEG / 2);
+    dist0 = viewH / 2 / Math.tan(camera.fov * DEG / 2);
     heroShift = -heroOffsetPx() * (viewH / h);
-    camera.position.set(0, LIFT + .35, dist);
-    camera.lookAt(0, LIFT - .05, 0);
     camera.updateProjectionMatrix();
+    measure();
     place();
     frame();
   };
@@ -145,18 +147,98 @@ function init() {
   let last = 0;
 
   const clamp1 = v => (v < -1 ? -1 : v > 1 ? 1 : v);
+  const clamp01 = v => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+  /* --- taniec skrolu --------------------------------------------------------- */
+  /* Postep liczymy od gory strony do konca sekcji-manifestu: 0 na samej gorze,
+     1 gdy dol tej sekcji dojedzie do dolu okna. Surowa wartosc idzie przez
+     doganianie 0.08, dzieki czemu znak nie skacze za kolkiem myszy. */
+  let actEnd = 1;         /* przewiniecie w pikselach, na ktorym akt sie konczy */
+  let prog = 0;           /* postep po wygladzeniu */
+  let rawProg = 0;        /* postep prosto ze skrolu */
+  let live = false;       /* czy mozemy juz sterowac przezroczystoscia plotna */
+  let shadowBase = .15;   /* sila cienia w spoczynku — motyw ja dostraja */
+
+  const measure = () => {
+    const end = act ? act.getBoundingClientRect().bottom + scrollY - innerHeight : innerHeight;
+    actEnd = Math.max(end, 1);
+  };
+
+  /* Kawalek osi czasu 0..1 z calego postepu */
+  const seg = (a, b) => clamp01((prog - a) / (b - a));
+  const easeInOut = t => (t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+  /* Promien, na ktory rozchodza sie polowki: w bok i w glab.
+     Trzymamy go krotko — rozsuniete polowki nie moga wychodzic poza kadr
+     ani przykrywac calego akapitu manifestu. */
+  const ORBIT_X = () => logoW * .30;
+  const ORBIT_Z = () => logoW * .28;
 
   const place = () => {
-    const y = LIFT + heroShift;
+    /* 0.00–0.35 najazd kamery i pol obrotu, 0.35–0.70 oblot polowek,
+       0.70–1.00 powrot do monogramu, zmniejszenie i wyjscie w gore */
+    const sA = easeInOut(seg(0, .35));
+    const sB = easeInOut(seg(.35, .70));
+    /* Skladanie konczy sie przed samym koncem aktu: znak ma zdazyc stanac
+       przodem do widza i byc czytelny, zanim ruszy w gore */
+    const sC = easeInOut(seg(.70, .88));
+    const sOut = easeInOut(seg(.84, 1));
+
+    /* Kamera powoli naježdža — znak rosnie w kadrze bez skoku perspektywy */
+    camera.position.set(0, LIFT + .35, dist0 * (1 - .12 * sA));
+    camera.lookAt(0, LIFT - .05, 0);
+
+    /* Rozejscie polowek: narasta do 0.35, trzyma sie w czasie oblotu
+       i wraca do zera, zanim znak zlozy sie z powrotem w monograme */
+    const sep = easeOut(seg(.06, .35)) * (1 - sC);
+
+    /* Znak zaczyna w srodku sceny hero, potem wychodzi na srodek okna,
+       a na koncu ucieka w gore poza kadr. Rozsuniete polowki zajmuja wiecej
+       miejsca, wiec na czas oblotu caly uklad lekko sie kurczy. */
+    const y = LIFT + heroShift * (1 - sA) + sOut * viewH * .9;
     rootGroup.position.set(0, y, 0);
-    rootGroup.rotation.set(tilt.pitch, tilt.yaw, 0);
-    spinner.rotation.y = spinAngle;
-    /* Podloga jedzie pod znakiem — inaczej cien uciekalby na bok kadru */
+    rootGroup.scale.setScalar((1 - .16 * sep) * (1 - .62 * sOut));
+
+    /* Odwracanie za mysza dziala w spoczynku i ustepuje, gdy prowadzi skrol.
+       Do tego lekkie skiniecie w czasie obrotu — dzieki niemu znak nigdy nie
+       staje idealnie bokiem, wiec nie znika na chwile z kadru. */
+    const hand = 1 - sA;
+    rootGroup.rotation.set(tilt.pitch * hand + .16 * Math.sin(Math.PI * sA), tilt.yaw * hand, 0);
+    /* Pol obrotu w pierwszej czesci i drugie pol na powrocie — znak konczy
+       przodem do widza, dokladnie tak, jak zaczynal */
+    spinner.rotation.y = spinAngle + Math.PI * sA + Math.PI * sC;
+
+    /* Kat oblotu: lekkie odchylenie na starcie, potem pelna petla wokol
+       wspolnego srodka — konczy sie tam, gdzie sie zaczela */
+    const th = sA * Math.PI * .35 + sB * Math.PI * 2;
+    const rx = ORBIT_X();
+    const rz = ORBIT_Z();
+    halves.forEach((half, i) => {
+      const dir = i === 0 ? -1 : 1;     /* P w lewo, A w prawo */
+      const ox = dir * rx * Math.cos(th);
+      const oz = dir * rz * Math.sin(th);
+      const oy = dir * .2 * Math.sin(th);
+      const r = half.rest;
+      half.group.position.set(
+        r.x + (ox - r.x) * sep,
+        r.y + (oy - r.y) * sep,
+        r.z + (oz - r.z) * sep
+      );
+    });
+
+    /* Podloga jedzie pod znakiem — inaczej cien uciekalby na bok kadru.
+       Przy rozsunietych polowkach cienie robia sie dlugie i klada sie na
+       tekscie, wiec na czas oblotu wyraznie je scieramy. */
     floor.position.y = y - .85;
+    floor.material.opacity = shadowBase * (1 - .55 * sep);
     /* Lampa jedzie razem ze znakiem, wiec blask przelewa sie po fasce */
-    key.position.set(tilt.yaw * 2.4 + .6, LIFT + heroShift + 4.4, 2.2);
-    key.target.position.set(0, LIFT + heroShift - .2, 0);
+    key.position.set(tilt.yaw * hand * 2.4 + .6, y + 4.4, 1.4);
+    key.target.position.set(0, y - .2, 0);
     key.target.updateMatrixWorld();
+
+    /* Na koniec aktu plotno gasnie i strona zyje dalej jak zawsze */
+    if (live) canvas.style.opacity = clamp01((.99 - prog) / .12).toFixed(3);
   };
 
   /* --- petla ---------------------------------------------------------------- */
@@ -171,13 +253,19 @@ function init() {
     const dt = last ? Math.min((now - last) / 1000, .05) : .016;
     last = now;
 
-    spinAngle += dt * .12;                       /* powolny obrot w spoczynku */
+    rawProg = clamp01(scrollY / actEnd);
+    prog += (rawProg - prog) * .08;              /* doganianie postepu skrolu */
+    if (Math.abs(rawProg - prog) < .0004) prog = rawProg;
+
+    /* Samoczynny obrot tylko w spoczynku — dalej prowadzi skrol */
+    spinAngle += dt * .12 * (1 - clamp01(prog / .2));
     tilt.yaw += (tiltTo.yaw - tilt.yaw) * .08;   /* doganianie, bez skokow */
     tilt.pitch += (tiltTo.pitch - tilt.pitch) * .08;
 
     place();
     frame();
-    wake();
+    /* Po akcie petla zasypia — plotno jest wygaszone, nie ma czego rysowac */
+    if (prog < .9995 || rawProg < .9995) wake();
   };
 
   const wake = () => {
@@ -270,6 +358,14 @@ function init() {
       resize();
       root.classList.add('has-mono3d');
       requestAnimationFrame(() => canvas.classList.add('is-on'));
+      /* Dopiero po wejsciu plotna przejmujemy przezroczystosc w swoje rece —
+         inaczej gladkie przejscie z CSS gryzloby sie z gaszeniem na koncu aktu */
+      setTimeout(() => {
+        canvas.classList.add('is-live');
+        live = true;
+        place();
+        frame();
+      }, 1300);
       frame();
       wake();
     },
@@ -279,6 +375,10 @@ function init() {
 
   /* --- nasluchy ------------------------------------------------------------- */
   addEventListener('resize', resize, { passive: true });
+  addEventListener('scroll', wake, { passive: true });
+  /* Zmiana jezyka albo doladowanie kroju zmienia wysokosc sekcji — mierzymy
+     akt od nowa, zeby postep dalej konczyl sie dokladnie na manifescie */
+  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
 
   if (fine.matches && !calm.matches) {
     addEventListener('pointermove', event => {
@@ -302,7 +402,7 @@ function init() {
     key.intensity = dark ? 2.6 : 1.9;
     rim.intensity = dark ? 1.6 : .9;
     renderer.toneMappingExposure = dark ? 1.2 : 1.05;
-    floor.material.opacity = dark ? .28 : .15;
+    shadowBase = dark ? .28 : .15;
     frame();
   };
   new MutationObserver(applyTheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });

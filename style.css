@@ -6516,3 +6516,15 @@ body.is-gating { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .mono3d { transition: opacity .2s linear; }
 }
+
+/* Po wejsciu plotna przezroczystoscia steruje juz skrypt — CSS musi ustapic,
+   inaczej gaszenie na koncu aktu wleklo by sie za skrolem */
+.mono3d.is-live { transition: none; }
+
+/* Gdy scena 3D dziala, hero dostaje caly pierwszy ekran: pierwszy akt ma
+   wtedy okolo jednego ekranu przewijania na cztery fazy tanca znaku.
+   Bez WebGL zostaje dawna, nizsza scena — uklad zapasowy sie nie zmienia. */
+.has-mono3d .hero__scene { height: clamp(360px, 72svh, 780px); }
+@media (max-width: 900px) {
+  .has-mono3d .hero__scene { height: clamp(300px, 56svh, 520px); }
+}
