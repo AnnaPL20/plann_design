@@ -6793,3 +6793,35 @@ body.page--ink .menu .label { color: #101112; }
 }
 .fn__step.is-active { position: relative; }
 .fn__stage { min-height: clamp(110px, 15vh, 180px); }
+
+/* ---------------------------------------------------------------------------
+   86. PRACE: ROWNE KADRY I ROWNE ODSTEPY (17.09.2026)
+   Wlascicielka: prace stoja nierowno, a przyciski uciekly od siatki i od
+   nastepnego bloku. Dwie rzeczy:
+   1. kazdy kafelek ma ten sam kadr (4:5, zdjecie przyciete), wiec rzedy
+      koncza sie rowno i nie zostaja dziury po wyzszych zdjeciach;
+   2. odstep siatka -> przyciski -> nastepna sekcja jest jeden i ten sam.
+   --------------------------------------------------------------------------- */
+.wtile__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.wtile__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Przy dwoch w rzedzie kadr moze byc spokojniejszy, szerszy */
+.works__grid[style*="--cols:2"] .wtile__media { aspect-ratio: 3 / 2; }
+
+/* Podpis trzyma sie kadru, wiec wszystkie rzedy maja rowna linie bazowa */
+.wtile__cap { margin-top: 8px; }
+
+/* Siatka konczy sie tam, gdzie zaczynaja przyciski — ten sam odstep co miedzy
+   sekcjami, bez dziury na pol ekranu. Stary margines 96 px (sekcja 53) robil
+   dziure, wiec zerujemy go i caly odstep trzymamy na jednym wypelnieniu. */
+.works { padding-bottom: 0; }
+.works__cta {
+  margin-top: 0;
+  padding-block: clamp(30px, 3.6vw, 52px);
+}
