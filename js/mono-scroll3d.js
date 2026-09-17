@@ -214,7 +214,12 @@ function init() {
        miejsca, wiec na czas oblotu caly uklad lekko sie kurczy. */
     /* Na telefonie znak nie schodzi az na srodek okna — tam czeka naglowek,
        a dwa czarne wiersze na metalu robia sie nieczytelne */
-    const y = LIFT + heroShift * (1 - sA * (narrow.matches ? .3 : 1)) + sOut * viewH * .9;
+    /* Na telefonie znak dodatkowo podjezdza w gore: na waskim ekranie tekst
+       i tak przechodzi przez caly kadr, a szary napis na jasnym metalu robil
+       sie nieczytelny. Wyzej jest spokojniej. */
+    const y = LIFT + heroShift * (1 - sA * (narrow.matches ? .3 : 1))
+      + (narrow.matches ? sA * viewH * .14 : 0)
+      + sOut * viewH * .9;
     rootGroup.position.set(0, y, 0);
     rootGroup.scale.setScalar((1 - .16 * sep) * (1 - .62 * sOut));
 
