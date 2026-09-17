@@ -206,12 +206,66 @@
     </section>
   </main>
 
+  <!-- Stopka taka sama jak na stronie glownej (17.09.2026): czerwony blok
+       z odnosnikami i pas zdjec na czerni pod spodem. Fala podswietlania
+       kafelkow: js/footer-works.js. -->
   <footer class="footer accent-block" id="footer">
     <div class="container">
-      <div class="footer__grid">
-        <p class="label footer__meta">© <span data-year>2026</span> PA / PLANN Design™</p>
-        <a class="label footer__top" href="mailto:annapytsko@gmail.com">[ annapytsko@gmail.com ]</a>
+      <div class="footer__head" data-reveal>
+        <img class="footer__wordmark" src="img/logo-plann-white.svg" alt="PLANN Design">
+        <img class="footer__mark" src="img/logo-pa-white.svg" alt="" aria-hidden="true">
       </div>
+
+      <div class="footer__cols" data-reveal data-reveal-stagger>
+        <div class="footer__col">
+          <p class="label footer__colLabel" data-i18n="nav.menu">Navigation</p>
+          <nav class="footer__nav" aria-label="Footer">
+            <a href="index.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.home">Home</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.projects">Projects</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="index.html#services"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.services">Services</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="shop.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.shop">Shop</span><span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.contact">Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
+          </nav>
+        </div>
+
+        <div class="footer__col">
+          <p class="label footer__colLabel">Email</p>
+          <nav class="footer__nav">
+            <a class="footer__email" href="mailto:annapytsko@gmail.com"><span class="btn__br" aria-hidden="true">[</span>annapytsko@gmail.com<span class="btn__br" aria-hidden="true">]</span></a>
+          </nav>
+        </div>
+
+        <div class="footer__col">
+          <p class="label footer__colLabel" data-i18n="contact.socials">Social</p>
+          <nav class="footer__nav">
+            <a href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Instagram<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Behance<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://t.me/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Telegram<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://www.tiktok.com/@pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>TikTok<span class="btn__br" aria-hidden="true">]</span></a>
+            <a href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>LinkedIn<span class="btn__br" aria-hidden="true">]</span></a>
+          </nav>
+        </div>
+
+        <div class="footer__col">
+          <p class="label footer__colLabel" data-i18n="about.f2k">Studio</p>
+          <p class="footer__note">Anna Pytsko<br>Graphic &amp; Web Designer<br>Poland · worldwide</p>
+        </div>
+      </div>
+
+      <div class="footer__grid">
+        <p class="label footer__meta">© <span data-year>2026</span> Anna Pytsko · PLANN Design™</p>
+        <p class="label footer__clock"><span class="clock" data-clock>00:00:00</span></p>
+        <p class="label footer__rights" data-i18n="footer.rights">All rights reserved.</p>
+      </div>
+    </div>
+
+    <!-- Pasek kafelkow prac: automat podswietla je po kolei (js/footer-works.js) -->
+    <div class="footer__works" data-reveal aria-label="Selected work">
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-portfolio.png" alt="Creative Portfolio 2026" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-aura.jpg" alt="AURA PUFFER" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-synq.jpg" alt="SYNQ Loft Bar" loading="lazy"></a>
+      <a class="footer__work" href="index.html#projects"><img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine" loading="lazy"></a>
     </div>
   </footer>
 
@@ -229,6 +283,8 @@
   <script src="script.js" defer></script>
   <script src="js/ui-liquid.js" defer></script>
   <script src="js/scroll.js" defer></script>
+  <!-- Fala kafelkow w stopce — ta sama co na stronie glownej -->
+  <script src="js/footer-works.js" defer></script>
   <script src="js/contact-funnel.js" defer></script>
   <!-- Wstega okladek zdjeta 17.09.2026 razem ze swoim blokiem w tresci.
        Kod zostaje — wraca odkomentowaniem tej linii i bloku .arc powyzej.
