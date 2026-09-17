@@ -39,7 +39,12 @@ function init() {
   const fine = matchMedia('(pointer: fine)');
   const narrow = matchMedia('(max-width: 900px)');
 
-  /* Bez WebGL konczymy po cichu — w hero zostaje plaska monograma */
+  /* Bez WebGL konczymy po cichu — w hero zostaje plaska monograma.
+     Pytamy o kontekst sami, na osobnym plotnie: three przy nieudanej probie
+     wypisuje blad do konsoli, a konsola ma byc czysta. */
+  const check = document.createElement('canvas');
+  if (!(check.getContext('webgl2') || check.getContext('webgl'))) return;
+
   let renderer;
   try {
     renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -109,7 +114,7 @@ function init() {
   const DEG = Math.PI / 180;
   /* Ile szerokosci ekranu zajmuje znak. Na telefonie znak ma byc mniejszy,
      zeby nie rozpychal kadru i nie zjadal calego pierwszego ekranu. */
-  const fillFor = w => (w < 900 ? .62 : .46);
+  const fillFor = w => (w < 900 ? .72 : .46);
   const LIFT = .55;       /* ile znak stoi nad podloga */
   let heroShift = 0;      /* przesuniecie w gore/dol, zeby znak stanal w hero */
   let viewH = 4;
@@ -172,8 +177,8 @@ function init() {
   /* Promien, na ktory rozchodza sie polowki: w bok i w glab.
      Trzymamy go krotko — rozsuniete polowki nie moga wychodzic poza kadr
      ani przykrywac calego akapitu manifestu. */
-  const ORBIT_X = () => logoW * .30;
-  const ORBIT_Z = () => logoW * .28;
+  const ORBIT_X = () => logoW * (narrow.matches ? .22 : .30);
+  const ORBIT_Z = () => logoW * (narrow.matches ? .20 : .28);
 
   const place = () => {
     /* 0.00–0.35 najazd kamery i pol obrotu, 0.35–0.70 oblot polowek,
@@ -196,7 +201,9 @@ function init() {
     /* Znak zaczyna w srodku sceny hero, potem wychodzi na srodek okna,
        a na koncu ucieka w gore poza kadr. Rozsuniete polowki zajmuja wiecej
        miejsca, wiec na czas oblotu caly uklad lekko sie kurczy. */
-    const y = LIFT + heroShift * (1 - sA) + sOut * viewH * .9;
+    /* Na telefonie znak nie schodzi az na srodek okna — tam czeka naglowek,
+       a dwa czarne wiersze na metalu robia sie nieczytelne */
+    const y = LIFT + heroShift * (1 - sA * (narrow.matches ? .3 : 1)) + sOut * viewH * .9;
     rootGroup.position.set(0, y, 0);
     rootGroup.scale.setScalar((1 - .16 * sep) * (1 - .62 * sOut));
 
@@ -245,7 +252,14 @@ function init() {
   let raf = 0;
 
   const frame = () => {
-    if (ready) renderer.render(scene, camera);
+    if (!ready) return;
+    renderer.render(scene, camera);
+    /* Na telefonie cien liczymy raz i zostawiamy — przeliczanie mapy cieni
+       przy kazdej klatce jest tam najdrozsza rzecza w calej scenie */
+    if (narrow.matches && renderer.shadowMap.autoUpdate) {
+      renderer.shadowMap.autoUpdate = false;
+      renderer.shadowMap.needsUpdate = false;
+    }
   };
 
   const tick = now => {
@@ -276,6 +290,15 @@ function init() {
   const sleep = () => {
     if (raf) { cancelAnimationFrame(raf); raf = 0; }
     last = 0;
+  };
+
+  /* Wersja spokojna: zamiast tanca — jeden nieruchomy znak w hero.
+     Plotno pokazuje sie tylko wtedy, gdy hero jest na ekranie. */
+  const quietGate = () => {
+    if (!('IntersectionObserver' in window)) return;
+    new IntersectionObserver(entries => {
+      canvas.classList.toggle('is-on', entries[0].isIntersecting);
+    }, { rootMargin: '0px' }).observe(stage);
   };
 
   /* --- budowa bryly ze znaku ------------------------------------------------ */
@@ -358,14 +381,21 @@ function init() {
       resize();
       root.classList.add('has-mono3d');
       requestAnimationFrame(() => canvas.classList.add('is-on'));
-      /* Dopiero po wejsciu plotna przejmujemy przezroczystosc w swoje rece —
-         inaczej gladkie przejscie z CSS gryzloby sie z gaszeniem na koncu aktu */
-      setTimeout(() => {
-        canvas.classList.add('is-live');
-        live = true;
-        place();
-        frame();
-      }, 1300);
+      if (calm.matches) {
+        /* prefers-reduced-motion: znak stoi nieruchomo w hero, bez tanca.
+           Plotno chowa sie samo, gdy hero wyjedzie z ekranu — inaczej
+           wisialoby nad cala strona. Przezroczystosc prowadzi tu CSS. */
+        quietGate();
+      } else {
+        /* Dopiero po wejsciu plotna przejmujemy przezroczystosc w swoje rece —
+           inaczej gladkie przejscie z CSS gryzloby sie z gaszeniem na koncu aktu */
+        setTimeout(() => {
+          canvas.classList.add('is-live');
+          live = true;
+          place();
+          frame();
+        }, 1300);
+      }
       frame();
       wake();
     },
@@ -376,6 +406,13 @@ function init() {
   /* --- nasluchy ------------------------------------------------------------- */
   addEventListener('resize', resize, { passive: true });
   addEventListener('scroll', wake, { passive: true });
+  /* Obrot telefonu albo zmiana okna: na duzym ekranie cien znow ma zyc */
+  narrow.addEventListener('change', () => {
+    renderer.shadowMap.autoUpdate = !narrow.matches;
+    renderer.shadowMap.needsUpdate = true;
+    resize();
+    wake();
+  });
   /* Zmiana jezyka albo doladowanie kroju zmienia wysokosc sekcji — mierzymy
      akt od nowa, zeby postep dalej konczyl sie dokladnie na manifescie */
   if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
@@ -392,6 +429,16 @@ function init() {
   /* Niewidoczna karta nie rysuje nic */
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) sleep(); else wake();
+  });
+
+  /* Gdyby przegladarka zabrala kontekst 3D (slaby sprzet, uspiony laptop),
+     wracamy do plaskiej monogramy zamiast zostawiac puste plotno */
+  canvas.addEventListener('webglcontextlost', event => {
+    event.preventDefault();
+    sleep();
+    ready = false;
+    root.classList.remove('has-mono3d');
+    canvas.classList.remove('is-on');
   });
 
   /* Ciemny motyw: jasny metal na czarnym tle traci odbicia, wiec dokladamy
