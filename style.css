@@ -6740,3 +6740,17 @@ body.page--ink .menu .label { color: #101112; }
    teraz na cztery wiersze. Dajemy mu troche wiecej szerokosci. */
 .intro__title { max-width: 16ch; }
 @media (max-width: 900px) { .intro__title { max-width: 20ch; } }
+
+/* ---------------------------------------------------------------------------
+   84. STOPKA: KAFELKI PRZYGASZONE, FALA WIDOCZNA (17.09.2026)
+   Poprawka po uwadze wlascicielki: przy jasnosci 0.5 wszystkie kafelki byly
+   widoczne naraz i fala gubila sie w tlumie. Wracamy do mocno przygaszonych
+   zdjec — wtedy widac, ze zapalaja sie po kolei. Najechanie kursorem dziala
+   jak dotad (js/footer-works.js oddaje wtedy sterowanie myszy).
+   --------------------------------------------------------------------------- */
+.footer__work img {
+  opacity: .16;
+  transition: opacity .9s var(--ease-out), transform .8s var(--ease-out);
+}
+.footer__works:not(.is-manual) .footer__work.is-auto img { opacity: .78; }
+.footer__work:hover img { opacity: 1; }
