@@ -1,14 +1,21 @@
 /* =============================================================================
-   PLANN Design — plama negatywu w oknie hero
+   PLANN Design — plama negatywu w oknie
    Za kursorem (albo palcem) jedzie plama z mix-blend-mode: difference, ktora
    odwraca kolory monogramu i tla pod soba. To autorska animacja wlascicielki —
    nie zmieniac bez jej zgody (patrz CLAUDE.md).
+
+   17.09.2026: okno przeprowadzilo sie z hero do sekcji "O mnie" (portret),
+   bo hero zajmuje teraz scena 3D ze znakiem. Sama logika zostaje nietknieta —
+   zmienia sie tylko selektor, zeby skrypt znalazl okno w obu miejscach.
+   Nazwa pliku zostaje ta sama, zeby nie gubic historii zmian.
    ============================================================================= */
 (() => {
   'use strict';
 
-  const media = document.querySelector('[data-hero-media]');
-  const spot = document.querySelector('[data-hero-negative]');
+  /* [data-negative-media] — nowe okno w sekcji "O mnie";
+     [data-hero-media] — stare okno hero, gdyby kiedys wrocilo */
+  const media = document.querySelector('[data-negative-media], [data-hero-media]');
+  const spot = media && media.querySelector('[data-negative-spot], [data-hero-negative]');
   if (!media || !spot) return;
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;

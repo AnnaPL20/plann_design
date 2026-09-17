@@ -156,6 +156,17 @@
           <p class="label label--br intro__label" data-reveal data-i18n="about.label">About me</p>
           <p class="intro__text" data-reveal style="--d:.08s"><strong data-i18n="about.lead">I am Anna Pytsko, a graphic and web designer.</strong> <span data-i18n="about.text">Hi, I’m Anna, a multidisciplinary graphic and web designer.</span></p>
         </div>
+
+        <!-- Okno portretu z plama negatywu.
+             17.09.2026: efekt przeprowadzil sie tutaj z hero — w oknie stoi
+             znak PA, a za kursorem jezdzi biala plama, ktora odwraca kolory
+             pod soba (mix-blend-mode: difference). Zachowanie jeden do jednego
+             jak wczesniej: te same 150 px, to samo tlumienie i ten sam skrypt
+             js/hero-negative.js — w logice nic nie ruszamy. -->
+        <figure class="intro__portrait" data-reveal style="--d:.16s" data-negative-media>
+          <img class="intro__portrait-mono" src="img/logo-pa-dark.svg" alt="" aria-hidden="true">
+          <span class="intro__negative" data-negative-spot aria-hidden="true"></span>
+        </figure>
       </div>
     </section>
 
@@ -510,10 +521,10 @@
   <script src="js/cards-3d.js" defer></script>
   <script src="js/scroll.js" defer></script>
   <script src="js/manifesto.js" defer></script>
-  <!-- Plama negatywu wylaczona 14.09.2026 na prosbe wlascicielki: w oknie hero
-       ma jezdzic tylko nasz kwadracik-kursor, a nie drugie biale kolo.
-       Skrypt i style zostaja nietkniete — wraca odkomentowaniem tej linii.
-       <script src="js/hero-negative.js" defer></script> -->
+  <!-- Plama negatywu: od 17.09.2026 pracuje w oknie portretu w sekcji
+       "O mnie" (w hero stoi scena 3D ze znakiem). Ten sam plik, to samo
+       zachowanie — patrz CLAUDE.md, punkt o nietykalnych efektach. -->
+  <script src="js/hero-negative.js" defer></script>
   <script type="module" src="js/hero-logo3d.js"></script>
   <script src="js/footer-works.js" defer></script>
   <!-- Nasuwanie kart prac wylaczone 15.09.2026: prace stoja teraz w siatce.

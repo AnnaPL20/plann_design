@@ -12,6 +12,7 @@ Dotyczy to w szczegolnosci:
 | Efekt | Gdzie zyje |
 | --- | --- |
 | **Negatyw pod kursorem** — kwadracik `mix-blend-mode: difference`, 18×18 px w spoczynku, 34×34 px nad kartami prac | `style.css` sekcja 14 `.cursor` + nadpisania ponizej; logika w `script.js` (`is-visible` / `is-hover` / `is-work`) |
+| **Plama negatywu w oknie portretu** — biale kolo 150 px `mix-blend-mode: difference` jezdzi za kursorem po znaku PA w sekcji "O mnie" (do 17.09.2026 mieszkalo w hero) | `style.css` sekcja 76; `js/hero-negative.js` |
 | **Szklane krople (liquid glass)** na przyciskach, pigulkach, chipsach i ikonach socjalnych | `style.css` sekcja 20; `js/ui-liquid.js` |
 | **Galaretowaty klik** (Web Animations API) i falka (ripple) | `js/ui-liquid.js` |
 | **Plynna kropla przelacznika jezyka** z filtrem SVG gooey | `style.css` sekcja 20 + `js/ui-liquid.js` |
@@ -36,7 +37,6 @@ odkomentowaniem jednej linii w `index.html`):
 | Co | Kiedy i dlaczego | Gdzie lezy |
 | --- | --- | --- |
 | **Pryzma 3D pod menu** | 14.09.2026 — jedynym obiektem 3D ma byc znak PA w hero | `style.css` sekcja 66; `js/obj3d.js` |
-| **Biala plama negatywu w hero** | 14.09.2026 — nad scena ma jezdzic tylko kwadracik-kursor, nie drugie kolo | `style.css` sekcja okolo `.hero__negative`; `js/hero-negative.js` |
 | **Szklana kropla na ikonach socjalnych** | 14.09.2026 — robila z nich kafelki; na przyciskach i pigulkach dziala dalej | `style.css` sekcja 70 |
 | **Nasuwanie kart prac** | 15.09.2026 — prace stoja teraz w siatce, gortanie po jednej meczylo | `style.css` sekcje 63 i 73; `js/works-stack.js` |
 | **Model rzezbionej glowy** | 13.09.2026 | `js/obj3d-model.js`; `models/rodin-head.glb` |
@@ -75,6 +75,7 @@ odkomentowaniem jednej linii w `index.html`):
 | `js/works-stack.js` | nasuwanie kart prac — odlozone 15.09.2026 |
 | `js/hero-logo3d.js` | znak PA w scenie hero (czarny metal) |
 | `js/intro-gate.js` | kurtyna wejsciowa ze znakiem |
+| `js/hero-negative.js` | plama negatywu w oknie portretu (sekcja "O mnie") |
 | `js/obj3d.js` | pryzma z okladek pod menu |
 | `js/obj3d-model.js` | model glowy — odlozony 13.09.2026, skrypt wylaczony w `index.html` |
 | `models/` | modele 3D (`.glb`); na razie nieuzywane przez strone |

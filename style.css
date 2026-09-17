@@ -6422,3 +6422,59 @@ body.is-gating { overflow: hidden; }
 @media (max-width: 520px) {
   .works__grid { --cols: 1 !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   76. OKNO PORTRETU W SEKCJI "O MNIE" (17.09.2026)
+   Plama negatywu przeprowadzila sie tutaj z hero — w hero stoi teraz scena 3D
+   ze znakiem i drugie biale kolo nie mialoby tam czego szukac. Okno dostaje te
+   same wymiary plamy, ten sam ksztalt i to samo tlumienie co wczesniej, wiec
+   efekt zachowuje sie jeden do jednego. Logika: js/hero-negative.js.
+   Stare style okna hero (.hero__media / .hero__negative) zostaja nietkniete.
+   --------------------------------------------------------------------------- */
+.intro__portrait {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  margin: clamp(22px, 3vw, 38px) 0 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--paper-2);
+  isolation: isolate;   /* plama odwraca tylko to, co lezy w oknie */
+  cursor: none;         /* nad oknem jedzie plama, nie strzalka systemu */
+}
+.intro__portrait-mono {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0 12%;
+  object-fit: contain;
+}
+/* Ciemny motyw: znak jest czarnym wektorem, wiec na ciemnym papierze
+   odwracamy go na bialy — tak samo jak robi to plama */
+:root[data-theme="dark"] .intro__portrait-mono { filter: invert(1); }
+
+/* Plama odwracajaca kolory — pozycje ustawia js/hero-negative.js.
+   Rozmiar i czasy przepisane z okna hero bez zadnej zmiany. */
+.intro__negative {
+  position: absolute;
+  left: var(--mx, -999px);
+  top: var(--my, -999px);
+  z-index: 2;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  background: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s linear;
+}
+.intro__portrait.is-negative .intro__negative { opacity: 1; }
+
+@media (max-width: 900px) {
+  .intro__portrait { max-width: 300px; margin-top: clamp(18px, 5vw, 28px); }
+}
