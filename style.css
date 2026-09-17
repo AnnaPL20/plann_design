@@ -6478,3 +6478,41 @@ body.is-gating { overflow: hidden; }
 @media (max-width: 900px) {
   .intro__portrait { max-width: 300px; margin-top: clamp(18px, 5vw, 28px); }
 }
+
+/* ---------------------------------------------------------------------------
+   77. SCENA SKROLU ZE ZNAKIEM PA (17.09.2026)
+   Znak PA prowadzi caly pierwszy akt strony. Plotno lezy na caly ekran,
+   przyklejone do okna (position: fixed), ZA trescia i bez lapania klikniec.
+   Tlo plotna jest przezroczyste, dlatego hero i wstep oddaja swoje tlo —
+   papier maluje samo body, a scena widnieje miedzy papierem a tekstem.
+   Plaska monograma w hero zostaje jako zapas na wypadek braku WebGL i gasnie
+   dopiero wtedy, gdy bryla naprawde stanela (.has-mono3d).
+   Scena: js/mono-scroll3d.js.
+   --------------------------------------------------------------------------- */
+.mono3d {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: none;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease-out);
+}
+.mono3d.is-on { opacity: 1; }
+
+/* Tresc idzie nad plotnem */
+#main { position: relative; z-index: 1; }
+
+/* Hero i wstep oddaja tlo, zeby bylo widac scene pod tekstem */
+.has-mono3d .hero,
+.has-mono3d .intro { background: transparent; }
+
+/* Zapas bez WebGL gasnie dopiero, gdy stanela bryla */
+.has-mono3d .hero__mono { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mono3d { transition: opacity .2s linear; }
+}

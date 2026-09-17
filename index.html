@@ -118,6 +118,11 @@
     <p class="menu__rights">Anna Pytsko · PLANN Design™ — <span data-year>2026</span><br><span data-i18n="footer.rights">All rights reserved.</span></p>
   </nav>
 
+  <!-- Plotno sceny 3D ze znakiem PA: na caly ekran, przyklejone do okna,
+       za trescia i bez lapania klikniec. Tlo przezroczyste — pod spodem
+       widac papier serwisu. Scena: js/mono-scroll3d.js, style: sekcja 77. -->
+  <canvas class="mono3d" data-mono3d aria-hidden="true"></canvas>
+
   <main id="main">
 
     <!-- Sekcja z pryzma 3D usunieta ze strony 14.09.2026 na wyrazna prosbe
@@ -525,7 +530,11 @@
        "O mnie" (w hero stoi scena 3D ze znakiem). Ten sam plik, to samo
        zachowanie — patrz CLAUDE.md, punkt o nietykalnych efektach. -->
   <script src="js/hero-negative.js" defer></script>
-  <script type="module" src="js/hero-logo3d.js"></script>
+  <!-- Stara scena hero wylaczona 17.09.2026: znak PA prowadzi teraz caly
+       pierwszy akt strony na plotnie na caly ekran (js/mono-scroll3d.js).
+       Kod starej sceny zostaje nietkniety — wraca odkomentowaniem tej linii.
+       <script type="module" src="js/hero-logo3d.js"></script> -->
+  <script type="module" src="js/mono-scroll3d.js"></script>
   <script src="js/footer-works.js" defer></script>
   <!-- Nasuwanie kart prac wylaczone 15.09.2026: prace stoja teraz w siatce.
        Kod zostaje — wraca odkomentowaniem tej linii i przywroceniem .wrow.
