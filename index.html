@@ -164,16 +164,17 @@
           <p class="intro__text" data-reveal style="--d:.08s"><strong data-i18n="about.lead">I am Anna Pytsko, a graphic and web designer.</strong> <span data-i18n="about.text">Hi, I’m Anna, a multidisciplinary graphic and web designer.</span></p>
         </div>
 
-        <!-- Okno portretu z plama negatywu.
-             17.09.2026: efekt przeprowadzil sie tutaj z hero — w oknie stoi
-             znak PA, a za kursorem jezdzi biala plama, ktora odwraca kolory
-             pod soba (mix-blend-mode: difference). Zachowanie jeden do jednego
-             jak wczesniej: te same 150 px, to samo tlumienie i ten sam skrypt
-             js/hero-negative.js — w logice nic nie ruszamy. -->
-        <figure class="intro__portrait" data-reveal style="--d:.16s" data-negative-media>
-          <img class="intro__portrait-mono" src="img/logo-pa-dark.svg" alt="" aria-hidden="true">
-          <span class="intro__negative" data-negative-spot aria-hidden="true"></span>
-        </figure>
+        <!-- Okno portretu ze znakiem PA zdjete 17.09.2026 na wyrazna prosbe
+             wlascicielki: pod tekstem o mnie nie ma byc kolejnego znaku PA.
+             UWAGA: razem z oknem znika plama negatywu, ktora tu mieszkala
+             (przeprowadzona rano z hero). Kod zostaje w calosci —
+             style.css sekcja 76 i js/hero-negative.js — a okno wraca
+             odkomentowaniem znacznikow ponizej.
+             <figure class="intro__portrait" data-reveal style="--d:.16s" data-negative-media>
+             <img class="intro__portrait-mono" src="img/logo-pa-dark.svg" alt="" aria-hidden="true">
+             <span class="intro__negative" data-negative-spot aria-hidden="true"></span>
+             </figure>
+        -->
       </div>
     </section>
 
@@ -434,12 +435,12 @@
     <div class="case-viewer__track" data-case-track data-lenis-prevent>
       <div class="case-viewer__media" data-case-media></div>
       <div class="case-viewer__info">
-        <p class="label">Case study</p>
+        <p class="label" data-i18n="case.label">Project</p>
         <h2 class="display h2" id="caseViewerTitle" data-case-title></h2>
         <p class="case-viewer__description" id="caseDescription" data-case-description></p>
         <div class="case-viewer__controls">
           <span class="case-viewer__progress" data-case-progress>0%</span>
-          <button class="btn" type="button" data-case-about aria-expanded="false" aria-controls="caseDescription">[ about ]</button>
+          <button class="btn" type="button" data-case-about aria-expanded="false" aria-controls="caseDescription"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="case.about">About the project</span><span class="btn__br" aria-hidden="true">]</span></button>
           <!-- Adres domyslny; JS podmienia go na link konkretnego projektu przy otwarciu podgladu -->
           <a class="btn btn--solid" data-case-link href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener">Explore more <span aria-hidden="true">↗</span></a>
         </div>
