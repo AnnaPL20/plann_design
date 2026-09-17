@@ -6602,3 +6602,62 @@ body.is-gating { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .case-viewer__description { transition: opacity .2s linear; }
 }
+
+/* ---------------------------------------------------------------------------
+   82. STRONA NA TUSZU: JASNA SZAPKA BEZ POSWIATY (17.09.2026)
+   Wlascicielka: "te cienie potaniaja". Na czarnej stronie pasek mial pod soba
+   biala luna (box-shadow z sekcji 62) i ciemne, ledwo widoczne szklo.
+   Teraz jest odwrotnie: pasek jest po prostu jasny na czerni, bez zadnego
+   cienia i bez rozmycia tla. Znak, pigulka i krzyzyk przewracaja sie na
+   ciemne, zeby bylo je widac na jasnym tle paska.
+   Dotyczy tylko stron na tuszu (body.page--ink) — strona glowna bez zmian.
+   --------------------------------------------------------------------------- */
+body.page--ink .nav {
+  background: #f4f4f5;
+  border-color: rgba(0, 0, 0, .10);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: #101112;
+}
+body.page--ink .nav--scrolled {
+  border-color: rgba(0, 0, 0, .14);
+  box-shadow: none;
+}
+/* Znak w pasku: na jasnym tle idzie ciemna wersja wektora */
+body.page--ink .nav .logo__img--onink { display: none; }
+body.page--ink .nav .logo__img--onpaper { display: block; }
+body.page--ink .nav .logo__text { color: #101112; }
+
+/* Pigulka CONTACT: na jasnym pasku musi byc ciemna, nie biala */
+body.page--ink .nav .btn--solid {
+  background: #101112;
+  color: #fff;
+  border-color: #101112;
+  box-shadow: none;
+}
+body.page--ink .nav .btn--solid:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* Krzyzyk menu: ciemne kreski w jasnym kolku */
+body.page--ink .nav .burger {
+  color: #101112;
+  border-color: rgba(0, 0, 0, .14);
+  background: rgba(0, 0, 0, .05);
+}
+
+/* Panel menu pod paskiem trzyma ten sam jasny ton, tez bez poswiaty */
+body.page--ink .menu {
+  background: #f4f4f5;
+  border-color: rgba(0, 0, 0, .10);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: #101112;
+}
+body.page--ink .menu a,
+body.page--ink .menu .menu__rights,
+body.page--ink .menu .label { color: #101112; }
