@@ -6562,3 +6562,11 @@ body.is-gating { overflow: hidden; }
 @media (max-width: 640px) {
   .footer__works { gap: 0; }
 }
+
+/* ---------------------------------------------------------------------------
+   80. PRACE: CIASNIEJSZA SIATKA (17.09.2026)
+   Wlascicielka: kafelki stoja za daleko od siebie. Odstepy schodza do kilku
+   pikseli — rzad czyta sie jak jedna plansza, a nie jak rozsypane karty.
+   Przelacznik gestosci (2 / 3 / 4) dziala jak dzialal.
+   --------------------------------------------------------------------------- */
+.works__grid { gap: clamp(10px, 1vw, 16px) clamp(4px, .5vw, 8px); }
