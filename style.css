@@ -6542,7 +6542,7 @@ body.is-gating { overflow: hidden; }
    dziure przed pracami, a nad tekstem to po prostu miejsce, w ktorym gra
    scena 3D. Suma zostaje prawie ta sama, wiec akt trwa tyle samo. */
 .has-mono3d .intro {
-  padding-top: clamp(200px, 105vh, 1150px);
+  padding-top: clamp(150px, 52vh, 560px);
   padding-bottom: clamp(48px, 7vh, 110px);
 }
 @media (max-width: 900px) {

@@ -220,7 +220,15 @@ function init() {
     const y = LIFT + heroShift * (1 - sA * (narrow.matches ? .3 : 1))
       + (narrow.matches ? sA * viewH * .14 : 0)
       + sOut * viewH * .9;
-    rootGroup.position.set(0, y, 0);
+    /* Znak nie przewija sie przez pustke: schodzi z hero w lewo, a potem
+       przechodzi na prawa strone, gdzie stoi akapit o mnie — tekst i bryla
+       ida razem, a nie osobno. Na telefonie zostaje po srodku, bo tam kolumna
+       jest jedna i kazde przesuniecie wyrzucaloby znak poza kadr. */
+    const viewW = viewH * camera.aspect;
+    const drift = narrow.matches
+      ? 0
+      : viewW * (-.2 * easeInOut(seg(.10, .45)) + .42 * easeInOut(seg(.45, .88)));
+    rootGroup.position.set(drift, y, 0);
     rootGroup.scale.setScalar((1 - .16 * sep) * (1 - .62 * sOut));
 
     /* Odwracanie za mysza dziala w spoczynku i ustepuje, gdy prowadzi skrol.
@@ -254,10 +262,11 @@ function init() {
        Przy rozsunietych polowkach cienie robia sie dlugie i klada sie na
        tekscie, wiec na czas oblotu wyraznie je scieramy. */
     floor.position.y = y - .85;
+    floor.position.x = rootGroup.position.x;
     floor.material.opacity = shadowBase * (1 - .55 * sep);
     /* Lampa jedzie razem ze znakiem, wiec blask przelewa sie po fasce */
-    key.position.set(tilt.yaw * hand * 2.4 + .6, y + 4.4, 1.4);
-    key.target.position.set(0, y - .2, 0);
+    key.position.set(rootGroup.position.x + tilt.yaw * hand * 2.4 + .6, y + 4.4, 1.4);
+    key.target.position.set(rootGroup.position.x, y - .2, 0);
     key.target.updateMatrixWorld();
 
     /* Kolor znaku jedzie razem z postepem: w hero czarny metal, a przy
@@ -294,7 +303,13 @@ function init() {
     last = now;
 
     rawProg = clamp01(scrollY / actEnd);
-    prog += (rawProg - prog) * .05;              /* doganianie postepu skrolu */
+    /* Doganianie plus twardy limit na klatke: gdy ktos szarpnie kolkiem przez
+       pol strony, znak i tak przekreci sie spokojnie, a nie w jednej klatce.
+       0.006 na klatke to okolo 0.36 postepu na sekunde — caly akt nie moze
+       przeleciec szybciej niz w okolo trzy sekundy. */
+    const step = (rawProg - prog) * .05;
+    const cap = .012;
+    prog += step < -cap ? -cap : step > cap ? cap : step;
     if (Math.abs(rawProg - prog) < .0004) prog = rawProg;
 
     /* Samoczynny obrot tylko w spoczynku — dalej prowadzi skrol */
