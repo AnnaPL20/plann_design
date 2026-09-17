@@ -6754,3 +6754,42 @@ body.page--ink .menu .label { color: #101112; }
 }
 .footer__works:not(.is-manual) .footer__work.is-auto img { opacity: .78; }
 .footer__work:hover img { opacity: 1; }
+
+/* ---------------------------------------------------------------------------
+   85. LEJEK KONTAKTOWY: ROWNY RYTM PIONOWY (17.09.2026)
+   Wlascicielka: od gory za duzo miejsca, od dolu za malo. Scena kroku miala
+   sztywna wysokosc (34vh), wiec przycisk odjezdzal od chipsow o poltora
+   ekranu, a pod socjalami stopka zaczynala sie bez zadnego oddechu.
+   Teraz scena ma wysokosc swojej tresci, a odstepy miedzy blokami rosna
+   rowno: pytanie -> chipsy -> przycisk -> adres -> socjale -> stopka.
+   --------------------------------------------------------------------------- */
+.fn {
+  min-height: auto;
+  padding-top: calc(var(--nav-h) + clamp(40px, 6vh, 78px));
+  padding-bottom: clamp(56px, 9vh, 120px);
+}
+.fn__meta { margin-top: clamp(20px, 3vh, 34px); }
+.fn__stage {
+  min-height: 0;
+  margin-top: clamp(26px, 3.6vh, 46px);
+}
+.fn__step {
+  justify-content: flex-start;
+  gap: clamp(20px, 2.6vw, 30px);
+}
+.fn__nav { margin-top: clamp(26px, 3.4vh, 42px); }
+.contact__direct { margin-top: clamp(28px, 3.8vh, 46px); }
+.contact__consent { margin-top: 10px; }
+.fn__socialsLabel { margin-top: clamp(26px, 3.6vh, 44px); }
+.fn__socials { margin-top: 14px; }
+
+/* Scena lejka rownala sie do najwyzszego kroku (ekran z podsumowaniem), wiec
+   przy krotkim pytaniu przycisk odjezdzal o pol ekranu w dol. Teraz wysokosc
+   bierze sie z kroku, ktory jest na wierzchu — pozostale leza pod nim i nie
+   rozpychaja juz sceny. */
+.fn__step:not(.is-active) {
+  position: absolute;
+  inset: 0;
+}
+.fn__step.is-active { position: relative; }
+.fn__stage { min-height: clamp(110px, 15vh, 180px); }
