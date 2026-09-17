@@ -188,6 +188,8 @@ function init() {
   /* Promien, na ktory rozchodza sie polowki: w bok i w glab.
      Trzymamy go krotko — rozsuniete polowki nie moga wychodzic poza kadr
      ani przykrywac calego akapitu manifestu. */
+  /* O ile znak odwraca sie w prawo w czasie aktu (w stopniach) */
+  const TURN = 26 * Math.PI / 180;
   const ORBIT_X = () => logoW * (narrow.matches ? .22 : .30);
   const ORBIT_Z = () => logoW * (narrow.matches ? .20 : .28);
 
@@ -227,18 +229,22 @@ function init() {
     const viewW = viewH * camera.aspect;
     const drift = narrow.matches
       ? 0
-      : viewW * (-.2 * easeInOut(seg(.10, .45)) + .42 * easeInOut(seg(.45, .88)));
+      : viewW * -.18 * easeInOut(seg(.12, .55));
     rootGroup.position.set(drift, y, 0);
-    rootGroup.scale.setScalar((1 - .16 * sep) * (1 - .62 * sOut));
+    /* Znak zjezdza z hero i przy okazji maleje — odsuwa sie na bok jak
+       przedmiot odlozony obok kartki, wiec przestaje wchodzic na tekst. */
+    rootGroup.scale.setScalar((1 - .3 * easeInOut(seg(.12, .55))) * (1 - .16 * sep) * (1 - .62 * sOut));
 
     /* Odwracanie za mysza dziala w spoczynku i ustepuje, gdy prowadzi skrol.
        Do tego lekkie skiniecie w czasie obrotu — dzieki niemu znak nigdy nie
        staje idealnie bokiem, wiec nie znika na chwile z kadru. */
     const hand = 1 - sA;
     rootGroup.rotation.set(tilt.pitch * hand + .16 * Math.sin(Math.PI * sA), tilt.yaw * hand, 0);
-    /* Pol obrotu w pierwszej czesci i drugie pol na powrocie — znak konczy
-       przodem do widza, dokladnie tak, jak zaczynal */
-    spinner.rotation.y = spinAngle + Math.PI * sA + Math.PI * sC;
+    /* Zamiast obrotow: jedno lekkie odwrocenie w prawo i tyle. Znak stoi
+       bokiem do widza jak przedmiot polozony na biurku i patrzy w strone
+       tekstu, ktory stoi po drugiej stronie kadru — prowadzi do niego wzrok.
+       Zadnego przekrecania tam i z powrotem, zadnego czytania liter na odwrot. */
+    spinner.rotation.y = spinAngle + TURN * easeInOut(seg(.05, .5));
 
     /* Kat oblotu: lekkie odchylenie na starcie, potem pelna petla wokol
        wspolnego srodka — konczy sie tam, gdzie sie zaczela */
@@ -312,8 +318,11 @@ function init() {
     prog += step < -cap ? -cap : step > cap ? cap : step;
     if (Math.abs(rawProg - prog) < .0004) prog = rawProg;
 
-    /* Samoczynny obrot tylko w spoczynku — dalej prowadzi skrol */
-    spinAngle += dt * .12 * (1 - clamp01(prog / .2));
+    /* 18.09.2026 (prosba wlascicielki): znak NIE kreci sie juz wokol wlasnej
+       osi. Przy pelnym obrocie litery czytalo sie na odwrot, a znak ma byc
+       zawsze czytelny. Petla zostaje — prowadzi ja skrol i mysz.
+       Zeby obrot wrocil, wystarczy odkomentowac linijke ponizej.
+       spinAngle += dt * .12 * (1 - clamp01(prog / .2)); */
     tilt.yaw += (tiltTo.yaw - tilt.yaw) * .08;   /* doganianie, bez skokow */
     tilt.pitch += (tiltTo.pitch - tilt.pitch) * .08;
 

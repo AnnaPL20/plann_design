@@ -21,9 +21,10 @@
   const split = block => {
     const text = block.el.textContent.trim();
     block.el.textContent = '';
-    block.words = text.split(/\s+/).map(word => {
+    block.words = text.split(/\s+/).map((word, i) => {
       const span = document.createElement('span');
       span.className = 'mw';
+      span.style.setProperty('--i', String(i));   /* kolejnosc slowa — uzywa jej kaskada w hero */
       span.textContent = word;
       block.el.appendChild(span);
       block.el.appendChild(document.createTextNode(' '));

@@ -6991,7 +6991,7 @@ body.page--ink .menu .label { color: #101112; }
 
 /* Akapit w hero jest wiekszy, wiec jego niezapalone slowa moga byc odrobine
    mocniejsze — inaczej pierwszy ekran wyglada na niedokonczony */
-.hero__lead .mw { color: color-mix(in srgb, var(--fg) 34%, transparent); }
+/* (kolor slow w hero prowadzi teraz przezroczystosc — patrz sekcja 93) */
 
 @media (prefers-reduced-motion: reduce) {
   [data-manifesto] .mw { transition: none; color: var(--fg); }
@@ -7054,3 +7054,70 @@ body.page--ink .menu .label { color: #101112; }
 @media (max-width: 900px) {
   .has-mono3d .hero__scene { height: clamp(170px, 28svh, 300px); }
 }
+
+/* ---------------------------------------------------------------------------
+   92. ZNAK OBOK TEKSTU, NIE NA TEKSCIE (18.09.2026)
+   Wlascicielka: "znak zaslania tekst, ma byc za nim i obok, a nie na nim".
+   W sekcji o mnie caly tekst przenosi sie do prawej kolumny, a lewa zostaje
+   pusta — to w niej staje bryla, kiedy zjedzie z hero. Tekst i znak stoja
+   wiec obok siebie, znak jest lekko odwrocony w jego strone i prowadzi do
+   niego wzrok. Na waskim ekranie kolumna jest jedna i uklad zostaje jak byl.
+   --------------------------------------------------------------------------- */
+@media (min-width: 901px) {
+  .has-mono3d .intro__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    align-items: start;
+  }
+  .has-mono3d .intro__title,
+  .has-mono3d .intro__body { grid-column: 2; }
+  .has-mono3d .intro__title { max-width: 20ch; margin-bottom: clamp(18px, 2.4vw, 32px); }
+}
+
+/* ---------------------------------------------------------------------------
+   93. NAGLOWKI TEZ WCHODZA SLOWO PO SLOWIE (18.09.2026)
+   Wlascicielka: "ta animacja ma byc i na glownym tekscie, zeby szlo z szarego
+   w czarny i z rozmycia — jak w calym moim stylu".
+   Slowo nieoswietlone jest przygaszone i rozmyte, oswietlone — ostre i w pelnym
+   kolorze. Przygaszamy przezroczystoscia, nie kolorem, wiec cienkie i grube
+   slowa naglowka zachowuja swoje wlasne kolory.
+   Naglowek hero widac od razu po wejsciu, wiec tam slowa wchodza kaskada zaraz
+   po starcie strony; reszta zapala sie w rytmie przewijania (js/manifesto.js).
+   --------------------------------------------------------------------------- */
+[data-manifesto] .mw {
+  display: inline-block;
+  color: inherit;
+  opacity: .3;
+  filter: blur(4px);
+  transition:
+    opacity .55s var(--ease-out),
+    filter .55s var(--ease-out);
+}
+[data-manifesto] .mw.is-lit,
+[data-manifesto].is-done .mw {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Naglowek hero: kaskada zaraz po wejsciu strony, slowo za slowem */
+.hero__head .mw {
+  opacity: 0;
+  filter: blur(12px);
+  transition: none;
+}
+.is-loaded .hero__head .mw {
+  animation: mw-in .9s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+@keyframes mw-in {
+  from { opacity: 0; filter: blur(12px); transform: translateY(.14em); }
+  to   { opacity: 1; filter: blur(0);    transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-manifesto] .mw,
+  .hero__head .mw { opacity: 1; filter: none; transition: none; animation: none; }
+}
+
+/* Akapit w hero widac od razu po wejsciu, wiec jego niezapalone slowa sa
+   tylko lekko przygaszone — inaczej pierwszy ekran wyglada na nieczytelny */
+.hero__lead .mw { opacity: .5; filter: blur(2px); }
