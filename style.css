@@ -6570,3 +6570,35 @@ body.is-gating { overflow: hidden; }
    Przelacznik gestosci (2 / 3 / 4) dziala jak dzialal.
    --------------------------------------------------------------------------- */
 .works__grid { gap: clamp(10px, 1vw, 16px) clamp(4px, .5vw, 8px); }
+
+/* ---------------------------------------------------------------------------
+   81. PODGLAD PROJEKTU: NAJPIERW SAMA NAZWA (17.09.2026)
+   Wlascicielka: po otwarciu projektu ma byc widoczna sama nazwa, a opis
+   dopiero po nacisnieciu [ about ]. Wczesniej opis byl zwiniety do dwoch
+   linii, czyli i tak zaczynal sie czytac od razu. Teraz jest schowany do
+   zera i wychodzi plynnie razem z przyciskiem.
+   Logika przycisku bez zmian — script.js przelacza klase .is-expanded.
+   --------------------------------------------------------------------------- */
+.case-viewer__description {
+  display: block;
+  -webkit-line-clamp: unset;
+  max-height: 0;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height .5s var(--ease-out),
+    opacity .35s var(--ease-out),
+    margin .5s var(--ease-out);
+}
+.case-viewer__description.is-expanded {
+  max-height: 18em;
+  margin: 0 0 16px;
+  opacity: 1;
+}
+/* Wcisniety przycisk ma byc widac, ze jest wcisniety */
+.case-viewer__controls .btn.is-open { color: var(--ink); background: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .case-viewer__description { transition: opacity .2s linear; }
+}
