@@ -6890,3 +6890,87 @@ body.page--ink .menu .label { color: #101112; }
 :root[data-theme="dark"] .case-viewer__info {
   box-shadow: none;
 }
+
+/* ---------------------------------------------------------------------------
+   89. HERO, KTORE OD RAZU MOWI, O CO CHODZI (18.09.2026)
+   Wlascicielka: "sam znak 3D nic nie mowi — czlowiek ma od razu widziec,
+   ze to strona projektantki, ktora daje rozwiazanie, nie tylko ozdobe".
+   Kompozycja czyta sie z gory na dol: kim jestem -> obietnica -> znak ->
+   po co tu jestem i co zrobic -> fakty. Naglowek stoi na dwoch wagach:
+   cienkie slowa sa tlem dla grubego, ktore niesie obietnice.
+   Znak 3D lezy POD tekstem (plotno jest pod trescia), wiec bryla przechodzi
+   za naglowkiem — dokladnie tak jak na przykladzie, ktory pokazala.
+   --------------------------------------------------------------------------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  padding-top: calc(var(--nav-h) + clamp(22px, 3.4vh, 44px));
+  padding-bottom: clamp(20px, 3vh, 40px);
+}
+.hero__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--muted);
+}
+
+/* Naglowek: cienkie i grube slowa w jednej linii ognia */
+.hero__head {
+  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin: clamp(14px, 2.4vh, 30px) auto 0;
+  font-family: var(--font-title);
+  font-size: clamp(2.1rem, 6.4vw, 5.4rem);
+  line-height: .98;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.hero__thin {
+  font-weight: 300;
+  color: var(--grey-2);
+}
+.hero__bold {
+  font-weight: 600;
+  color: var(--ink);
+}
+.hero__head .hero__thin + .hero__bold,
+.hero__head .hero__bold + .hero__thin { margin-left: .22em; }
+
+/* Scena ze znakiem: nizsza niz dotad, bo nad nia i pod nia stoi teraz tekst */
+.has-mono3d .hero__scene { height: clamp(240px, 40svh, 460px); }
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) auto;
+  align-items: end;
+  gap: clamp(18px, 3vw, 48px);
+  margin-top: clamp(16px, 2.6vh, 34px);
+}
+.hero__lead {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(.98rem, 1.25vw, 1.2rem);
+  line-height: 1.45;
+  color: var(--grey-3);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Pasek faktow na dole pierwszego ekranu */
+.hero__facts {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: clamp(18px, 3vh, 38px);
+  padding-top: clamp(12px, 1.6vh, 20px);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+.hero__facts .clock { color: var(--fg); }
+
+@media (max-width: 900px) {
+  .hero__head { font-size: clamp(1.9rem, 9vw, 3rem); }
+  .hero__grid { grid-template-columns: 1fr; align-items: start; }
+  .hero__facts { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .has-mono3d .hero__scene { height: clamp(200px, 34svh, 360px); }
+}

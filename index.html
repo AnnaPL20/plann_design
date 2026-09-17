@@ -141,14 +141,39 @@
          Nad scena nie ma juz bialego kola — po stronie jezdzi tylko nasz
          kwadracik-kursor (patrz .cursor w style.css sekcja 14). -->
     <section class="hero" id="home">
+      <!-- Gorna linijka: kim jestem i skad pracuje -->
+      <div class="container hero__top">
+        <p class="label hero__kicker" data-i18n="hero.label">Graphic &amp; web designer</p>
+        <p class="label hero__where" data-i18n="hero.based">Poland — working worldwide</p>
+      </div>
+
+      <!-- Naglowek na dwoch wagach: cienkie slowa sa tlem dla grubych.
+           Grube slowo niesie obietnice — plan, nie sama ozdoba. -->
+      <h1 class="hero__head">
+        <span class="hero__thin" data-i18n="hero.headA">Design with</span>
+        <span class="hero__bold" data-i18n="hero.headB">a plan</span>
+        <span class="hero__thin" data-i18n="hero.headC">behind it</span>
+      </h1>
+
       <div class="hero__scene" data-hero-scene>
         <img class="hero__mono" src="img/logo-pa-dark.svg" alt="PLANN Design" data-hero-mono>
         <canvas class="hero__logo3d" data-hero-logo3d aria-hidden="true"></canvas>
       </div>
 
-      <div class="container hero__rail">
-        <p class="label hero__where" data-i18n="hero.based">Poland — working worldwide</p>
-        <a class="btn btn--solid hero__cta" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
+      <!-- Pod znakiem: po co tu jestem i co dalej zrobic.
+           Akapit rozjasnia sie slowo po slowie przy przewijaniu (js/manifesto.js). -->
+      <div class="container hero__grid">
+        <p class="hero__lead" data-manifesto data-i18n="hero.lead2">You do not need one more logo. You need the idea to work: a clear system, a face for the business and content that sells it. That is what I build.</p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
+          <a class="btn" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
+        </div>
+      </div>
+
+      <!-- Pasek faktow: kierunki pracy, jezyki, zegar. Same rzeczy prawdziwe. -->
+      <div class="container hero__facts">
+        <p class="label"><span data-i18n="hero.factWork">Brand identity · Web &amp; UI · Social</span></p>
+        <p class="label"><span data-i18n="about.f4v">Ukrainian, English, Polish</span></p>
         <p class="label hero__time"><span data-i18n="hero.time">Local time</span> <span class="clock" data-clock>00:00:00</span></p>
       </div>
     </section>
