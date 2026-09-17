@@ -6974,3 +6974,25 @@ body.page--ink .menu .label { color: #101112; }
   .hero__facts { flex-direction: column; align-items: flex-start; gap: 6px; }
   .has-mono3d .hero__scene { height: clamp(200px, 34svh, 360px); }
 }
+
+/* ---------------------------------------------------------------------------
+   90. TEKST CIEMNIEJE W MIARE CZYTANIA (18.09.2026)
+   Wlascicielka pokazala serwisy, na ktorych tekst rozjasnia sie slowo po
+   slowie przy przewijaniu — chce tak samo. Efekt mial dotad wlasne selektory
+   (sekcje 47 i 52); teraz kazde slowo z [data-manifesto] dziala tak samo,
+   niezaleznie od bloku. Logika: js/manifesto.js.
+   --------------------------------------------------------------------------- */
+[data-manifesto] .mw {
+  color: color-mix(in srgb, var(--fg) 26%, transparent);
+  transition: color .5s var(--ease-out);
+}
+[data-manifesto] .mw.is-lit,
+[data-manifesto].is-done .mw { color: var(--fg); }
+
+/* Akapit w hero jest wiekszy, wiec jego niezapalone slowa moga byc odrobine
+   mocniejsze — inaczej pierwszy ekran wyglada na niedokonczony */
+.hero__lead .mw { color: color-mix(in srgb, var(--fg) 34%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-manifesto] .mw { transition: none; color: var(--fg); }
+}
