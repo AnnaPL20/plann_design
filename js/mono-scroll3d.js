@@ -9,8 +9,9 @@
    grupe, bo w dalszej czesci beda sie rozchodzic i oblatywac nawzajem.
    Grubosc ~12% wysokosci znaku, faska ~2.5% na kilku segmentach.
 
-   Material wedlug wskazan wlascicielki: jasny metal — MeshPhysicalMaterial,
-   metalness 1, roughness 0.18, clearcoat 0.6, kolor #d9d9de.
+   Material: MeshPhysicalMaterial, metalness 1, roughness 0.18, clearcoat 0.6.
+   Kolor wedlug wskazan wlascicielki (17.09.2026) jedzie z postepem skrolu:
+   w hero znak jest czarnym metalem, przy przewijaniu rozjasnia sie do bieli.
    Swiatlo: RoomEnvironment jako otoczenie (metal zyje z odbic) plus miekka
    lampa z gory, ktora rzuca cien PCFSoft na niewidoczna podloge
    (ShadowMaterial o przezroczystosci 0.15).
@@ -157,12 +158,22 @@ function init() {
   /* --- taniec skrolu --------------------------------------------------------- */
   /* Postep liczymy od gory strony do konca sekcji-manifestu: 0 na samej gorze,
      1 gdy dol tej sekcji dojedzie do dolu okna. Surowa wartosc idzie przez
-     doganianie 0.08, dzieki czemu znak nie skacze za kolkiem myszy. */
+     doganianie, dzieki czemu znak nie skacze za kolkiem myszy. Wartosc
+     0.05 zamiast 0.08 (17.09.2026, prosba wlascicielki): znak przekreca sie
+     wolniej i dlugo dochodzi do celu, wiec ruch jest gladszy. */
   let actEnd = 1;         /* przewiniecie w pikselach, na ktorym akt sie konczy */
   let prog = 0;           /* postep po wygladzeniu */
   let rawProg = 0;        /* postep prosto ze skrolu */
   let live = false;       /* czy mozemy juz sterowac przezroczystoscia plotna */
   let shadowBase = .15;   /* sila cienia w spoczynku — motyw ja dostraja */
+  /* Kolor znaku: w hero czarny metal, a w miare przewijania przechodzi w bialy.
+     W ciemnym motywie czern startowa jest odrobine jasniejsza, bo czarny znak
+     na czarnym tle po prostu znika. */
+  const INK_LIGHT = new Color(0x15151a);
+  const INK_DARK = new Color(0x2e2e37);
+  const SNOW = new Color(0xececf1);
+  const metal = new Color();
+  let dark = false;       /* czy strona stoi na ciemnym motywie */
 
   const measure = () => {
     const end = act ? act.getBoundingClientRect().bottom + scrollY - innerHeight : innerHeight;
@@ -244,6 +255,16 @@ function init() {
     key.target.position.set(0, y - .2, 0);
     key.target.updateMatrixWorld();
 
+    /* Kolor znaku jedzie razem z postepem: w hero czarny metal, a przy
+       przewijaniu rozjasnia sie do bieli. Czern zyje z odbic mocniej niz biel,
+       wiec otoczenie przygasa dopiero wtedy, gdy znak juz zbielal. */
+    const shine = easeInOut(seg(.04, .45));
+    if (material) {
+      metal.lerpColors(dark ? INK_DARK : INK_LIGHT, SNOW, shine);
+      material.color.copy(metal);
+    }
+    scene.environmentIntensity = (dark ? 3.6 : 2.9) - .7 * shine;
+
     /* Na koniec aktu plotno gasnie i strona zyje dalej jak zawsze */
     if (live) canvas.style.opacity = clamp01((.99 - prog) / .12).toFixed(3);
   };
@@ -268,7 +289,7 @@ function init() {
     last = now;
 
     rawProg = clamp01(scrollY / actEnd);
-    prog += (rawProg - prog) * .08;              /* doganianie postepu skrolu */
+    prog += (rawProg - prog) * .05;              /* doganianie postepu skrolu */
     if (Math.abs(rawProg - prog) < .0004) prog = rawProg;
 
     /* Samoczynny obrot tylko w spoczynku — dalej prowadzi skrol */
@@ -320,7 +341,7 @@ function init() {
       probe.dispose();
 
       material = new MeshPhysicalMaterial({
-        color: new Color(0xd9d9de),
+        color: new Color(0x15151a),   /* start w czerni — dalej prowadzi skrol */
         metalness: 1,
         roughness: .18,
         clearcoat: .6,
@@ -442,14 +463,14 @@ function init() {
   });
 
   /* Ciemny motyw: jasny metal na czarnym tle traci odbicia, wiec dokladamy
-     otoczeniu mocy. Kolor materialu zostaje taki, jak ustalila wlascicielka. */
+     otoczeniu mocy. */
   const applyTheme = () => {
-    const dark = root.dataset.theme === 'dark';
-    scene.environmentIntensity = dark ? 2.9 : 2.2;
+    dark = root.dataset.theme === 'dark';
     key.intensity = dark ? 2.6 : 1.9;
     rim.intensity = dark ? 1.6 : .9;
     renderer.toneMappingExposure = dark ? 1.2 : 1.05;
     shadowBase = dark ? .28 : .15;
+    place();
     frame();
   };
   new MutationObserver(applyTheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });

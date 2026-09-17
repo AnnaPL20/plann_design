@@ -6528,3 +6528,17 @@ body.is-gating { overflow: hidden; }
 @media (max-width: 900px) {
   .has-mono3d .hero__scene { height: clamp(300px, 56svh, 520px); }
 }
+
+/* ---------------------------------------------------------------------------
+   78. PIERWSZY AKT MA WIECEJ MIEJSCA (17.09.2026)
+   Wlascicielka: "zadużo szybko sie przekreca". Taniec znaku rozgrywal sie na
+   820 px przewijania, wiec kazda faza trwala ulamek sekundy. Sekcja "O mnie"
+   dostaje wiecej powietrza — akt ma teraz okolo poltora ekranu przewijania,
+   a manifest przy okazji przestaje byc scisniety.
+   Wysokosc zmienia sie TYLKO przy dzialajacej scenie 3D (.has-mono3d), wiec
+   uklad zapasowy bez WebGL zostaje taki, jaki byl.
+   --------------------------------------------------------------------------- */
+.has-mono3d .intro { padding-block: clamp(160px, 32vh, 420px); }
+@media (max-width: 900px) {
+  .has-mono3d .intro { padding-block: clamp(80px, 14vh, 150px); }
+}
