@@ -20,9 +20,9 @@ Dotyczy to w szczegolnosci:
 | **Naglowki slowo po slowie** (`data-split`) | `script.js` |
 | **Samoczynna fala kafelkow w stopce** | `js/footer-works.js` |
 | **Kurtyna wejsciowa** — strona zaczyna sie czernia, z ktorej wykreca sie znak PA, potem wchodzi tresc | `style.css` sekcja 74; `js/intro-gate.js` |
+| **Scena skrolu ze znakiem PA** — pierwszy akt strony: plotno na caly ekran za trescia, znak z jasnego metalu, ktory na skrolu robi pol obrotu, rozpada sie na P i A, oblatuje sam siebie i sklada z powrotem, po czym idzie w gore i gasnie | `style.css` sekcja 77; `js/mono-scroll3d.js` |
 | **Wyplywanie z rozmycia przy przewijaniu** — bloki ostrza sie z blura razem z wjazdem | `style.css` sekcja 74 (`[data-reveal]`) |
 | **Galeria prac w siatce** — pasek przelacza gestosc 2 / 3 / 4 w rzedzie, wybor pamieta sie w przegladarce | `style.css` sekcja 75; `js/works-grid.js` |
-| **Znak PA w scenie hero** — wlasny wektor wyciagniety w bryle, czarny metal z faktura, odwracanie za kursorem (bez obrotu wokol wlasnej osi), swiatlo wedruje razem ze znakiem, miekki cien na podlodze | `style.css` sekcja 68; `js/hero-logo3d.js` |
 | **Rozwijane kierunki uslug** — jeden otwarty naraz, plynna zmiana wysokosci | `style.css` sekcja 65; `js/svc3.js` |
 
 Jesli nowy element koliduje z istniejacym efektem — pytamy, ktory zostaje.
@@ -36,6 +36,7 @@ odkomentowaniem jednej linii w `index.html`):
 
 | Co | Kiedy i dlaczego | Gdzie lezy |
 | --- | --- | --- |
+| **Stara scena hero ze znakiem PA** | 17.09.2026 — znak prowadzi teraz caly pierwszy akt na plotnie na caly ekran, dwie bryly gryzlyby sie w kadrze | `style.css` sekcja 68; `js/hero-logo3d.js` |
 | **Pryzma 3D pod menu** | 14.09.2026 — jedynym obiektem 3D ma byc znak PA w hero | `style.css` sekcja 66; `js/obj3d.js` |
 | **Szklana kropla na ikonach socjalnych** | 14.09.2026 — robila z nich kafelki; na przyciskach i pigulkach dziala dalej | `style.css` sekcja 70 |
 | **Nasuwanie kart prac** | 15.09.2026 — prace stoja teraz w siatce, gortanie po jednej meczylo | `style.css` sekcje 63 i 73; `js/works-stack.js` |
@@ -73,7 +74,8 @@ odkomentowaniem jednej linii w `index.html`):
 | `js/products.js` | dane towarow sklepu |
 | `js/works-grid.js` | gestosc siatki prac (2 / 3 / 4 w rzedzie) |
 | `js/works-stack.js` | nasuwanie kart prac — odlozone 15.09.2026 |
-| `js/hero-logo3d.js` | znak PA w scenie hero (czarny metal) |
+| `js/mono-scroll3d.js` | scena skrolu ze znakiem PA — pierwszy akt strony |
+| `js/hero-logo3d.js` | stara scena hero (czarny metal) — odlozona 17.09.2026 |
 | `js/intro-gate.js` | kurtyna wejsciowa ze znakiem |
 | `js/hero-negative.js` | plama negatywu w oknie portretu (sekcja "O mnie") |
 | `js/obj3d.js` | pryzma z okladek pod menu |
