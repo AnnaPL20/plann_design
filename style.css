@@ -6538,9 +6538,15 @@ body.is-gating { overflow: hidden; }
    Wysokosc zmienia sie TYLKO przy dzialajacej scenie 3D (.has-mono3d), wiec
    uklad zapasowy bez WebGL zostaje taki, jaki byl.
    --------------------------------------------------------------------------- */
-.has-mono3d .intro { padding-block: clamp(160px, 32vh, 420px); }
+/* Zapas na taniec znaku idzie NAD tekst, nie pod niego: pod spodem robil
+   dziure przed pracami, a nad tekstem to po prostu miejsce, w ktorym gra
+   scena 3D. Suma zostaje prawie ta sama, wiec akt trwa tyle samo. */
+.has-mono3d .intro {
+  padding-top: clamp(200px, 105vh, 1150px);
+  padding-bottom: clamp(48px, 7vh, 110px);
+}
 @media (max-width: 900px) {
-  .has-mono3d .intro { padding-block: clamp(80px, 14vh, 150px); }
+  .has-mono3d .intro { padding-top: clamp(140px, 70vh, 620px); padding-bottom: clamp(36px, 6vh, 70px); }
 }
 
 /* ---------------------------------------------------------------------------
@@ -6824,4 +6830,29 @@ body.page--ink .menu .label { color: #101112; }
 .works__cta {
   margin-top: 0;
   padding-block: clamp(30px, 3.6vw, 52px);
+}
+
+/* ---------------------------------------------------------------------------
+   87. PRACE: JEDEN ODSTEP WSZEDZIE (18.09.2026)
+   Wlascicielka: "wszedzie odstepy maja byc rowne". Caly blok prac stoi teraz
+   na dwoch wartosciach i tylko na nich:
+   — wewnatrz siatki (miedzy kafelkami w poziomie, w pionie i pod zdjeciem
+     do podpisu) ten sam maly odstep;
+   — miedzy blokami (pasek -> siatka -> przyciski -> nastepna sekcja) ten sam
+     duzy odstep. Zadnych wyjatkow i zadnych starych marginesow.
+   --------------------------------------------------------------------------- */
+:root {
+  --works-gap: clamp(6px, .7vw, 10px);    /* wewnatrz siatki */
+  --works-band: clamp(32px, 4vw, 56px);   /* miedzy blokami */
+}
+.works {
+  padding-top: var(--works-band);
+  padding-bottom: 0;
+}
+.works__bar { padding-bottom: var(--works-band); }
+.works__grid { gap: var(--works-gap); }
+.wtile__cap { margin-top: var(--works-gap); }
+.works__cta {
+  margin-top: 0;
+  padding-block: var(--works-band);
 }
