@@ -17,8 +17,11 @@
   const t = key => (window.PLANN ? window.PLANN.t(key) : '');
 
   const MAIL = 'annapytsko@gmail.com';
-  const CAT_KEY = { social: 'sp.cSocial', decks: 'sp.cDecks', kits: 'sp.cKits' };
+  /* 01.10.2026: dwa nowe kierunki (Photoshop / After Effects); stare klucze zostaja dla zgodnosci */
+  const CAT_KEY = { ps: 'sp.cPs', ae: 'sp.cAe', social: 'sp.cSocial', decks: 'sp.cDecks', kits: 'sp.cKits' };
   const INC_KEYS = {
+    ps: ['sp.incPs1', 'sp.incPs2', 'sp.incPs3'],
+    ae: ['sp.incAe1', 'sp.incAe2', 'sp.incAe3'],
     social: ['sp.incSocial1', 'sp.incSocial2', 'sp.incSocial3'],
     decks: ['sp.incDecks1', 'sp.incDecks2', 'sp.incDecks3'],
     kits: ['sp.incKits1', 'sp.incKits2', 'sp.incKits3']
@@ -77,11 +80,18 @@
 
          <div class="pmodal__actions">
            ${live
-             /* Prawdziwy adres platnosci wpisuje sie w js/products.js (pole buyUrl) */
-             ? `<a class="btn btn--solid btn--lg" href="${p.buyUrl}" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span>${t('sp.buyNow')}</span><span class="btn__br" aria-hidden="true">]</span></a>`
+             /* Prawdziwy adres platnosci wpisuje sie w js/products.js (pole buyUrl).
+                Klasa payhip-buy-button + data-product: gdy w shop.html wlaczony
+                jest payhip.js, platnosc otwiera sie w nakladce na stronie. */
+             ? `<a class="btn btn--solid btn--lg payhip-buy-button" href="${p.buyUrl}" data-product="${p.buyUrl.split('/').pop()}" data-theme="none" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span>${t('sp.buyNow')} · ${p.price === 0 ? t('sp.free') : p.price}</span><span class="btn__br" aria-hidden="true">]</span></a>`
              : `<a class="btn btn--solid btn--lg" href="${notifyHref(p)}"><span class="btn__br" aria-hidden="true">[</span><span>${t('sp.notify')}</span><span class="btn__br" aria-hidden="true">]</span></a>`}
+           ${p.sample
+             /* Darmowa probka: zwykle pobranie pliku z serwisu */
+             ? `<a class="btn btn--lg" href="${p.sample}" download><span class="btn__br" aria-hidden="true">[</span><span>${t('sp.sample')}</span><span class="btn__br" aria-hidden="true">]</span></a>`
+             : ''}
            <a class="btn btn--lg" href="${askHref(p)}"><span class="btn__br" aria-hidden="true">[</span><span>${t('sp.ask')}</span><span class="btn__br" aria-hidden="true">]</span></a>
          </div>
+         <p class="pmodal__pay">${t('sp.payNote')}</p>
        </div>`;
     modal.showModal();
     document.body.classList.add('is-locked');

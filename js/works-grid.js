@@ -8,14 +8,16 @@
 (() => {
   'use strict';
 
-  const grid = document.querySelector('[data-works-grid]');
+  /* 01.10.2026: prace stoja w kilku blokach, wiec siatek jest wiecej niz
+     jedna — jeden przelacznik przestawia wszystkie naraz */
+  const grids = Array.from(document.querySelectorAll('[data-works-grid]'));
   const buttons = Array.from(document.querySelectorAll('.works__view'));
-  if (!grid || !buttons.length) return;
+  if (!grids.length || !buttons.length) return;
 
-  const KEY = 'plann-works-cols';
+  const KEY = 'plann-works-cols-v2';   /* 02.10.2026: nowy klucz — stary wybor (3 w rzedzie) nie ma wracac */
 
   const apply = cols => {
-    grid.style.setProperty('--cols', cols);
+    grids.forEach(grid => grid.style.setProperty('--cols', cols));
     buttons.forEach(b => {
       const on = b.dataset.view === String(cols);
       b.classList.toggle('is-active', on);

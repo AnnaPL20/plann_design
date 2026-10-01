@@ -7121,3 +7121,1140 @@ body.page--ink .menu .label { color: #101112; }
 /* Akapit w hero widac od razu po wejsciu, wiec jego niezapalone slowa sa
    tylko lekko przygaszone — inaczej pierwszy ekran wyglada na nieczytelny */
 .hero__lead .mw { opacity: .5; filter: blur(2px); }
+
+
+/* ---------------------------------------------------------------------------
+   94. HERO: SAM ZNAK NA CZYSTYM EKRANIE (01.10.2026, wersja 3)
+   Wlascicielka pokazala wzor (ovyon): na pierwszym ekranie prawie nie ma
+   tekstu — duzy obiekt po srodku, drobny zegar w lewym dolnym rogu, jeden
+   niewielki przycisk na dole po srodku. U nas obiektem jest znak PA ze sceny
+   3D (js/mono-scroll3d.js rysuje go w srodku bloku .hero__scene). Jedyny
+   tekst u gory to status "available" w prawym rogu. Naglowek strony (h1)
+   stoi w sekcji "O mnie" — hero ma byc puste i oddychac.
+   Znak zniknal wczesniej, bo hero malowal papier NAD plotnem 3D — przy
+   dzialajacej scenie hero jest przezroczysty.
+   Stare reguly hero (sekcje 89-91) zostaja; ponizsze nadpisuja je tylko
+   przy klasie .hero--stage. Wersja 2 (tytul, akapit, strzalka) w historii git.
+   --------------------------------------------------------------------------- */
+.hero.hero--stage {
+  --hero-top: clamp(28px, 5vh, 56px);
+  --hero-bottom: clamp(72px, 10vh, 104px);  /* nad progresywnym rozmyciem u dolu */
+  display: block;
+  min-height: 100svh;
+  padding: calc(var(--nav-h) + 14px + var(--hero-top)) 0 var(--hero-bottom);
+  background: var(--paper);
+}
+.has-mono3d .hero.hero--stage { background: transparent; }
+
+.hero__frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  column-gap: clamp(16px, 2vw, 32px);
+  min-height: calc(100svh - var(--nav-h) - 14px - var(--hero-top) - var(--hero-bottom));
+}
+
+/* Prawy gorny rog: status */
+.hero__status {
+  grid-column: 3;
+  grid-row: 1;
+  display: inline-flex;
+  align-items: center;
+  align-self: start;
+  justify-self: end;
+  gap: 9px;
+  margin: 0;
+  color: var(--fg);
+}
+.hero__live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent);
+}
+
+/* Srodek: scena na cala szerokosc, znak staje w jej srodku */
+.hero--stage .hero__scene {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  height: auto;
+  min-height: clamp(260px, 52svh, 700px);
+  margin: 0;
+}
+
+/* Lewy dolny rog: zegar i data */
+.hero__clock {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: end;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  color: var(--muted);
+}
+.hero__clock .clock { color: var(--fg); }
+.hero__dot { opacity: .45; }
+
+/* Dol, po srodku: jeden przycisk */
+.hero__go {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: end;
+  justify-self: center;
+}
+
+/* Wejscie: bloki hero wplywaja po kolei, dopiero gdy kurtyna zejdzie.
+   Bez kurtyny (prefers-reduced-motion) wystarczy zaladowana strona. */
+.hero__in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  transition-delay: calc(.1s + var(--i, 0) * .09s);
+}
+body.is-gate-open .hero__in,
+body.is-loaded:not(.is-gating) .hero__in { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .hero.hero--stage { --hero-top: clamp(20px, 4vh, 40px); min-height: 100svh; }
+  .hero__frame {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    row-gap: clamp(14px, 2.4vh, 22px);
+  }
+  .hero__status,
+  .hero--stage .hero__scene,
+  .hero__clock,
+  .hero__go { grid-column: 1; grid-row: auto; }
+  .hero__status { justify-self: start; }
+  .hero--stage .hero__scene { min-height: clamp(200px, 40svh, 360px); }
+  .hero__go { justify-self: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__in { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   95. TEKST BEZ ROZMYCIA (01.10.2026)
+   Wlascicielka: "glowny tekst jest rozmyty, nie da sie go normalnie czytac —
+   rozmycie trzeba zabrac". Slowa, ktore jeszcze sie nie zapalily, byly
+   przygaszone I rozmyte (sekcja 93). Rozmycie schodzi; zostaje samo
+   przyciemnienie szarosc -> kolor tekstu, tak jak na serwisach, ktore
+   pokazala. Nieoswietlone slowo jest teraz troche mocniejsze (34% zamiast
+   30%), zeby akapit dalo sie czytac takze przed przewinieciem.
+   Zeby rozmycie slow wrocilo, wystarczy wykasowac ten blok.
+   --------------------------------------------------------------------------- */
+[data-manifesto] .mw {
+  opacity: .34;
+  filter: none;
+  transition: opacity .55s var(--ease-out);
+}
+[data-manifesto] .mw.is-lit,
+[data-manifesto].is-done .mw { filter: none; }
+.hero__head .mw { opacity: 0; }
+
+/* ---------------------------------------------------------------------------
+   96. PRACE: SZESC KADROW, ROZNE KSZTALTY, GLEBIA I FILTRY (01.10.2026)
+   Wlascicielka: "prace razem, w jednej siatce, najwyzej szesc; kadry roznych
+   ksztaltow — szeroki, pionowy, kwadrat; przy przewijaniu to, co dalej,
+   jakby w tle, a to, co przy mnie, blisko; po najechaniu na jeden projekt
+   reszta lekko sie rozmywa". Nad siatka: filtry kierunkow (zwyklym tekstem,
+   aktywny czarny) po lewej, gestosc 2 / 3 / 4 po prawej.
+   Glebia: js/works-depth.js wpisuje kafelkowi --depth (0 = srodek ekranu,
+   1 = daleko), a tu zamienia sie to na skale, rozmycie i przezroczystosc.
+   Najechanie: reszta kafelkow dostaje dodatkowe rozmycie (--hb) i gasnie.
+   Ksztalty: .wtile--wide zajmuje dwie kolumny, .wtile--square jest kwadratem
+   (zdjecie przyciete), reszta trzyma wlasne proporcje i rowna sie gora.
+   Filtry: js/works-filter.js. Pozostale kadry serii zostaly w podgladzie.
+   --------------------------------------------------------------------------- */
+.works__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: calc(var(--works-gap) + 4px);
+}
+.works__filters { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.wfilter {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: .84rem;
+  letter-spacing: -.005em;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .3s var(--ease);
+}
+.wfilter:hover { color: var(--fg); }
+.wfilter.is-active { color: var(--fg); font-weight: 500; }
+
+.works__grid { transition: opacity .26s var(--ease), gap .45s var(--ease-out); }
+.works__grid.is-switching { opacity: 0; }
+.wtile[hidden] { display: none; }
+.wtile__file { color: var(--faint); }
+
+/* Ksztalty kadrow */
+.wtile--wide { grid-column: span 2; }
+.wtile--square .wtile__media { aspect-ratio: 1 / 1; }
+.wtile--square .wtile__media img { height: 100%; object-fit: cover; }
+@media (max-width: 520px) { .wtile--wide { grid-column: span 1; } }
+
+/* Glebia przy przewijaniu + rozmycie reszty po najechaniu */
+.wtile {
+  --depth: 0;
+  --hb: 0px;
+  transform: scale(calc(1 - var(--depth) * .07));
+  transform-origin: center;
+  filter: none;   /* 02.10.2026: rozmycie zdjete na prosbe wlascicielki — zostaje skala i przezroczystosc */
+  opacity: calc(1 - var(--depth) * .42);
+  transition: filter .4s var(--ease), opacity .4s var(--ease);
+  will-change: transform, filter, opacity;
+}
+.works__grid:has(.wtile:hover) .wtile:not(:hover) {
+  opacity: calc(.55 - var(--depth) * .25);
+}
+.wtile:hover { --depth: 0; }
+
+@media (max-width: 900px) {
+  .works__bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wtile { transform: none; filter: none; opacity: 1; transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   97. FAKTY W SEKCJI "O MNIE" (01.10.2026)
+   Dwa fakty z hero (2020 / 1:1) przeprowadzily sie tutaj — pod akapit o mnie,
+   w jednym rzedzie nad cienka linia. Fakt "3 jezyki" zdjety na prosbe
+   wlascicielki. Uklad jak w dolnym rzedzie wzoru: waskie kolumny, drobny podpis.
+   --------------------------------------------------------------------------- */
+.intro__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 36px);
+  margin-top: clamp(28px, 4vw, 56px);
+  padding-top: clamp(16px, 2vw, 24px);
+  border-top: 1px solid var(--line);
+}
+.intro__fact { min-width: 0; }
+.intro__figure {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  line-height: .95;
+  letter-spacing: -.04em;
+  color: var(--ink);
+}
+.intro__figureCap {
+  margin: 8px 0 0;
+  max-width: 20ch;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .intro__facts { grid-template-columns: 1fr; gap: 14px; }
+  .intro__fact { display: flex; align-items: baseline; gap: 12px; }
+  .intro__figureCap { margin: 0; }
+}
+
+/* ---------------------------------------------------------------------------
+   98. USLUGI: NAGLOWEK JEDZIE RAZEM Z LISTA, TEKST CZYTELNY (01.10.2026)
+   Wlascicielka: "This is how I work. nieczytelne, za szare, za blade; ma sie
+   przesuwac przy przewijaniu razem z uslugami — od pierwszej do ostatniej".
+   Lewa kolumna (naglowek, zdanie, przycisk) jest przyklejona (sticky) na
+   czas, gdy po prawej przewija sie lista kierunkow. Tekst na czerni jasniejszy:
+   zdanie 85% bieli, nieoswietlone slowa naglowka 60%, opisy kierunkow 78%.
+   Na waskim ekranie kolumna jest jedna, wiec przyklejanie jest wylaczone.
+   --------------------------------------------------------------------------- */
+@media (min-width: 901px) {
+  .lab__grid { align-items: start; }
+  .lab__left {
+    position: sticky;
+    top: calc(var(--nav-h) + 14px + clamp(28px, 5vh, 56px));
+  }
+}
+.lab__text { color: rgba(255, 255, 255, .85); }
+.lab [data-manifesto]:not(.is-done) .mw:not(.is-lit) { opacity: .6; }
+/* Zapalone slowo bralo kolor z --fg, a w czarnej sekcji --fg to czern — naglowek
+   robil sie czarny na czarnym. To byla prawdziwa przyczyna "nieczytelnego" tytulu. */
+.lab [data-manifesto] .mw.is-lit,
+.lab [data-manifesto].is-done .mw { color: #fff; }
+.svc3__desc { color: rgba(255, 255, 255, .78); }
+.svc3__list li { color: rgba(255, 255, 255, .9); }
+
+/* ---------------------------------------------------------------------------
+   99. MENU: WEZSZA KAPSULA Z CZYSTEGO SZKLA (01.10.2026)
+   Wlascicielka: "pasek ma byc przezroczysta kropla jak u Apple, czyste szklo,
+   a nie biale czy czarne tlo; i wezszy — w srodku byla pustka". Kapsula ma
+   teraz 760 px (po przewinieciu 700), tlo prawie przezroczyste, mocne
+   rozmycie tego, co pod spodem, blysk na gornej krawedzi i delikatna lampa
+   w lewym gornym rogu (::before). Na stronach na tuszu szklo jest ciemne,
+   a znak, pigulka i krzyzyk biale (odwraca sekcje 82). Panel menu pod
+   paskiem dostaje te sama szerokosc i to samo szklo.
+   --------------------------------------------------------------------------- */
+.nav {
+  width: min(760px, 100% - var(--gutter) * 2);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--t-bg) 34%, transparent);
+  border-color: color-mix(in srgb, var(--t-fg) 9%, transparent);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  backdrop-filter: blur(30px) saturate(190%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 62%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, #fff 14%, transparent),
+    0 22px 50px -30px color-mix(in srgb, var(--t-fg) 45%, transparent);
+}
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 100% at 18% 0%, color-mix(in srgb, #fff 36%, transparent), transparent 58%);
+}
+.nav > * { position: relative; z-index: 1; }
+.nav--scrolled {
+  width: min(700px, 100% - var(--gutter) * 2);
+  background: color-mix(in srgb, var(--t-bg) 42%, transparent);
+  border-color: color-mix(in srgb, var(--t-fg) 11%, transparent);
+}
+:root[data-theme="dark"] .nav {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), inset 0 -1px 0 rgba(255, 255, 255, .05);
+}
+:root[data-theme="dark"] .nav::before {
+  background: radial-gradient(120% 100% at 18% 0%, rgba(255, 255, 255, .10), transparent 58%);
+}
+
+.menu {
+  width: min(760px, 100% - var(--gutter) * 2);
+  background: color-mix(in srgb, var(--t-bg) 42%, transparent);
+  border-color: color-mix(in srgb, var(--t-fg) 9%, transparent);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  backdrop-filter: blur(30px) saturate(190%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 50%, transparent);
+}
+@media (max-width: 1024px) {
+  .nav { width: min(560px, 100% - var(--gutter) * 2); }
+  .nav--scrolled { width: min(520px, 100% - var(--gutter) * 2); }
+}
+
+/* Strony na tuszu: ciemne szklo zamiast jasnej planki */
+body.page--ink .nav {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .15);
+  color: #fff;
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  backdrop-filter: blur(30px) saturate(190%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), inset 0 -1px 0 rgba(255, 255, 255, .06);
+}
+body.page--ink .nav::before {
+  background: radial-gradient(120% 100% at 18% 0%, rgba(255, 255, 255, .14), transparent 58%);
+}
+body.page--ink .nav--scrolled {
+  background: rgba(255, 255, 255, .11);
+  border-color: rgba(255, 255, 255, .18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24);
+}
+body.page--ink .nav .logo__img--onink { display: block; }
+body.page--ink .nav .logo__img--onpaper { display: none; }
+body.page--ink .nav .logo__text { color: #fff; }
+body.page--ink .nav .btn--solid { background: #fff; color: #101112; border-color: #fff; }
+body.page--ink .nav .btn--solid:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+body.page--ink .nav .burger {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .2);
+  background: rgba(255, 255, 255, .08);
+}
+body.page--ink .menu {
+  background: rgba(22, 22, 24, .62);
+  border-color: rgba(255, 255, 255, .12);
+  color: #fff;
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(30px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14);
+}
+body.page--ink .menu a,
+body.page--ink .menu .menu__rights,
+body.page--ink .menu .label { color: #fff; }
+
+/* ---------------------------------------------------------------------------
+   100. STOPKA: STRONA KONCZY SIE CZERNIA, DROBNIEJSZY TEKST (01.10.2026)
+   Wlascicielka: pod pasem zdjec wystawala biala smuga; dane w czerwonej
+   stopce maja byc drobniejsze. Pas jest ostatnim blokiem strony i przed
+   pojawieniem sie stal 24 px nizej (wjazd blokow), wiec wydluzal dokument
+   o bialy pasek — teraz wplywa tylko przezroczystoscia. Tekst stopki: jedna
+   drobna wielkosc dla odnosnikow, adresu i notki, mniejsza dla rzedu z prawami.
+   --------------------------------------------------------------------------- */
+.footer__works[data-reveal] { transform: none; }
+.footer__nav a,
+.footer__email,
+.footer__note { font-size: .62rem; letter-spacing: .07em; }
+.footer__email { font-size: .66rem !important; }
+.footer__colLabel { font-size: .58rem; }
+.footer__meta,
+.footer__clock,
+.footer__rights { font-size: .58rem; }
+
+/* ---------------------------------------------------------------------------
+   101. LEJEK KONTAKTOWY: ODDECH, WEJSCIE Z ROZMYCIA, KROPLE NA CZERNI (01.10.2026)
+   Wlascicielka: "wszystko stloczone; tekst ma wplywac z rozmycia jak premium;
+   przyciski jak krople u Apple, z galaretka przy kliknieciu". Odstepy miedzy
+   blokami rosna, kazdy blok lejka wchodzi po kolei z rozmycia, a chipsy,
+   przyciski i socjale na czerni dostaja szklo (tlo 7% bieli, rozmycie tla,
+   blysk na gornej krawedzi). Galaretka i falka przy kliknieciu: js/ui-liquid.js.
+   --------------------------------------------------------------------------- */
+.fn { padding-top: calc(var(--nav-h) + 14px + clamp(64px, 10vh, 120px)); }
+.fn__meta { margin-top: 0; }
+.fn__stage { margin-top: clamp(28px, 4vh, 48px); }
+.fn__step { gap: clamp(26px, 3.4vw, 40px); }
+.fn__nav { margin-top: clamp(36px, 5vh, 60px); }
+.contact__direct { margin-top: clamp(48px, 7vh, 84px); }
+.contact__consent { margin-top: 12px; }
+.fn__socialsLabel { margin-top: clamp(40px, 6vh, 72px); }
+
+.fn__inner > * {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(14px);
+  transition: opacity 1s var(--ease-out), filter 1s var(--ease-out), transform 1s var(--ease-out);
+}
+.fn__inner > :nth-child(1) { transition-delay: .1s; }
+.fn__inner > :nth-child(2) { transition-delay: .22s; }
+.fn__inner > :nth-child(3) { transition-delay: .34s; }
+.fn__inner > :nth-child(4) { transition-delay: .42s; }
+.fn__inner > :nth-child(5) { transition-delay: .5s; }
+.fn__inner > :nth-child(6) { transition-delay: .58s; }
+body.is-page-in .fn__inner > * { opacity: 1; filter: blur(0); transform: none; }
+
+body.page--ink .chip,
+body.page--ink .btn:not(.btn--solid),
+body.page--ink .socialbtn {
+  background:
+    radial-gradient(70% 90% at var(--x, 50%) var(--y, 0%), rgba(255, 255, 255, .16), transparent 62%),
+    rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .16);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -2px 4px rgba(0, 0, 0, .25), 0 10px 24px -14px rgba(0, 0, 0, .8);
+}
+body.page--ink .chip:hover,
+body.page--ink .btn:not(.btn--solid):hover,
+body.page--ink .socialbtn:hover { border-color: rgba(255, 255, 255, .28); }
+body.page--ink .chip.is-picked,
+body.page--ink .chip[aria-checked="true"],
+body.page--ink .chip[aria-pressed="true"] { background: #fff; color: #101112; border-color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fn__inner > * { opacity: 1; filter: none; transform: none; transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   102. PRZEPLYWANIE MIEDZY STRONAMI (01.10.2026)
+   Wlascicielka: "przejscia miedzy stronami maja przeplywac, ma byc WOW".
+   Wyjscie: po kliknieciu wlasnego odnosnika strona gasnie i rozmywa sie
+   (klasa is-page-out z js/page-flow.js), potem dopiero idzie dalej.
+   Wejscie: tresc wplywa z rozmycia (is-page-in). Przegladarki z przejsciami
+   miedzy dokumentami dokladaja do tego miekkie przenikanie (@view-transition).
+   Na stronie glownej wejscie gra pod kurtyna ze znakiem — nie gryza sie.
+   --------------------------------------------------------------------------- */
+body { transition: opacity .42s var(--ease), filter .42s var(--ease); }
+body.is-page-out { opacity: 0; filter: blur(10px); pointer-events: none; }
+main { transition: opacity .9s var(--ease-out), filter .9s var(--ease-out), transform .9s var(--ease-out); }
+body:not(.is-page-in) main { opacity: 0; filter: blur(12px); transform: translateY(12px); }
+
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: pf-out .4s var(--ease) both; }
+::view-transition-new(root) { animation: pf-in .6s var(--ease-out) both; }
+@keyframes pf-out { to { opacity: 0; filter: blur(10px); } }
+@keyframes pf-in { from { opacity: 0; filter: blur(12px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  body, main { transition: none; }
+  body:not(.is-page-in) main { opacity: 1; filter: none; transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   103. SKLEP: DWA KIERUNKI I PROCES ZAKUPU (01.10.2026)
+   Wlascicielka: w sklepie maja byc efekty szkla do Photoshopa i animowane
+   karty do After Effects, z pelnym procesem zakupu. Platnosc i wysylke
+   plikow obsluguje Payhip (js/products.js — pole buyUrl); tu sa same
+   zaslepki okladek dla nowych kategorii i podpis pod przyciskami.
+   --------------------------------------------------------------------------- */
+.prod__media--ps,
+.pmodal__media--ps { background: linear-gradient(150deg, #f4f4f6, #dcdde2); }
+.prod__media--ae,
+.pmodal__media--ae { background: linear-gradient(150deg, #1c1c20, #3b3b44); }
+.prod__media--ae .prod__cat,
+.pmodal__media--ae .prod__cat { color: #fff; }
+.pmodal__pay {
+  margin: 14px 0 0;
+  max-width: 44ch;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------------------
+   104. KROPLE: WYPUKLE, PRZEZROCZYSTE SZKLO NA PRZYCISKACH (01.10.2026)
+   Wlascicielka: "przyciski maja byc przezroczyste i wypukle jak krople
+   u Apple". Wczesniejsze sekcje splaszczyly pigulki (45, 49). Tu kazda
+   kropla — przycisk, chip, pigulka menu, socjal — dostaje: prawie
+   przezroczyste tlo z rozmyciem tego, co pod spodem; odblask, ktory jedzie
+   za kursorem (--x / --y wpisuje js/ui-liquid.js); blysk na gornej krawedzi
+   i cien pod dolna (wypuklosc). Pelny przycisk (.btn--solid) zostaje ciemny,
+   ale tez z odblaskiem i blyskiem. Galaretka przy kliknieciu: js/ui-liquid.js.
+   Na stronach na tuszu rzadza regoly z sekcji 101 (wyzsza specyficznosc).
+   --------------------------------------------------------------------------- */
+.btn,
+.chip,
+.socialbtn,
+.menu__pill,
+.lang {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(70% 90% at var(--x, 50%) var(--y, 0%), color-mix(in srgb, #fff 55%, transparent), transparent 62%),
+    color-mix(in srgb, var(--fg) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 70%, transparent),
+    inset 0 -2px 4px color-mix(in srgb, var(--fg) 7%, transparent),
+    0 10px 24px -14px color-mix(in srgb, var(--fg) 40%, transparent);
+  transition:
+    background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease),
+    box-shadow .35s var(--ease), transform .35s var(--ease-out);
+}
+.btn:hover,
+.chip:hover,
+.socialbtn:hover,
+.menu__pill:hover {
+  border-color: color-mix(in srgb, var(--fg) 22%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 80%, transparent),
+    inset 0 -2px 4px color-mix(in srgb, var(--fg) 7%, transparent),
+    0 14px 28px -14px color-mix(in srgb, var(--fg) 50%, transparent);
+  transform: translateY(-1px);
+}
+
+/* Pelny przycisk: ciemny lakier z odblaskiem */
+.btn--solid,
+.btn--solid:hover {
+  background:
+    radial-gradient(70% 90% at var(--x, 50%) var(--y, 0%), color-mix(in srgb, #fff 30%, transparent), transparent 62%),
+    var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 32%, transparent),
+    inset 0 -2px 4px color-mix(in srgb, #000 25%, transparent),
+    0 12px 26px -14px color-mix(in srgb, var(--fg) 70%, transparent);
+}
+.btn--solid:hover {
+  background:
+    radial-gradient(70% 90% at var(--x, 50%) var(--y, 0%), color-mix(in srgb, #fff 34%, transparent), transparent 62%),
+    color-mix(in srgb, var(--fg) 86%, var(--accent));
+  border-color: transparent;
+}
+.chip.is-picked,
+.menu__pill[aria-current="page"] {
+  background:
+    radial-gradient(70% 90% at var(--x, 50%) var(--y, 0%), color-mix(in srgb, #fff 28%, transparent), transparent 62%),
+    var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 30%, transparent), inset 0 -2px 4px rgba(0, 0, 0, .25);
+}
+.menu__pill[aria-current="page"] { color: #fff; background-color: var(--accent); border-color: var(--accent); }
+
+/* Ciemny motyw: blysk slabszy, inaczej pigulki swieca */
+:root[data-theme="dark"] .btn,
+:root[data-theme="dark"] .chip,
+:root[data-theme="dark"] .socialbtn,
+:root[data-theme="dark"] .menu__pill,
+:root[data-theme="dark"] .lang {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 -2px 4px rgba(0, 0, 0, .3), 0 10px 24px -14px rgba(0, 0, 0, .8);
+}
+:root[data-theme="dark"] .btn--solid { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -2px 4px rgba(0, 0, 0, .12); }
+
+/* ---------------------------------------------------------------------------
+   105. JEDNA SKALA PISMA DLA CALEGO SERWISU (01.10.2026)
+   Wieczor 01.10.2026: wlascicielka chce mocniejszego kontrastu w naglowkach —
+   cienka czesc ma byc najcienszym krojem (Switzer Thin 100, plik
+   fonts/Switzer-100.woff2, dolozony z oficjalnej paczki Fontshare; Extralight
+   200 lezy obok w zapasie), gruba czesc nie taka ciezka (500 zamiast 600),
+   a sam naglowek wiekszy — okolo czterech slow w wierszu.
+   Wlascicielka: "trzymac podstawy UI: naglowki jednej wielkosci, tekst
+   glowny jednej, dodatkowy jednej — na kazdej stronie i w kazdym bloku;
+   naglowki laczyc grube z cienkim, pierwsze slowo mocne, reszta light;
+   kompozycje jak na wzorze — gra wielkosci, nie sucho".
+   Trzy stopnie:
+   — naglowek sekcji: 32-58 px, light; <strong> w nim 600 (kontrast);
+   — tekst glowny: 15-17 px, interlinia 1.55;
+   — tekst dodatkowy / podpisy: .label (11 px mono) — bez zmian.
+   Dotyczy: O mnie, Uslugi, Pytania, Sklep (tizer i strona), pasek CTA,
+   podglad projektu. Kazda nastepna zmiana wielkosci idzie TU, nie w bloku.
+   --------------------------------------------------------------------------- */
+.intro__title,
+.lab__title,
+.faq__title,
+.shopteaser__title,
+.cta__line,
+.shopHead__title,
+.case-viewer__info h2 {
+  font-family: var(--font-title);
+  font-weight: 100;
+  word-spacing: 0;
+  font-size: clamp(2rem, 4.2vw, 4rem);   /* 02.10.2026: mniejszy, bylo 5.6vw */
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.intro__title strong,
+.lab__title strong,
+.faq__title strong,
+.shopteaser__title strong,
+.cta__line strong { font-weight: 500; }
+.intro__title { max-width: 22ch; }
+.lab__title { max-width: 14ch; }
+.faq__title,
+.shopteaser__title { max-width: 20ch; }
+
+.intro__text,
+.lab__text,
+.shopteaser__text,
+.faq__a,
+.svc3__desc {
+  font-size: clamp(.95rem, 1.05vw, 1.0625rem);
+  line-height: 1.55;
+}
+.intro__text strong { font-weight: 500; color: var(--ink); }
+.shopteaser__text { max-width: 44ch; color: var(--muted); }
+.svc3__list li { font-size: clamp(.9rem, 1vw, 1rem); }
+
+/* Blok pytan i tizer sklepu: etykieta, duzy naglowek, drobny tekst — ta sama
+   kompozycja co "O mnie", zeby strona czytala sie jednym rytmem */
+.faq__head .label,
+.shopteaser__left .label { display: block; margin-bottom: clamp(16px, 2vw, 26px); }
+.shopteaser__title { margin: 0 0 clamp(16px, 2vw, 26px); }
+.faq__title { margin: 0; }
+.shopteaser__text { margin: 0 0 clamp(22px, 3vw, 36px); }
+
+/* ---------------------------------------------------------------------------
+   106. OTWIERANIE PROJEKTU: CZERN I ZNAK (01.10.2026)
+   Wlascicielka: "po kliknieciu w projekt ma byc czarny ekran z moim znakiem
+   i nazwa — jak przy wejsciu na strone". Znak wykreca sie z czerni tak samo
+   jak na kurtynie wejsciowej (sekcja 74), pod nim nazwa projektu.
+   --------------------------------------------------------------------------- */
+.case-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vh, 30px);
+}
+.case-loader__mark {
+  width: clamp(80px, 10vw, 140px);
+  height: auto;
+  opacity: 0;
+  filter: blur(26px);
+  transform: rotate(-14deg) scale(.82);
+}
+.case-loader.is-active .case-loader__mark { animation: gate-mark 1s var(--ease-out) .05s forwards; }
+.case-loader span {
+  font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-loader__mark { opacity: 1; filter: none; transform: none; animation: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   107. SWITZER THIN I EXTRALIGHT (01.10.2026)
+   Dwie najcienszie wagi kroju z oficjalnej paczki Fontshare (ta sama
+   bezplatna licencja co reszta Switzera), lokalnie w fonts/. Uzywa ich
+   skala naglowkow (sekcja 105): cienka czesc naglowka to 200.
+   --------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/Switzer-100.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("fonts/Switzer-200.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------------------------
+   108. "O MNIE" ZARAZ POD HERO: NAGLOWEK PO LEWEJ, OPIS PO PRAWEJ (02.10.2026)
+   Wlascicielka: "pod hero za duzo bieli; od razu pod nim naglowek po lewej,
+   opis po prawej, jak na wzorze". Sekcja ma wysokosc ekranu i dzieli sie na
+   cztery cwiartki: naglowek (lewa gora), etykieta z opisem (prawa gora),
+   znak PA ze sceny 3D (lewa dol — js/mono-scroll3d.js parkuje go tam po
+   zjezdzie z hero), fakty (prawa dol). Dawny zapas 52vh nad tekstem
+   (sekcja 78) i tekst w prawej kolumnie (sekcja 92) sa tu nadpisane.
+   --------------------------------------------------------------------------- */
+.intro,
+.has-mono3d .intro {
+  padding-top: clamp(56px, 8vh, 96px);
+  padding-bottom: clamp(56px, 8vh, 96px);
+}
+.intro__grid,
+.has-mono3d .intro__grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: start;
+  min-height: calc(100svh - 2 * clamp(56px, 8vh, 96px));
+}
+.intro__title,
+.has-mono3d .intro__title { grid-column: 1; grid-row: 1; margin: 0; max-width: 12ch; }
+.intro__body,
+.has-mono3d .intro__body { grid-column: 2; grid-row: 1; }
+.intro__facts {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  margin-top: clamp(28px, 4vw, 56px);
+}
+@media (max-width: 900px) {
+  .intro__grid,
+  .has-mono3d .intro__grid { grid-template-columns: 1fr; grid-template-rows: none; min-height: 0; }
+  .intro__title,
+  .has-mono3d .intro__title,
+  .intro__body,
+  .has-mono3d .intro__body,
+  .intro__facts { grid-column: 1; grid-row: auto; }
+  .intro__title,
+  .has-mono3d .intro__title { max-width: 16ch; }
+}
+
+/* ---------------------------------------------------------------------------
+   109. KROJ PISMA: SATOSHI ZAMIAST SWITZERA (02.10.2026)
+   Wlascicielka: "ten krój jest za bardzo wydluzony, nie chce takiego
+   dlugiego". Switzer jest waski; Satoshi (ten sam Fontshare, ta sama
+   bezplatna licencja, lezy w fonts/ od dawna) jest szerszy i okraglejszy.
+   Dochodzi waga Light (300) z oficjalnej paczki — najcienszy Satoshi.
+   Naglowki: Light 300 + Medium 500. Cyrylica: Inter, jak dotad.
+   Powrot do Switzera: zmienic trzy tokeny ponizej.
+   --------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Satoshi";
+  src: url("fonts/Satoshi-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("fonts/Inter-var-cyrillic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+:root {
+  --font-display: "Satoshi", "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Satoshi", "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-title: "Satoshi", "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.intro__title,
+.lab__title,
+.faq__title,
+.shopteaser__title,
+.cta__line,
+.shopHead__title,
+.case-viewer__info h2 { font-weight: 300; letter-spacing: -.03em; }
+
+
+/* ---------------------------------------------------------------------------
+   110. SZKLO JAK NA WZORZE: STALOWY GRADIENT I METALOWA OBWODKA (02.10.2026, wersja 2)
+   Wlascicielka pokazala referencje (studio.baseline, "Source BTN v.02"):
+   kropla z chlodnego, stalowego szkla — zalanie gradientem z jasnej gory
+   w ciemny dol, po obwodzie cienka JASNA metalowa obwodka (jasniejsza
+   u gory i po lewej, ciemniejsza po prawej u dolu), miekki cien w srodku
+   przy dolnej krawedzi, lekki cien pod spodem, napis jasny z delikatnym
+   polyskiem. Zadnych plam za kursorem.
+   Technika obwodki bez pseudoelementow: dwa tla — zalanie w padding-box,
+   gradient obwodki w border-box, ramka przezroczysta.
+   Dwie wersje: ciemna (stalowa — jak na wzorze; .btn--solid, .btn--ink,
+   wybrany chip, pigulka CONTACT, aktywna pigulka menu) i jasna (reszta
+   kropel na papierze). Na stronach na tuszu wszystkie krople sa stalowe.
+   Kapsula menu i panel dostaja te sama obwodke.
+   Akcent serwisu ZOSTAJE czerwony (prosba wlascicielki: "lisz moj firmowy
+   czerwony") — niebieski z pierwszej wersji tej sekcji zdjety; "akcent
+   z referencji" to wlasnie stalowy gradient kropel, nie kolor serwisu.
+   --------------------------------------------------------------------------- */
+:root {
+  --rim-light: linear-gradient(160deg, #ffffff 0%, rgba(255, 255, 255, .55) 35%, rgba(118, 130, 142, .55) 72%, #ffffff 100%);
+  --rim-steel: linear-gradient(160deg, #f6f9fc 0%, rgba(255, 255, 255, .5) 30%, rgba(140, 152, 164, .55) 66%, #eaf0f5 100%);
+  --fill-light: linear-gradient(180deg, rgba(255, 255, 255, .78) 0%, rgba(226, 230, 235, .82) 100%);
+  --fill-steel: linear-gradient(180deg, rgba(124, 135, 146, .94) 0%, rgba(80, 90, 100, .95) 55%, rgba(58, 66, 74, .97) 100%);
+  --fill-steel-hover: linear-gradient(180deg, rgba(138, 149, 160, .95) 0%, rgba(90, 100, 110, .96) 55%, rgba(64, 72, 80, .97) 100%);
+}
+
+/* Jasna kropla */
+.btn,
+.chip,
+.socialbtn,
+.menu__pill,
+.lang {
+  border: 1.5px solid transparent;
+  background: var(--fill-light) padding-box, var(--rim-light) border-box;
+  color: #2b323a;
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .9),
+    inset 0 -5px 10px rgba(78, 90, 102, .14),
+    0 8px 20px -10px rgba(40, 48, 56, .35);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+.btn:hover,
+.chip:hover,
+.socialbtn:hover,
+.menu__pill:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(232, 236, 240, .88)) padding-box, var(--rim-light) border-box;
+  border-color: transparent;
+  color: #1f252b;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -5px 10px rgba(78, 90, 102, .12),
+    0 12px 26px -10px rgba(40, 48, 56, .4);
+  transform: translateY(-1px);
+}
+.btn .btn__br { color: rgba(43, 50, 58, .5); }
+
+/* Ciemna, stalowa kropla — jak na wzorze */
+.btn--solid,
+.btn--solid:hover,
+.btn--ink,
+.btn--ink:hover,
+.chip.is-picked,
+.menu__pill[aria-current="page"] {
+  background: var(--fill-steel) padding-box, var(--rim-steel) border-box;
+  border-color: transparent;
+  color: #eef2f6;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .38),
+    inset 0 -8px 14px rgba(0, 0, 0, .28),
+    0 10px 24px -10px rgba(20, 26, 32, .6);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+.btn--solid:hover,
+.btn--ink:hover {
+  background: var(--fill-steel-hover) padding-box, var(--rim-steel) border-box;
+  transform: translateY(-1px);
+}
+.btn--solid .btn__br,
+.btn--ink .btn__br { color: rgba(255, 255, 255, .55); }
+
+/* Pigulka CONTACT w pasku: stare reguly (sekcje 18, 20, 62, 67, 82) wpisuja
+   jej czern albo biel, czesc z !important — tylko tu wolno uzyc !important */
+.nav .btn--solid,
+.nav__cta,
+body.page--ink .nav .btn--solid,
+:root[data-theme="dark"] .nav .btn--solid {
+  background: var(--fill-steel) padding-box, var(--rim-steel) border-box !important;
+  border-color: transparent !important;
+  color: #eef2f6 !important;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .38),
+    inset 0 -8px 14px rgba(0, 0, 0, .28),
+    0 10px 24px -10px rgba(20, 26, 32, .6) !important;
+}
+.nav .btn--solid:hover,
+.nav__cta:hover,
+body.page--ink .nav .btn--solid:hover,
+:root[data-theme="dark"] .nav .btn--solid:hover {
+  background: var(--fill-steel-hover) padding-box, var(--rim-steel) border-box !important;
+  border-color: transparent !important;
+}
+.nav .btn--solid .btn__br { color: rgba(255, 255, 255, .55); }
+
+/* Kapsula menu i panel: ta sama metalowa obwodka, szklo pod spodem */
+.nav,
+.menu {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--t-bg) 46%, transparent), color-mix(in srgb, var(--t-bg) 32%, transparent)) padding-box,
+    var(--rim-light) border-box;
+}
+.nav--scrolled {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--t-bg) 52%, transparent), color-mix(in srgb, var(--t-bg) 38%, transparent)) padding-box,
+    var(--rim-light) border-box;
+}
+.nav::before { display: none; }
+
+/* Strony na tuszu: wszystkie krople stalowe, kapsula z ciemnego szkla */
+body.page--ink .btn,
+body.page--ink .chip,
+body.page--ink .socialbtn {
+  background: linear-gradient(180deg, rgba(104, 115, 126, .55), rgba(62, 70, 78, .6)) padding-box, var(--rim-steel) border-box;
+  border-color: transparent;
+  color: #eef2f6;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .3),
+    inset 0 -8px 14px rgba(0, 0, 0, .3),
+    0 10px 24px -10px rgba(0, 0, 0, .7);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+body.page--ink .btn:hover,
+body.page--ink .chip:hover,
+body.page--ink .socialbtn:hover {
+  background: linear-gradient(180deg, rgba(120, 131, 142, .65), rgba(72, 80, 88, .7)) padding-box, var(--rim-steel) border-box;
+  border-color: transparent;
+  color: #fff;
+}
+body.page--ink .btn .btn__br,
+body.page--ink .chip .btn__br { color: rgba(255, 255, 255, .55); }
+body.page--ink .chip.is-picked,
+body.page--ink .chip[aria-checked="true"],
+body.page--ink .chip[aria-pressed="true"] {
+  background: var(--fill-steel) padding-box, var(--rim-steel) border-box;
+  color: #fff;
+  border-color: transparent;
+}
+body.page--ink .nav,
+body.page--ink .menu {
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, rgba(96, 107, 118, .34), rgba(52, 60, 68, .4)) padding-box, var(--rim-steel) border-box;
+  color: #fff;
+}
+body.page--ink .nav--scrolled {
+  background: linear-gradient(180deg, rgba(96, 107, 118, .42), rgba(52, 60, 68, .48)) padding-box, var(--rim-steel) border-box;
+}
+
+/* Ciemny motyw strony glownej: jasna kropla staje sie stalowa */
+:root[data-theme="dark"] .btn:not(.btn--solid):not(.btn--ink),
+:root[data-theme="dark"] .chip,
+:root[data-theme="dark"] .socialbtn,
+:root[data-theme="dark"] .menu__pill,
+:root[data-theme="dark"] .lang {
+  background: linear-gradient(180deg, rgba(104, 115, 126, .55), rgba(62, 70, 78, .6)) padding-box, var(--rim-steel) border-box;
+  color: #eef2f6;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .3), inset 0 -8px 14px rgba(0, 0, 0, .3), 0 10px 24px -10px rgba(0, 0, 0, .7);
+}
+:root[data-theme="dark"] .nav,
+:root[data-theme="dark"] .menu {
+  background: linear-gradient(180deg, rgba(96, 107, 118, .34), rgba(52, 60, 68, .4)) padding-box, var(--rim-steel) border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover, .btn--solid:hover, .btn--ink:hover, .chip:hover, .socialbtn:hover, .menu__pill:hover { transform: none; }
+}
+
+/* Obwodka kapsuly i panelu jako pseudoelement: gdy szklo jest przezroczyste,
+   gradient w border-box przeswituje przez cala kapsule (wygladalo jak smuga).
+   Pierscien rysuje ::before z maska, a tlo wraca do zwyklego szkla. */
+.nav,
+.menu,
+.nav--scrolled,
+body.page--ink .nav,
+body.page--ink .menu,
+body.page--ink .nav--scrolled,
+:root[data-theme="dark"] .nav,
+:root[data-theme="dark"] .menu {
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, rgba(238, 241, 244, .62), rgba(222, 226, 231, .55));
+}
+body.page--ink .nav,
+body.page--ink .menu,
+:root[data-theme="dark"] .nav,
+:root[data-theme="dark"] .menu {
+  background: linear-gradient(180deg, rgba(96, 107, 118, .34), rgba(52, 60, 68, .4));
+}
+.nav::before,
+.menu::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(160deg, #ffffff 0%, rgba(128, 140, 152, .6) 32%, rgba(96, 108, 120, .5) 70%, #ffffff 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+body.page--ink .nav::before,
+body.page--ink .menu::before,
+:root[data-theme="dark"] .nav::before,
+:root[data-theme="dark"] .menu::before {
+  background: var(--rim-steel);
+}
+.menu { position: fixed; }   /* ::before liczy inset od panelu — panel i tak jest fixed (sekcja 71) */
+
+/* ---------------------------------------------------------------------------
+   111. PRAWDZIWIE PRZEZROCZYSTE SZKLO, BEZ STALOWEGO GRADIENTU (02.10.2026)
+   Wlascicielka pokazala panel sterowania iOS: krople to prawie przezroczyste,
+   matowe szklo — widac przez nie rozmyte tlo, dookola cienki jasny
+   pierscien, zadnego szarego gradientu ("ten szary z przyciskow zabierz").
+   Nadpisuje sekcje 110: zalanie schodzi do kilkunastu procent bieli
+   (na papierze: kilka procent tuszu), rozmycie tla mocniejsze, obwodka to
+   jasny pierscien od srodka. Przycisk glowny (.btn--solid, .btn--ink,
+   pigulka CONTACT, wybrany chip) to ciemniejsze, ale wciaz przezroczyste
+   szklo; na stronach na tuszu — jasniejsze szklo (jak aktywny przycisk
+   na wzorze).
+   Prace: zadnego przyciemniania ani skalowania kafelkow (sekcja 96 —
+   glebia wylaczona, js/works-depth.js odpiety w index.html), kafelki
+   bez rozciagania na dwie kolumny — cztery w rzedzie, jak prosila.
+   Naglowki jeszcze mniejsze.
+   --------------------------------------------------------------------------- */
+/* Jasna kropla na papierze */
+.btn,
+.chip,
+.socialbtn,
+.menu__pill,
+.lang,
+.btn:hover,
+.chip:hover,
+.socialbtn:hover,
+.menu__pill:hover {
+  border: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+  background: color-mix(in srgb, var(--fg) 4%, transparent);
+  color: var(--fg);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .8),
+    0 6px 18px -12px color-mix(in srgb, var(--fg) 35%, transparent);
+  text-shadow: none;
+}
+.btn:hover,
+.chip:hover,
+.socialbtn:hover,
+.menu__pill:hover {
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+  border-color: color-mix(in srgb, var(--fg) 16%, transparent);
+  transform: translateY(-1px);
+}
+.btn .btn__br { color: var(--muted); }
+
+/* Glowna kropla: ciemne, przezroczyste szklo */
+.btn--solid,
+.btn--solid:hover,
+.btn--ink,
+.btn--ink:hover,
+.chip.is-picked,
+.menu__pill[aria-current="page"] {
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(16, 18, 22, .7);
+  color: #fff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .35),
+    0 8px 22px -12px rgba(0, 0, 0, .55);
+  text-shadow: none;
+}
+.btn--solid:hover,
+.btn--ink:hover { background: rgba(16, 18, 22, .82); }
+.btn--solid .btn__br,
+.btn--ink .btn__br { color: rgba(255, 255, 255, .55); }
+
+.nav .btn--solid,
+.nav__cta,
+body.page--ink .nav .btn--solid,
+:root[data-theme="dark"] .nav .btn--solid {
+  background: rgba(16, 18, 22, .7) !important;
+  border: 1px solid rgba(255, 255, 255, .35) !important;
+  color: #fff !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .35),
+    0 8px 22px -12px rgba(0, 0, 0, .55) !important;
+}
+.nav .btn--solid:hover,
+.nav__cta:hover,
+body.page--ink .nav .btn--solid:hover,
+:root[data-theme="dark"] .nav .btn--solid:hover { background: rgba(16, 18, 22, .82) !important; }
+
+/* Strony na tuszu i ciemny motyw: szklo z bieli */
+body.page--ink .btn,
+body.page--ink .chip,
+body.page--ink .socialbtn,
+body.page--ink .btn:hover,
+body.page--ink .chip:hover,
+body.page--ink .socialbtn:hover,
+:root[data-theme="dark"] .btn:not(.btn--solid):not(.btn--ink),
+:root[data-theme="dark"] .chip,
+:root[data-theme="dark"] .socialbtn,
+:root[data-theme="dark"] .menu__pill,
+:root[data-theme="dark"] .lang {
+  border: 1px solid rgba(255, 255, 255, .22);
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .3),
+    0 8px 22px -12px rgba(0, 0, 0, .7);
+  text-shadow: none;
+}
+body.page--ink .btn:hover,
+body.page--ink .chip:hover,
+body.page--ink .socialbtn:hover { background: rgba(255, 255, 255, .18); border-color: rgba(255, 255, 255, .32); }
+body.page--ink .btn .btn__br,
+body.page--ink .chip .btn__br { color: rgba(255, 255, 255, .55); }
+body.page--ink .chip.is-picked,
+body.page--ink .chip[aria-checked="true"],
+body.page--ink .chip[aria-pressed="true"],
+body.page--ink .btn--solid,
+body.page--ink .btn--solid:hover {
+  background: rgba(255, 255, 255, .3);
+  border: 1px solid rgba(255, 255, 255, .5);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3), inset 0 1px 0 rgba(255, 255, 255, .5), 0 8px 22px -12px rgba(0, 0, 0, .7);
+}
+
+/* Kapsula menu i panel: jeszcze bardziej przezroczyste */
+.nav,
+.nav--scrolled,
+.menu {
+  background: rgba(255, 255, 255, .22);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(180%);
+}
+body.page--ink .nav,
+body.page--ink .nav--scrolled,
+body.page--ink .menu,
+:root[data-theme="dark"] .nav,
+:root[data-theme="dark"] .menu { background: rgba(255, 255, 255, .09); }
+.nav::before,
+.menu::before { background: linear-gradient(160deg, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .35) 40%, rgba(255, 255, 255, .15) 70%, rgba(255, 255, 255, .8) 100%); }
+:root:not([data-theme="dark"]) body:not(.page--ink) .nav::before,
+:root:not([data-theme="dark"]) body:not(.page--ink) .menu::before {
+  background: linear-gradient(160deg, #fff 0%, rgba(120, 130, 140, .45) 38%, rgba(120, 130, 140, .35) 70%, #fff 100%);
+}
+
+/* Prace: plasko, bez glebi i bez przyciemniania; cztery w rzedzie */
+.wtile,
+.works__grid:has(.wtile:hover) .wtile:not(:hover) {
+  transform: none;
+  filter: none;
+  opacity: 1;
+  will-change: auto;
+}
+.wtile--wide { grid-column: auto; }
+
+/* Naglowki jeszcze mniejsze */
+.intro__title,
+.lab__title,
+.faq__title,
+.shopteaser__title,
+.cta__line,
+.shopHead__title,
+.case-viewer__info h2 { font-size: clamp(1.8rem, 3.4vw, 3.2rem); }

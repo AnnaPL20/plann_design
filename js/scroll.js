@@ -67,12 +67,16 @@
     return;
   }
 
+  /* 01.10.2026: w obie strony — blok, ktory wyjechal dolem, chowa sie
+     i wplywa znow przy przewijaniu w dol (ten sam ruch co w script.js) */
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      if (entry.target.hasAttribute('data-split')) entry.target.classList.add('is-in');
-      io.unobserve(entry.target); // raz na blok
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        if (entry.target.hasAttribute('data-split')) entry.target.classList.add('is-in');
+      } else if (entry.boundingClientRect.top > 0) {
+        entry.target.classList.remove('is-visible', 'is-in');
+      }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
 

@@ -140,54 +140,31 @@
          Plaska monograma pod spodem to zapas, gdy brak WebGL.
          Nad scena nie ma juz bialego kola — po stronie jezdzi tylko nasz
          kwadracik-kursor (patrz .cursor w style.css sekcja 14). -->
-    <section class="hero" id="home">
-      <!-- Gorna linijka: kim jestem i skad pracuje -->
-      <div class="container hero__top">
-        <p class="label hero__kicker" data-i18n="hero.label">Graphic &amp; web designer</p>
-        <p class="label hero__where"><span data-i18n="hero.based">Poland — working worldwide</span><span class="hero__dot" aria-hidden="true">·</span><span class="clock" data-clock>00:00:00</span></p>
-      </div>
+    <!-- 01.10.2026: hero przebudowane wedlug wzoru wlascicielki — jeden
+         czysty ekran: znak PA po srodku jako jedyny obiekt, tekst w rogach.
+         Lewy gorny rog: nazwa i obietnica. Prawy gorny: skad pracuje i zegar.
+         Prawy srodek: status. Dol: krotki akapit, dwa przyciski i strzalka.
+         Pasek faktow (2020 / 1:1 / 3) przeniesiony do sekcji "O mnie" —
+         hero mial za duzo tekstu i wygladal brudno (slowa wlascicielki).
+         Stary uklad hero (sekcje 89-91 w style.css) zostaje w kodzie. -->
+    <section class="hero hero--stage" id="home">
+      <div class="container hero__frame">
+        <!-- Prawy gorny rog: status, jedyny tekst u gory -->
+        <p class="label hero__status hero__in" style="--i:0"><span class="hero__live" aria-hidden="true"></span><span data-i18n="hero.status">Available for new projects</span></p>
 
-      <!-- Naglowek na dwoch wagach: cienkie slowa sa tlem dla grubych.
-           Grube slowo niesie obietnice — plan, nie sama ozdoba. -->
-      <h1 class="hero__head">
-        <span class="hero__thin" data-manifesto data-i18n="hero.headA">Design with</span>
-        <span class="hero__bold" data-manifesto data-i18n="hero.headB">a plan</span>
-        <span class="hero__thin" data-manifesto data-i18n="hero.headC">behind it</span>
-      </h1>
-
-      <div class="hero__scene" data-hero-scene>
-        <img class="hero__mono" src="img/logo-pa-dark.svg" alt="PLANN Design" data-hero-mono>
-        <canvas class="hero__logo3d" data-hero-logo3d aria-hidden="true"></canvas>
-      </div>
-
-      <!-- Pod znakiem: po co tu jestem i co dalej zrobic.
-           Akapit rozjasnia sie slowo po slowie przy przewijaniu (js/manifesto.js). -->
-      <div class="container hero__grid">
-        <div class="hero__leadCol">
-          <p class="label hero__dirs" data-i18n="hero.factWork">Brand identity · Web &amp; UI · Social</p>
-          <p class="hero__lead" data-manifesto data-i18n="hero.lead2">You do not need one more logo. You need the idea to work: a clear system, a face for the business and content that sells it. That is what I build.</p>
+        <!-- Srodek: scena ze znakiem PA (rysuje ja js/mono-scroll3d.js na plotnie
+             za trescia; ten blok wyznacza tylko miejsce i srodek kadru) -->
+        <div class="hero__scene" data-hero-scene>
+          <img class="hero__mono" src="img/logo-pa-dark.svg" alt="PLANN Design" data-hero-mono>
+          <canvas class="hero__logo3d" data-hero-logo3d aria-hidden="true"></canvas>
         </div>
-        <div class="hero__actions">
+
+        <!-- Lewy dolny rog: czas studia i data, drobnym mono -->
+        <p class="label hero__clock hero__in" style="--i:1"><span class="clock" data-clock>00:00:00</span><span class="hero__dot" aria-hidden="true">—</span><span data-date>2026-01-01</span></p>
+
+        <!-- Dol, dokladnie po srodku: jeden niewielki przycisk -->
+        <div class="hero__go hero__in" style="--i:2">
           <a class="btn btn--solid" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="about.cta">Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
-          <a class="btn" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="hero.btnProjects">View projects</span><span class="btn__br" aria-hidden="true">]</span></a>
-        </div>
-      </div>
-
-      <!-- Pasek faktow. Zadnych wymyslonych liczb: rok, w ktorym wlascicielka
-           weszla w projektowanie, praca bez posrednikow i trzy jezyki.
-           Gdy beda policzone projekty i klienci, dopisze sie je tutaj. -->
-      <div class="container hero__facts">
-        <div class="hero__fact">
-          <p class="hero__figure">2020</p>
-          <p class="label hero__figureCap" data-i18n="hero.factSince">In design since</p>
-        </div>
-        <div class="hero__fact">
-          <p class="hero__figure">1:1</p>
-          <p class="label hero__figureCap" data-i18n="hero.factDirect">Straight with me, no agency in between</p>
-        </div>
-        <div class="hero__fact">
-          <p class="hero__figure">3</p>
-          <p class="label hero__figureCap" data-i18n="hero.factLang">Languages: UA · EN · PL</p>
         </div>
       </div>
     </section>
@@ -197,10 +174,27 @@
          dochodzi do 1, znak wychodzi z kadru i plotno gasnie (data-mono3d-end). -->
     <section class="intro" id="about" data-mono3d-end>
       <div class="container intro__grid">
-        <h1 class="intro__title" data-reveal data-manifesto data-i18n="hero.title">Make your brand impossible to ignore.</h1>
+        <!-- Naglowek na dwoch wagach: pierwsza czesc gruba, druga cienka (01.10.2026) -->
+        <h1 class="intro__title" data-reveal><strong data-manifesto data-i18n="hero.titleA">Make your brand</strong> <span data-manifesto data-i18n="hero.titleB">impossible to ignore.</span></h1>
         <div class="intro__body">
           <p class="label label--br intro__label" data-reveal data-i18n="about.label">About me</p>
           <p class="intro__text" data-reveal style="--d:.08s"><strong data-i18n="about.lead">I am Anna Pytsko, a graphic and web designer.</strong> <span data-manifesto data-i18n="about.text">Hi, I’m Anna, a multidisciplinary graphic and web designer.</span></p>
+
+        </div>
+
+        <!-- Dwa fakty (02.10.2026: wlasny element siatki, prawa kolumna na dole,
+             pod opisem; lewa dolna cwiartka to miejsce, w ktorym staje znak PA
+             po zjezdzie z hero). Fakt "3 jezyki" zdjety 01.10.2026 na prosbe
+             wlascicielki — klucz hero.factLang zostaje w slowniku. -->
+        <div class="intro__facts" data-reveal style="--d:.16s">
+          <div class="intro__fact">
+            <p class="intro__figure">2020</p>
+            <p class="label intro__figureCap" data-i18n="hero.factSince">In design since</p>
+          </div>
+          <div class="intro__fact">
+            <p class="intro__figure">1:1</p>
+            <p class="label intro__figureCap" data-i18n="hero.factDirect">Straight with me, no agency in between</p>
+          </div>
         </div>
 
         <!-- Okno portretu ze znakiem PA zdjete 17.09.2026 na wyrazna prosbe
@@ -224,9 +218,20 @@
          Klikniecie kafelka otwiera podglad projektu jak dotad (data-case).
          Stary uklad z nasuwaniem: style.css sekcja 63 i 73, js/works-stack.js
          — kod zostaje, skrypt wylaczony w spisie na dole strony. -->
+    <!-- 01.10.2026: prace stoja w blokach-projektach, jak na wzorze
+         wlascicielki. Kazdy blok ma jeden wiersz naglowka: nazwa, kierunek,
+         rok i plus, ktory otwiera podglad calego projektu. Pod spodem siatka
+         kadrow z podpisem w stylu nazwy pliku. Przelacznik gestosci stoi
+         w pierwszym wierszu i przestawia wszystkie siatki naraz. -->
     <section class="works" id="projects">
-      <div class="container works__bar">
-        <p class="works__title"><strong data-i18n="work.selected">Selected work</strong><span data-i18n="work.range">2023 — 2026</span></p>
+      <!-- Pasek nad siatka: filtry kierunkow po lewej, gestosc po prawej -->
+      <div class="container works__bar" data-reveal>
+        <div class="works__filters" role="group" data-works-filters data-i18n-attr="aria-label:work.filter" aria-label="Filter by direction">
+          <button class="wfilter is-active" type="button" data-wfilter="all" aria-pressed="true" data-i18n="sp.all">All</button>
+          <button class="wfilter" type="button" data-wfilter="web" aria-pressed="false" data-i18n="cat.web">Web &amp; UI</button>
+          <button class="wfilter" type="button" data-wfilter="brand" aria-pressed="false" data-i18n="cat.brand">Brand identity</button>
+          <button class="wfilter" type="button" data-wfilter="print" aria-pressed="false" data-i18n="cat.print">Print</button>
+        </div>
         <div class="works__views" role="group" data-i18n-attr="aria-label:work.density" aria-label="Grid density">
           <button class="works__view" type="button" data-view="2" aria-pressed="false" title="2"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2" width="6" height="12" rx="1"/><rect x="9" y="2" width="6" height="12" rx="1"/></svg></button>
           <button class="works__view" type="button" data-view="3" aria-pressed="false" title="3"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2" width="4" height="5.5" rx=".8"/><rect x="6" y="2" width="4" height="5.5" rx=".8"/><rect x="11" y="2" width="4" height="5.5" rx=".8"/><rect x="1" y="8.5" width="4" height="5.5" rx=".8"/><rect x="6" y="8.5" width="4" height="5.5" rx=".8"/><rect x="11" y="8.5" width="4" height="5.5" rx=".8"/></svg></button>
@@ -234,60 +239,52 @@
         </div>
       </div>
 
+      <!-- 01.10.2026 (wieczor): szesc prac, nie wiecej — wlascicielka nie chce
+           na start wymyslac opisow do kilkunastu projektow. Kadry roznia sie
+           ksztaltem: szerokie (span 2), pionowe i jeden kwadrat. Glebia przy
+           przewijaniu (kafelek blizej srodka ekranu jest ostry i blizej,
+           dalsze mniejsze i rozmyte): js/works-depth.js, style sekcja 96.
+           Pozostale kadry serii "Nothing is seen" (img/1-10) sa dalej
+           w podgladzie projektu (script.js, localGalleries). -->
       <div class="container works__grid" data-works-grid style="--cols:4">
-        <article class="wtile" data-reveal>
+        <article class="wtile wtile--wide" data-cat="brand">
           <a class="wtile__media" href="https://www.behance.net/gallery/247999533/Creative-Portfolio-2026-Branding-Web-Social-Media" target="_blank" rel="noopener" data-case="Creative Portfolio 2026">
             <img src="img/cover-portfolio.png" alt="Creative Portfolio 2026 — project cover" loading="lazy">
           </a>
           <p class="wtile__cap"><span class="wtile__name">Creative Portfolio 2026</span><span class="wtile__meta" data-i18n="cat.brand">—</span><span class="wtile__meta">2026</span></p>
         </article>
-        <article class="wtile" data-reveal>
-          <a class="wtile__media" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" data-case="BIVERIS Skin Lab">
-            <img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
-          </a>
-          <p class="wtile__cap"><span class="wtile__name">BIVERIS Skin Lab</span><span class="wtile__meta" data-i18n="cat.brand">—</span><span class="wtile__meta">2025</span></p>
+        <article class="wtile" data-cat="web">
+          <a class="wtile__media" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener" data-case="Nothing is seen"><img src="img/8.png" alt="Nothing is seen — web series, Hidden" loading="lazy"></a>
+          <p class="wtile__cap"><span class="wtile__name">Nothing is seen</span><span class="wtile__meta" data-i18n="cat.web">—</span><span class="wtile__meta">2026</span></p>
         </article>
-        <article class="wtile" data-reveal>
-          <a class="wtile__media" href="https://www.behance.net/gallery/237225941/AURA-PUFFER-Fashion-Banner-Series" target="_blank" rel="noopener" data-case="AURA PUFFER">
-            <img src="img/cover-aura.jpg" alt="AURA PUFFER — project cover" loading="lazy">
-          </a>
-          <p class="wtile__cap"><span class="wtile__name">AURA PUFFER</span><span class="wtile__meta" data-i18n="cat.social">—</span><span class="wtile__meta">2025</span></p>
-        </article>
-        <article class="wtile" data-reveal>
+        <article class="wtile wtile--square" data-cat="brand">
           <a class="wtile__media" href="https://www.behance.net/gallery/230004703/Logo-and-brand-identity-for-a-Loft-bar-SYNQ" target="_blank" rel="noopener" data-case="SYNQ Loft Bar">
             <img src="img/cover-synq.jpg" alt="SYNQ Loft Bar — project cover" loading="lazy">
           </a>
           <p class="wtile__cap"><span class="wtile__name">SYNQ Loft Bar</span><span class="wtile__meta" data-i18n="cat.brand">—</span><span class="wtile__meta">2024</span></p>
         </article>
-        <article class="wtile" data-reveal>
+        <article class="wtile" data-cat="brand">
+          <a class="wtile__media" href="https://www.behance.net/gallery/239621207/BIVERIS-Skin-Lab-Clinical-Brand-Identity-UX-System" target="_blank" rel="noopener" data-case="BIVERIS Skin Lab">
+            <img src="img/cover-biveris.jpg" alt="BIVERIS Skin Lab — project cover" loading="lazy">
+          </a>
+          <p class="wtile__cap"><span class="wtile__name">BIVERIS Skin Lab</span><span class="wtile__meta" data-i18n="cat.brand">—</span><span class="wtile__meta">2025</span></p>
+        </article>
+        <article class="wtile" data-cat="web">
+          <a class="wtile__media" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener" data-case="Nothing is seen"><img src="img/9.png" alt="Nothing is seen — web series, Touched" loading="lazy"></a>
+          <p class="wtile__cap"><span class="wtile__name">Nothing is seen</span><span class="wtile__meta" data-i18n="cat.web">—</span><span class="wtile__meta">2026</span></p>
+        </article>
+        <article class="wtile wtile--wide" data-cat="print">
           <a class="wtile__media" href="https://www.behance.net/gallery/195214865/Magazine-Sweet-Fashion" target="_blank" rel="noopener" data-case="Sweet Fashion Magazine">
             <img src="img/cover-magazine.jpg" alt="Sweet Fashion Magazine — project cover" loading="lazy">
           </a>
           <p class="wtile__cap"><span class="wtile__name">Sweet Fashion Magazine</span><span class="wtile__meta" data-i18n="cat.print">—</span><span class="wtile__meta">2024</span></p>
         </article>
-        <article class="wtile" data-reveal>
-          <a class="wtile__media" href="https://www.behance.net/gallery/169190567/Taxi-website-design" target="_blank" rel="noopener" data-case="Taxi Website">
-            <img src="img/cover-portfolio.png" alt="Taxi Website — project cover" loading="lazy">
-          </a>
-          <p class="wtile__cap"><span class="wtile__name">Taxi Website</span><span class="wtile__meta" data-i18n="cat.web">—</span><span class="wtile__meta">2023</span></p>
-        </article>
-        <article class="wtile" data-reveal>
-          <a class="wtile__media" href="https://www.behance.net/gallery/195176283/Graphic-Designer-Portfolio" target="_blank" rel="noopener" data-case="Graphic Designer Portfolio">
-            <img src="img/cover-magazine.jpg" alt="Graphic Designer Portfolio — project cover" loading="lazy">
-          </a>
-          <p class="wtile__cap"><span class="wtile__name">Graphic Designer Portfolio</span><span class="wtile__meta" data-i18n="cat.print">—</span><span class="wtile__meta">2023</span></p>
-        </article>
-        <article class="wtile" data-reveal>
-          <a class="wtile__media" href="https://www.behance.net/gallery/164450091/Video" target="_blank" rel="noopener" data-case="Video & Motion">
-            <img src="img/cover-portfolio.png" alt="Video &amp; Motion — project cover" loading="lazy">
-          </a>
-          <p class="wtile__cap"><span class="wtile__name">Video &amp; Motion</span><span class="wtile__meta" data-i18n="cat.motion">—</span><span class="wtile__meta">2023</span></p>
-        </article>
       </div>
     </section>
 
     <div class="container works__cta" data-reveal>
-      <a class="btn btn--lg" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.behance">All projects on Behance</span><span class="btn__br" aria-hidden="true">]</span></a>
+      <!-- 02.10.2026: pierwszy przycisk to ciemne szklo, drugi jasne — zeby nie byly jednakowe -->
+      <a class="btn btn--lg btn--ink" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.behance">All projects on Behance</span><span class="btn__br" aria-hidden="true">]</span></a>
       <a class="btn btn--lg" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="projects.instagram">Daily work on Instagram</span><span class="btn__br" aria-hidden="true">]</span></a>
     </div>
 
@@ -295,7 +292,7 @@
     <section class="lab" id="services">
       <div class="container lab__grid">
         <div class="lab__left">
-          <h2 class="lab__title" data-reveal><span data-manifesto data-i18n="services.headA">This is how I</span> <em data-manifesto data-i18n="services.headB">work.</em></h2>
+          <h2 class="lab__title" data-reveal><span data-manifesto data-i18n="services.headA">This is how I</span> <strong data-manifesto data-i18n="services.headB">work.</strong></h2>
           <p class="lab__text" data-reveal style="--d:.08s" data-i18n="services.leadRow">From the first brief to the final file, I keep strategy, identity and content in one system.</p>
           <div class="lab__cta" data-reveal style="--d:.14s">
             <a class="btn btn--lg" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="services.exp">Let’s experiment</span><span class="btn__br" aria-hidden="true">]</span></a>
@@ -391,7 +388,7 @@
       <div class="container faq__grid">
         <div class="faq__head" data-reveal>
           <p class="label label--br" data-i18n="fq.label">Good to know</p>
-          <h2 class="faq__title" data-i18n="fq.title">Questions I get asked most.</h2>
+          <h2 class="faq__title"><strong data-i18n="fq.titleA">Questions</strong> <span data-i18n="fq.titleB">I get asked most.</span></h2>
         </div>
         <div class="faq__list" data-reveal data-reveal-stagger>
           <details class="faq__item">
@@ -445,14 +442,14 @@
       <div class="container shopteaser__grid">
         <div class="shopteaser__left" data-reveal>
           <p class="label label--br" data-i18n="shp.label">Shop</p>
-          <h2 class="shopteaser__title" data-i18n="shp.title">Templates ready to use today.</h2>
+          <h2 class="shopteaser__title"><strong data-i18n="shp.titleA">Templates</strong> <span data-i18n="shp.titleB">ready to use today.</span></h2>
           <p class="shopteaser__text" data-i18n="shp.text">—</p>
           <a class="btn btn--solid btn--lg shopteaser__cta" href="shop.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="shp.cta">Go to shop</span><span class="btn__br" aria-hidden="true">]</span></a>
         </div>
         <ul class="shopteaser__cats" data-reveal data-reveal-stagger>
-          <li><span class="shopteaser__num" aria-hidden="true">01</span><span data-i18n="sp.cSocial">Social media</span></li>
-          <li><span class="shopteaser__num" aria-hidden="true">02</span><span data-i18n="sp.cDecks">Presentations</span></li>
-          <li><span class="shopteaser__num" aria-hidden="true">03</span><span data-i18n="sp.cKits">Brand kits</span></li>
+          <li><span class="shopteaser__num" aria-hidden="true">01</span><span data-i18n="sp.cPs">Photoshop effects</span></li>
+          <li><span class="shopteaser__num" aria-hidden="true">02</span><span data-i18n="sp.cAe">After Effects templates</span></li>
+          <li><span class="shopteaser__num" aria-hidden="true">03</span><span data-i18n="sp.cSocial">Social media</span></li>
         </ul>
       </div>
     </section>
@@ -550,7 +547,9 @@
 
   <!-- Progresywne rozmycie przy dolnej krawędzi ekranu -->
   <div class="pblur" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
-  <div class="case-loader" aria-hidden="true"><span data-case-loader-title></span></div>
+  <!-- Czarny ekran przy otwieraniu projektu: znak PA wykreca sie z czerni
+       (jak kurtyna wejsciowa), pod nim nazwa projektu (01.10.2026) -->
+  <div class="case-loader" aria-hidden="true"><img class="case-loader__mark" src="img/logo-pa-white.svg" alt=""><span data-case-loader-title></span></div>
 
   <!-- Filtr gooey: dziala wylacznie na malej kropli przelacznika jezyka -->
   <svg class="goo-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
@@ -582,6 +581,11 @@
        Kod zostaje — wraca odkomentowaniem tej linii i przywroceniem .wrow.
        <script src="js/works-stack.js" defer></script> -->
   <script src="js/works-grid.js" defer></script>
+  <script src="js/works-filter.js" defer></script>
+  <!-- Glebia prac wylaczona 02.10.2026 na prosbe wlascicielki ("nie zaciemniaj,
+       nie rozmywaj"). Kod zostaje — wraca odkomentowaniem tej linii.
+       <script src="js/works-depth.js" defer></script> -->
+  <script src="js/page-flow.js" defer></script>
   <!-- Pryzma 3D zdjeta ze strony 14.09.2026 razem ze swoja sekcja.
        <script src="js/obj3d.js" defer></script> -->
   <!-- Model glowy zdjety 13.09.2026 na prosbe wlascicielki. Zeby wrocil,

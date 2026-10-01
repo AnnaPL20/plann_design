@@ -123,12 +123,17 @@
     $$(':scope > *', group).forEach((child, i) => child.style.setProperty('--d', (i * 0.08).toFixed(2) + 's'));
   });
   if ('IntersectionObserver' in window && !reduceMotion) {
+    /* 01.10.2026 (prosba wlascicielki): blok, ktory wyjechal DOLEM ekranu,
+       chowa sie z powrotem i wplywa jeszcze raz przy nastepnym przewinieciu
+       w dol. Blok, ktory zostal u gory (przewiniety), zostaje widoczny. */
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('is-visible');
-        if (e.target.hasAttribute('data-split')) e.target.classList.add('is-in');
-        io.unobserve(e.target);
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          if (e.target.hasAttribute('data-split')) e.target.classList.add('is-in');
+        } else if (e.boundingClientRect.top > 0) {
+          e.target.classList.remove('is-visible', 'is-in');
+        }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     $$('[data-reveal]').forEach(el => io.observe(el));
@@ -196,7 +201,15 @@
       } catch (e) { return ''; }
     };
     $$('[data-tz]').forEach(el => { el.textContent = tzName(); });
-    const tick = () => { const s = fmt.format(new Date()); clocks.forEach(c => { c.textContent = s; }); };
+    /* Data obok zegara w hero (01.10.2026): format RRRR-MM-DD, ta sama strefa */
+    const dates = $$('[data-date]');
+    const dateFmt = new Intl.DateTimeFormat('en-CA', { timeZone: STUDIO_TZ, year: 'numeric', month: '2-digit', day: '2-digit' });
+    const tick = () => {
+      const now = new Date();
+      const s = fmt.format(now);
+      clocks.forEach(c => { c.textContent = s; });
+      if (dates.length) { const d = dateFmt.format(now); dates.forEach(el => { el.textContent = d; }); }
+    };
     tick();
     setInterval(tick, 1000);
   }
@@ -233,7 +246,8 @@
     document.addEventListener('pointerover', e => {
       const target = e.target instanceof Element ? e.target : null;
       /* Karty prac maja teraz klase .work; stara .card zostaje dla zgodnosci */
-      const work = target?.closest('.wrow__media[data-case], .work[data-case], .card[data-case]');
+      /* 01.10.2026: kafelki siatki (.wtile__media) tez dostaja duzy kursor */
+      const work = target?.closest('.wtile__media[data-case], .wrow__media[data-case], .work[data-case], .card[data-case]');
       cursor.classList.toggle('is-work', Boolean(work));
       cursor.classList.toggle('is-hover', Boolean(work || target?.closest('a, button, [data-cursor]')));
     });
@@ -269,6 +283,8 @@
   const caseLoaderTitle = $('[data-case-loader-title]');
   let caseOpenTimer = 0;
   const localGalleries = {
+    /* Seria "Nothing is seen" (01.10.2026): dziesiec kadrow z img/1-10 */
+    'Nothing is seen': ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png', 'img/5.png', 'img/6.png', 'img/7.png', 'img/8.png', 'img/9.png', 'img/10.png'],
     'Creative Portfolio 2026': ['img/cover-portfolio.png', 'img/cover-aura.jpg', 'img/cover-biveris.jpg'],
     'BIVERIS Skin Lab': ['img/cover-biveris.jpg', 'img/cover-synq.jpg'],
     'AURA PUFFER': ['img/cover-aura.jpg', 'img/cover-magazine.jpg'],
@@ -278,6 +294,7 @@
     'Video & Motion': ['img/hero-loop.mp4', 'img/motion-loop.mp4']
   };
   const caseDescriptions = {
+    'Nothing is seen': 'A web series built on one sentence: six concept sites, each finishing it in its own voice — hidden, touched, heard, worn, entered, gone.',
     'Creative Portfolio 2026': 'A focused collection of visual identities, digital experiences and social direction.',
     'BIVERIS Skin Lab': 'A precise visual system built around clarity, trust and a considered digital experience.',
     'AURA PUFFER': 'A fashion-led visual direction with bold image-making and a strong editorial rhythm.',
@@ -296,7 +313,8 @@
     if (!caseViewer || !caseMedia || !caseTitle) return;
     event.preventDefault();
     const title = card.dataset.case;
-    const sources = localGalleries[title] || [$('.card__img', card)?.src];
+    /* Bez wlasnej galerii podglad bierze zdjecie z kafelka (stara .card__img albo zwykly img) */
+    const sources = localGalleries[title] || [($('.card__img', card) || $('img', card))?.src];
     caseMedia.replaceChildren(...sources.filter(Boolean).map(source => {
       const isVideo = /\.mp4$/i.test(source);
       const media = document.createElement(isVideo ? 'video' : 'img');

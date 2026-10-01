@@ -162,13 +162,27 @@ function init() {
      0.05 zamiast 0.08 (17.09.2026, prosba wlascicielki): znak przekreca sie
      wolniej i dlugo dochodzi do celu, wiec ruch jest gladszy. */
   let actEnd = 1;         /* przewiniecie w pikselach, na ktorym akt sie konczy */
+  let actStart = 0;       /* przewiniecie, od ktorego akt sie zaczyna */
+  let exit = 0;           /* ile pikseli strona odjechala po akcie (wygladzone) */
+  let exitRaw = 0;
   let prog = 0;           /* postep po wygladzeniu */
   let rawProg = 0;        /* postep prosto ze skrolu */
+  /* 01.10.2026 (prosba wlascicielki): znak ma stanac OBOK tekstu o mnie
+     i czytac go razem z gosciem, a nie uciekac w gore. Os aktu liczy sie
+     wiec od chwili, gdy sekcja "O mnie" zaczyna wchodzic na ekran, do
+     chwili, gdy jej tekst stoi na srodku okna — tam znak jest juz zlozony
+     i stoi. Potem nie ma zadnego wlasnego ruchu: znak jedzie razem ze strona
+     (jakby lezal na kartce) i gasnie. Hero jest teraz calym ekranem, wiec
+     dawna os (od gory strony) konczyla taniec, zanim tekst w ogole wszedl. */
+  const actText = act ? (act.querySelector('.intro__body') || act) : null;
   let live = false;       /* czy mozemy juz sterowac przezroczystoscia plotna */
   let shadowBase = .15;   /* sila cienia w spoczynku — motyw ja dostraja */
   /* Kolor znaku: w hero czarny metal, a w miare przewijania przechodzi w bialy.
      W ciemnym motywie czern startowa jest odrobine jasniejsza, bo czarny znak
      na czarnym tle po prostu znika. */
+  /* 02.10.2026: znak jest szklany, wiec "kolor" to tylko lekki chlod szkla
+     w hero, ktory przy przewijaniu przechodzi w czysta biel.
+     Dawne wartosci (czarny metal): INK_LIGHT 0x15151a, INK_DARK 0x2e2e37. */
   const INK_LIGHT = new Color(0x15151a);
   const INK_DARK = new Color(0x2e2e37);
   const SNOW = new Color(0xececf1);
@@ -176,8 +190,17 @@ function init() {
   let dark = false;       /* czy strona stoi na ciemnym motywie */
 
   const measure = () => {
-    const end = act ? act.getBoundingClientRect().bottom + scrollY - innerHeight : innerHeight;
-    actEnd = Math.max(end, 1);
+    if (!act) { actStart = 0; actEnd = Math.max(innerHeight, 1); return; }
+    const top = act.getBoundingClientRect().top + scrollY;
+    /* 02.10.2026: sekcja "O mnie" zaczyna sie zaraz pod hero i sama ma wysokosc
+       ekranu, wiec akt konczy sie, gdy jej gora dojedzie pod pasek menu —
+       wtedy caly blok (naglowek, opis, znak w lewej dolnej cwiartce) stoi
+       w kadrze. Dawna os (do srodka tekstu) zostaje w komentarzu:
+       const tr = actText.getBoundingClientRect();
+       const mid = tr.top + scrollY + tr.height / 2 - innerHeight / 2; */
+    const navH = parseFloat(getComputedStyle(root).getPropertyValue('--nav-h')) || 58;
+    actStart = Math.max(top - innerHeight * .92, 0);
+    actEnd = Math.max(top - navH - 14, actStart + 1);
   };
 
   /* Kawalek osi czasu 0..1 z calego postepu */
@@ -201,7 +224,11 @@ function init() {
     /* Skladanie konczy sie przed samym koncem aktu: znak ma zdazyc stanac
        przodem do widza i byc czytelny, zanim ruszy w gore */
     const sC = easeInOut(seg(.70, .88));
-    const sOut = easeInOut(seg(.84, 1));
+    /* Wyjscie w gore wylaczone 01.10.2026 (znak jedzie teraz ze strona — patrz
+       exit nizej). Zeby wrocilo: const sOut = easeInOut(seg(.84, 1)); */
+    const sOut = 0;
+    /* Po akcie znak przesuwa sie dokladnie o tyle, o ile przewinela sie strona */
+    const exitWorld = exit * (viewH / Math.max(innerHeight, 1));
 
     /* Kamera powoli naježdža — znak rosnie w kadrze bez skoku perspektywy */
     camera.position.set(0, LIFT + .35, dist0 * (1 - .12 * sA));
@@ -219,9 +246,13 @@ function init() {
     /* Na telefonie znak dodatkowo podjezdza w gore: na waskim ekranie tekst
        i tak przechodzi przez caly kadr, a szary napis na jasnym metalu robil
        sie nieczytelny. Wyzej jest spokojniej. */
+    /* 02.10.2026: po zjechaniu z hero znak staje w LEWEJ DOLNEJ cwiartce
+       sekcji "O mnie" — pod naglowkiem, ktory stoi teraz w lewej kolumnie
+       (opis po prawej, jak na wzorze wlascicielki). Stad zjazd o 22% okna. */
     const y = LIFT + heroShift * (1 - sA * (narrow.matches ? .3 : 1))
-      + (narrow.matches ? sA * viewH * .14 : 0)
-      + sOut * viewH * .9;
+      + (narrow.matches ? sA * viewH * .14 : -sA * viewH * .22)
+      + sOut * viewH * .9
+      + exitWorld;
     /* Znak nie przewija sie przez pustke: schodzi z hero w lewo, a potem
        przechodzi na prawa strone, gdzie stoi akapit o mnie — tekst i bryla
        ida razem, a nie osobno. Na telefonie zostaje po srodku, bo tam kolumna
@@ -229,7 +260,7 @@ function init() {
     const viewW = viewH * camera.aspect;
     const drift = narrow.matches
       ? 0
-      : viewW * -.18 * easeInOut(seg(.12, .55));
+      : viewW * -.24 * easeInOut(seg(.12, .55));   /* 02.10.2026: glebiej w lewa kolumne (bylo -.18) */
     rootGroup.position.set(drift, y, 0);
     /* Znak zjezdza z hero i przy okazji maleje — odsuwa sie na bok jak
        przedmiot odlozony obok kartki, wiec przestaje wchodzic na tekst. */
@@ -238,7 +269,10 @@ function init() {
     /* Odwracanie za mysza dziala w spoczynku i ustepuje, gdy prowadzi skrol.
        Do tego lekkie skiniecie w czasie obrotu — dzieki niemu znak nigdy nie
        staje idealnie bokiem, wiec nie znika na chwile z kadru. */
-    const hand = 1 - sA;
+    /* 02.10.2026 (prosba wlascicielki): znak patrzy za mysza ZAWSZE — takze
+       po zjechaniu z hero, gdy stoi obok tekstu. Wczesniej odwracanie gaslo
+       razem z postepem skrolu (hand = 1 - sA). */
+    const hand = 1;
     rootGroup.rotation.set(tilt.pitch * hand + .16 * Math.sin(Math.PI * sA), tilt.yaw * hand, 0);
     /* Zamiast obrotow: jedno lekkie odwrocenie w prawo i tyle. Znak stoi
        bokiem do widza jak przedmiot polozony na biurku i patrzy w strone
@@ -285,8 +319,8 @@ function init() {
     }
     scene.environmentIntensity = (dark ? 3.6 : 2.9) - .7 * shine;
 
-    /* Na koniec aktu plotno gasnie i strona zyje dalej jak zawsze */
-    if (live) canvas.style.opacity = clamp01((.99 - prog) / .12).toFixed(3);
+    /* Po akcie plotno gasnie w miare odjezdzania strony (od 15% do 60% okna) */
+    if (live) canvas.style.opacity = clamp01(1 - (exit - innerHeight * .15) / (innerHeight * .45)).toFixed(3);
   };
 
   /* --- petla ---------------------------------------------------------------- */
@@ -308,7 +342,11 @@ function init() {
     const dt = last ? Math.min((now - last) / 1000, .05) : .016;
     last = now;
 
-    rawProg = clamp01(scrollY / actEnd);
+    rawProg = clamp01((scrollY - actStart) / (actEnd - actStart));
+    /* Odjazd po akcie: doganianie lekkie, zeby znak trzymal sie kartki */
+    exitRaw = Math.max(0, scrollY - actEnd);
+    exit += (exitRaw - exit) * .3;
+    if (Math.abs(exitRaw - exit) < .5) exit = exitRaw;
     /* Doganianie plus twardy limit na klatke: gdy ktos szarpnie kolkiem przez
        pol strony, znak i tak przekreci sie spokojnie, a nie w jednej klatce.
        0.006 na klatke to okolo 0.36 postepu na sekunde — caly akt nie moze
@@ -328,8 +366,8 @@ function init() {
 
     place();
     frame();
-    /* Po akcie petla zasypia — plotno jest wygaszone, nie ma czego rysowac */
-    if (prog < .9995 || rawProg < .9995) wake();
+    /* Petla zasypia, gdy nic sie juz nie zmienia; plotno wygaszone nie rysuje */
+    if (prog < .9995 || rawProg < .9995 || exit !== exitRaw) wake();
   };
 
   const wake = () => {
@@ -369,12 +407,26 @@ function init() {
       const H = probe.boundingBox.max.y - probe.boundingBox.min.y;
       probe.dispose();
 
+      /* 01.10.2026 (prosba wlascicielki): znak ma wygladac na mokry — gladki
+         lakier, pelny clearcoat, ostre odbicia. Dawne wartosci: roughness .18,
+         clearcoat .6, clearcoatRoughness .14. */
+      /* 02.10.2026 (prosba wlascicielki): znak ma byc ze SZKLA, jak krople
+         w interfejsie — przezroczysta bryla, ktora zalamuje i odbija otoczenie.
+         transmission 1 = swiatlo przechodzi przez bryle, thickness daje jej
+         glebie, ior 1.45 to szklo, clearcoat — mokry polysk.
+         Dawny czarny metal: metalness 1, roughness .08, clearcoat 1,
+         clearcoatRoughness .05, kolor 0x15151a. */
+      /* 02.10.2026, pozniej: szklo odrzucone ("zepsules, wroc jak bylo") —
+         wraca czarny, mokry metal. Wersja szklana do odkomentowania:
+         color 0xdfe6ee, metalness 0, roughness .12, transmission 1,
+         thickness .9, ior 1.45, clearcoat 1, clearcoatRoughness .06,
+         specularIntensity 1, envMapIntensity 1.6. */
       material = new MeshPhysicalMaterial({
         color: new Color(0x15151a),   /* start w czerni — dalej prowadzi skrol */
         metalness: 1,
-        roughness: .18,
-        clearcoat: .6,
-        clearcoatRoughness: .14,
+        roughness: .08,
+        clearcoat: 1,
+        clearcoatRoughness: .05,
         side: DoubleSide,
       });
 
@@ -469,8 +521,9 @@ function init() {
 
   if (fine.matches && !calm.matches) {
     addEventListener('pointermove', event => {
-      tiltTo.yaw = clamp1(event.clientX / innerWidth * 2 - 1) * 25 * DEG;
-      tiltTo.pitch = clamp1(event.clientY / innerHeight * 2 - 1) * 10 * DEG;
+      /* 01.10.2026: znak wyrazniej "patrzy" za mysza — bylo 25 / 10 stopni */
+      tiltTo.yaw = clamp1(event.clientX / innerWidth * 2 - 1) * 38 * DEG;
+      tiltTo.pitch = clamp1(event.clientY / innerHeight * 2 - 1) * 18 * DEG;
       wake();
     }, { passive: true });
     addEventListener('blur', () => { tiltTo.yaw = 0; tiltTo.pitch = 0; wake(); });
