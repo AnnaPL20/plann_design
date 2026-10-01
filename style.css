@@ -8258,3 +8258,70 @@ body.page--ink .menu,
 .cta__line,
 .shopHead__title,
 .case-viewer__info h2 { font-size: clamp(1.8rem, 3.4vw, 3.2rem); }
+
+/* ---------------------------------------------------------------------------
+   112. KURSOR "PODIVITIS" NAD PRACAMI + STRZALKA DO GORY (02.10.2026)
+   Wlascicielka: "po najechaniu na prace zniknelo 'podywytys' — to nasze,
+   wroc to". Plakietka wraca: nad kafelkiem prac kursor rozciaga sie w
+   pigulke z napisem (slownik: cursor.view), dalej w negatywie
+   (mix-blend-mode: difference), wiec czyta sie na kazdym zdjeciu.
+   Strzalka do gory: w prawym dolnym rogu, pokazuje sie po przewinieciu
+   ekranu, klik wraca na gore (js/page-flow.js tworzy ja na kazdej stronie).
+   --------------------------------------------------------------------------- */
+.cursor.is-work {
+  width: auto;
+  min-width: 96px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 0;
+  mix-blend-mode: difference;
+}
+.cursor.is-work span {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
+  margin: 0;
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.totop {
+  position: fixed;
+  right: clamp(16px, 2.4vw, 32px);
+  bottom: clamp(16px, 2.4vw, 32px);
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--t-fg) 14%, transparent);
+  background: color-mix(in srgb, var(--t-bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  backdrop-filter: blur(20px) saturate(170%);
+  color: var(--t-fg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 10px 26px -14px color-mix(in srgb, var(--t-fg) 50%, transparent);
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+  transition: opacity .45s var(--ease-out), transform .45s var(--ease-out), background-color .3s var(--ease);
+}
+.totop.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.totop:hover { background: color-mix(in srgb, var(--t-bg) 75%, transparent); }
+.totop svg { transition: transform .4s var(--ease-out); }
+.totop:hover svg { transform: translateY(-2px); }
+body.page--ink .totop {
+  border-color: rgba(255, 255, 255, .22);
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 10px 26px -14px rgba(0, 0, 0, .8);
+}
+@media (prefers-reduced-motion: reduce) { .totop, .totop svg { transition: none; } }
