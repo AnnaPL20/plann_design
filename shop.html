@@ -1,192 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shop · PLANN Design · Templates for designers &amp; brands</title>
-  <meta name="description" content="Ready-to-use templates for social media, presentations and brand kits by Anna Pytsko.">
-  <meta name="theme-color" content="#faf9f7">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shop · PLANN design</title>
+  <meta name="description" content="Templates and effects by Anna Pytsko, PLANN design.">
+  <meta name="theme-color" content="#050506">
   <link rel="canonical" href="https://annapl20.github.io/plann_design/shop.html">
-  <meta property="og:url" content="https://annapl20.github.io/plann_design/shop.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Shop · PLANN Design · Templates for designers &amp; brands">
-  <meta property="og:description" content="Ready-to-use templates for social media, presentations and brand kits by Anna Pytsko.">
-  <meta property="og:image" content="https://annapl20.github.io/plann_design/img/og.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Shop · PLANN Design">
-  <meta name="twitter:description" content="Templates for social media, presentations and brand kits.">
-  <meta name="twitter:image" content="https://annapl20.github.io/plann_design/img/og.png">
-
-  <link rel="icon" href="img/logo-pa-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="img/logo-pa-white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-
-  <link rel="preload" href="fonts/Satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=20261002c">
-  <link rel="stylesheet" href="css/liquid-glass.css?v=20261002c">
+  <link rel="icon" href="img/logo-pa-white.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/JetBrainsMono-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/plann-pages.css?v=20261009b">
 </head>
-
 <body data-meta-key="sp">
-  <a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
-  <div class="cursor" aria-hidden="true"><span>View</span></div>
+  <div class="vig" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-  <!-- ===================== NAWIGACJA (wspolna dla wszystkich stron) ===================== -->
-  <header class="nav" id="nav">
-    <a class="logo" href="index.html" data-i18n-attr="aria-label:a11y.home" aria-label="PLANN Design — home">
-      <img class="logo__img logo__img--onink" src="img/logo-pa-white.svg" alt="PLANN Design" onerror="this.closest('.logo').classList.add('is-missing')">
-      <img class="logo__img logo__img--onpaper" src="img/logo-pa-dark.svg" alt="" aria-hidden="true" onerror="this.closest('.logo').classList.add('is-missing')">
-      <span class="logo__text" aria-hidden="true">PA</span>
-    </a>
-
-    <div class="nav__right">
-      <a class="btn btn--solid btn--small nav__cta" href="contact.html">
-        <span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.contact">Contact</span><span class="btn__br" aria-hidden="true">]</span>
-      </a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" data-i18n-attr="aria-label:a11y.menuOpen" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
+  <header class="head">
+    <a class="brand" href="index.html"><i aria-hidden="true"></i><span>PLANN design</span></a>
+    <nav class="topnav" aria-label="Menu">
+      <a href="index.html" data-i18n="nav.projects">Projects</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="shop.html" aria-current="page" data-i18n="nav.shop">Shop</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="uk">UA</button>
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="pl">PL</button>
     </div>
   </header>
 
-  <!-- Panel menu: ten sam na kazdej stronie i na kazdej szerokosci -->
-  <nav class="menu" id="menu" aria-hidden="true" data-i18n-attr="aria-label:nav.menu" aria-label="Menu">
-    <div class="menu__pills">
-      <a class="menu__pill" href="index.html#projects"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.projects">Projects</span><span class="btn__br" aria-hidden="true">]</span></a>
-      <a class="menu__pill" href="contact.html"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.contact">Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
-      <a class="menu__pill" href="shop.html" aria-current="page"><span class="btn__br" aria-hidden="true">[</span><span data-i18n="nav.shop">Shop</span><span class="btn__br" aria-hidden="true">]</span></a>
+  <main class="page" id="main">
+    <div class="lead">
+      <p class="label" data-i18n="shop.label">Shop</p>
+      <h1 class="h1" data-i18n="sp.title">Templates for designers &amp; brands</h1>
+      <p class="sub" data-i18n="sp.lead">Ready-to-use files I build for my own work.</p>
     </div>
 
-    <div class="menu__tools">
-      <div class="lang" role="group" aria-label="Language">
-        <button class="lang__btn" type="button" data-lang="uk" aria-pressed="false">UA</button>
-        <button class="lang__btn is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
-        <button class="lang__btn" type="button" data-lang="pl" aria-pressed="false">PL</button>
-      </div>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" data-i18n-attr="aria-label:a11y.theme" aria-label="Switch color theme">
-        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+    <!-- Filtry i siatka towarow; karty buduje js/shop.js z js/products.js -->
+    <div class="shop__filters" data-shop-filters role="group" data-i18n-attr="aria-label:sp.filters" aria-label="Filter by category">
+      <button class="chip is-picked" type="button" data-filter="all" aria-pressed="true"><span data-i18n="sp.all">All</span></button>
+      <button class="chip" type="button" data-filter="ps" aria-pressed="false"><span data-i18n="sp.cPs">Photoshop effects</span></button>
+      <button class="chip" type="button" data-filter="ae" aria-pressed="false"><span data-i18n="sp.cAe">After Effects templates</span></button>
+    </div>
+
+    <div class="prodGrid" data-shop-grid></div>
+    <p class="shop__empty" data-shop-empty hidden data-i18n="sp.empty">Nothing in this category yet.</p>
+
+    <div class="rule"></div>
+
+    <div class="lead">
+      <p class="label" data-i18n="sp.launchTitle">Be first to know</p>
+      <p class="sub" data-i18n="sp.launchLead">One email when the first files go live. Nothing else.</p>
+    </div>
+    <form class="launch__form" data-launch-form novalidate>
+      <input class="launch__input" type="email" name="email" inputmode="email" autocomplete="email" spellcheck="false"
+             data-launch-email placeholder="your@email" data-i18n-attr="placeholder:sp.launchPh,aria-label:sp.launchPh" aria-label="your@email" required>
+      <button class="btn btn--solid btn--lg" type="submit" style="justify-self:start">
+        <span data-launch-label data-i18n="sp.launchCta">Notify me at launch</span>
       </button>
-    </div>
-
-    <ul class="menu__social">
-      <li><a href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Instagram<span class="btn__br" aria-hidden="true">]</span></a></li>
-      <li><a href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>Behance<span class="btn__br" aria-hidden="true">]</span></a></li>
-      <li><a href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener"><span class="btn__br" aria-hidden="true">[</span>LinkedIn<span class="btn__br" aria-hidden="true">]</span></a></li>
-    </ul>
-
-    <p class="menu__rights">Anna Pytsko · PLANN Design™ — <span data-year>2026</span><br><span data-i18n="footer.rights">All rights reserved.</span></p>
-  </nav>
-
-  <main id="main">
-    <!-- ===================== NAGLOWEK SKLEPU ===================== -->
-    <section class="section shopHead">
-      <div class="container">
-        <div class="sectionHead" data-reveal>
-          <p class="label label--br" data-i18n="shop.label">Shop</p>
-          <p class="label sectionHead__aside" data-shop-count>02</p>
-        </div>
-
-        <h1 class="display h2 shopHead__title" data-reveal data-split data-i18n="sp.title">Templates for designers &amp; brands</h1>
-        <p class="lead shopHead__lead" data-reveal style="--d:.1s" data-i18n="sp.lead">Ready-to-use files I build for my own work — made to save you hours and keep everything on brand.</p>
-
-        <div class="shop__filters" data-shop-filters role="group" data-i18n-attr="aria-label:sp.filters" aria-label="Filter by category" data-reveal style="--d:.15s">
-          <!-- 01.10.2026: dwa kierunki — efekty do Photoshopa i szablony After Effects -->
-          <button class="chip is-picked" type="button" data-filter="all" aria-pressed="true"><span data-i18n="sp.all">All</span></button>
-          <button class="chip" type="button" data-filter="ps" aria-pressed="false"><span data-i18n="sp.cPs">Photoshop effects</span></button>
-          <button class="chip" type="button" data-filter="ae" aria-pressed="false"><span data-i18n="sp.cAe">After Effects templates</span></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== SIATKA TOWAROW ===================== -->
-    <section class="shopGrid">
-      <div class="container">
-        <div class="prodGrid" data-shop-grid></div>
-        <p class="lead shop__empty" data-shop-empty hidden data-i18n="sp.empty">Nothing in this category yet.</p>
-      </div>
-    </section>
-
-    <!-- ===================== LISTA STARTOWA ===================== -->
-    <section class="section launch">
-      <div class="container">
-        <div class="sectionHead" data-reveal>
-          <p class="label label--br" data-i18n="sp.launchTitle">Be first to know</p>
-        </div>
-        <div class="launch__inner">
-          <p class="lead launch__lead" data-reveal data-i18n="sp.launchLead">One email when the first files go live. Nothing else.</p>
-
-          <form class="launch__form" data-launch-form novalidate data-reveal style="--d:.1s">
-            <input class="launch__input" type="email" name="email" inputmode="email" autocomplete="email" spellcheck="false"
-                   data-launch-email placeholder="your@email" data-i18n-attr="placeholder:sp.launchPh,aria-label:sp.launchPh" aria-label="your@email" required>
-            <button class="btn btn--solid btn--lg" type="submit">
-              <span class="btn__br" aria-hidden="true">[</span><span data-launch-label data-i18n="sp.launchCta">Notify me at launch</span><span class="btn__br" aria-hidden="true">]</span>
-            </button>
-
-            <!-- Pola techniczne FormSubmit -->
-            <input type="hidden" name="_subject" value="Shop launch list">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input class="wiz__honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-          </form>
-
-          <p class="label launch__note" data-launch-note hidden role="status"></p>
-        </div>
-      </div>
-    </section>
+      <input type="hidden" name="_subject" value="Shop launch list">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="wiz__honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    </form>
+    <p class="launch__note" data-launch-note hidden role="status"></p>
   </main>
 
-  <!-- Okno szczegolow towaru -->
+  <footer class="foot">
+    <div><h3 data-i18n="nav.menu">Navigation</h3><nav><a href="index.html" data-i18n="nav.projects">Projects</a><a href="contact.html" data-i18n="nav.contact">Contact</a><a href="shop.html" data-i18n="nav.shop">Shop</a></nav></div>
+    <div><h3>Email</h3><nav><a href="mailto:annapytsko@gmail.com">annapytsko@gmail.com</a></nav></div>
+    <div><h3 data-i18n="contact.socials">Find me on</h3><nav><a href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener">LinkedIn</a></nav></div>
+    <div><h3 data-i18n="ui.aboutLabel">About me</h3><p>Anna Pytsko<br><span data-i18n="hero.label">Graphic &amp; web designer</span><br>&copy; <span data-year>2026</span></p></div>
+  </footer>
+
   <dialog class="pmodal" data-shop-modal aria-label="Product details">
-    <button class="pmodal__close socialbtn" type="button" data-modal-close data-i18n-attr="aria-label:sp.close" aria-label="Close">
-      <span aria-hidden="true">×</span>
-    </button>
+    <button class="pmodal__close" type="button" data-modal-close data-i18n-attr="aria-label:sp.close" aria-label="Close"><span aria-hidden="true">×</span></button>
     <div class="pmodal__body" data-modal-body></div>
   </dialog>
 
-  <footer class="footer accent-block" id="footer">
-    <div class="container">
-      <div class="footer__body" data-reveal data-reveal-stagger>
-        <div class="footer__column"><p class="label" data-i18n="nav.menu">Navigation</p><nav class="footer__nav" aria-label="Footer"><a href="index.html" data-i18n="nav.home">Home</a><a href="index.html#projects" data-i18n="nav.projects">Projects</a><a href="contact.html" data-i18n="nav.contact">Contact</a></nav></div>
-        <div class="footer__column"><p class="label">Email</p><a class="footer__email" href="mailto:annapytsko@gmail.com">[ annapytsko@gmail.com ]</a></div>
-        <div class="footer__column"><p class="label" data-i18n="contact.socials">Find me on</p>
-          <ul class="socialrow socialrow--footer">
-            <li class="socialrow__item" data-tip="Instagram"><a class="socialbtn" href="https://www.instagram.com/plann_design_" target="_blank" rel="noopener" aria-label="Instagram"><span class="socialbtn__ico socialbtn__ico--instagram" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="Behance"><a class="socialbtn" href="https://www.behance.net/pl_annetka" target="_blank" rel="noopener" aria-label="Behance"><span class="socialbtn__ico socialbtn__ico--behance" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="Telegram"><a class="socialbtn" href="https://t.me/pl_annetka" target="_blank" rel="noopener" aria-label="Telegram"><span class="socialbtn__ico socialbtn__ico--telegram" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="TikTok"><a class="socialbtn" href="https://www.tiktok.com/@pl_annetka" target="_blank" rel="noopener" aria-label="TikTok"><span class="socialbtn__ico socialbtn__ico--tiktok" aria-hidden="true"></span></a></li>
-            <li class="socialrow__item" data-tip="LinkedIn"><a class="socialbtn" href="https://www.linkedin.com/in/anna-pytsko-588906248" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="socialbtn__ico socialbtn__ico--linkedin" aria-hidden="true"></span></a></li>
-          </ul>
-        </div>
-        <div class="footer__column"><p class="label" data-i18n="about.f2k">Studio</p><p class="footer__note">Anna Pytsko<br>Graphic &amp; Web Designer<br>Poland — worldwide</p></div>
-      </div>
+  <div class="cur" aria-hidden="true"><div class="r"><span data-i18n="cursor.view">View</span></div></div>
 
-      <div class="footer__grid">
-        <p class="label footer__meta">© <span data-year>2026</span> PA / PLANN Design™</p>
-        <a class="label footer__top" href="#main" data-i18n="footer.top">Back to top</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Filtr gooey dla przelacznika jezyka -->
-  <svg class="goo-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
-    <filter id="goo-lang" color-interpolation-filters="sRGB">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
-      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -12"/>
-    </filter>
-  </svg>
-
-  <script src="js/vendor/lenis.min.js?v=20261002c" defer></script>
-  <script src="js/intro-gate.js?v=20261002c" defer></script>
-  <script src="js/i18n.js?v=20261002c" defer></script>
-  <script src="script.js?v=20261002c" defer></script>
-  <script src="js/ui-liquid.js?v=20261002c" defer></script>
-  <script src="js/scroll.js?v=20261002c" defer></script>
-  <script src="js/products.js?v=20261002c" defer></script>
-  <script src="js/shop.js?v=20261002c" defer></script>
-  <script src="js/page-flow.js?v=20261002c" defer></script>
+  <script src="js/i18n.js?v=20261009b"></script>
+  <script src="js/plann-shell.js?v=20261009b"></script>
+  <script src="js/products.js?v=20261009b"></script>
+  <script src="js/shop.js?v=20261009b"></script>
 
   <!-- Platnosci Payhip.
        Odkomentuj, gdy pojawia sie prawdziwe produkty: wtedy przyciski z klasa
@@ -194,6 +91,5 @@
        przekierowywac do Payhip. Do tego czasu skrypt nie jest pobierany.
   <script src="https://payhip.com/payhip.js"></script>
   -->
-  <script src="js/liquid-glass.js?v=20261002c" defer></script>
 </body>
 </html>

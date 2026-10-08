@@ -1,7 +1,7 @@
 /* =============================================================================
    PLANN Design — wspolny slownik tlumaczen (EN / UA / PL)
    Jeden plik dla wszystkich stron: index.html, contact.html, shop.html
-   i brief.html. Podpina sie PRZED script.js.
+   i brief.html. Podpina sie PRZED js/plann.js i js/plann-shell.js.
    Klucze "<prefiks>.metaTitle" i "<prefiks>.metaDesc" obsluguja tytul i opis
    podstrony — prefiks wskazuje atrybut data-meta-key na znaczniku <body>.
    ============================================================================= */

@@ -44,7 +44,7 @@ const PROJ = {
    Zeby zmienic slowa, wystarczy podmienic pole "word" (i teksty w slowniku).
    "filter" wskazuje, ktore karty na kuli sa podswietlone. */
 const SLIDES = [
-  { word: 'PLANN', logo: 'img/logo-plann-white.svg', filter: null,    list: 'sl0.list', desc: 'sl0.desc' },
+  { word: 'PLANN', logo: 'img/logo-pa-white.svg', filter: null,    list: 'sl0.list', desc: 'sl0.desc' },
   { word: 'web',      filter: 'web',    list: 'sl1.list', desc: 'sl1.desc' },
   { word: 'branding', filter: 'brand',  list: 'sl2.list', desc: 'sl2.desc' },
   { word: 'plan',     filter: 'social', list: 'sl3.list', desc: 'sl3.desc' },
@@ -247,16 +247,21 @@ function wordTargets(word) {
   return sampleCanvas(w, h, cell, 1);
 }
 function logoTargets() {
-  /* Logo jest szerokie i niskie, wiec idzie na drobniejszej siatce (polowa
-     komorki) i z mniejszymi kropkami — inaczej mialoby kilka rzedow */
+  /* Znak PA idzie na drobniejszej siatce (polowa komorki) — inaczej mialby
+     kilka rzedow i nie dalo by sie go odczytac. Szerokosc i wysokosc sa
+     ograniczone, zeby znak miescil sie w kadrze takze na niskim oknie. */
   const c = cell * .5;
-  const tw = Math.min(DW * (DW < 760 ? .92 : .62), 1000);
-  const w = Math.max(40, Math.round(tw / c));
-  const h = Math.max(6, Math.round(w * logoImg.naturalHeight / logoImg.naturalWidth));
+  const ar = (logoImg.naturalWidth || 700) / (logoImg.naturalHeight || 202);
+  let tw = Math.min(DW * (DW < 760 ? .82 : .52), 860);
+  let th = tw / ar;
+  const maxH = DH * .4;
+  if (th > maxH) { th = maxH; tw = th * ar; }
+  const w = Math.max(24, Math.round(tw / c));
+  const h = Math.max(8, Math.round(th / c));
   off.width = w; off.height = h;
   ox.clearRect(0, 0, w, h);
   ox.drawImage(logoImg, 0, 0, w, h);
-  return sampleCanvas(w, h, c, .55);
+  return sampleCanvas(w, h, c, .6);
 }
 function buildTargets() {
   targets = {};
@@ -285,6 +290,13 @@ function drawDots(tt) {
   dx.fillStyle = '#f6f2ee';
   dx.beginPath();
   const blue = [];
+  /* 09.10.2026 (prosba wlascicielki): napis sklada sie z kwadracikow
+     z lekko zaokraglonymi rogami, nie z kolek */
+  const square = (x, y, r) => {
+    const s = r * 1.78, k = Math.min(s * .3, 2.2);
+    if (dx.roundRect) dx.roundRect(x - s / 2, y - s / 2, s, s, k);
+    else dx.rect(x - s / 2, y - s / 2, s, s);
+  };
   for (const p of parts) {
     if (el < p.del) continue;
     let fx = (p.tx - p.x) * .07, fy = (p.ty - p.y) * .07;
@@ -301,12 +313,12 @@ function drawDots(tt) {
     const r = rad * p.s * p.rs * tw;
     if (r < .3) continue;
     if (p.h > .15) { blue.push(p, r); continue; }
-    dx.moveTo(p.x + r, p.y); dx.arc(p.x, p.y, r, 0, 6.2832);
+    square(p.x, p.y, r);
   }
   dx.fill();
   if (blue.length) {
     dx.fillStyle = '#bcd6e8'; dx.beginPath();
-    for (let i = 0; i < blue.length; i += 2) { const p = blue[i], r = blue[i + 1] * 1.1; dx.moveTo(p.x + r, p.y); dx.arc(p.x, p.y, r, 0, 6.2832); }
+    for (let i = 0; i < blue.length; i += 2) square(blue[i].x, blue[i].y, blue[i + 1] * 1.1);
     dx.fill();
   }
 }
@@ -335,7 +347,7 @@ function scramble(el, lines) {
 /* ===== Slajdy ===== */
 const pag = document.getElementById('pag');
 SLIDES.forEach((s, i) => { const b = document.createElement('button'); b.setAttribute('aria-label', s.word); b.onclick = () => go(i); pag.appendChild(b); });
-const $list = document.getElementById('list'), $desc = document.getElementById('desc'), $mList = document.getElementById('mList'), $mDesc = document.getElementById('mDesc');
+const $list = document.getElementById('list'), $desc = document.getElementById('desc');
 let autoT = null;
 const lines = key => t(key).split('|');
 function go(i, silent) {
@@ -343,7 +355,7 @@ function go(i, silent) {
   const s = SLIDES[slide];
   [...pag.children].forEach((b, k) => b.classList.toggle('on', k === slide));
   const lst = lines(s.list), dsc = lines(s.desc);
-  scramble($list, lst); scramble($desc, dsc); scramble($mList, lst); scramble($mDesc, dsc);
+  scramble($list, lst); scramble($desc, dsc);
   if (parts.length) assign(s.word);
   if (s.filter) {
     let best = null, bd = -2;

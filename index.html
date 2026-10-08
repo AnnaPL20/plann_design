@@ -24,7 +24,7 @@
   <link rel="icon" href="img/logo-pa-white.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/JetBrainsMono-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/JetBrainsMono-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/plann.css?v=20261009a">
+  <link rel="stylesheet" href="css/plann.css?v=20261009b">
 
   <script type="application/ld+json">
   {
@@ -53,15 +53,10 @@
   <div class="grain" aria-hidden="true"></div>
 
   <div class="ui">
-    <!-- Gora: lewy rog to marka, menu, jezyk i status; odbite napisy jak w lustrze -->
+    <!-- Gora: po lewej marka, jezyk i status; po srodku nawigacja; po prawej rok -->
     <div class="blk tl">
       <div class="brand"><i aria-hidden="true"></i><span>PLANN design</span></div>
       <div class="mute" style="margin-top:4px" data-i18n="ui.where">Poland, working worldwide</div>
-      <nav class="menu" aria-label="Menu">
-        <a href="index.html" aria-current="page" data-i18n="nav.projects">Projects</a>
-        <a href="contact.html" data-i18n="nav.contact">Contact</a>
-        <a href="shop.html" data-i18n="nav.shop">Shop</a>
-      </nav>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang="uk">UA</button>
         <button type="button" data-lang="en">EN</button>
@@ -69,10 +64,14 @@
       </div>
       <div class="status"><i aria-hidden="true"></i><span data-i18n="hero.status">Available for new projects</span></div>
     </div>
-    <div class="blk tc mir" aria-hidden="true">2026</div>
-    <div class="blk tr mir" aria-hidden="true">PLANN DESIGN<br><span data-i18n="ui.brandline">GRAPHIC &amp; WEB</span></div>
-    <div class="blk tr2 mir" id="mList" aria-hidden="true"></div>
-    <div class="blk tc2 mir" id="mDesc" aria-hidden="true"></div>
+
+    <nav class="topnav" aria-label="Menu">
+      <a href="index.html" aria-current="page" data-i18n="nav.projects">Projects</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="shop.html" data-i18n="nav.shop">Shop</a>
+    </nav>
+
+    <div class="blk tr">PLANN DESIGN<br><span class="mute" data-i18n="ui.brandline">Graphic &amp; web</span></div>
 
     <!-- Dol: lista slajdu, opis, podpowiedz, podpis, "o mnie" -->
     <div class="blk bl" id="list" aria-live="polite"></div>
@@ -116,7 +115,7 @@
   <!-- Wlasny kursor -->
   <div class="cur" id="cur" aria-hidden="true"><div class="r"><span data-i18n="cursor.view">View</span></div><div class="d"></div></div>
 
-  <script src="js/i18n.js?v=20261009a"></script>
-  <script type="module" src="js/plann.js?v=20261009a"></script>
+  <script src="js/i18n.js?v=20261009b"></script>
+  <script type="module" src="js/plann.js?v=20261009b"></script>
 </body>
 </html>
