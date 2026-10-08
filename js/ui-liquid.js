@@ -60,7 +60,10 @@
     anim.finished.then(() => span.remove(), () => span.remove());
   };
 
-  if (!reduceMotion) {
+  /* 02.10.2026 (prosba wlascicielki, Liquid Glass): galareta i falka wylaczone —
+     ruch kropel prowadzi teraz js/liquid-glass.js (wlasna sprezyna, bez fal).
+     Kod zostaje; wraca zmiana warunku ponizej na `if (!reduceMotion)`. */
+  if (false && !reduceMotion) {
     document.addEventListener('pointerdown', event => {
       if (event.button !== undefined && event.button !== 0) return;
       const el = event.target instanceof Element ? event.target.closest(DROP) : null;
@@ -103,5 +106,7 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
   };
 
-  if (!reduceMotion) $$('.lang').forEach(setupLang);
+  /* 02.10.2026: kropla przelacznika jezyka z filtrem gooey zastapiona kropla
+     Liquid Glass (js/liquid-glass.js). Kod zostaje — wraca warunkiem `if (!reduceMotion)`. */
+  if (false && !reduceMotion) $$('.lang').forEach(setupLang);
 })();

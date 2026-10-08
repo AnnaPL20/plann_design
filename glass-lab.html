@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glass lab · PLANN Design</title>
+  <meta name="robots" content="noindex">
+  <!-- Strona testowa kropel Liquid Glass (02.10.2026): te same cztery krople
+       na czterech tlach obok siebie — ciemne zdjecie, czysta biel, firmowa
+       czerwien, kolorowe rozmyte zdjecie. Do obejrzenia lokalnie; po "ok"
+       wlascicielki krople ida na cala strone. Zdjecia: wlasne kadry z img/. -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/liquid-glass.css">
+  <style>
+    html, body { min-height: 100vh; height: auto; margin: 0; padding: 0 !important; }
+    body { display: block; background: #0b0b0c; color: #fff; font-family: var(--font-body); overflow: auto; }
+    main.glab { min-height: 100vh; opacity: 1 !important; transform: none !important; filter: none !important; }
+    body::before { content: none; }
+    .glab { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); min-height: 100svh; }
+    .glab__panel {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 48px 20px 60px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .glab__panel::before { content: ""; position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; }
+    .glab__panel--dark::before { background-image: url("img/8.png"); }
+    .glab__panel--white { background: #ffffff; }
+    .glab__panel--red { background: #ff3d2e; }
+    .glab__panel--photo::before { background-image: url("img/3.png"); filter: blur(14px) saturate(140%); transform: scale(1.12); }
+    .glab__name {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+    .glab__panel--white .glab__name { color: #111; }
+    .glab__row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .glab__hint {
+      position: absolute;
+      bottom: 18px;
+      left: 20px;
+      right: 20px;
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: .58rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .55;
+      line-height: 1.6;
+    }
+    .glab__panel--white .glab__hint { color: #111; }
+    .glab__note { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 5; margin: 0; padding: 8px 14px; border-radius: 999px; background: rgba(0,0,0,.6); color: #fff; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; }
+    @media (max-width: 900px) { .glab { grid-template-columns: repeat(2, minmax(0, 1fr)); } .glab__panel { min-height: 50svh; } }
+    @media (max-width: 520px) { .glab { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="is-page-in">
+  <main class="glab" id="main">
+    <section class="glab__panel glab__panel--dark">
+      <p class="glab__name">01 · dark photo</p>
+      <div class="glab__row">
+        <button class="lg lg--round" type="button" aria-label="Up"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
+        <a class="lg lg--pill" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
+      </div>
+      <div class="glab__row">
+        <a class="lg lg--pill lg--accent" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
+        <div class="lg lg-switch" role="group" aria-label="Language">
+          <button class="lg-switch__btn" type="button">UA</button>
+          <button class="lg-switch__btn is-active" type="button">EN</button>
+          <button class="lg-switch__btn" type="button">PL</button>
+        </div>
+      </div>
+      <p class="glab__hint">hover: blik za kursorem · press: 1.10 + swiatlo · hold &amp; drag: ciagnie sie · release: sprezyna</p>
+    </section>
+
+    <section class="glab__panel glab__panel--white">
+      <p class="glab__name">02 · white (site paper)</p>
+      <div class="glab__row">
+        <button class="lg lg--round lg--on-light" type="button" aria-label="Up"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
+        <a class="lg lg--pill lg--on-light" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
+      </div>
+      <div class="glab__row">
+        <a class="lg lg--pill lg--accent" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
+        <div class="lg lg-switch lg--on-light" role="group" aria-label="Language">
+          <button class="lg-switch__btn" type="button">UA</button>
+          <button class="lg-switch__btn is-active" type="button">EN</button>
+          <button class="lg-switch__btn" type="button">PL</button>
+        </div>
+      </div>
+      <p class="glab__hint">na bieli: zalanie 4% czerni, ciemniejszy kontur, wyrazniejszy cien, blik zostaje</p>
+    </section>
+
+    <section class="glab__panel glab__panel--red">
+      <p class="glab__name">03 · brand red</p>
+      <div class="glab__row">
+        <button class="lg lg--round" type="button" aria-label="Up"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
+        <a class="lg lg--pill" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
+      </div>
+      <div class="glab__row">
+        <a class="lg lg--pill lg--accent" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
+        <div class="lg lg-switch" role="group" aria-label="Language">
+          <button class="lg-switch__btn" type="button">UA</button>
+          <button class="lg-switch__btn is-active" type="button">EN</button>
+          <button class="lg-switch__btn" type="button">PL</button>
+        </div>
+      </div>
+      <p class="glab__hint">czerwien stopki: krople bez tonu, aktywna tonowana czerwienia</p>
+    </section>
+
+    <section class="glab__panel glab__panel--photo">
+      <p class="glab__name">04 · blurred colour photo</p>
+      <div class="glab__row">
+        <button class="lg lg--round" type="button" aria-label="Up"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
+        <a class="lg lg--pill" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Start a project</span><span class="btn__br" aria-hidden="true">]</span></a>
+      </div>
+      <div class="glab__row">
+        <a class="lg lg--pill lg--accent" href="#main"><span class="btn__br" aria-hidden="true">[</span><span>Contact</span><span class="btn__br" aria-hidden="true">]</span></a>
+        <div class="lg lg-switch" role="group" aria-label="Language">
+          <button class="lg-switch__btn" type="button">UA</button>
+          <button class="lg-switch__btn is-active" type="button">EN</button>
+          <button class="lg-switch__btn" type="button">PL</button>
+        </div>
+      </div>
+      <p class="glab__hint">refrakcja najlepiej widoczna tu: tlo przy krawedziach gnie sie jak przez krople</p>
+    </section>
+  </main>
+  <p class="glab__note" id="labNote">glass lab · refraction: checking…</p>
+
+  <script src="js/liquid-glass.js" defer></script>
+  <script>
+    addEventListener('load', () => {
+      const n = document.getElementById('labNote');
+      n.textContent = 'glass lab · refraction: ' + (document.documentElement.classList.contains('lg-refract') ? 'on (SVG displacement)' : 'off (fallback)');
+    });
+  </script>
+</body>
+</html>
