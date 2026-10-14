@@ -21,8 +21,8 @@
 html, body { height: 100%; background: var(--ink); color: var(--bone); overflow: hidden; }
 body {
   font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: .04em;
+  font-size: 9px;
+  letter-spacing: .05em;
   text-transform: uppercase;
   line-height: 1.35;
   -webkit-font-smoothing: antialiased;
@@ -60,15 +60,15 @@ canvas { display: block; }
 .bl2 { left: var(--pad); bottom: calc(30px + env(safe-area-inset-bottom)); }
 .br2 { right: var(--pad); bottom: calc(30px + env(safe-area-inset-bottom)); text-align: right; white-space: normal; max-width: 260px; }
 .hint { left: 50%; transform: translateX(-50%); bottom: calc(92px + env(safe-area-inset-bottom)); color: var(--faint); transition: opacity .8s; }
-.brand { display: flex; align-items: center; gap: 8px; }
-.brand i { width: 7px; height: 7px; border-radius: 2px; background: var(--bone); display: inline-block; animation: pl 2.4s ease-in-out infinite; }
+.brand { display: flex; align-items: center; gap: 7px; }
+.brand i { width: 6px; height: 6px; border-radius: 2px; background: var(--bone); display: inline-block; animation: pl 2.4s ease-in-out infinite; }
 @keyframes pl { 50% { opacity: .25; } }
 .mute { color: var(--mute); }
-.lang { margin-top: 6px; display: flex; gap: 10px; }
+.lang { margin-top: 6px; display: flex; gap: 9px; }
 .lang button { background: none; border: 0; padding: 0; color: var(--faint); transition: color .3s; }
 .lang button:hover, .lang button.on { color: var(--bone); }
 .status { margin-top: 6px; display: flex; align-items: center; gap: 6px; color: var(--mute); }
-.status i { width: 5px; height: 5px; border-radius: 1px; background: #3ddc84; display: inline-block; }
+.status i { width: 4px; height: 4px; border-radius: 1px; background: #3ddc84; display: inline-block; }
 
 /* Paginacja i strzalka */
 .pag { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(30px + env(safe-area-inset-bottom)); display: flex; gap: 7px; }
@@ -137,8 +137,11 @@ canvas { display: block; }
 @media (max-width: 760px) {
   :root { --pad: 16px; }
   .br2 { display: none; }
-  .topnav { gap: 2px; padding: 3px; }
+  /* Telefon: menu idzie w lewy gorny rog, a blok z marka schodzi pod nie —
+     po srodku nachodzilo na napis (15.10.2026, uwaga wlascicielki) */
+  .topnav { left: var(--pad); transform: none; gap: 2px; padding: 3px; }
   .topnav a { padding: 7px 10px; }
+  .tl { top: calc(var(--pad) + 42px); }
   .tr { top: auto; bottom: calc(30px + env(safe-area-inset-bottom)); right: var(--pad); display: block; }
   .bl { bottom: calc(170px + env(safe-area-inset-bottom)); }
   .bc { left: var(--pad); bottom: calc(98px + env(safe-area-inset-bottom)); }
@@ -173,10 +176,17 @@ canvas { display: block; }
   backdrop-filter: blur(14px);
 }
 .topnav a {
-  padding: 8px 16px;
+  padding: 7px 14px;
   border-radius: 3px;
   color: var(--mute);
   transition: color .3s, background-color .3s;
 }
 .topnav a:hover { color: var(--bone); background: rgba(246, 242, 238, .08); }
 .topnav a[aria-current="page"] { color: #050506; background: var(--bone); }
+
+/* Telefon: menu musi stac po lewej. Regula idzie na sam koniec pliku, bo
+   podstawowe .topnav jest nizej niz wczesniejszy blok @media i wygrywalo
+   kolejnoscia (15.10.2026). */
+@media (max-width: 760px) {
+  .topnav { left: var(--pad); transform: none; }
+}

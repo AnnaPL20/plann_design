@@ -1,4 +1,5 @@
-# PLANN design — zasady pracy w tym projekcie
+| `img/work/` | prace zmniejszone do 1200 px, uzywane przez kule |
+| `img/` | znak PA, logotyp, ikony socjalne, obrazek Open Graph |# PLANN design — zasady pracy w tym projekcie
 
 Serwis przebudowany 09.10.2026. Caly stary uklad (jasna strona z sekcjami,
 `style.css`, `script.js` i kilkanascie modulow efektow) zostal usuniety na
@@ -47,6 +48,9 @@ formularzy). Logika formularzy zostala bez zmian: `js/contact-funnel.js`,
 - Kolo jest zarezerwowane dla kursora; reszta (kropki napisu, paginacja,
   przyciski) to kwadraty z lekko zaokraglonymi rogami.
 - `prefers-reduced-motion` wylacza ruch.
+- Telefon (do 760 px): menu stoi w lewym gornym rogu, blok z marka pod nim.
+  Regula `.topnav` dla telefonu musi byc na koncu `css/plann.css`, bo
+  podstawowa definicja lezy nizej niz pierwszy blok ``.
 - Po kazdej skonczonej zmianie: commit i push na `origin master`, zeby
   wlascicielka ogladala wynik na GitHub Pages. Przy zmianie CSS albo JS
   trzeba podbic `?v=` w adresach na wszystkich czterech stronach, bo
@@ -84,3 +88,11 @@ formularzy). Logika formularzy zostala bez zmian: `js/contact-funnel.js`,
 Sklep: platnosci i wysylka plikow przez Payhip. Wlascicielka zaklada konto,
 dodaje produkt z plikiem i cena, wkleja adres do `buyUrl` w `js/products.js`,
 ustawia `status: 'live'` i odkomentowuje skrypt `payhip.js` w `shop.html`.
+
+## 4. Sprzatanie 15.10.2026
+
+Z katalogu znikly pliki, ktorych nowy uklad nie uzywa: oryginaly prac
+(`img/1.png` … `img/10.png`, `img/cover-*`), trzy filmy (`hero-loop.mp4`,
+`hero-weave.mp4`, `motion-loop.mp4`). Strona korzysta z lzejszych kopii
+w `img/work/`. Wszystko zostaje w historii gita i wraca poleceniem
+`git checkout <commit> -- <plik>`.

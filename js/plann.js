@@ -252,9 +252,9 @@ function logoTargets() {
      ograniczone, zeby znak miescil sie w kadrze takze na niskim oknie. */
   const c = cell * .5;
   const ar = (logoImg.naturalWidth || 700) / (logoImg.naturalHeight || 202);
-  let tw = Math.min(DW * (DW < 760 ? .82 : .52), 860);
+  let tw = Math.min(DW * (DW < 760 ? .66 : .4), 660);
   let th = tw / ar;
-  const maxH = DH * .4;
+  const maxH = DH * .3;
   if (th > maxH) { th = maxH; tw = th * ar; }
   const w = Math.max(24, Math.round(tw / c));
   const h = Math.max(8, Math.round(th / c));
