@@ -223,9 +223,9 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 760px) {
   :root { --pad: 16px; }
-  /* Telefon: menu u gory po lewej, blok z marka pod nim (15.10.2026) */
+  /* Telefon: menu u gory po prawej, blok z marka pod nim (15.10.2026) */
   .head { grid-template-columns: 1fr; gap: 10px; }
-  .topnav { grid-row: 1; justify-self: start; }
+  .topnav { grid-row: 1; justify-self: end; }
   .headL { grid-row: 2; }
   .page { padding-top: calc(var(--pad) * 2 + 150px); }
   .pmodal__body { grid-template-columns: 1fr; }

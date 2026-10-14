@@ -250,7 +250,7 @@ function logoTargets() {
   /* Znak PA idzie na drobniejszej siatce (polowa komorki) — inaczej mialby
      kilka rzedow i nie dalo by sie go odczytac. Szerokosc i wysokosc sa
      ograniczone, zeby znak miescil sie w kadrze takze na niskim oknie. */
-  const c = cell * .5;
+  const c = cell * .6;
   const ar = (logoImg.naturalWidth || 700) / (logoImg.naturalHeight || 202);
   let tw = Math.min(DW * (DW < 760 ? .66 : .4), 660);
   let th = tw / ar;
@@ -261,7 +261,7 @@ function logoTargets() {
   off.width = w; off.height = h;
   ox.clearRect(0, 0, w, h);
   ox.drawImage(logoImg, 0, 0, w, h);
-  return sampleCanvas(w, h, c, .6);
+  return sampleCanvas(w, h, c, .78);
 }
 function buildTargets() {
   targets = {};
@@ -365,7 +365,8 @@ function go(i, silent) {
   }
   clearTimeout(autoT); autoT = setTimeout(() => go(slide + 1, true), SLIDE_MS);
 }
-document.getElementById('next').onclick = () => go(slide + 1);
+/* Strzalka "dalej" zdjeta 15.10.2026 na prosbe wlascicielki — slajdy
+   przelaczaja sie same, kropkami u dolu i strzalkami na klawiaturze */
 
 /* ===== Podglad projektu: czarny ekran ze znakiem, potem stega kadrow ===== */
 const lb = document.getElementById('lb'), lbTrack = document.getElementById('lbTrack'), lbTitle = document.getElementById('lbTitle'),
